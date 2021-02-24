@@ -53,7 +53,11 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 
 # ¿Qué es Git y para qué sirve?
 
-Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en el código. Su importancia radica en que podemos rastrear todos los cambios, desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código, volver a hacer cambios.
+Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en los archivos de código que pueden ser con lenguaje de R, Python, Java, entre muchos otros. Su importancia radica en que podemos rastrear todos los cambios: desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código, volver a hacer cambios. 
+
+__El objetivo de este tutorial__ es que se aprendan las herramientas necesarias para realizar trabajo en equipo donde se use código de manera remota. 
+
+Pensemos en una situación donde un grupo de personas desea realizar un proyecto para un análisis estadístico con R pero no se pueden reunir por cuestiones de una pandemia y tienen horarios difíciles de ajustar para _conectarse_ a trabajar a la misma hora. Las personas se podrían organizar de diversas formas como crear grupos en plataformas de Facebook, Slack, WhatsApp, etcétera, sin embargo, el manejo del archivo base _(el código de R)_ sería impráctico y muy ineficiente. Es por lo anterior que trabajar con Git y GitHub permitirá facilitar el manejo del archivo principal (o los múltiples archivos) sin necesidad de mandar distinas versiones por mensaje de texto, trabajar en el mismo horario o por turnos. Estas plataformas facilitan el desarrollo de proyectos que involucren código con orden y a gran escala.
 
 ## Instalar Git en Windows 
 
