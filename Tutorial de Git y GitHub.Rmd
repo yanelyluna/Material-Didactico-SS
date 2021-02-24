@@ -55,7 +55,12 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 
 Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en el código. Su importancia radica en que podemos rastrear todos los cambios, desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código, volver a hacer cambios.
 
-## Instalar Git en Windows
+## Instalar Git en Windows 
+
+1. Ir a la [URL](https://git-scm.com/download/win) para iniciar la descarga de Git para Windows.
+2. Una vez descargado el programa, ejecutarlo y seguir los pasos que se muestran. Cuando aparezca la siguiente ventana, seleccionar solo la opción "Launch Git Bash" y dar clic en finalizar.
+![Ventana final para la instalación de Git]("C:\\Users\\Yanely\\Documents\\Servicio social\\Tutorial_Git_GitHub\\git setup.PNG")
+
 
 ## Instalar Git en Mac _Eduardo_
 
