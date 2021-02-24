@@ -1,0 +1,111 @@
+---
+title: "Tutorial de Git y GitHub"
+author: "Yanely & Carlos"
+output:
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+        smooth_scroll: false
+     toc_depth: 2
+     number_sections: false
+date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
+---
+<style>
+  #TOC {
+    color: #724401;
+    font-family: Spectral;
+    font-size: 16px;
+    background-color: #FBECD1;
+    border-color: #958303;
+  }
+  h1.title {
+    color: #6D4101;
+    background-color: #FDFBEF;
+    opacity: 0.9;
+    font-family: Spectral;
+    font-size: 50px;
+  }
+  h4.author {
+    color: #012A6D;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+    font-size: 30px;
+  }
+  h4.date {
+    color: #7299D9;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+  }
+  body {
+    color: #08142A;
+    font-family: Spectral;
+    background-color: #FDFBEF;
+  }
+  pre {
+    color: #08142A;
+    background-color: #FEF9D7;
+  }
+</style>
+
+<div style="text-align: justify">
+<div/>
+
+# ¿Qué es Git y para qué sirve?
+
+## Instalar Git en Windows
+
+## Instalar Git en Mac _Eduardo_
+
+## Conceptos básicos
+
+## Inicializar un repositorio
+
+## Comandos principales
+
+### Add
+
+### Commit
+
+### Status
+
+### Diff
+
+### Log
+
+# ¿Qué es GitHub y para qué sirve?
+
+## Crear una cuenta
+
+## De GitHub a Git
+
+### Crear un repositorio
+
+### Clonar un repositorio
+
+### Actualizar un repositorio
+
+## De Git a GitHub
+
+### Push
+
+### Pull
+
+## Trabajo Colaborativo
+
+### Branch - Ramas
+
+### Merge - Fusión
+
+# RStudio - Git - GitHub
+
+
+
+
+
+
+
+
+
+
+
