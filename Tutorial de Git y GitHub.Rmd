@@ -57,8 +57,6 @@ Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar
 
 ## Instalar Git en Windows
 
-Primero tienes que usar el sistema operativo de Windows.
-
 ## Instalar Git en Mac _Eduardo_
 
 ## Conceptos básicos
