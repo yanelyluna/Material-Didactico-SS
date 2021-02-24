@@ -53,21 +53,47 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 
 # ¿Qué es Git y para qué sirve?
 
+Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en el código. Su importancia radica en que podemos rastrear todos los cambios, desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código, volver a hacer cambios.
+
 ## Instalar Git en Windows
 
 ## Instalar Git en Mac _Eduardo_
 
 ## Conceptos básicos
 
-## Inicializar un repositorio
+- Directorio: mejor conocido como carpeta o folder, el directorio contiene archivos de los que se desea tener el control de versiones.
+
+- Terminal o linea de comandos. Es una interface de texto donde se escriben los comandos que posteriormente usaremos para tener el control de los archivos y la modificación de los mismos.
+
+- Línea de comandos: se compone de comandos como `git status` o `cd \Documentos`
+
+- cd: permite cambiar de directorio, lo que es equivalente a un doble click para entrar en una carpeta.
+
+- clear: funciona para eliminar las líneas de código que se han escrito en la terminal hasta el momento. Esto solo es visual, no quita las instrucciones previas, solo “limpia” la terminal.
+
+    Es importante aprender a usar la “Terminal” y sus comandos porque a partir de ellos se hace más fácil la instalación de programas o su _“lectura-corrimiento-carga”_ (run programs). Esta forma de trabajar es para tener experiencia como “desarrollador” de algún proyecto. __Nota.__ La función ctrl+c, ctrl+v no sirven para pegar o copiar en la terminal. Así que se debe hacer la selección de lo que se quiera copiar con el click derecho para copiar y así mismo para pegar.
+
+- Editor de código: programa para desarrollar líneas de código, por ejemplo `RStudio`, `Java`, `Spyder`, `Notepad++`, `Visual Studio Code`, entre otros.
+
+- Repositorio (repository). También se conoce repositorio de Git y es lo equivalente a un directorio, la diferencia es que se llama repositorio una vez que se inicializa en Git (ver [detalles](#IR)).
+
+## Inicializar un repositorio {#IR}
 
 ## Comandos principales
 
+Los comandos que se muestran a continuación se usan con prefijo `git` y en minúsculas. Por ejemplo: `git diff`.
+
 ### Add
+
+Cuando se quieren agregar, borrar o modificar “archivos” (por ejemplo un archivo.R) en un repositorio hay que “avisar” a Git sobre esos cambios para que los agregue al historial de cambios en el código. Lo anterior se hace con la función `add` que le procede el nombre del archivo que se va a añadir, por ejemplo: `git add archivo.rmd`. En caso de que se quieran añadir todas las actualizaciones de todos los archivos en el repositorio se usa `git add .`
 
 ### Commit
 
+Una vez que se añadieron los cambios, hay que confirmarlos con este comando. La confirmación se hace con un mensaje que describa los cambios hechos. Por ejemplo `git commir -m "Este es el mensaje principal" -m "Aquí se puede hacer una descripción más detallada del cambio que se hizo al archivo correspondiente."`
+
 ### Status
+
+Permite conocer el estado en que se encuentran los archivos que se cambiaron o borraron antes de que se confirmara (usando commit) el cambio.
 
 ### Diff
 
@@ -79,9 +105,13 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 
 ## De GitHub a Git
 
-### Crear un repositorio
+### Crear un repositorio {#CR}
 
 ### Clonar un repositorio
+
+Clonar un repositorio significa “traer” (a tu computadora) archivos que están en algún repositorio de GitHub  y no están en tu computadora. Es importante “traer” los archivos para que puedas modificarlos. La palabra no clonar es distinta “descargar” porque una vez que se usó el comando ”clone” en un archivo, no es necesario hacerlo en cada ocasión como cuando se hacen descargas. 
+
+La forma de "traer" el código es usar la función `git clone` dentro de la terminal y posteriormente la [liga de la dirección de GitHub](#CR).
 
 ### Actualizar un repositorio
 
