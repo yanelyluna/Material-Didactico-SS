@@ -69,6 +69,7 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 ![](git setup.PNG)
 </p>
 </div>
+
 ## Instalar Git en Mac _Eduardo_
 
 ## Conceptos básicos
