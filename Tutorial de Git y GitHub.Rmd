@@ -69,6 +69,14 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 ![](git setup.PNG){width='250px'}
 </p>
 </div>
+3. Para configurar Git en tu computadora ingresamos el siguiente comando en Git Bash: 
+
+`git config --global user.name "tu user_name"` 
+
+y posteriormente el comando 
+
+`git config --global user.mail tu_email@mail.com`
+
 ## Instalar Git en Mac _Eduardo_
 
 ## Conceptos básicos
@@ -105,6 +113,9 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 
 ## Inicializar un repositorio {#IR}
 
+Para incializar un repositorio localmente en una carpeta ya existente, es necesario abrir la Terminal y situarnos dentro de dicha carpeta. Posteriormente ingresamos el comando 
+`git init`. El repositorio que creamos contiene los archivos que están dentro de la carpeta y apartir de ahora Git llevara el registro de los cambios en estos archivos.
+
 ## Comandos principales
 
 Los comandos que se muestran a continuación se usan con el prefijo `git` y en minúsculas. Por ejemplo: `git diff`. Tales comandos se usan en la terminal una vez que estamos en el repositorio inicializado.
@@ -131,6 +142,8 @@ Permite conocer el estado en que se encuentran los archivos que se cambiaron o b
 
 ### Diff
 
+El comando `git diff` nos permite comparar los cambios entre el último commit realizado y los archivos que se encuentrar en el staging area (los cambios que hemos añadido con `add` sin hacer `commit` aún).
+
 ### Log
 
 # ¿Qué es GitHub y para qué sirve?
@@ -138,6 +151,7 @@ Permite conocer el estado en que se encuentran los archivos que se cambiaron o b
 ## Diferencias entre Git y GitHub
 
 ## Crear una cuenta
+yo
 
 ## De GitHub a Git
 
@@ -152,11 +166,11 @@ Clonar un repositorio significa “traer” (a tu computadora) archivos que est�
 La forma de "traer" el código es usar la función `git clone` dentro de la terminal y posteriormente la [liga de la dirección de GitHub](#CR).
 
 ## De Git a GitHub
-
+y
 ### Push
-
+y
 ### Pull
-
+y
 ## Trabajo Colaborativo
 
 ### Branch - Ramas
