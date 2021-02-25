@@ -136,7 +136,11 @@ El comando `git diff` nos permite comparar los cambios entre el último commit r
 
 ### Log
 
+Este comando nos muestra la lista de los commits que se han realizado en el repositorio. La lista incluye el hash de cada commit, su autor y el mensaje correspondiente. 
+Aparecen ordenados del más reciente al más antiguo. Es posible que para visualizar toda la lista tengamos que usar la tecla de espacio hasta llegar al último commit, después del cual aparece `END`. Para salir de esta visualización, usamos la tecla `q`.
+
 # ¿Qué es GitHub y para qué sirve?
+
 
 ## Crear una cuenta
 yo
