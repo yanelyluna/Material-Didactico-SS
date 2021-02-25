@@ -74,9 +74,21 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 
 ## Conceptos básicos
 
-- Directorio: mejor conocido como carpeta o folder, el directorio contiene archivos de los que se desea tener el control de versiones.
+- Directorio: mejor conocido como carpeta o folder, el directorio contiene los archivos de los cuales se desea tener el control de versiones.
+
+<div>
+<p style="text-align: center">
+![](https://www.aulaclic.es/guia-windows8/images/Windows%208%20AULACLIC_img_184.jpg){width='100px'}
+</p>
+</div>
 
 - Terminal o linea de comandos. Es una interface de texto donde se escriben los comandos que posteriormente usaremos para tener el control de los archivos y la modificación de los mismos.
+
+<div>
+<p style="text-align: center">
+![](https://www.muycomputer.com/wp-content/uploads/2014/07/CMD.jpg){width='150px'}
+</p>
+</div>
 
 - Línea de comandos: se compone de comandos como `git status` o `cd \Documentos`
 
