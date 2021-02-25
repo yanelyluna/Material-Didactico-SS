@@ -132,11 +132,14 @@ Permite conocer el estado en que se encuentran los archivos que se cambiaron o b
 
 ### Diff
 
+El comando `git diff` nos permite comparar los cambios entre el último commit realizado y los archivos que se encuentrar en el staging area (los cambios que hemos añadido con `add` sin hacer `commit` aún).
+
 ### Log
 
 # ¿Qué es GitHub y para qué sirve?
 
 ## Crear una cuenta
+yo
 
 ## De GitHub a Git
 
@@ -151,11 +154,11 @@ La forma de "traer" el código es usar la función `git clone` dentro de la term
 ### Actualizar un repositorio
 
 ## De Git a GitHub
-
+y
 ### Push
-
+y
 ### Pull
-
+y
 ## Trabajo Colaborativo
 
 ### Branch - Ramas
