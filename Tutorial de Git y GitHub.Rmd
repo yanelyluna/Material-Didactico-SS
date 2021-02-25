@@ -69,6 +69,13 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 ![](git setup.PNG)
 </p>
 </div>
+3. Para configurar Git en tu computadora ingresamos el siguiente comando en Git Bash: 
+
+`git config --global user.name "tu user_name"` 
+
+y posteriormente el comando 
+
+`git config --global user.mail tu_email@mail.com`
 
 ## Instalar Git en Mac _Eduardo_
 
@@ -103,6 +110,9 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 - Repositorio (repository). También se conoce repositorio de Git y es lo equivalente a un directorio, la diferencia es que se llama repositorio una vez que se inicializa en Git (ver [detalles](#IR)).
 
 ## Inicializar un repositorio {#IR}
+
+Para incializar un repositorio localmente en una carpeta ya existente, es necesario abrir la Terminal y situarnos dentro de dicha carpeta. Posteriormente ingresamos el comando 
+`git init`. El repositorio que creamos contiene los archivos que están dentro de la carpeta y apartir de ahora Git llevara el registro de los cambios en estos archivos.
 
 ## Comandos principales
 
