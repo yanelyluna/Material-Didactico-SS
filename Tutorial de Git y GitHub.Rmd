@@ -62,10 +62,13 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 ## Instalar Git en Windows 
 
 1. Ir a la [URL](https://git-scm.com/download/win) para iniciar la descarga de Git para Windows.
-2. Una vez descargado el programa, ejecutarlo y seguir los pasos que se muestran. Cuando aparezca la siguiente ventana, seleccionar solo la opción "Launch Git Bash" y dar clic en finalizar.
-![Ventana final para la instalación de Git]("C:\\Users\\Yanely\\Documents\\Servicio social\\Tutorial_Git_GitHub\\git setup.PNG")
+2. Una vez descargado el programa, ejecutarlo y seguir los pasos que se muestran. Cuando aparezca la ventana "Completing the Git Setup Wizard", seleccionar solo la opción "Launch Git Bash" y dar clic en finalizar.
 
-
+<div>
+<p style = 'text-align:center;'>
+![](git setup.PNG)
+</p>
+</div>
 ## Instalar Git en Mac _Eduardo_
 
 ## Conceptos básicos
