@@ -151,10 +151,21 @@ Aparecen ordenados del más reciente al más antiguo. Es posible que para visual
 
 # ¿Qué es GitHub y para qué sirve?
 
+GitHub es un servicio de hosting repositorios, el cual se puede usar de manera conjunta con Git. Nos permite conectar repositorios de manera remota, lo que facilita el trabajo colaborativo. Para trabajar con GitHub debemos contar con conexión a internet, la cual no es necesaria cuando usamos solo Git. GitHub ofrece una interfaz gráfica que facilita el uso de Git para principiantes.
+
 ## Diferencias entre Git y GitHub
 
+
+| Git                                                | GitHub                                             |
+|----------------------------------------------------|----------------------------------------------------|
+| Se puede usar sin GitHub                           | Depende de Git para poder usarse                   |
+| Trabajo sin conexión a internet                    | Requiere conexión a internet                       |
+| El repositorio se almacena localmente              | El repositorio se almacena en la nube              |
+| Todos los comandos se introducen desde la Terminal | Pueden hacerse cambios usando la interfaz gráfica |
+
 ## Crear una cuenta
-yo
+
+Para usar GitHub es necesario crear una cuenta en [página de GitHub](https://github.com/) para lo que se requiere una cuenta de correo y una contraseña.
 
 ## De GitHub a Git
 
