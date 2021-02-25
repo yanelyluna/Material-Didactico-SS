@@ -101,6 +101,7 @@ y posteriormente el comando
 
 - Línea de comandos: se compone de comandos como `git status` o `cd \Documentos`
 
+###### cd {#cd}
 - cd: permite cambiar de directorio, lo que es equivalente a un doble click para entrar en una carpeta. Por ejemplo, escribir `cd Documentos` permitirá ingresar a la carpeta llamada "Documentos". __Hint:__ si el nombre de tu carpeta es demasiado grande, basta escribir `cd`, luego las primeras dos letras del nombre de la carpeta a la cual quieres llegar y por último oprimir la tecla `tabulador`. El tabulador completa el nombre haciendo la escritura eficiente.
 
 - clear: funciona para eliminar las líneas de código que se han escrito en la terminal hasta el momento. Esto solo es visual, no quita las instrucciones previas, solo “limpia” la terminal.
@@ -113,10 +114,10 @@ y posteriormente el comando
 
 ## Inicializar un repositorio {#IR}
 
-Para incializar un repositorio localmente en una carpeta ya existente, es necesario abrir la Terminal y situarnos dentro de dicha carpeta. Posteriormente ingresamos el comando 
-`git init`. El repositorio que creamos contiene los archivos que están dentro de la carpeta y apartir de ahora Git llevara el registro de los cambios en estos archivos.
+Para incializar un repositorio localmente en una carpeta ya existente, es necesario abrir la `Terminal` y situarnos dentro de dicha carpeta _(usar cd)_. Posteriormente ingresamos el comando 
+`git init`. El repositorio que creamos contiene los archivos que están dentro de la carpeta y apartir de ahora Git llevará el registro de los cambios en estos archivos.
 
-## Comandos principales
+## Comandos principales {#cp}
 
 Los comandos que se muestran a continuación se usan con el prefijo `git` y en minúsculas. Por ejemplo: `git diff`. Tales comandos se usan en la terminal una vez que estamos en el repositorio inicializado.
 
@@ -138,7 +139,7 @@ Una vez que se añadieron los cambios, hay que confirmarlos con este comando. La
 
 ### Status
 
-Permite conocer el estado en que se encuentran los archivos que se cambiaron o borraron antes de que se añadiera y confirmara (usando commit) el cambio. Ejemplo de esto es lo que se muestra en la imagen de comandos principales.
+Permite conocer el estado en que se encuentran los archivos que se cambiaron o borraron antes de que se añadiera (`add`) y confirmara (`commit`) el cambio. Ejemplo de esto es lo que se muestra en la imagen de comandos principales.
 
 ### Diff
 
@@ -151,7 +152,9 @@ Aparecen ordenados del más reciente al más antiguo. Es posible que para visual
 
 # ¿Qué es GitHub y para qué sirve?
 
-GitHub es un servicio de hosting repositorios, el cual se puede usar de manera conjunta con Git. Nos permite conectar repositorios de manera remota, lo que facilita el trabajo colaborativo. Para trabajar con GitHub debemos contar con conexión a internet, la cual no es necesaria cuando usamos solo Git. GitHub ofrece una interfaz gráfica que facilita el uso de Git para principiantes.
+GitHub es un servicio de hosting para repositorios, el cual se puede usar de manera conjunta con Git. Nos permite conectar repositorios de manera remota, lo que facilita el trabajo colaborativo. Para trabajar con GitHub debemos contar con conexión a internet, la cual no es necesario cuando usamos solo Git. GitHub ofrece una interfaz gráfica que facilita el uso de Git para principiantes.
+
+La importancia de esta plataforma radica en que no sólo se puede tener un control de los cambios que se hacen en el código (Git) sino que además estos pueden estar disponibles para un conjunto de personas que trabajen en el código de manera remota y asincrónica.
 
 ## Diferencias entre Git y GitHub
 
@@ -165,32 +168,78 @@ GitHub es un servicio de hosting repositorios, el cual se puede usar de manera c
 
 ## Crear una cuenta
 
-Para usar GitHub es necesario crear una cuenta en [página de GitHub](https://github.com/) para lo que se requiere una cuenta de correo y una contraseña.
+Para usar GitHub es necesario crear una cuenta en la [página de GitHub](https://github.com/) para lo que se requiere una cuenta de correo y una contraseña.
 
 ## De GitHub a Git
 
-Una vez que hemos creado una cuenta en GitHub podemos hacer al menos dos cosas: trabajar en los archivos de un repositorio creado por otro usuario de GitHub o crear nuestro propio repositorio en GitHub e invitar a nuestros colaboradores para trabajar en los archivos que ahí se encuentren.
+Una vez que hemos creado una cuenta en GitHub podemos hacer al menos dos cosas: trabajar en los archivos de un repositorio creado por otro usuario de GitHub __o__ crear nuestro propio repositorio en GitHub e invitar a nuestros colaboradores para trabajar en los archivos que ahí se encuentren.
 
 ### Crear un repositorio {#CR}
 
+1. Entrar a tu cuenta en GitHub previamente creada.
+2. Seleccionar el `+` en la esquina superior derecha.
+3. Seleccionar la pestaña `New repository`.
+
+<div>
+<p style = 'text-align:center;'>
+![](crear_repo.png){width='450px'}
+</p>
+</div>
+
+4. Dar nombre y una breve descripción al repositorio.
+5. Seleccionar el botón `Create repository`
+
+_Nota:_ Es posible que quieras añadir un archivo de texto que contenga la descipción de lo que se ha hecho a lo largo del proyecto en el repositorio, para lo cual es necesario seleccionar el botón que dice: `create a README`. 
+
+<div>
+<p style = 'text-align:center;'>
+![](crear_repos.png){width='430px'}
+</p>
+</div>
+
+Este repositorio aún no está en la computadora local, por lo cual se debe "clonar" tal repositorio. En el siguiente apartado veremos cómo.
+
 ### Clonar un repositorio
 
-Clonar un repositorio significa “traer” (a tu computadora) archivos que están en algún repositorio de GitHub  y no están en tu computadora. Es importante “traer” los archivos para que puedas modificarlos. La palabra no clonar es distinta “descargar” porque una vez que se usó el comando ”clone” en un archivo, no es necesario hacerlo en cada ocasión como cuando se hacen descargas. 
+Clonar un repositorio significa “traer” (a tu computadora) archivos que están en algún repositorio de GitHub _(puede o no ser tuyo)_ y no están en tu computadora. Es importante “traer” los archivos para que puedas modificarlos y este cambio se vea reflejado en GitHub. _La palabra `clonar` es distinta a “descargar” porque una vez que se usó el comando ”clone”, no es necesario hacerlo en cada ocasión como cuando se hacen descargas._ Con este comando es posible que las personas que colaboran en un proyecto (repositorio) tengan en sus computadoras los archios actualizados que se encuentran en el servidor de GitHub.
 
-La forma de "traer" el código es usar la función `git clone` dentro de la terminal y posteriormente la [liga de la dirección de GitHub](#CR).
+La forma de "traer" el código es usar el comando `git clone` [dentro de la carpeta](#cd) en la que se quiere guardar dicho repositorio con la terminal y posteriormente la liga de la dirección de GitHub. Para obtener la liga del repositorio de GitHub simplemente hay que seleccionar _(en nuestro repositorio de GitHub)_ la palabra `Code` y posteriormente copiar y pegar la liga que ahí aparece.
+
+###### url {#url}
+
+<div>
+<p style = 'text-align:center;'>
+![Copiar la liga del repositorio en GitHub](clonar.png){width='400px'}
+</p>
+</div>
+ 
+De lo cual, en la terminal, obtenemos lo siguiente:
+
+<div>
+<p style = 'text-align:center;'>
+![Comando para traer repositorios previamente hechos en GitHub](clonar1.png){width='450px'}
+</p>
+</div>
+
+Hasta este momento sabemos cómo crear un repositorio en GitHub y conectarlo con nuestra máquina local lo que nos permite trabajar en equipo con archivos de código sin necesidad de conectarnos _(como equipo de trabajo)_ en un horario particular. Los comandos para hacer las actualizaciones entre tu máquina local (Git) y el servidor (GitHub) se llaman `pull`-`push`. Tales comandos además de los [comandos principales](#cp) permiten lograr un trabajo en equipo eficiente.
 
 ## De Git a GitHub
 
-Es posible conectar un repositorio local existente con un repositorio remoto. Primero es necesario crear un repositorio nuevo en GitHub y copiar la URL de éste. Usando el comando `git remote add origin url` (donde `url` es la del repositorio nuevo de GitHub) creamos la conexión entre el repositorio local y el remoto.
+Es posible conectar un repositorio local existente con un repositorio remoto. Primero es necesario crear un repositorio nuevo en GitHub y copiar [la URL](#url) de éste. Usando el comando `git remote add origin url` _(donde `url` es la URL del repositorio nuevo de GitHub_) en la terminal y directorio inicializado, creamos la conexión entre el repositorio local y el remoto.
+
+<div>
+<p style = 'text-align:center;'>
+![](conectar.png){width='450px'}
+</p>
+</div>
 
 ### Push
 
-Para subir los cambios realizados en el repositorio local al repositorio remoto es necesario usar el comando `git push` después de hacer `add` y `commit`. Como un repositorio puede estar conectado con más de un repositorio remoto y tener varias [ramas](#branch), debemos especificar ambas cosas al hacer el `push`. Trabajando en el repositorio remoto `origin` y la rama `main` (default), el comando es `git push origin main`. 
-
+Para subir los cambios realizados en el repositorio local al repositorio remoto (actualizar en GitHub los cambios que realizamos en la máquina local) es necesario usar el comando `git push` __después de__ hacer `add` y `commit`. Como un repositorio puede estar conectado con más de un repositorio remoto y tener varias [ramas](#branch), debemos especificar ambas cosas al hacer el `push`. Trabajando en el repositorio remoto `origin` y la rama `main` (default), el comando es `git push origin main`. 
 
 ### Pull
 
-
+Para "jalar" los cambios que se tienen en el repositorio remoto y actualizar los archivos en nuestro repositorio local se usa el comando `git pull` (en el repositorio local dentro de la terminal).
 
 ## Trabajo Colaborativo
 
