@@ -53,7 +53,7 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 
 # ¿Qué es Git y para qué sirve?
 
-Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en los archivos de código que pueden ser con lenguaje de R, Python, Java, entre muchos otros. Su importancia radica en que podemos rastrear todos los cambios: desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código, volver a hacer cambios. 
+Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en los archivos de código que pueden ser con lenguaje de R, Python, Java, entre muchos otros. Su importancia radica en que podemos rastrear todos los cambios: desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código y a hacer cambios desde alguna de las versiones anteriores. 
 
 __El objetivo de este tutorial__ es que se aprendan las herramientas necesarias para realizar trabajo en equipo donde se use código de manera remota. 
 
@@ -66,7 +66,7 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 
 <div>
 <p style = 'text-align:center;'>
-![](git setup.PNG)
+![](git setup.PNG){width='250px'}
 </p>
 </div>
 ## Instalar Git en Mac _Eduardo_
@@ -83,15 +83,17 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 
 - Terminal o linea de comandos. Es una interface de texto donde se escriben los comandos que posteriormente usaremos para tener el control de los archivos y la modificación de los mismos.
 
-<div>
-<p style="text-align: center">
-![](https://www.muycomputer.com/wp-content/uploads/2014/07/CMD.jpg){width='150px'}
-</p>
-</div>
+    Para poder hacer uso de la terminal basta poner el buscador de Windows `GitBash` y dar click. Entonces aparecerá la terminal donde se escribirán todos los comandos.
+    
+    <div>
+    <p style = 'text-align:center;'>
+    ![](terminal_gb.png){width='300px'}
+    </p>
+    </div>
 
 - Línea de comandos: se compone de comandos como `git status` o `cd \Documentos`
 
-- cd: permite cambiar de directorio, lo que es equivalente a un doble click para entrar en una carpeta.
+- cd: permite cambiar de directorio, lo que es equivalente a un doble click para entrar en una carpeta. Por ejemplo, escribir `cd Documentos` permitirá ingresar a la carpeta llamada "Documentos". __Hint:__ si el nombre de tu carpeta es demasiado grande, basta escribir `cd`, luego las primeras dos letras del nombre de la carpeta a la cual quieres llegar y por último oprimir la tecla `tabulador`. El tabulador completa el nombre haciendo la escritura eficiente.
 
 - clear: funciona para eliminar las líneas de código que se han escrito en la terminal hasta el momento. Esto solo es visual, no quita las instrucciones previas, solo “limpia” la terminal.
 
@@ -105,19 +107,27 @@ Pensemos en una situación donde un grupo de personas desea realizar un proyecto
 
 ## Comandos principales
 
-Los comandos que se muestran a continuación se usan con prefijo `git` y en minúsculas. Por ejemplo: `git diff`.
+Los comandos que se muestran a continuación se usan con el prefijo `git` y en minúsculas. Por ejemplo: `git diff`. Tales comandos se usan en la terminal una vez que estamos en el repositorio inicializado.
+
+<div>
+<p style = 'text-align:center;'>
+![](Inkedterminal_cp.jpg){width='300px'}
+</p>
+</div>
 
 ### Add
 
-Cuando se quieren agregar, borrar o modificar “archivos” (por ejemplo un archivo.R) en un repositorio hay que “avisar” a Git sobre esos cambios para que los agregue al historial de cambios en el código. Lo anterior se hace con la función `add` que le procede el nombre del archivo que se va a añadir, por ejemplo: `git add archivo.rmd`. En caso de que se quieran añadir todas las actualizaciones de todos los archivos en el repositorio se usa `git add .`
+Cuando se quieren agregar, borrar o modificar “archivos” (por ejemplo un `archivo.R`) en un repositorio hay que “avisar” a Git sobre esos cambios para que los agregue al historial de cambios en el código. Lo anterior se hace con la función `add` a la cual le procede el nombre del archivo que se va a añadir, por ejemplo: `git add archivo.rmd`. En caso de que se quieran añadir todas las actualizaciones de todos los archivos en el repositorio se usa el comando `git add .`
 
 ### Commit
 
-Una vez que se añadieron los cambios, hay que confirmarlos con este comando. La confirmación se hace con un mensaje que describa los cambios hechos. Por ejemplo `git commir -m "Este es el mensaje principal" -m "Aquí se puede hacer una descripción más detallada del cambio que se hizo al archivo correspondiente."`
+Una vez que se añadieron los cambios, hay que confirmarlos con este comando. La confirmación se hace con un mensaje que describa los cambios hechos. Por ejemplo: 
+
+`git commit -m "Este es el mensaje principal" -m "Aquí se puede hacer una descripción` `más detallada del cambio que se hizo al archivo correspondiente."`
 
 ### Status
 
-Permite conocer el estado en que se encuentran los archivos que se cambiaron o borraron antes de que se confirmara (usando commit) el cambio.
+Permite conocer el estado en que se encuentran los archivos que se cambiaron o borraron antes de que se añadiera y confirmara (usando commit) el cambio. Ejemplo de esto es lo que se muestra en la imagen de comandos principales.
 
 ### Diff
 
@@ -125,9 +135,13 @@ Permite conocer el estado en que se encuentran los archivos que se cambiaron o b
 
 # ¿Qué es GitHub y para qué sirve?
 
+## Diferencias entre Git y GitHub
+
 ## Crear una cuenta
 
 ## De GitHub a Git
+
+Una vez que hemos creado una cuenta en GitHub podemos hacer al menos dos cosas: trabajar en los archivos de un repositorio creado por otro usuario de GitHub o crear nuestro propio repositorio en GitHub e invitar a nuestros colaboradores para trabajar en los archivos que ahí se encuentren.
 
 ### Crear un repositorio {#CR}
 
@@ -136,8 +150,6 @@ Permite conocer el estado en que se encuentran los archivos que se cambiaron o b
 Clonar un repositorio significa “traer” (a tu computadora) archivos que están en algún repositorio de GitHub  y no están en tu computadora. Es importante “traer” los archivos para que puedas modificarlos. La palabra no clonar es distinta “descargar” porque una vez que se usó el comando ”clone” en un archivo, no es necesario hacerlo en cada ocasión como cuando se hacen descargas. 
 
 La forma de "traer" el código es usar la función `git clone` dentro de la terminal y posteriormente la [liga de la dirección de GitHub](#CR).
-
-### Actualizar un repositorio
 
 ## De Git a GitHub
 
