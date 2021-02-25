@@ -1750,8 +1750,18 @@ div.tocify {
 </div>
 <div id="de-git-a-github" class="section level2">
 <h2>De Git a GitHub</h2>
-<p>y ### Push y ### Pull y ## Trabajo Colaborativo</p>
-<div id="branch---ramas" class="section level3">
+<p>Es posible conectar un repositorio local existente con un repositorio remoto. Primero es necesario crear un repositorio nuevo en GitHub y copiar la URL de éste. Usando el comando <code>git remote add origin url</code> (donde <code>url</code> es la del repositorio nuevo de GitHub) creamos la conexión entre el repositorio local y el remoto.</p>
+<div id="push" class="section level3">
+<h3>Push</h3>
+<p>Para subir los cambios realizados en el repositorio local al repositorio remoto es necesario usar el comando <code>git push</code> después de hacer <code>add</code> y <code>commit</code>. Como un repositorio puede estar conectado con más de un repositorio remoto y tener varias <a href="#branch">ramas</a>, debemos especificar ambas cosas al hacer el <code>push</code>. Trabajando en el repositorio remoto <code>origin</code> y la rama <code>main</code> (default), el comando es <code>git push origin main</code>.</p>
+</div>
+<div id="pull" class="section level3">
+<h3>Pull</h3>
+</div>
+</div>
+<div id="trabajo-colaborativo" class="section level2">
+<h2>Trabajo Colaborativo</h2>
+<div id="branch" class="section level3">
 <h3>Branch - Ramas</h3>
 </div>
 <div id="merge---fusión" class="section level3">

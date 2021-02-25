@@ -180,14 +180,21 @@ Clonar un repositorio significa “traer” (a tu computadora) archivos que est�
 La forma de "traer" el código es usar la función `git clone` dentro de la terminal y posteriormente la [liga de la dirección de GitHub](#CR).
 
 ## De Git a GitHub
-y
+
+Es posible conectar un repositorio local existente con un repositorio remoto. Primero es necesario crear un repositorio nuevo en GitHub y copiar la URL de éste. Usando el comando `git remote add origin url` (donde `url` es la del repositorio nuevo de GitHub) creamos la conexión entre el repositorio local y el remoto.
+
 ### Push
-y
+
+Para subir los cambios realizados en el repositorio local al repositorio remoto es necesario usar el comando `git push` después de hacer `add` y `commit`. Como un repositorio puede estar conectado con más de un repositorio remoto y tener varias [ramas](#branch), debemos especificar ambas cosas al hacer el `push`. Trabajando en el repositorio remoto `origin` y la rama `main` (default), el comando es `git push origin main`. 
+
+
 ### Pull
-y
+
+
+
 ## Trabajo Colaborativo
 
-### Branch - Ramas
+### Branch - Ramas {#branch}
 
 ### Merge - Fusión
 
