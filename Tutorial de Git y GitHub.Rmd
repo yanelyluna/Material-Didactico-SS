@@ -244,6 +244,12 @@ Para "jalar" los cambios que se tienen en el repositorio remoto y actualizar los
 ## Trabajo Colaborativo
 
 ### Branch - Ramas {#branch}
+<div>
+<p style = 'text-align:center;'>
+![](ramas.png){width='350px'}
+</p>
+</div>
+
 
 ### Merge - Fusión
 
