@@ -255,7 +255,6 @@ Supongamos que en un proyecto, como puede ser el desarrollo de un videojuego, ha
 </p>
 </div>
 
-
 Una rama (branch) de un repositorio puede considerarse como "un universo paralelo" del proyecto, pues los cambios que se realizan en ésta no afectan el contenido de las otras ramas existentes. Tener distintas ramas en un repositorio nos permite mantener distintas versiones de un mismo proyecto. 
 
 Al crear una rama estamos copiando todo el contenido de la rama principal (main) hasta ese momento, incluyendo el historial de los commits realizados. Sin embargo, una vez que empezamos a modificar la nueva rama, el contenido de la rama principal no se ve alterado hasta que queramos [fusionar](#Merge) las ramas.
@@ -290,14 +289,5 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
  4. Hacer la fusión (merge).
 
 # RStudio - Git - GitHub
-
-
-
-
-
-
-
-
-
 
 
