@@ -249,6 +249,12 @@ Supongamos que en un proyecto, como puede ser el desarrollo de un videojuego, ha
 
 
 ### Branch - Ramas {#branch}
+<div>
+<p style = 'text-align:center;'>
+![](ramas.png){width='350px'}
+</p>
+</div>
+
 
 Una rama (branch) de un repositorio puede considerarse como "un universo paralelo" del proyecto, pues los cambios que se realizan en ésta no afectan el contenido de las otras ramas existentes. Tener distintas ramas en un repositorio nos permite mantener distintas versiones de un mismo proyecto. 
 
