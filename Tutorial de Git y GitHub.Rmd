@@ -243,10 +243,51 @@ Para "jalar" los cambios que se tienen en el repositorio remoto y actualizar los
 
 ## Trabajo Colaborativo
 
+Hasta ahora hemos visto la manera de trabajar un repositorio en Git y/o GitHub, así como los comandos para actualizar los cambios. 
+
+Supongamos que en un proyecto, como puede ser el desarrollo de un videojuego, hay distintas partes del código donde se requiere hacer cambios o mejoras y es necesario no modificar el funcionamiento actual del proyecto hasta tener las otras partes completamente desarrolladas e incluirlas solo cuando ya sabemos que funcionan de manera adecuada. Además, queremos que distintos miembros del equipo trabajen en diferentes partes al mismo tiempo sin alterar el trabajo de los demás. Es en este caso donde el uso de las ramas de un repositorio es indispensable.
+
+
 ### Branch - Ramas {#branch}
 <div>
 <p style = 'text-align:center;'>
 ![](ramas.png){width='350px'}
 </p>
 </div>
+
+Una rama (branch) de un repositorio puede considerarse como "un universo paralelo" del proyecto, pues los cambios que se realizan en ésta no afectan el contenido de las otras ramas existentes. Tener distintas ramas en un repositorio nos permite mantener distintas versiones de un mismo proyecto. 
+
+Al crear una rama estamos copiando todo el contenido de la rama principal (main) hasta ese momento, incluyendo el historial de los commits realizados. Sin embargo, una vez que empezamos a modificar la nueva rama, el contenido de la rama principal no se ve alterado hasta que queramos [fusionar](#Merge) las ramas.
+
+Cada miembro del equipo puede crear una rama en el repositorio para trabajar en distintas partes sin afectar el trabajo de los demás (antes de fusionar). Por ejemplo, en el desarrollo de un videojuego, un integrante puede dedicarse a trabajar en aumentar las funciones de los lugares donde se desarrolla el juego mientras otro se dedica a trabajar en la configuración de los idiomas, etc.
+
+#### Comandos para trabajar en ramas
+
+- `git branch`: Muestra el listado de las ramas existentes hasta el momento, además de indicar con un asterisco la rama en la que nos encontramos. Por default siempre existe la rama principal (main/master).
+
+- `git checkout -b nombre_de_la_rama`: Crea una rama con nombre `nombre_de_la_rama`.
+
+- `git checkout nombre_de_la_rama`: Sirve para cambiar de rama. En este caso, nos cambiamos a la rama que se llama `nombre_de_la_rama`. Ya que estamos posicionados en la rama en la que queremos trabajar usamos los comandos vistos anteriormente (add, commit, pull, push, etc.) para registrar los cambios.
+
+- `git diff rama_1..rama_2`: Muestra las diferencias entre las ramas `rama_1` y `rama_2`.
+
+- `git branch -d nombre_de_la_rama`: Elimina la rama `nombre_de_la_rama`. Se utiliza cuando ya hemos hecho la fusión de esta rama con la rama principal y ya no la necesitamos.
+
+### Merge - Fusión {#Merge}
+
+Una vez que hemos trabajado en una rama y realizamos todos los cambios necesarios, podemos fusionar estos cambios con el contenido de la rama principal. Para esto usamos el comando `git merge rama_secundaria rama_principal`, el cual fusiona la rama_secundaria con la rama_principal. 
+
+#### Conflictos al fusionar ramas
+
+Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama principal se modificó después de haber creado la nueva rama, por lo que ésta no incluye dichos cambios.
+
+- Un conflicto que suele surgir al fusionar ramas es cuando no se han actualizado los cambios que sufrió la rama principal en nuestra rama secundaria. Esto se puede resolver de la siguiente forma:
+
+ 1. Añadir los cambios al repositorio local (add).
+ 2. Confirmar dichos cambios (commit).
+ 3. Actualizar el contenido de la rama principal en la rama secundaria (pull).
+ 4. Hacer la fusión (merge).
+
+# RStudio - Git - GitHub
+
 
