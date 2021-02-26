@@ -262,7 +262,7 @@ Cada miembro del equipo puede crear una rama en el repositorio para trabajar en 
 
 - `git checkout -b nombre_de_la_rama`: Crea una rama con nombre `nombre_de_la_rama`.
 
-- `git checkout nombre_de_la_rama`: Sirve para cambiar de rama. En este caso, nos cambiamos a la rama que se llama `nombre_de_la_rama`. Ya que estamos posicionados en la rama en la que queremos trabajar usamos los comandos vistos anteriormente (add, commit, pull, push, etc.) para registrar los cambios.
+- `git checkout nombre_de_la_rama`: Sirve para cambiar de rama. En este caso, nos cambiamos a la rama que se llama `nombre_de_la_rama`. Ya que estamos posicionados en la rama en la que queremos trabajar usamos los comandos vistos anteriormente (add, commit, pull, push, etc.) para registrar los cambios. Para registrar los cambios en el repositorio remoto, debemos especificar en el push la rama donde se guardarán usando el comando `git push --set-upstream origin nombre_de_la_rama`.
 
 - `git diff rama_1..rama_2`: Muestra las diferencias entre las ramas `rama_1` y `rama_2`.
 
@@ -280,8 +280,9 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
 
  1. Añadir los cambios al repositorio local (add).
  2. Confirmar dichos cambios (commit).
- 3. Actualizar el contenido de la rama principal en la rama secundaria (pull).
- 4. Hacer la fusión (merge).
+ 3. Actualizar el contenido de la rama principal en la rama secundaria (pull origin main).
+ 4. Hacer la fusión (push --set-upstream origin nombre_de_la_rama).
+ 5. Generar un pull request para hacer la fusión entre las ramas.
 
 # RStudio - Git - GitHub
 
