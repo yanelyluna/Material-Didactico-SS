@@ -260,7 +260,7 @@ Cada miembro del equipo puede crear una rama en el repositorio para trabajar en 
 
 - `git branch`: Muestra el listado de las ramas existentes hasta el momento, además de indicar con un asterisco la rama en la que nos encontramos. Por default siempre existe la rama principal (main/master).
 
-- `git branch -b nombre_de_la_rama`: Crea una rama con nombre `nombre_de_la_rama`.
+- `git checkout -b nombre_de_la_rama`: Crea una rama con nombre `nombre_de_la_rama`.
 
 - `git checkout nombre_de_la_rama`: Sirve para cambiar de rama. En este caso, nos cambiamos a la rama que se llama `nombre_de_la_rama`. Ya que estamos posicionados en la rama en la que queremos trabajar usamos los comandos vistos anteriormente (add, commit, pull, push, etc.) para registrar los cambios.
 
