@@ -250,18 +250,3 @@ Para "jalar" los cambios que se tienen en el repositorio remoto y actualizar los
 </p>
 </div>
 
-
-### Merge - Fusión
-
-# RStudio - Git - GitHub
-
-
-
-
-
-
-
-
-
-
-
