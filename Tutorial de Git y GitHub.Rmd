@@ -293,6 +293,25 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
 
 Es posible conectar con Git y GitHub desde RStudio, lo cual tiene la ventaja de que al modificar archivos en RStudio podemos registrar los cambios en el repositorio sin la necesidad de movernos a la Terminal. Para hacer esto posible, es necesario verificar primero que Git esté instalado correctamente y R y RStudio estén actualizados (con una versión de R de 4.0 o más reciente debería funcionar correctamente). Una vez cumplidos estos requisitos, debemos verificar que Git esté conectado con RStudio en _Tools_ -> _Global options_ -> _Git/SVN_ verificando que el directorio de git.exe que se solicita sea el correcto.
 
+## Conectar un proyecto nuevo de RStudio con Git
+
+La forma más sencilla de comenzar a trabajar Git con RStudio es creando un nuevo proyecto desde RStudio y seleccionar la opción que se muestra:
+
+<div>
+<p style = 'text-align:center;'>
+![](newp_creategit.png){width='350px'}
+</p>
+</div>
+
+Con esto se creará un repositorio de Git localmente en conjunto con el proyecto de R. Podemos agregar archivos ya existentes a este repositorio para comenzar a registrar los cambios con Git.
+
+
+<div>
+<p style = 'text-align:center;'>
+![](newproyect.png){width='350px'}
+</p>
+</div>
+
 ## Clonar un repositorio de GitHub desde RStudio
 
 
