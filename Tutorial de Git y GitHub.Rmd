@@ -14,7 +14,7 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 <style>
   #TOC {
     color: #724401;
-    font-family: Spectral;
+    font-family: Corbel;
     font-size: 16px;
     background-color: #FBECD1;
     border-color: #958303;
@@ -23,23 +23,23 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
     color: #6D4101;
     background-color: #FDFBEF;
     opacity: 0.9;
-    font-family: Spectral;
+    font-family: Corbel;
     font-size: 50px;
   }
   h4.author {
     color: #012A6D;
     background-color: #FDFBEF;
-    font-family: Spectral;
+    font-family: Corbel;
     font-size: 30px;
   }
   h4.date {
     color: #7299D9;
     background-color: #FDFBEF;
-    font-family: Spectral;
+    font-family: Corbel;
   }
   body {
     color: #08142A;
-    font-family: Spectral;
+    font-family: Corbel;
     background-color: #FDFBEF;
   }
   pre {
@@ -149,6 +149,14 @@ El comando `git diff` nos permite comparar los cambios entre el último commit r
 
 Este comando nos muestra la lista de los commits que se han realizado en el repositorio. La lista incluye el hash de cada commit, su autor y el mensaje correspondiente. 
 Aparecen ordenados del más reciente al más antiguo. Es posible que para visualizar toda la lista tengamos que usar la tecla de espacio hasta llegar al último commit, después del cual aparece `END`. Para salir de esta visualización, usamos la tecla `q`.
+
+La siguiente imagen da una idea vizual de lo que ocurre en cada comando que aplicamos (incluyendo los que se explicarán con mayor detalle posteriormente).
+
+<div>
+<p style = 'text-align:center;'>
+![](resumen.png){width='500px'}
+</p>
+</div>
 
 # ¿Qué es GitHub y para qué sirve?
 
@@ -283,11 +291,11 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
 
 - Un conflicto que suele surgir al fusionar ramas es cuando no se han actualizado los cambios que sufrió la rama principal en nuestra rama secundaria. Esto se puede resolver de la siguiente forma:
 
- 1. Añadir los cambios al repositorio local (add).
- 2. Confirmar dichos cambios (commit).
- 3. Actualizar el contenido de la rama principal en la rama secundaria (pull origin main).
- 4. Hacer la fusión (push --set-upstream origin nombre_de_la_rama).
- 5. Generar un pull request para hacer la fusión entre las ramas.
+     1. Añadir los cambios al repositorio local (add).
+     2. Confirmar dichos cambios (commit).
+     3. Actualizar el contenido de la rama principal en la rama secundaria (pull origin main).
+     4. Hacer la fusión (push --set-upstream origin nombre_de_la_rama).
+     5. Generar un pull request para hacer la fusión entre las ramas.
 
 # RStudio - Git - GitHub
 
