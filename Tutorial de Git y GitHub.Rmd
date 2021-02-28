@@ -313,13 +313,12 @@ La forma más sencilla de comenzar a trabajar Git con RStudio es creando un nuev
 
 Con esto se creará un repositorio de Git localmente en conjunto con el proyecto de R. Podemos agregar archivos ya existentes a este repositorio para comenzar a registrar los cambios con Git.
 
+## Clonar un repositorio de GitHub desde RStudio
 
+Podemos clonar un repositorio de GitHub a nuestra computadota directamente desde RStudio creando un nuevo proyecto y seleccionando la opción _Version control_.
 <div>
 <p style = 'text-align:center;'>
 ![](newproyect.png){width='350px'}
 </p>
 </div>
-
-## Clonar un repositorio de GitHub desde RStudio
-
-
+Posteriormente, pegamos el link de GitHub del repositorio que queremos clonar.
