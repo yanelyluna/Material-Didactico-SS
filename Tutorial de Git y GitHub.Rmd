@@ -321,4 +321,4 @@ Podemos clonar un repositorio de GitHub a nuestra computadota directamente desde
 ![](newproyect.png){width='350px'}
 </p>
 </div>
-Posteriormente, pegamos el link de GitHub del repositorio que queremos clonar.
+Posteriormente, pegamos el [link de GitHub](#url) del repositorio que queremos clonar. 
