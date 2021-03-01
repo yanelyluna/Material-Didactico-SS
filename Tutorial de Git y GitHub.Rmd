@@ -322,3 +322,25 @@ Podemos clonar un repositorio de GitHub a nuestra computadota directamente desde
 </p>
 </div>
 Posteriormente, pegamos el [link de GitHub](#url) del repositorio que queremos clonar. 
+
+Para realizar los comandos previamente presentados (como `add`, `commit`, `pull`, `push`) sin necesidad de usar la terminal tenemos que:
+
+1. Abrir un proyecto de R creado con `Version Control` de Git.
+2. Abrir un archivo _(.R, .rmd, etc.)_ __dentro__ del proyecto.
+3. Seleccionar la pestaña de `Git`.
+4. Para los comandos:
+    - `add`: seleccionar la palomita.
+    - `commit`: seleccionar `Commit`.
+    - `push`: seleccionar la flecha verde que apunta hacia arriba.
+    - `pull`: seleccionar la flecha azul que apunta hacia abajo.
+<div>
+<p style = 'text-align:center;'>
+![](comandos_en_RStudio.png){width='350px'}
+</p>
+</div>
+
+
+
+
+
+
