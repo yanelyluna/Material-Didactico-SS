@@ -1,0 +1,13 @@
+name: "Distill Blog"
+title: "Blog de Distill"
+description: |
+  Este sitio se ha creado para aprender a crear estos sitios.
+output_dir: "_site"
+theme: tema.css
+navbar:
+  right:
+    - text: "Principal"
+      href: index.html
+    - text: "Sobre nosotros"
+      href: about.html
+output: distill::distill_article

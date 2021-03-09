@@ -1,0 +1,28 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About",
+      "author": [],
+      "contents": "\r\nMore about this website\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-02T20:35:12-06:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Mi primer sitio web",
+      "author": [
+        {
+          "name": "Yanely",
+          "url": {}
+        },
+        {
+          "name": "Carlos",
+          "url": {}
+        }
+      ],
+      "contents": "\r\nEste es el primer Sitio Web que hago con RStudio\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-02T20:35:13-06:00"
+    }
+  ],
+  "collections": []
+}

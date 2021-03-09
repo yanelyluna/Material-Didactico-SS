@@ -1,0 +1,11 @@
+---
+title: "Mi primer sitio web"
+author: 
+  - name: "Yanely"
+    affiliation: "Facultad de Ciencias"
+  - name: "Carlos"
+    affiliation: "Facultad de Ciencias" 
+site: distill::distill_website
+---
+
+Este es el primer Sitio Web que hago con RStudio

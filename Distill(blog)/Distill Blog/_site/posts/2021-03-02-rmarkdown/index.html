@@ -1,0 +1,3070 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+<title>Blog de Distill: RMarkdown</title>
+
+<meta property="description" itemprop="description" content="Este tutorial te servirá para aprender a crear archivos .rmd."/>
+
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2021-02-20"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-02-20"/>
+<meta name="article:author" content="Carlos &amp; DataCamp"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Blog de Distill: RMarkdown"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Este tutorial te servirá para aprender a crear archivos .rmd."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Blog de Distill"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="Blog de Distill: RMarkdown"/>
+<meta property="twitter:description" content="Este tutorial te servirá para aprender a crear archivos .rmd."/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["RMarkdown"]},{"type":"character","attributes":{},"value":["Este tutorial te servirá para aprender a crear archivos .rmd."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Carlos & DataCamp"]},{"type":"character","attributes":{},"value":["https://www.datacamp.com/users/sign_in"]}]}]},{"type":"character","attributes":{},"value":["Última edición 02 de marzo del 2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["rmarkdown_files/anchor-4.2.2/anchor.min.js","rmarkdown_files/bowser-1.9.3/bowser.min.js","rmarkdown_files/distill-2.2.21/template.v2.js","rmarkdown_files/figure-html5/grafico-indonesia-1.png","rmarkdown_files/figure-html5/grafico-indonesia-2.png","rmarkdown_files/figure-html5/grafico-indonesia1-1.png","rmarkdown_files/figure-html5/grafico-indonesia3-1.png","rmarkdown_files/figure-html5/grafico-indonesia4-1.png","rmarkdown_files/figure-html5/grafico-indonesia5-1.png","rmarkdown_files/figure-html5/grafico-indonesia6-1.png","rmarkdown_files/figure-html5/grafico-indonesia7-1.png","rmarkdown_files/figure-html5/investment-annual-summary-1.png","rmarkdown_files/figure-html5/unnamed-chunk-4-1.png","rmarkdown_files/figure-html5/unnamed-chunk-5-1.png","rmarkdown_files/jquery-1.11.3/jquery.min.js","rmarkdown_files/popper-2.6.0/popper.min.js","rmarkdown_files/tippy-6.2.7/tippy-bundle.umd.min.js","rmarkdown_files/tippy-6.2.7/tippy-light-border.css","rmarkdown_files/tippy-6.2.7/tippy.css","rmarkdown_files/tippy-6.2.7/tippy.umd.min.js","rmarkdown_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description || ''}
+                </div>
+                <div class="search-item-preview">
+                  ${img}
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri');
+@import url('https://fonts.googleapis.com/css2?family=Bitter');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono');
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    "Amiri", serif;
+  --mono-font:       "DM Mono", monospace;
+  --body-font:       "Bitter", sans-serif;
+  --navbar-font:     "Amiri", serif;
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;    
+  --text-color:       #ff414b; /* edited */
+  --text-size:        15px;
+  --hover-color:      #dd424c; /* edited */
+  --bkgd-color:       #ffd8db; /* edited */
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"RMarkdown","description":"Este tutorial te servirá para aprender a crear archivos .rmd.","authors":[{"author":"Carlos & DataCamp","authorURL":"https://www.datacamp.com/users/sign_in","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-20T00:00:00.000-06:00","citationText":"DataCamp, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">Blog de Distill</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Principal</a>
+<a href="../../about.html">Sobre nosotros</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>RMarkdown</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Este tutorial te servirá para aprender a crear archivos .rmd.</p></p>
+</div>
+
+<div class="d-byline">
+  Carlos &amp; DataCamp <a href="https://www.datacamp.com/users/sign_in" class="uri">https://www.datacamp.com/users/sign_in</a> 
+  
+<br/>Última edición 02 de marzo del 2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#capítulo-4.-personalización-del-informe.">Capítulo 4. Personalización del informe.</a><ul>
+<li><a href="#tabla-de-contenidos.">Tabla de contenidos.</a></li>
+<li><a href="#crear-un-reporte-con-parámetro.">Crear un reporte con parámetro.</a></li>
+<li><a href="#multiples-parámteros">Multiples parámteros</a></li>
+<li><a href="#personalizar-el-r-markdown">Personalizar el R Markdown</a><ul>
+<li><a href="#cuerpo-del-archivo">Cuerpo del archivo</a></li>
+<li><a href="#códigos-chunk">Códigos chunk</a></li>
+<li><a href="#índice-del-archivo">Índice del archivo</a></li>
+<li><a href="#encabezado-del-archivo">Encabezado del archivo</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<style>
+  #TOC {
+    color: #724401;
+    font-size: 16px;
+    background-color: #FBECD1;
+    border-color: #958303;
+  }
+  h1.title {
+    color: #6D4101;
+    background-color: #FDFBEF;
+    opacity: 0.9;
+    font-size: 50px;
+  }
+  h4.author {
+    color: #012A6D;
+    background-color: #FDFBEF;
+    font-size: 30px;
+  }
+  h4.date {
+    color: #7299D9;
+    background-color: #FDFBEF;
+  }
+  body {
+    color: #08142A;
+    background-color: #FDFBEF;
+  }
+  pre {
+    color: #08142A;
+    background-color: #FEF9D7;
+  }
+</style>
+<div style="text-align: justify">
+<div>
+<h4 id="crear-el-archivo">Crear el archivo</h4>
+<p>Para poder crear el archivo R Markdown, puedes usar RStudio. En la pestaña “New File” das click, luego seleccionas “R Markdown” y listo. Este documento te servirá para aprender a editar lo que aparece dentro del archivo.</p>
+<p><img src="https://www.uv.es/vcoll/imagenes/tt_8_crear_rmarkdown_1.png" width="500" /></p>
+<h5 id="para-qué-sirven-los-archivos-r-markdown">¿Para qué sirven los archivos R Markdown?</h5>
+<p>La información puede presentarse de manera “reproducible” lo que significa que se pueden hacer modificaciones al archivo que hagan ver a las personas que lean los cambios que afecten los resultados deseados.</p>
+<h1 id="capítulo-1.-aproximación-a-r-markdown">Capítulo 1. Aproximación a R Markdown</h1>
+<p>Para poder ver los beneficios y herraminetas que tiene R Markdown, haremos uso de información relacionada con la inversión que ha hecho el Banco Mundial en proyectos de servicios públicos en los diferentes países del mundo desde el 2012 hasta el 2018.</p>
+<p>Primero se crea una sección de código o “chunk” para dar a conocer la información, un comando que facilita agregar secciones de código es <code>ctrl + alt + i</code>. En este caso incluiremos la información que cargamos en el chunk inicial.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Es muy recomendable que las paqueterías que se desean usar se carguen previo al análisis</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='co'>#Las paqueterías aquí presentadas se utilizarán a lo largo del código.</span>
+
+<span class='va'>investment_annual_summary</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span>
+    <span class='st'>"https://assets.datacamp.com/production/repositories/5756/datasets/d0251f26117bbcf0ea96ac276555b9003f4f7372/investment_annual_summary.csv"</span>
+  <span class='op'>)</span>
+<span class='va'>investment_services_projects</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span>
+    <span class='st'>"https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv"</span>
+  <span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>investment_annual_summary</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 42 x 3
+   fiscal_year region                          dollars_in_millions
+         &lt;dbl&gt; &lt;chr&gt;                                         &lt;dbl&gt;
+ 1        2012 East Asia and the Pacific                      2548
+ 2        2012 Europe and Central Asia                        2915
+ 3        2012 Latin America and the Caribbean                3680
+ 4        2012 Middle East and North Africa                   2210
+ 5        2012 South Asia                                     1312
+ 6        2012 Sub-Saharan Africa                             2733
+ 7        2013 East Asia and the Pacific                      2873
+ 8        2013 Europe and Central Asia                        3261
+ 9        2013 Latin America and the Caribbean                4822
+10        2013 Middle East and North Africa                   2038
+# ... with 32 more rows</code></pre>
+</div>
+<p>Notemos que se imprime la parte del código y lo que “almacena” esa variable, es decir el código y sus resultados.</p>
+<p>También podemos añadir información antes del reporte que se analizará, por ejemplo la descripción de la base de datos y la fuente consultada: <em>“The <code>investment_annual_summary</code> dataset provides a summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018.”</em></p>
+<p>Dentro del chunk (sección de código) no se puede poner texto, a menos que se escriba como comentario (lo cual se hace como en el código normal, es decir, con un gato #), por ejemplo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Este es un comentario para ejemplificar lo que escribí arriba.</span>
+<span class='va'>investment_annual_summary</span>
+</code></pre>
+</div>
+</div>
+<h2 id="editar-texto">Editar texto</h2>
+<h3 id="títulos">Títulos</h3>
+<p>Si queremos tener una mejor presentación y organización, podemos agregar títulos o subtítulos. Para crear un título se debe usar el símbolo gato (#). Entre más gatos (#) usemos, más pequeño será el título:</p>
+<pre><code>#### Título 1
+##### Título 2
+###### Título 3</code></pre>
+<p>Se vuelve en:</p>
+<h4 id="título-1">Título 1</h4>
+<h5 id="título-2">Título 2</h5>
+<h6 id="título-3">Título 3</h6>
+<h3 id="resaltar-información">Resaltar información</h3>
+<p>También es posible querer alguna edición de texto que permita al lector tener atención en algo, por ejemplo:</p>
+<pre><code>_itálicas_, *itálicas*;
+
+__bold__, **bold**;
+
+~~tachar~~.</code></pre>
+<p>Que se ve como:</p>
+<p><em>itálicas</em>, <em>itálicas</em>;</p>
+<p><strong>bold</strong>, <strong>bold</strong>;</p>
+<p><del>tachar</del>.</p>
+<h3 id="alineación-del-código">Alineación del código</h3>
+<ul>
+<li><p>Justificado <code>#&lt;div style="text-align: justify"&gt;</code> al inicio y <code>#&lt;div/&gt;</code> al final.</p></li>
+<li><p>Centrado <code>#&lt;div style="text-align: center"&gt;</code> al inicio y <code>#&lt;div/&gt;</code> al final.</p></li>
+<li><p>A la izquierda <code>#&lt;div style="text-align: left"&gt;</code> al inicio y <code>#&lt;div/&gt;</code> al final.</p></li>
+</ul>
+<h3 id="formato-tipo-código">Formato tipo código</h3>
+<p>Podemos hacer que el texto escrito se vea en el formato del código (para dar a notar que nos referimos a un objeto del código) de la forma <code>investment_services_projects</code>. Para obtener esta esritura se pone el texto <em>investment_services_projects</em> dentro de dos comillas invertidas ``.</p>
+<h3 id="agregar-referencias">Agregar referencias</h3>
+<h4 id="enlaces-de-internet">Enlaces de internet</h4>
+<p>Agregar parablas de referencia al link del cual obtuvimos la información es algo muy útil, eso se hace de la siguiente forma: primero se colocan corchetes dentro de los que se ecribirá la palabra que el lector seleccionará y se dirigirá a la página web que desea mostrar, posteriormente se coloca un par de paréntesis dentro de los que estará la liga de la página web. Es importante que no haya espacios entre los corchetes y los paréntesis.</p>
+<p>Ejemplo. [enlace] (dirección.de.enlace)</p>
+<p>La información aquí presentada viene del <a href="https://www.kaggle.com/theworldbank/ifc-investment-summary-and-services-projects">Banco Mundial</a>.</p>
+<h4 id="enlaces-al-propio-texto">Enlaces al propio texto</h4>
+<p>Para poder llegar a alguna parte específica del texto, podemos usar una referencia hacia el mismo poniendo <strong>en el título</strong> al que queremos dirigirnos la siguiente sintáxis: <code>#### Título 1 {#tit1}</code> para poder llegar a dicho título ponemos lo siguiente:<code>[Enlace a titulo1] (#tit1)</code> <strong>en el texto</strong> del cual querramos llegar al título.</p>
+<h3 id="agregar-imágenes">Agregar imágenes</h3>
+<p>Podemos también agregar imágenes con una sintáxis parecida a la anterior, es decir, poner un par de corchetes después de un signo de admiración y posterior a los corchetes añadir el enlace donde se encuentra la imagen (entre paréntesis), como sigue: <code>![](enlace)</code>.</p>
+<p>Ejemplo.</p>
+<p><img src="https://images.pexels.com/photos/41953/earth-blue-planet-globe-planet-41953.jpeg?auto=compress&amp;cs=tinysrbg&amp;dpr=2&amp;h=80&amp;=w=150" /></p>
+<h3 id="latex">LaTex</h3>
+<p>Una sección que había olvidado agregar es el uso de la sintáxis de <code>LaTex</code> en este tipo de archivos <code>rmd</code>. Es decir que se pueden escribir fórmulas de manera sencilla con el conocimiento previo de formulación o sintáxis. Para poder hacer uso de esta sintáxis, las fórmulas deben añadirse entre dos signos de pesos ($). Si por ejemplo ponemos definiciones como:</p>
+<p><span class="math display">\[ \mathbb{E}[X]:= \int_{\Omega}Xd\mathbb{P}\]</span> Donde <span class="math inline">\(X:\Omega\rightarrow \mathbb{R}\)</span> es una función borel medible <em>(variable aleatoria)</em> y <span class="math inline">\(\mathbb{P}:\mathscr{F}\rightarrow[0,1]\)</span> es una medida de probabilidad con <span class="math inline">\(\mathscr{F}\)</span> una <span class="math inline">\(\sigma-álgebra\)</span> de subconjuntos del espacio muestral <span class="math inline">\(\Omega\)</span>.</p>
+<h3 id="el-encabezado-yaml">El encabezado YAML</h3>
+<p>El encabezado YAML <em>(Hierarchical data structures)</em> es la parte del archivo R Markdown que contiene, entre otras cosas, el título del archivo, la (el) autora (autor) del mismo, la fecha de creación y el tipo de formato en el que se “tejerá” o cargará el archivo (HTML ó PDF).</p>
+<p><img src="https://bookdown.org/gboccardo/manual-ED-UCH/09-anexos/sintaxis_rmarkdown.png" /></p>
+<p>Podemos empezar cambiando la forma en que se pone la fecha, en general esta fecha aparece por defecto con el día en que se crea el archivo. Con el código date: <strong>‘r format(Sys.Date(),’%d de %B del %Y’)’</strong> y algunos <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime">otros</a> podremos poner la sintáxis de la fecha a nuestra conveniencia. En el ejemplo en negritas la fecha en el archivo aparecerá como: <strong>05 de marzo del 2021</strong> (suponiendo que la fecha en la que se “teje” el archivo es la ejemplificada).</p>
+<h1 id="capítulo-2.-análisis-de-información.">Capítulo 2. Análisis de información.</h1>
+<h2 id="filtrar-información">Filtrar información</h2>
+<p>Veamos el caso de los proyectos de inversión realizados en Indonesia. Para ello usamos la función <code>filter</code> de la paquetería <code>dplyr</code>.</p>
+<p><strong>Nota:</strong> es recomendable hacer varias secciones de código (chunks) y que cada chunk tenga un nombre referente a lo que se escribe en el código.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>indonesia_investment_projects</span> <span class='op'>&lt;-</span>
+  <span class='va'>investment_services_projects</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>country</span> <span class='op'>==</span> <span class='st'>"Indonesia"</span><span class='op'>)</span>
+<span class='va'>indonesia_investment_projects</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 39 x 13
+   date_disclosed      country ifc_country_code sector project_name
+   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;       
+ 1 2018-10-12 00:00:00 Indone~ INS              Finan~ KEB Hana In~
+ 2 2018-08-10 00:00:00 Indone~ INS              Finan~ JV Housing ~
+ 3 2018-08-03 00:00:00 Indone~ INS              Touri~ Trans Corpo~
+ 4 2018-07-23 00:00:00 Indone~ INS              Infra~ Riau IPP    
+ 5 2018-04-27 00:00:00 Indone~ INS              other  SSIA Ind Est
+ 6 2018-04-25 00:00:00 Indone~ INS              Infra~ PT Bajraday~
+ 7 2018-01-10 00:00:00 Indone~ INS              Agrib~ Nabati Indo~
+ 8 2017-11-14 00:00:00 Indone~ INS              Finan~ MBK Loan 20~
+ 9 2017-07-05 00:00:00 Indone~ INS              Finan~ IIF USD Loan
+10 2017-04-12 00:00:00 Indone~ INS              Finan~ Indosurya F~
+# ... with 29 more rows, and 8 more variables: project_number &lt;dbl&gt;,
+#   company_name &lt;chr&gt;, status &lt;chr&gt;,
+#   ifc_investment_for_risk_management_million_usd &lt;dbl&gt;,
+#   ifc_investment_for_guarantee_million_usd &lt;dbl&gt;,
+#   ifc_investment_for_loan_million_usd &lt;dbl&gt;,
+#   ifc_investment_for_equity_million_usd &lt;dbl&gt;,
+#   total_ifc_investment_as_approved_by_board_million_usd &lt;dbl&gt;</code></pre>
+</div>
+<p>Si queremos información más específica, podemos usar de ejemplo la fecha de inicio y fin de un año fiscal.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>indonesia_investment_projects_2012</span> <span class='op'>&lt;-</span>
+  <span class='va'>investment_services_projects</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>country</span> <span class='op'>==</span> <span class='st'>"Indonesia"</span>,
+                                          <span class='va'>date_disclosed</span> <span class='op'>&gt;=</span> <span class='st'>"2011-07-01"</span>,
+                                          <span class='va'>date_disclosed</span> <span class='op'>&lt;=</span> <span class='st'>"2012-06-30"</span><span class='op'>)</span>
+<span class='va'>indonesia_investment_projects_2012</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 3 x 13
+  date_disclosed      country ifc_country_code sector project_name
+  &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;       
+1 2012-04-27 00:00:00 Indone~ INS              Agrib~ FHP Indones~
+2 2012-04-03 00:00:00 Indone~ INS              Finan~ LMS Toll Pr~
+3 2012-02-27 00:00:00 Indone~ INS              Finan~ CIMB Niaga ~
+# ... with 8 more variables: project_number &lt;dbl&gt;,
+#   company_name &lt;chr&gt;, status &lt;chr&gt;,
+#   ifc_investment_for_risk_management_million_usd &lt;dbl&gt;,
+#   ifc_investment_for_guarantee_million_usd &lt;dbl&gt;,
+#   ifc_investment_for_loan_million_usd &lt;dbl&gt;,
+#   ifc_investment_for_equity_million_usd &lt;dbl&gt;,
+#   total_ifc_investment_as_approved_by_board_million_usd &lt;dbl&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r">
+<span class='co'>#Si queremos conocer la inversión total que se hizo en Indonesia podemos añadir una columna:</span>
+<span class='va'>indonesia_investment_projects_2012_total</span> <span class='op'>&lt;-</span>
+  <span class='va'>indonesia_investment_projects_2012</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>
+    sum_total_investments <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span>
+      <span class='va'>total_ifc_investment_as_approved_by_board_million_usd</span> ,
+      na.rm <span class='op'>=</span> <span class='cn'>T</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="IRET">Insertar resultados en el texto</h3>
+<p>Para poder usar algún resultado calculado dentro de los chunks en el texto, se usa la sintáxis <strong>‘r resultado_deseado’</strong> <em>(en vez de las comillas simples, se usan comillas invertidas)</em>, por ejemplo:</p>
+<p>The total investment amount for all projects in Indonesia in the 2012 fiscal year was <strong>100</strong> million dollars. Lo cual se obtuvo de la sintáxis <strong>‘r indonesia_investment_projects_2012_total’</strong>. Notemos que esto es parecido a editar el texto en forma de código, la diferencia es que añadimos una <strong>r</strong> y un espacio antes de seleccionar el <strong>resultado_deseado</strong>.</p>
+<p>Lo anterior es un ejemplo de cómo se pueden plasmar en el documento los datos que se han calculado hasta el momento en el código.</p>
+<p>Es importante que los resultados se pongan posterior al cálculo en los chunks porque al correr el archivo de R Markdown se hace una lectura ordenada del mismo y por tanto si se requieren resultados antes de su cálculo, habrá un error en la carga del archivo.</p>
+<h2 id="añadir-gráficas">Añadir gráficas</h2>
+<p>Añadir gráficas es muy similar que añadir código, primero se crea un chunk y luego con la función <code>plot</code> o <code>ggplot</code> se crea la gráfica.</p>
+<p>Si se quieren gráficas que puedan ser mejor editadas, usar la paquetería <code>ggplot2</code> es lo más recomendable. En este caso debes cargar dicha paquetería en el primer chunk.</p>
+<p>Ejemplo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>
+  <span class='va'>investment_annual_summary</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fiscal_year</span>, y <span class='op'>=</span> <span class='va'>dollars_in_millions</span>, color <span class='op'>=</span> <span class='va'>region</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'Inversión en Proyectos'</span>,x <span class='op'>=</span> <span class='st'>"Año fiscal"</span>,y <span class='op'>=</span> <span class='st'>'Inversión total en millones de dólares'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="rmarkdown_files/figure-html5/investment-annual-summary-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<p>Posiblemente no queremos que el código para realizar la gráfica aparezca en el archivo, así que podemos usar <code>echo = FALSE</code> (los detalles <a href="#OCC">aquí</a>)</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rmarkdown_files/figure-html5/grafico-indonesia-1.png" width="80%" style="display: block; margin: auto;" /><img src="rmarkdown_files/figure-html5/grafico-indonesia-2.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<h3 id="dimensiones">Dimensiones</h3>
+<p>Análogo a la especificación <code>echo = FALSE</code>, las funciones siguientes se colocan en el inicio de los chunks.</p>
+<p>Usemos las especificaciones <code>fig.width</code> (ancho) y <code>fig.height</code> (alto) para modificar las dimensiones de los gráficos que aparezcan en el documento “tejido”. Estas funciones se hacen al inicio del chunk, por lo que no puedes ver su aplicación en lo que aparecerá al “tejer” el archivo.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rmarkdown_files/figure-html5/grafico-indonesia1-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<p>Una forma más resumida es con el comando <code>fig.dim</code> al cual se le especifica un vector <code>fig.dim = c(ancho, largo)</code>.</p>
+<p>Como a veces no conocemos las dimensiones precisas de los diagramas que queremos presentar, podemos usar la especificación <code>out.width</code> que se usa con un porcentaje (por ejemplo <code>30%</code>) para que tome el 30% del aspecto en el R Markdown.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rmarkdown_files/figure-html5/grafico-indonesia3-1.png" width="30%" style="display: block; margin: auto;" /></p>
+</div>
+<p>Otro argumento que se puede agregar es la alineación del gráfico en el archivo, la cual puede ser izquierda <em>(‘left’)</em>, centro <em>(‘center’)</em> o derecha <em>(‘right’)</em> con la especificación <code>fig.align</code>, por ejemplo: <code>fig.align='right'</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rmarkdown_files/figure-html5/grafico-indonesia4-1.png" width="30%" style="display: block; margin: auto 0 auto auto;" /></p>
+</div>
+<p>Algo que también nos puede interesar es una descripción o título del gráfico que aparezca en el R Markdown, esto se hace con el comando <code>fig.cap</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:grafico-indonesia5"></span>
+<img src="rmarkdown_files/figure-html5/grafico-indonesia5-1.png" alt="Figure 1.1 Esto es un ejemplo de descripción de la gráfica que se muestra" width="60%" />
+<p class="caption">
+Figure 1: Figure 1.1 Esto es un ejemplo de descripción de la gráfica que se muestra
+</p>
+</div>
+</div>
+<h1 id="capítulo-3.-mejorar-el-código">Capítulo 3. Mejorar el código</h1>
+<h2 id="crear-listas.">Crear listas.</h2>
+<p>Para crear una lista se usa generalmente un asterísco, un guión medio o algún otro síbolo para iniciarla, por ejemplo:</p>
+<ul>
+<li>Días de entre semana
+<ul>
+<li>Lunes</li>
+<li>Martes</li>
+<li>Miércoles</li>
+<li>Jueves</li>
+<li>Viernes</li>
+</ul></li>
+<li>Días en fines de semana
+<ul>
+<li>Sábado</li>
+<li>Domingo</li>
+</ul></li>
+</ul>
+<p>Lo anterior se hace usando el guión medio o asterísco, luego un espacio y al final la palabra. Si se desea añadir más subtextos solo se hace una sangría extra.</p>
+<p>Es <strong>importante</strong> que antes y después de cada lista dejes un espacio para que aparezca en el R Markdown “tejido” (En el Knit).</p>
+<p>También podemos hacer listas numeradas:</p>
+<ol type="1">
+<li><p>Primer elemento.</p>
+<p>Aquí las cosas del primer elemento</p></li>
+<li><p>Segundo elemento.</p>
+<p>Aquí las cosas del segundo elemento</p></li>
+<li><p>Tercer elemento.</p>
+<p>Aquí las cosas del tercer elemento.</p></li>
+</ol>
+<h2 id="crear-tablas">Crear tablas</h2>
+<p>Para hacer una tabla necesitamos un chunk de R con el nombre <code>tables</code> además del código siguiente:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>indonesia_investment_projects_2012_summary</span>, col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Nombre del Proyecto"</span>, <span class='st'>"Status"</span>, <span class='st'>"Total de Inversión"</span><span class='op'>)</span>, align <span class='op'>=</span> <span class='st'>"rcl"</span>, caption <span class='op'>=</span> <span class='st'>"Tabla 1.1"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table>
+<caption><span id="tab:tables">Table 1: </span>Tabla 1.1</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Nombre del Proyecto</th>
+<th style="text-align: center;">Status</th>
+<th style="text-align: left;">Total de Inversión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">FHP Indonesia I</td>
+<td style="text-align: center;">Active</td>
+<td style="text-align: left;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">LMS Toll Project</td>
+<td style="text-align: center;">Hold</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">CIMB Niaga Sr.</td>
+<td style="text-align: center;">Completed</td>
+<td style="text-align: left;">75</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La función <code>kable</code> nos ayuda a crear tablas en un formato de caracteres, es decri que no se pueden hacer modificaciones dentro de esta tabla.</p>
+<h4 id="nombre-de-las-columnas">Nombre de las columnas</h4>
+<p>Para agregar el nombre que queremos a las columnas, usamos el argumento <code>col.names</code></p>
+<h4 id="alineación-de-las-columnas">Alineación de las columnas</h4>
+<p>Dentro de la función <code>kable</code> agregamos el argumento para el alineado de cada columna llamado <code>align</code>. Si queremos que la columna uno se aline a la derecha, la dos al centro y la tres a la izquierda, debemos usar el comando <code>aling = "rcl"</code> que significa <strong>r</strong> ight, <strong>c</strong> enter, <strong>l</strong> eft.</p>
+<h4 id="título-de-la-tabla">Título de la tabla</h4>
+<p>Añadimos el argumento <strong>caption</strong> en la función <code>kable</code></p>
+<p>Hay <a href="http://destio.us.es/calvo/ficheros/ComoCrearTablasRMarkdown_PedroLuque_2019Sep_librodigital.pdf">otras formas</a> de crear tablas que tengan mejores ediciones, con una sintaxis de HTML o Latex</p>
+<p><em>Si deseas conocer más información sobre la edición de R Markdown, da click <a href="https://rstudio-pubs-static.s3.amazonaws.com/330387_5a40ca72c3b14824acedceb7d34618d1.html#fnref1">aquí</a></em></p>
+<h2 id="OCC">Opciones de Código Chunk</h2>
+<p>Para poder manejar mejor los fragmentos de código en el archivo de presentación podemos incluirlo o no. Las funciones que aquí se presentan deben agregarse en el encabezado de cada chunk, por ejemplo:</p>
+<pre><code>  ``{r, echo=FALSE}
+  Chunk de código
+  ``</code></pre>
+<h4 id="eval">Eval</h4>
+<ul>
+<li>Si se desea que el código <strong>no</strong> se evalúe <em>(no se calcule)</em> entonces al inicio del chunk se agrega una especificación <code>eval = FALSE</code>. Esto evitará que se ejecute esa línea de código aun cuando éste aparezca en el archivo.</li>
+</ul>
+<h4 id="include">Include</h4>
+<ul>
+<li>Si se desea que el código se cargue pero que no aparezca éste ni sus resultados en el archivo Markdown <em>(no se vea el código ni los resultados que calcula)</em> entonces podemos usar la opción <code>include = FALSE</code>. Esta opción hace <em>invisible</em> el código y los resultados por defecto pero sí permite usar los mismos como parte del texto en el archivo (<a href="#IRET">ver sección.</a>)</li>
+</ul>
+<h4 id="echo">Echo</h4>
+<ul>
+<li>Si queremos que no aparezca el código y sí los resultados entonces se puede usar la especificación <code>echo = FALSE</code>. Es una práctica usual cuando se presentan gráficas, porque se quiere el gráfico pero no el código con el cual se realiza.</li>
+</ul>
+<h4 id="collapse">Collapse</h4>
+<ul>
+<li><p>Se puede usar <code>collapse = TRUE</code> si queremos que el código presentado en el archivo de R Markdown aparezca en el mismo espacio de chunk. Ejemplo:</p>
+<ul>
+<li><code>collapse = FALSE</code> <em>por defecto</em>. Aquí se separan los resultados en dos partes del código.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>investment_annual_summary</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 42 x 3
+   fiscal_year region                          dollars_in_millions
+         &lt;dbl&gt; &lt;chr&gt;                                         &lt;dbl&gt;
+ 1        2012 East Asia and the Pacific                      2548
+ 2        2012 Europe and Central Asia                        2915
+ 3        2012 Latin America and the Caribbean                3680
+ 4        2012 Middle East and North Africa                   2210
+ 5        2012 South Asia                                     1312
+ 6        2012 Sub-Saharan Africa                             2733
+ 7        2013 East Asia and the Pacific                      2873
+ 8        2013 Europe and Central Asia                        3261
+ 9        2013 Latin America and the Caribbean                4822
+10        2013 Middle East and North Africa                   2038
+# ... with 32 more rows</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>
+  <span class='va'>investment_annual_summary</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fiscal_year</span>, y <span class='op'>=</span> <span class='va'>dollars_in_millions</span>, color <span class='op'>=</span> <span class='va'>region</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'Inversión en Proyectos'</span>,x <span class='op'>=</span> <span class='st'>"Año fiscal"</span>,y <span class='op'>=</span> <span class='st'>'Inversión total en millones de dólares'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="rmarkdown_files/figure-html5/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<ul>
+<li><code>collapse = TRUE</code> <em>se tiene que especificar</em>. Aquí se <em>“juntan”</em> los resultados del código.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>investment_annual_summary</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 42 x 3
+   fiscal_year region                          dollars_in_millions
+         &lt;dbl&gt; &lt;chr&gt;                                         &lt;dbl&gt;
+ 1        2012 East Asia and the Pacific                      2548
+ 2        2012 Europe and Central Asia                        2915
+ 3        2012 Latin America and the Caribbean                3680
+ 4        2012 Middle East and North Africa                   2210
+ 5        2012 South Asia                                     1312
+ 6        2012 Sub-Saharan Africa                             2733
+ 7        2013 East Asia and the Pacific                      2873
+ 8        2013 Europe and Central Asia                        3261
+ 9        2013 Latin America and the Caribbean                4822
+10        2013 Middle East and North Africa                   2038
+# ... with 32 more rows</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r">
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>
+  <span class='va'>investment_annual_summary</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fiscal_year</span>, y <span class='op'>=</span> <span class='va'>dollars_in_millions</span>, color <span class='op'>=</span> <span class='va'>region</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'Inversión en Proyectos'</span>,x <span class='op'>=</span> <span class='st'>"Año fiscal"</span>,y <span class='op'>=</span> <span class='st'>'Inversión total en millones de dólares'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="rmarkdown_files/figure-html5/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div></li>
+</ul>
+<h2 id="warnings-mensajes-y-errores">Warnings, mensajes y errores</h2>
+<p>Análogo a las especificaciones anteriores, las funciones siguientes se colocan en el inicio de los chunks por ejemplo:</p>
+<pre><code>  ``{r, echo=FALSE, warning=FALSE}
+      ggplot(indonesia_investment_projects_2012)
+  ``</code></pre>
+<h4 id="warnings">Warnings</h4>
+<ul>
+<li><p>Si no queremos que aparezcan <em>“Warnings”</em> en el archivo final, agregamos el argumento <code>warning = FALSE</code> al inicio de cada chunk.</p>
+<ul>
+<li>Sin Warning:<br />
+
+<div class="layout-chunk" data-layout="l-body">
+<img src="rmarkdown_files/figure-html5/grafico-indonesia6-1.png" width="80%" style="display: block; margin: auto;" /></li>
+</ul></li>
+</ul>
+</div>
+<ul>
+<li>Con Warning <em>(por defecto)</em>:
+<div class="layout-chunk" data-layout="l-body">
+<img src="rmarkdown_files/figure-html5/grafico-indonesia7-1.png" width="80%" style="display: block; margin: auto;" /></li>
+</ul>
+</div>
+<h4 id="mensajes">Mensajes</h4>
+<ul>
+<li><p>Es probable que también se de información extra de las tablas que se descargaron, si no queremos que esos mensajes aparezcan, podemos agregar la opción <code>message = FALSE</code></p>
+<ul>
+<li>Con mensaje <em>(por defecto)</em>:
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>investment_services_projects</span> <span class='op'>&lt;-</span>
+<span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span>
+<span class='st'>"https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv"</span>
+<span class='op'>)</span>
+</code></pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+<ul>
+<li>Sin mensaje:
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>investment_services_projects</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span>
+<span class='st'>"https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv"</span>
+  <span class='op'>)</span>
+</code></pre>
+</div></li>
+</ul>
+</div>
+<h4 id="errores">Errores</h4>
+<ul>
+<li>Si queremos hacer notar cuáles son los errores en algúno de los chunks que hemos creado, se usa el argumento <code>error = TRUE</code>. Por defecto el argumento de <code>error</code> es <code>FALSE</code> y esto impide que el archivo de R Markdown se “teja” <em>(Knit-ea)</em> cuando hay errores en algún chunk. <strong>Es preferible</strong> que esta opción se aplique de manera global al inicio del R Mardown para que se identifiquen y corran todos los chunks con sus respectivos errores.</li>
+</ul>
+<h1 id="capítulo-4.-personalización-del-informe.">Capítulo 4. Personalización del informe.</h1>
+<h2 id="tabla-de-contenidos.">Tabla de contenidos.</h2>
+<p>Mejor conocida como “índice”, la tabla de contenidos nos permitirá hacer referecia a los contenidos dentro del archivo R Markdown. Es útil porque si se quiere llegar a una sección particular del archivo para enfatizar en un tema, solo se le da click en el apartado que resalta en color azul para llegar a leer dicha parte del documento.</p>
+<p>Para crear dicha tabla se debe agregar la sintáxis siguiente <em>(en el encamezado YAML)</em>:</p>
+<ul>
+<li><p><code>html_document:</code></p>
+<ul>
+<li><p><code>toc: true</code> <em>representa que sí se quiere hacer un índice (tabla de contenidos)</em></p></li>
+<li><p><code>toc_float: true</code> <strong>Solo para HTML</strong> <em>sirve para que el índice aparezca en todo tiempo del lado izquierdo del documento</em>. <strong>Advertencia:</strong> de usarse los siguientes dos “subapartados” (o especificaciones) se debe omitir la palabra <code>true</code>.</p>
+<ul>
+<li><p><code>collapsed: false</code> <em>por defecto</em> <code>collapse: true</code>, <em>lo cual implica que el menú estará siempre retraido a los títulos superiores, es decir que si se eligen poner subtitulos en el índice, estos no aparecerán</em>. Al hacer <code>collapsed: false</code> logramos que no solo los títulos mayores se puedan ver, sino que también los subtítulos.</p></li>
+<li><p><code>smooth_scroll: false</code> <em>por defecto smooth_scroll: true, es decir que se hará una “animación” (o transición suave) para desplazarse al título correspondiente</em>. Si se usa <code>smooth_scroll: false</code> entonces se evitará el movimiento y llegaremos al título requerido “inmediatamente” (sin suavidad).</p></li>
+</ul></li>
+<li><p><code>toc_depth: 1</code> <em>para determinar el número de títulos en jerarquía a considerar</em>. Si por ejemplo es necesario que aparezcan los capítlos con subcapítulos, entonces se usa un 2, indicando que el título mayor <em>(que se pone con ##, por ejemplo)</em> así como sus apartados <em>(los que tengan ###, por ejemplo)</em> se mostrarán en dicho índice.</p></li>
+<li><p><code>number_sections: false</code> <em>para enumerar los títulos en el índice</em>. Si se escribe <code>true</code> entonces se enumerarán los apartados del documento. En esta sección notemos que la numeración empieza en cero (0) cuando el títuloayor se ha puesto con dos gatos (##), si se iniciara el título mayor con un gato (#) entonces la numeración <em>(si se desea)</em> iniciará en 1.</p></li>
+</ul></li>
+</ul>
+<h2 id="crear-un-reporte-con-parámetro.">Crear un reporte con parámetro.</h2>
+<p>En este R Markdown hemos trabajado con información especial para Indonesia. ¿Qué pasa cuando nos piden el mísmo análisis pero de otro país? O lo que es peor, ¿qué pasa si nos piden reportes de cada país en América? La manera de solucionar esto es através de los parámetros.</p>
+<p>Si queremos que el reporte tenga la misma estructura pero información un tanto diferente (que sea, por ejemplo, la inversión que se ha hecho en México por parte del Banco Mundial) entonces la herramienta que se presenta a continuación es de total utilidad para que los informes se creen con cambiar 10 carácteres y no 1000 líneas de reporte.</p>
+<p>La forma de hacer esto es en el encabezado YAML. Se agrega (como en este documento) la siguiente sintáxis:</p>
+<ul>
+<li><p><code>params:</code></p>
+<ul>
+<li><code>country: Indonesia</code></li>
+</ul></li>
+</ul>
+<p>Es importante notar que <strong>nosotros decidimos</strong> el nombre del parámetro que deseamos modificar en el código.</p>
+<p><strong>Advertencia sobre la generalidad del código para ser “replicable.”</strong> Si se quiere hacer uso de esta automatización, hay que tener especial atención en que todas las referencias a dicho parámetro (que en este ejemplo fue el país) sean modificables.</p>
+<p>¿Dónde debemos poner atención?</p>
+<ol type="1">
+<li><p>Si se tenía el comando: <code>country == "Indonesia"</code> se deberá sustituir por <code>country == params$country</code> dado que al cambiar el parámetro llamado “country” en el encabezado YAML, también se cambiará la referencia y, por ende, el análisis.</p></li>
+<li><p>Si se usa el nombre del país en alguna parte del texto, debe hacerse consistente la referencia al país, si por ejemplo aparece en el texto “… la inversión que hizo el Banco Mundial para proyectos de servicios en Indonesia…” entonces es preferible que el texto esté escrito como “… la inversión que hizo el Banco Mundial para proyectos de servicios en <em>‘r params$country’</em>…” y en vez de usar las comillas simples, se usen las comillas inversas <strong>`</strong>.</p></li>
+<li><p>Si en el nombre de la gráfica se hace uso del nombre, mejor poner títulos más genéricos o cargar el nombre en un vector para ponerlo como título.</p></li>
+<li><p>En el título del reporte también puede aparecer el país, por lo que se puede poner la misma sintáxis del ejemplo 2 para cambiar dicho país</p></li>
+</ol>
+<h2 id="multiples-parámteros">Multiples parámteros</h2>
+<p>Se pueden agregar más parámetros como el año, el tipo de proyecto, entre otros. Esto es de utilidad si se requiere, por ejemplo, hacer un análisis de la infersión por año fiscal para cada país y además que los proyectos estén activos actualmente.</p>
+<p>Si queremos agregar el año fiscal de estudio y las fechas de inicio y fin del mismo podemos agregar a la sintáxis anterior lo siguiente:</p>
+<ul>
+<li><p><code>params:</code></p>
+<ul>
+<li><p><code>country: Indonesia</code></p></li>
+<li><p><code>year_start: 2011-07-01</code></p></li>
+<li><p><code>year_end: 2012-06-30</code></p></li>
+<li><p><code>fy: 2012</code></p></li>
+</ul></li>
+</ul>
+<p>Análogo a lo explicado en la sección anterior, se debe tener <strong>cuidado</strong> para que el documento sea lo más general posible y la referencia a los parámetros agregados se hagan.</p>
+<p><em>(Ver ejemplo completo en el documento “Ejemplo R Markdown”)</em></p>
+<h2 id="personalizar-el-r-markdown">Personalizar el R Markdown</h2>
+<p>Para poder tener los colres de fonto, fuente, color del título, entre otros detalles, es útil agregar algunas líneas de código que nos ayuden a esto.</p>
+<p>En principio veremos los comandos necesarios que deben ir al inicio de todo el archivo R Markdown. Luego se explicará cómo hacer para que creemos nuestro propio estilo sin necesidad de especificar todos los comandos en el mismo archivo de R Markdown, sino hacer una referencia a un archivo con las especificaciones que deseamos.</p>
+<p>Para darle un estilo específico necesitamos poner lo que queremos cambiar entre la sintáxis <code>&lt;style&gt;</code> (al inicio) y <code>&lt;/style&gt;</code> (al final).</p>
+<h3 id="cuerpo-del-archivo">Cuerpo del archivo</h3>
+<p>Si se desea hacer un cambio de color de letra en todo el “cuerpo” del documento, usamos la sintáxis:</p>
+<pre><code>&lt;style&gt;
+  body{
+    color: blue;
+  }
+&lt;/style&gt;</code></pre>
+<p>Análogo al código anterior se puede agregar al “cuerpo” del documento el color de fondo, tipo de letra y tamaño de la letra. En tal caso tendremos el ejemplo siguiente:</p>
+<pre><code>&lt;style&gt;
+  body{
+    color: #024B3B;
+    font-family: Calibri;
+    background-color: #F2FCFA;
+  }
+&lt;/style&gt;</code></pre>
+<p>Notemos que los colores no están dados de manera “regular”. Esos colores se obtuvieron de la forma <a href="https://htmlcolorcodes.com/es/">hexadecimal</a> que permite obtener una amplia gama de colores. Es importante incluir el símbolo gato “#” antes de cada código hexadecimal para que se pueda añadir dicho color.</p>
+<h3 id="códigos-chunk">Códigos chunk</h3>
+<p>Lo anterior es en general para el texto, pero si queremos un color especial para las líneas de código ponemos (despúes de cerrar el <code>body</code>) lo siguiente:</p>
+<pre><code>pre{
+  color: #273A00;
+  background-color: #E4F9BB;
+}</code></pre>
+<h3 id="índice-del-archivo">Índice del archivo</h3>
+<p>Si se desea también cambiar el diseño del índice <em>(tabla de contenido)</em> agregamos <em>(de preferencia antes del body)</em> lo siguiente:</p>
+<pre><code>#TOC {
+  color: #022A3D;
+  font-family: Calibri;
+  font-size: 16px;
+  boder-color: #026696;
+}</code></pre>
+<h3 id="encabezado-del-archivo">Encabezado del archivo</h3>
+<p>Si además queremos agregar propiedades particulares al encabezado (título, fecha y autor) entonces usamos <em>(de preferencia antes de #TOC)</em>:</p>
+<pre><code>#header {
+  color: #081137;
+  background-color: #C6DBF4;
+  opacity: 0.6;
+  font-family: Calibri;
+  font-size: 20px;
+}</code></pre>
+<p>Si queremos tener detalle tambíen por cada parte del encabezado (el título y el autor tengan distinto diseño, por ejemplo) entonces usamos el código:</p>
+<pre><code>h1.title {
+  color: #092547;
+  background-color: #375477;
+  opacity: 0.4;
+  font-family: Calibri;
+  font-size: 40px;`
+  }
+h4.author {
+  color: #223F61;
+  font-family: Calibri;
+  }
+h4.date {
+  color: #7C99BB;
+  font-family: Calibri;
+  }</code></pre>
+<h4 id="ejemplo">Ejemplo:</h4>
+<p>Notemos que la edición de la fuente, colores y demás temrinaría siendo el sifuiente código:</p>
+<pre><code>  &lt;style&gt;
+    #TOC {
+      color: #022A3D;
+      font-family: Calibri;
+      font-size: 16px;  
+      boder-color: #026696;
+      }
+    h1.title {
+      color: #092547;
+      background-color: #375477;
+      opacity: 0.4;  
+      font-family: Calibri;
+      font-size: 40px;
+      }
+    h4.author {
+      color: #223F61;
+      font-family: Calibri;
+      }
+    h4.date {
+      color: #7C99BB;
+      font-family: Calibri;
+      }
+    body{
+      color: #024B3B;
+      font-family: Calibri;
+      background-color: #F2FCFA;  
+      }
+    pre{
+      color: #273A00;
+      background-color: #E4F9BB;
+      }
+  &lt;/style&gt;</code></pre>
+<p>Para evitar tantas líneas de código en cada archivo, podemos hacer referencia a un archivo que contenga todas las especificaciones del estilo R Markdown. Esto se hace en el encabezado YAML luego del <code>html_document</code> de la forma:</p>
+<pre><code>html_document:
+  css: nombre_del_archivo_.css_con_extensión_css</code></pre>
+<p>La extensión es llamada css por el significado que es Cascading Style Sheet (CSS).</p>
+<p>Este archivo tiene las especificaciones de forma manual, sin embargo para encontrar más contenido sobre la forma de crear los archivos con extensión css, puede hacer diferentes consultas como: <a href="https://knowledge.hubspot.com/es/cos-general/create-edit-and-attach-css-files-to-style-your-site#crear-un-nuevo-archivo-de-css">esta</a> o <a href="https://youtu.be/znEqEmF8CNQ">esta</a> e incluso <a href="https://youtu.be/aSTOBvgtp30">esta</a>.</p>
+<p>En general se descarga primero el programa <strong>Notepad++</strong> <a href="https://notepad-plus-plus.org/downloads/">aquí</a>, luego crea un archivo con el nombre que desea (en el caso de <em>Ejemplo R Markdown</em> el archivo se llama style) y escribe la sintáxis previamente mencionada <strong>sin</strong> los #, guarda el archivo en un formato css en la misma carpeta donde tiene el R Markdown y por último agrega la sintáxis que se encuentra prvio a la explicación.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

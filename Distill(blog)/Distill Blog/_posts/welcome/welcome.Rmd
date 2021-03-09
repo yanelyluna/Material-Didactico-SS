@@ -1,0 +1,25 @@
+---
+title: "Bienvenido al Blog"
+description: |
+  Estamos felices por haber podido crear nuestro primer Blog con Distill y esperamos que puedas aprender mucho al respecto de este contenido.
+author:
+  - name: Carlos & Yanely 
+    url: https://reverent-elion-c8f759.netlify.app/tutorial-de-git-y-github
+    affiliation: Facultad de Ciencias
+    affiliation_url: https://dreamy-beaver-cd6aad.netlify.app/
+date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+Es importante que las cosas que vayamos aprendiendo a rellenar los espacios vacíos para que todo salga chévere.
+

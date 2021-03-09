@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Carlos A. Ar. &amp; DataCamp" />
+
+
+<title>R Markdown</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Mi primer sitio Web</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Principal</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tutoriales
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Tutorial-de-Git-y-GitHub.html">Tutorial de Git y GitHub</a>
+    </li>
+    <li>
+      <a href="R-Markdown.html">R Markdown</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R Markdown</h1>
+<h4 class="author">Carlos A. Ar. &amp; DataCamp</h4>
+<h4 class="date">Última edición 02 de marzo del 2021</h4>
+
+</div>
+
+
+<style>
+  #TOC {
+    color: #724401;
+    font-family: Spectral;
+    font-size: 16px;
+    background-color: #FBECD1;
+    border-color: #958303;
+  }
+  h1.title {
+    color: #6D4101;
+    background-color: #FDFBEF;
+    opacity: 0.9;
+    font-family: Spectral;
+    font-size: 50px;
+  }
+  h4.author {
+    color: #012A6D;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+    font-size: 30px;
+  }
+  h4.date {
+    color: #7299D9;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+  }
+  body {
+    color: #08142A;
+    font-family: Spectral;
+    background-color: #FDFBEF;
+  }
+  pre {
+    color: #08142A;
+    background-color: #FEF9D7;
+  }
+</style>
+<div style="text-align: justify">
+<div/>
+
+
+
+<div id="crear-el-archivo" class="section level4">
+<h4>Crear el archivo</h4>
+<p>Para poder crear el archivo R Markdown, puedes usar RStudio. En la pestaña “New File” das click, luego seleccionas “R Markdown” y listo. Este documento te servirá para aprender a editar lo que aparece dentro del archivo.</p>
+<p><img src="https://www.uv.es/vcoll/imagenes/tt_8_crear_rmarkdown_1.png" width="500" /></p>
+<div id="para-qué-sirven-los-archivos-r-markdown" class="section level5">
+<h5>¿Para qué sirven los archivos R Markdown?</h5>
+<p>La información puede presentarse de manera “reproducible” lo que significa que se pueden hacer modificaciones al archivo que hagan ver a las personas que lean los cambios que afecten los resultados deseados.</p>
+</div>
+</div>
+<div id="capítulo-1.-aproximación-a-r-markdown" class="section level1">
+<h1>Capítulo 1. Aproximación a R Markdown</h1>
+<p>Para poder ver los beneficios y herraminetas que tiene R Markdown, haremos uso de información relacionada con la inversión que ha hecho el Banco Mundial en proyectos de servicios públicos en los diferentes países del mundo desde el 2012 hasta el 2018.</p>
+<p>Primero se crea una sección de código o “chunk” para dar a conocer la información, un comando que facilita agregar secciones de código es <code>ctrl + alt + i</code>. En este caso incluiremos la información que cargamos en el chunk inicial.</p>
+<pre class="r"><code>#Es muy recomendable que las paqueterías que se desean usar se carguen previo al análisis
+library(readr)
+library(dplyr)
+library(ggplot2)
+#Las paqueterías aquí presentadas se utilizarán a lo largo del código.
+
+investment_annual_summary &lt;-
+  read_csv(
+    &quot;https://assets.datacamp.com/production/repositories/5756/datasets/d0251f26117bbcf0ea96ac276555b9003f4f7372/investment_annual_summary.csv&quot;
+  )
+investment_services_projects &lt;-
+  read_csv(
+    &quot;https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv&quot;
+  )</code></pre>
+<pre class="r"><code>investment_annual_summary</code></pre>
+<pre><code>## # A tibble: 42 x 3
+##    fiscal_year region                          dollars_in_millions
+##          &lt;dbl&gt; &lt;chr&gt;                                         &lt;dbl&gt;
+##  1        2012 East Asia and the Pacific                      2548
+##  2        2012 Europe and Central Asia                        2915
+##  3        2012 Latin America and the Caribbean                3680
+##  4        2012 Middle East and North Africa                   2210
+##  5        2012 South Asia                                     1312
+##  6        2012 Sub-Saharan Africa                             2733
+##  7        2013 East Asia and the Pacific                      2873
+##  8        2013 Europe and Central Asia                        3261
+##  9        2013 Latin America and the Caribbean                4822
+## 10        2013 Middle East and North Africa                   2038
+## # ... with 32 more rows</code></pre>
+<p>Notemos que se imprime la parte del código y lo que “almacena” esa variable, es decir el código y sus resultados.</p>
+<p>También podemos añadir información antes del reporte que se analizará, por ejemplo la descripción de la base de datos y la fuente consultada: <em>“The <code>investment_annual_summary</code> dataset provides a summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018.”</em></p>
+<p>Dentro del chunk (sección de código) no se puede poner texto, a menos que se escriba como comentario (lo cual se hace como en el código normal, es decir, con un gato #), por ejemplo:</p>
+<pre class="r"><code>#Este es un comentario para ejemplificar lo que escribí arriba.
+investment_annual_summary</code></pre>
+<div id="editar-texto" class="section level2">
+<h2>Editar texto</h2>
+<div id="títulos" class="section level3">
+<h3>Títulos</h3>
+<p>Si queremos tener una mejor presentación y organización, podemos agregar títulos o subtítulos. Para crear un título se debe usar el símbolo gato (#). Entre más gatos (#) usemos, más pequeño será el título:</p>
+<pre><code>#### Título 1
+##### Título 2
+###### Título 3</code></pre>
+<p>Se vuelve en:</p>
+<div id="título-1" class="section level4">
+<h4>Título 1</h4>
+<div id="título-2" class="section level5">
+<h5>Título 2</h5>
+<div id="título-3" class="section level6">
+<h6>Título 3</h6>
+</div>
+</div>
+</div>
+</div>
+<div id="resaltar-información" class="section level3">
+<h3>Resaltar información</h3>
+<p>También es posible querer alguna edición de texto que permita al lector tener atención en algo, por ejemplo:</p>
+<pre><code>_itálicas_, *itálicas*;
+
+__bold__, **bold**;
+
+~~tachar~~.</code></pre>
+<p>Que se ve como:</p>
+<p><em>itálicas</em>, <em>itálicas</em>;</p>
+<p><strong>bold</strong>, <strong>bold</strong>;</p>
+<p><del>tachar</del>.</p>
+</div>
+<div id="alineación-del-código" class="section level3">
+<h3>Alineación del código</h3>
+<ul>
+<li><p>Justificado <code>#&lt;div style="text-align: justify"&gt;</code> al inicio y <code>#&lt;div/&gt;</code> al final.</p></li>
+<li><p>Centrado <code>#&lt;div style="text-align: center"&gt;</code> al inicio y <code>#&lt;div/&gt;</code> al final.</p></li>
+<li><p>A la izquierda <code>#&lt;div style="text-align: left"&gt;</code> al inicio y <code>#&lt;div/&gt;</code> al final.</p></li>
+</ul>
+</div>
+<div id="formato-tipo-código" class="section level3">
+<h3>Formato tipo código</h3>
+<p>Podemos hacer que el texto escrito se vea en el formato del código (para dar a notar que nos referimos a un objeto del código) de la forma <code>investment_services_projects</code>. Para obtener esta esritura se pone el texto <em>investment_services_projects</em> dentro de dos comillas invertidas ``.</p>
+</div>
+<div id="agregar-referencias" class="section level3">
+<h3>Agregar referencias</h3>
+<div id="enlaces-de-internet" class="section level4">
+<h4>Enlaces de internet</h4>
+<p>Agregar parablas de referencia al link del cual obtuvimos la información es algo muy útil, eso se hace de la siguiente forma: primero se colocan corchetes dentro de los que se ecribirá la palabra que el lector seleccionará y se dirigirá a la página web que desea mostrar, posteriormente se coloca un par de paréntesis dentro de los que estará la liga de la página web. Es importante que no haya espacios entre los corchetes y los paréntesis.</p>
+<p>Ejemplo. [enlace] (dirección.de.enlace)</p>
+<p>La información aquí presentada viene del <a href="https://www.kaggle.com/theworldbank/ifc-investment-summary-and-services-projects">Banco Mundial</a>.</p>
+</div>
+<div id="enlaces-al-propio-texto" class="section level4">
+<h4>Enlaces al propio texto</h4>
+<p>Para poder llegar a alguna parte específica del texto, podemos usar una referencia hacia el mismo poniendo <strong>en el título</strong> al que queremos dirigirnos la siguiente sintáxis: <code>#### Título 1 {#tit1}</code> para poder llegar a dicho título ponemos lo siguiente:<code>[Enlace a titulo1] (#tit1)</code> <strong>en el texto</strong> del cual querramos llegar al título.</p>
+</div>
+</div>
+<div id="agregar-imágenes" class="section level3">
+<h3>Agregar imágenes</h3>
+<p>Podemos también agregar imágenes con una sintáxis parecida a la anterior, es decir, poner un par de corchetes después de un signo de admiración y posterior a los corchetes añadir el enlace donde se encuentra la imagen (entre paréntesis), como sigue: <code>![](enlace)</code>.</p>
+<p>Ejemplo.</p>
+<p><img src="https://images.pexels.com/photos/41953/earth-blue-planet-globe-planet-41953.jpeg?auto=compress&amp;cs=tinysrbg&amp;dpr=2&amp;h=80&amp;=w=150" /></p>
+</div>
+<div id="el-encabezado-yaml" class="section level3">
+<h3>El encabezado YAML</h3>
+<p>El encabezado YAML <em>(Hierarchical data structures)</em> es la parte del archivo R Markdown que contiene, entre otras cosas, el título del archivo, la (el) autora (autor) del mismo, la fecha de creación y el tipo de formato en el que se “tejerá” o cargará el archivo (HTML ó PDF).</p>
+<p><img src="https://bookdown.org/gboccardo/manual-ED-UCH/09-anexos/sintaxis_rmarkdown.png" /></p>
+<p>Podemos empezar cambiando la forma en que se pone la fecha, en general esta fecha aparece por defecto con el día en que se crea el archivo. Con el código date: <strong>‘r format(Sys.Date(),’%d de %B del %Y’)’</strong> y algunos <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime">otros</a> podremos poner la sintáxis de la fecha a nuestra conveniencia. En el ejemplo en negritas la fecha en el archivo aparecerá como: <strong>05 de marzo del 2021</strong> (suponiendo que la fecha en la que se “teje” el archivo es la ejemplificada).</p>
+</div>
+</div>
+</div>
+<div id="capítulo-2.-análisis-de-información." class="section level1">
+<h1>Capítulo 2. Análisis de información.</h1>
+<div id="filtrar-información" class="section level2">
+<h2>Filtrar información</h2>
+<p>Veamos el caso de los proyectos de inversión realizados en Indonesia. Para ello usamos la función <code>filter</code> de la paquetería <code>dplyr</code>.</p>
+<p><strong>Nota:</strong> es recomendable hacer varias secciones de código (chunks) y que cada chunk tenga un nombre referente a lo que se escribe en el código.</p>
+<pre class="r"><code>indonesia_investment_projects &lt;-
+  investment_services_projects %&gt;% filter(country == &quot;Indonesia&quot;)
+indonesia_investment_projects
+## # A tibble: 39 x 13
+##    date_disclosed      country ifc_country_code sector project_name
+##    &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;       
+##  1 2018-10-12 00:00:00 Indone~ INS              Finan~ KEB Hana In~
+##  2 2018-08-10 00:00:00 Indone~ INS              Finan~ JV Housing ~
+##  3 2018-08-03 00:00:00 Indone~ INS              Touri~ Trans Corpo~
+##  4 2018-07-23 00:00:00 Indone~ INS              Infra~ Riau IPP    
+##  5 2018-04-27 00:00:00 Indone~ INS              other  SSIA Ind Est
+##  6 2018-04-25 00:00:00 Indone~ INS              Infra~ PT Bajraday~
+##  7 2018-01-10 00:00:00 Indone~ INS              Agrib~ Nabati Indo~
+##  8 2017-11-14 00:00:00 Indone~ INS              Finan~ MBK Loan 20~
+##  9 2017-07-05 00:00:00 Indone~ INS              Finan~ IIF USD Loan
+## 10 2017-04-12 00:00:00 Indone~ INS              Finan~ Indosurya F~
+## # ... with 29 more rows, and 8 more variables: project_number &lt;dbl&gt;,
+## #   company_name &lt;chr&gt;, status &lt;chr&gt;,
+## #   ifc_investment_for_risk_management_million_usd &lt;dbl&gt;,
+## #   ifc_investment_for_guarantee_million_usd &lt;dbl&gt;,
+## #   ifc_investment_for_loan_million_usd &lt;dbl&gt;,
+## #   ifc_investment_for_equity_million_usd &lt;dbl&gt;,
+## #   total_ifc_investment_as_approved_by_board_million_usd &lt;dbl&gt;</code></pre>
+<p>Si queremos información más específica, podemos usar de ejemplo la fecha de inicio y fin de un año fiscal.</p>
+<pre class="r"><code>indonesia_investment_projects_2012 &lt;-
+  investment_services_projects %&gt;% filter(country == &quot;Indonesia&quot;,
+                                          date_disclosed &gt;= &quot;2011-07-01&quot;,
+                                          date_disclosed &lt;= &quot;2012-06-30&quot;)
+indonesia_investment_projects_2012
+## # A tibble: 3 x 13
+##   date_disclosed      country ifc_country_code sector project_name
+##   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;       
+## 1 2012-04-27 00:00:00 Indone~ INS              Agrib~ FHP Indones~
+## 2 2012-04-03 00:00:00 Indone~ INS              Finan~ LMS Toll Pr~
+## 3 2012-02-27 00:00:00 Indone~ INS              Finan~ CIMB Niaga ~
+## # ... with 8 more variables: project_number &lt;dbl&gt;, company_name &lt;chr&gt;,
+## #   status &lt;chr&gt;, ifc_investment_for_risk_management_million_usd &lt;dbl&gt;,
+## #   ifc_investment_for_guarantee_million_usd &lt;dbl&gt;,
+## #   ifc_investment_for_loan_million_usd &lt;dbl&gt;,
+## #   ifc_investment_for_equity_million_usd &lt;dbl&gt;,
+## #   total_ifc_investment_as_approved_by_board_million_usd &lt;dbl&gt;
+
+#Si queremos conocer la inversión total que se hizo en Indonesia podemos añadir una columna:
+indonesia_investment_projects_2012_total &lt;-
+  indonesia_investment_projects_2012 %&gt;% summarize(
+    sum_total_investments = sum(
+      total_ifc_investment_as_approved_by_board_million_usd ,
+      na.rm = T
+    )
+  )</code></pre>
+<div id="IRET" class="section level3">
+<h3>Insertar resultados en el texto</h3>
+<p>Para poder usar algún resultado calculado dentro de los chunks en el texto, se usa la sintáxis <strong>‘r resultado_deseado’</strong> <em>(en vez de las comillas simples, se usan comillas invertidas)</em>, por ejemplo:</p>
+<p>The total investment amount for all projects in Indonesia in the 2012 fiscal year was <strong>100</strong> million dollars. Lo cual se obtuvo de la sintáxis <strong>‘r indonesia_investment_projects_2012_total’</strong>. Notemos que esto es parecido a editar el texto en forma de código, la diferencia es que añadimos una <strong>r</strong> y un espacio antes de seleccionar el <strong>resultado_deseado</strong>.</p>
+<p>Lo anterior es un ejemplo de cómo se pueden plasmar en el documento los datos que se han calculado hasta el momento en el código.</p>
+<p>Es importante que los resultados se pongan posterior al cálculo en los chunks porque al correr el archivo de R Markdown se hace una lectura ordenada del mismo y por tanto si se requieren resultados antes de su cálculo, habrá un error en la carga del archivo.</p>
+</div>
+</div>
+<div id="añadir-gráficas" class="section level2">
+<h2>Añadir gráficas</h2>
+<p>Añadir gráficas es muy similar que añadir código, primero se crea un chunk y luego con la función <code>plot</code> o <code>ggplot</code> se crea la gráfica.</p>
+<p>Si se quieren gráficas que puedan ser mejor editadas, usar la paquetería <code>ggplot2</code> es lo más recomendable. En este caso debes cargar dicha paquetería en el primer chunk.</p>
+<p>Ejemplo:</p>
+<pre class="r"><code>ggplot(
+  investment_annual_summary,
+  aes(x = fiscal_year, y = dollars_in_millions, color = region)
+) + geom_line() + labs(title = &#39;Inversión en Proyectos&#39;,x = &quot;Año fiscal&quot;,y = &#39;Inversión total en millones de dólares&#39;)+theme_classic()</code></pre>
+<p><img src="R-Markdown_files/figure-html/investment-annual-summary-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Posiblemente no queremos que el código para realizar la gráfica aparezca en el archivo, así que podemos usar <code>echo = FALSE</code> (los detalles <a href="#OCC">aquí</a>)</p>
+<p><img src="R-Markdown_files/figure-html/grafico-indonesia-1.png" width="80%" style="display: block; margin: auto;" /><img src="R-Markdown_files/figure-html/grafico-indonesia-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<div id="dimensiones" class="section level3">
+<h3>Dimensiones</h3>
+<p>Análogo a la especificación <code>echo = FALSE</code>, las funciones siguientes se colocan en el inicio de los chunks.</p>
+<p>Usemos las especificaciones <code>fig.width</code> (ancho) y <code>fig.height</code> (alto) para modificar las dimensiones de los gráficos que aparezcan en el documento “tejido”. Estas funciones se hacen al inicio del chunk, por lo que no puedes ver su aplicación en lo que aparecerá al “tejer” el archivo.</p>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="R-Markdown_files/figure-html/grafico-indonesia1-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Una forma más resumida es con el comando <code>fig.dim</code> al cual se le especifica un vector <code>fig.dim = c(ancho, largo)</code>.</p>
+<p>Como a veces no conocemos las dimensiones precisas de los diagramas que queremos presentar, podemos usar la especificación <code>out.width</code> que se usa con un porcentaje (por ejemplo <code>30%</code>) para que tome el 30% del aspecto en el R Markdown.</p>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="R-Markdown_files/figure-html/grafico-indonesia3-1.png" width="30%" style="display: block; margin: auto;" /> Otro argumento que se puede agregar es la alineación del gráfico en el archivo, la cual puede ser izquierda <em>(‘left’)</em>, centro <em>(‘center’)</em> o derecha <em>(‘right’)</em> con la especificación <code>fig.align</code>, por ejemplo: <code>fig.align='right'</code></p>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="R-Markdown_files/figure-html/grafico-indonesia4-1.png" width="30%" style="display: block; margin: auto 0 auto auto;" /> Algo que también nos puede interesar es una descripción o título del gráfico que aparezca en el R Markdown, esto se hace con el comando <code>fig.cap</code>.</p>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<div class="figure" style="text-align: center">
+<img src="R-Markdown_files/figure-html/grafico-indonesia5-1.png" alt="Figure 1.1 Esto es un ejemplo de descripción de la gráfica que se muestra" width="60%" />
+<p class="caption">
+Figure 1.1 Esto es un ejemplo de descripción de la gráfica que se muestra
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="capítulo-3.-mejorar-el-código" class="section level1">
+<h1>Capítulo 3. Mejorar el código</h1>
+<div id="crear-listas." class="section level2">
+<h2>Crear listas.</h2>
+<p>Para crear una lista se usa generalmente un asterísco, un guión medio o algún otro síbolo para iniciarla, por ejemplo:</p>
+<ul>
+<li>Días de entre semana
+<ul>
+<li>Lunes</li>
+<li>Martes</li>
+<li>Miércoles</li>
+<li>Jueves</li>
+<li>Viernes</li>
+</ul></li>
+<li>Días en fines de semana
+<ul>
+<li>Sábado</li>
+<li>Domingo</li>
+</ul></li>
+</ul>
+<p>Lo anterior se hace usando el guión medio o asterísco, luego un espacio y al final la palabra. Si se desea añadir más subtextos solo se hace una sangría extra.</p>
+<p>Es <strong>importante</strong> que antes y después de cada lista dejes un espacio para que aparezca en el R Markdown “tejido” (En el Knit).</p>
+<p>También podemos hacer listas numeradas:</p>
+<ol style="list-style-type: decimal">
+<li><p>Primer elemento.</p>
+<p>Aquí las cosas del primer elemento</p></li>
+<li><p>Segundo elemento.</p>
+<p>Aquí las cosas del segundo elemento</p></li>
+<li><p>Tercer elemento.</p>
+<p>Aquí las cosas del tercer elemento.</p></li>
+</ol>
+</div>
+<div id="crear-tablas" class="section level2">
+<h2>Crear tablas</h2>
+<p>Para hacer una tabla necesitamos un chunk de R con el nombre <code>tables</code> además del código siguiente:</p>
+<pre class="r"><code>knitr::kable(indonesia_investment_projects_2012_summary, col.names = c(&quot;Nombre del Proyecto&quot;, &quot;Status&quot;, &quot;Total de Inversión&quot;), align = &quot;rcl&quot;, caption = &quot;Tabla 1.1&quot;)</code></pre>
+<table>
+<caption>Tabla 1.1</caption>
+<thead>
+<tr class="header">
+<th align="right">Nombre del Proyecto</th>
+<th align="center">Status</th>
+<th align="left">Total de Inversión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">FHP Indonesia I</td>
+<td align="center">Active</td>
+<td align="left">25</td>
+</tr>
+<tr class="even">
+<td align="right">LMS Toll Project</td>
+<td align="center">Hold</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">CIMB Niaga Sr.</td>
+<td align="center">Completed</td>
+<td align="left">75</td>
+</tr>
+</tbody>
+</table>
+<p>La función <code>kable</code> nos ayuda a crear tablas en un formato de caracteres, es decri que no se pueden hacer modificaciones dentro de esta tabla.</p>
+<div id="nombre-de-las-columnas" class="section level4">
+<h4>Nombre de las columnas</h4>
+<p>Para agregar el nombre que queremos a las columnas, usamos el argumento <code>col.names</code></p>
+</div>
+<div id="alineación-de-las-columnas" class="section level4">
+<h4>Alineación de las columnas</h4>
+<p>Dentro de la función <code>kable</code> agregamos el argumento para el alineado de cada columna llamado <code>align</code>. Si queremos que la columna uno se aline a la derecha, la dos al centro y la tres a la izquierda, debemos usar el comando <code>aling = "rcl"</code> que significa <strong>r</strong> ight, <strong>c</strong> enter, <strong>l</strong> eft.</p>
+</div>
+<div id="título-de-la-tabla" class="section level4">
+<h4>Título de la tabla</h4>
+<p>Añadimos el argumento <strong>caption</strong> en la función <code>kable</code></p>
+<p>Hay <a href="http://destio.us.es/calvo/ficheros/ComoCrearTablasRMarkdown_PedroLuque_2019Sep_librodigital.pdf">otras formas</a> de crear tablas que tengan mejores ediciones, con una sintaxis de HTML o Latex</p>
+<p><em>Si deseas conocer más información sobre la edición de R Markdown, da click <a href="https://rstudio-pubs-static.s3.amazonaws.com/330387_5a40ca72c3b14824acedceb7d34618d1.html#fnref1">aquí</a></em></p>
+</div>
+</div>
+<div id="OCC" class="section level2">
+<h2>Opciones de Código Chunk</h2>
+<p>Para poder manejar mejor los fragmentos de código en el archivo de presentación podemos incluirlo o no. Las funciones que aquí se presentan deben agregarse en el encabezado de cada chunk, por ejemplo:</p>
+<pre><code>  ``{r, echo=FALSE}
+  Chunk de código
+  ``</code></pre>
+<div id="eval" class="section level4">
+<h4>Eval</h4>
+<ul>
+<li>Si se desea que el código <strong>no</strong> se evalúe <em>(no se calcule)</em> entonces al inicio del chunk se agrega una especificación <code>eval = FALSE</code>. Esto evitará que se ejecute esa línea de código aun cuando éste aparezca en el archivo.</li>
+</ul>
+</div>
+<div id="include" class="section level4">
+<h4>Include</h4>
+<ul>
+<li>Si se desea que el código se cargue pero que no aparezca éste ni sus resultados en el archivo Markdown <em>(no se vea el código ni los resultados que calcula)</em> entonces podemos usar la opción <code>include = FALSE</code>. Esta opción hace <em>invisible</em> el código y los resultados por defecto pero sí permite usar los mismos como parte del texto en el archivo (<a href="#IRET">ver sección.</a>)</li>
+</ul>
+</div>
+<div id="echo" class="section level4">
+<h4>Echo</h4>
+<ul>
+<li>Si queremos que no aparezca el código y sí los resultados entonces se puede usar la especificación <code>echo = FALSE</code>. Es una práctica usual cuando se presentan gráficas, porque se quiere el gráfico pero no el código con el cual se realiza.</li>
+</ul>
+</div>
+<div id="collapse" class="section level4">
+<h4>Collapse</h4>
+<ul>
+<li><p>Se puede usar <code>collapse = TRUE</code> si queremos que el código presentado en el archivo de R Markdown aparezca en el mismo espacio de chunk. Ejemplo:</p>
+<ul>
+<li><code>collapse = FALSE</code> <em>por defecto</em>. Aquí se separan los resultados en dos partes del código.</li>
+</ul>
+<pre class="r"><code>investment_annual_summary</code></pre>
+<pre><code>## # A tibble: 42 x 3
+##    fiscal_year region                          dollars_in_millions
+##          &lt;dbl&gt; &lt;chr&gt;                                         &lt;dbl&gt;
+##  1        2012 East Asia and the Pacific                      2548
+##  2        2012 Europe and Central Asia                        2915
+##  3        2012 Latin America and the Caribbean                3680
+##  4        2012 Middle East and North Africa                   2210
+##  5        2012 South Asia                                     1312
+##  6        2012 Sub-Saharan Africa                             2733
+##  7        2013 East Asia and the Pacific                      2873
+##  8        2013 Europe and Central Asia                        3261
+##  9        2013 Latin America and the Caribbean                4822
+## 10        2013 Middle East and North Africa                   2038
+## # ... with 32 more rows</code></pre>
+<pre class="r"><code>ggplot(
+  investment_annual_summary,
+  aes(x = fiscal_year, y = dollars_in_millions, color = region)
+) + geom_line() + labs(title = &#39;Inversión en Proyectos&#39;,x = &quot;Año fiscal&quot;,y = &#39;Inversión total en millones de dólares&#39;)+theme_classic()</code></pre>
+<p><img src="R-Markdown_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><code>collapse = TRUE</code> <em>se tiene que especificar</em>. Aquí se <em>“juntan”</em> los resultados del código.</li>
+</ul>
+<pre class="r"><code>investment_annual_summary
+## # A tibble: 42 x 3
+##    fiscal_year region                          dollars_in_millions
+##          &lt;dbl&gt; &lt;chr&gt;                                         &lt;dbl&gt;
+##  1        2012 East Asia and the Pacific                      2548
+##  2        2012 Europe and Central Asia                        2915
+##  3        2012 Latin America and the Caribbean                3680
+##  4        2012 Middle East and North Africa                   2210
+##  5        2012 South Asia                                     1312
+##  6        2012 Sub-Saharan Africa                             2733
+##  7        2013 East Asia and the Pacific                      2873
+##  8        2013 Europe and Central Asia                        3261
+##  9        2013 Latin America and the Caribbean                4822
+## 10        2013 Middle East and North Africa                   2038
+## # ... with 32 more rows
+
+ggplot(
+  investment_annual_summary,
+  aes(x = fiscal_year, y = dollars_in_millions, color = region)
+) + geom_line() + labs(title = &#39;Inversión en Proyectos&#39;,x = &quot;Año fiscal&quot;,y = &#39;Inversión total en millones de dólares&#39;)+theme_classic()</code></pre>
+<p><img src="R-Markdown_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /></p></li>
+</ul>
+</div>
+</div>
+<div id="warnings-mensajes-y-errores" class="section level2">
+<h2>Warnings, mensajes y errores</h2>
+<p>Análogo a las especificaciones anteriores, las funciones siguientes se colocan en el inicio de los chunks por ejemplo:</p>
+<pre><code>  ``{r, echo=FALSE, warning=FALSE}
+      ggplot(indonesia_investment_projects_2012)
+  ``</code></pre>
+<div id="warnings" class="section level4">
+<h4>Warnings</h4>
+<ul>
+<li><p>Si no queremos que aparezcan <em>“Warnings”</em> en el archivo final, agregamos el argumento <code>warning = FALSE</code> al inicio de cada chunk.</p>
+<ul>
+<li><p>Sin Warning:<br />
+<img src="R-Markdown_files/figure-html/grafico-indonesia6-1.png" width="80%" style="display: block; margin: auto;" /></p></li>
+<li><p>Con Warning <em>(por defecto)</em>:</p></li>
+</ul></li>
+</ul>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="R-Markdown_files/figure-html/grafico-indonesia7-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mensajes" class="section level4">
+<h4>Mensajes</h4>
+<ul>
+<li><p>Es probable que también se de información extra de las tablas que se descargaron, si no queremos que esos mensajes aparezcan, podemos agregar la opción <code>message = FALSE</code></p>
+<ul>
+<li>Con mensaje <em>(por defecto)</em>:</li>
+</ul></li>
+</ul>
+<pre class="r"><code>investment_services_projects &lt;-
+  read_csv(
+    &quot;https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv&quot;
+  )</code></pre>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   date_disclosed = col_datetime(format = &quot;&quot;),
+##   country = col_character(),
+##   ifc_country_code = col_character(),
+##   sector = col_character(),
+##   project_name = col_character(),
+##   project_number = col_double(),
+##   company_name = col_character(),
+##   status = col_character(),
+##   ifc_investment_for_risk_management_million_usd = col_double(),
+##   ifc_investment_for_guarantee_million_usd = col_double(),
+##   ifc_investment_for_loan_million_usd = col_double(),
+##   ifc_investment_for_equity_million_usd = col_double(),
+##   total_ifc_investment_as_approved_by_board_million_usd = col_double()
+## )</code></pre>
+<ul>
+<li>Sin mensaje:</li>
+</ul>
+<pre class="r"><code>investment_services_projects &lt;-
+  read_csv(
+    &quot;https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv&quot;
+  )</code></pre>
+</div>
+<div id="errores" class="section level4">
+<h4>Errores</h4>
+<ul>
+<li>Si queremos hacer notar cuáles son los errores en algúno de los chunks que hemos creado, se usa el argumento <code>error = TRUE</code>. Por defecto el argumento de <code>error</code> es <code>FALSE</code> y esto impide que el archivo de R Markdown se “teja” <em>(Knit-ea)</em> cuando hay errores en algún chunk. <strong>Es preferible</strong> que esta opción se aplique de manera global al inicio del R Mardown para que se identifiquen y corran todos los chunks con sus respectivos errores.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="capítulo-4.-personalización-del-informe." class="section level1">
+<h1>Capítulo 4. Personalización del informe.</h1>
+<div id="tabla-de-contenidos." class="section level2">
+<h2>Tabla de contenidos.</h2>
+<p>Mejor conocida como “índice”, la tabla de contenidos nos permitirá hacer referecia a los contenidos dentro del archivo R Markdown. Es útil porque si se quiere llegar a una sección particular del archivo para enfatizar en un tema, solo se le da click en el apartado que resalta en color azul para llegar a leer dicha parte del documento.</p>
+<p>Para crear dicha tabla se debe agregar la sintáxis siguiente <em>(en el encamezado YAML)</em>:</p>
+<ul>
+<li><p><code>html_document:</code></p>
+<ul>
+<li><p><code>toc: true</code> <em>representa que sí se quiere hacer un índice (tabla de contenidos)</em></p></li>
+<li><p><code>toc_float: true</code> <strong>Solo para HTML</strong> <em>sirve para que el índice aparezca en todo tiempo del lado izquierdo del documento</em>. <strong>Advertencia:</strong> de usarse los siguientes dos “subapartados” (o especificaciones) se debe omitir la palabra <code>true</code>.</p>
+<ul>
+<li><p><code>collapsed: false</code> <em>por defecto</em> <code>collapse: true</code>, <em>lo cual implica que el menú estará siempre retraido a los títulos superiores, es decir que si se eligen poner subtitulos en el índice, estos no aparecerán</em>. Al hacer <code>collapsed: false</code> logramos que no solo los títulos mayores se puedan ver, sino que también los subtítulos.</p></li>
+<li><p><code>smooth_scroll: false</code> <em>por defecto smooth_scroll: true, es decir que se hará una “animación” (o transición suave) para desplazarse al título correspondiente</em>. Si se usa <code>smooth_scroll: false</code> entonces se evitará el movimiento y llegaremos al título requerido “inmediatamente” (sin suavidad).</p></li>
+</ul></li>
+<li><p><code>toc_depth: 1</code> <em>para determinar el número de títulos en jerarquía a considerar</em>. Si por ejemplo es necesario que aparezcan los capítlos con subcapítulos, entonces se usa un 2, indicando que el título mayor <em>(que se pone con ##, por ejemplo)</em> así como sus apartados <em>(los que tengan ###, por ejemplo)</em> se mostrarán en dicho índice.</p></li>
+<li><p><code>number_sections: false</code> <em>para enumerar los títulos en el índice</em>. Si se escribe <code>true</code> entonces se enumerarán los apartados del documento. En esta sección notemos que la numeración empieza en cero (0) cuando el títuloayor se ha puesto con dos gatos (##), si se iniciara el título mayor con un gato (#) entonces la numeración <em>(si se desea)</em> iniciará en 1.</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="crear-un-reporte-con-parámetro." class="section level2">
+<h2>Crear un reporte con parámetro.</h2>
+<p>En este R Markdown hemos trabajado con información especial para Indonesia. ¿Qué pasa cuando nos piden el mísmo análisis pero de otro país? O lo que es peor, ¿qué pasa si nos piden reportes de cada país en América? La manera de solucionar esto es através de los parámetros.</p>
+<p>Si queremos que el reporte tenga la misma estructura pero información un tanto diferente (que sea, por ejemplo, la inversión que se ha hecho en México por parte del Banco Mundial) entonces la herramienta que se presenta a continuación es de total utilidad para que los informes se creen con cambiar 10 carácteres y no 1000 líneas de reporte.</p>
+<p>La forma de hacer esto es en el encabezado YAML. Se agrega (como en este documento) la siguiente sintáxis:</p>
+<ul>
+<li><p><code>params:</code></p>
+<ul>
+<li><code>country: Indonesia</code></li>
+</ul></li>
+</ul>
+<p>Es importante notar que <strong>nosotros decidimos</strong> el nombre del parámetro que deseamos modificar en el código.</p>
+<p><strong>Advertencia sobre la generalidad del código para ser “replicable.”</strong> Si se quiere hacer uso de esta automatización, hay que tener especial atención en que todas las referencias a dicho parámetro (que en este ejemplo fue el país) sean modificables.</p>
+<p>¿Dónde debemos poner atención?</p>
+<ol style="list-style-type: decimal">
+<li><p>Si se tenía el comando: <code>country == "Indonesia"</code> se deberá sustituir por <code>country == params$country</code> dado que al cambiar el parámetro llamado “country” en el encabezado YAML, también se cambiará la referencia y, por ende, el análisis.</p></li>
+<li><p>Si se usa el nombre del país en alguna parte del texto, debe hacerse consistente la referencia al país, si por ejemplo aparece en el texto “… la inversión que hizo el Banco Mundial para proyectos de servicios en Indonesia…” entonces es preferible que el texto esté escrito como “… la inversión que hizo el Banco Mundial para proyectos de servicios en <em>‘r params$country’</em>…” y en vez de usar las comillas simples, se usen las comillas inversas <strong>`</strong>.</p></li>
+<li><p>Si en el nombre de la gráfica se hace uso del nombre, mejor poner títulos más genéricos o cargar el nombre en un vector para ponerlo como título.</p></li>
+<li><p>En el título del reporte también puede aparecer el país, por lo que se puede poner la misma sintáxis del ejemplo 2 para cambiar dicho país</p></li>
+</ol>
+</div>
+<div id="multiples-parámteros" class="section level2">
+<h2>Multiples parámteros</h2>
+<p>Se pueden agregar más parámetros como el año, el tipo de proyecto, entre otros. Esto es de utilidad si se requiere, por ejemplo, hacer un análisis de la infersión por año fiscal para cada país y además que los proyectos estén activos actualmente.</p>
+<p>Si queremos agregar el año fiscal de estudio y las fechas de inicio y fin del mismo podemos agregar a la sintáxis anterior lo siguiente:</p>
+<ul>
+<li><p><code>params:</code></p>
+<ul>
+<li><p><code>country: Indonesia</code></p></li>
+<li><p><code>year_start: 2011-07-01</code></p></li>
+<li><p><code>year_end: 2012-06-30</code></p></li>
+<li><p><code>fy: 2012</code></p></li>
+</ul></li>
+</ul>
+<p>Análogo a lo explicado en la sección anterior, se debe tener <strong>cuidado</strong> para que el documento sea lo más general posible y la referencia a los parámetros agregados se hagan.</p>
+<p><em>(Ver ejemplo completo en el documento “Ejemplo R Markdown”)</em></p>
+</div>
+<div id="personalizar-el-r-markdown" class="section level2">
+<h2>Personalizar el R Markdown</h2>
+<p>Para poder tener los colres de fonto, fuente, color del título, entre otros detalles, es útil agregar algunas líneas de código que nos ayuden a esto.</p>
+<p>En principio veremos los comandos necesarios que deben ir al inicio de todo el archivo R Markdown. Luego se explicará cómo hacer para que creemos nuestro propio estilo sin necesidad de especificar todos los comandos en el mismo archivo de R Markdown, sino hacer una referencia a un archivo con las especificaciones que deseamos.</p>
+<p>Para darle un estilo específico necesitamos poner lo que queremos cambiar entre la sintáxis <code>&lt;style&gt;</code> (al inicio) y <code>&lt;/style&gt;</code> (al final).</p>
+<div id="cuerpo-del-archivo" class="section level3">
+<h3>Cuerpo del archivo</h3>
+<p>Si se desea hacer un cambio de color de letra en todo el “cuerpo” del documento, usamos la sintáxis:</p>
+<pre><code>&lt;style&gt;
+  body{
+    color: blue;
+  }
+&lt;/style&gt;</code></pre>
+<p>Análogo al código anterior se puede agregar al “cuerpo” del documento el color de fondo, tipo de letra y tamaño de la letra. En tal caso tendremos el ejemplo siguiente:</p>
+<pre><code>&lt;style&gt;
+  body{
+    color: #024B3B;
+    font-family: Calibri;
+    background-color: #F2FCFA;
+  }
+&lt;/style&gt;</code></pre>
+<p>Notemos que los colores no están dados de manera “regular”. Esos colores se obtuvieron de la forma <a href="https://htmlcolorcodes.com/es/">hexadecimal</a> que permite obtener una amplia gama de colores. Es importante incluir el símbolo gato “#” antes de cada código hexadecimal para que se pueda añadir dicho color.</p>
+</div>
+<div id="códigos-chunk" class="section level3">
+<h3>Códigos chunk</h3>
+<p>Lo anterior es en general para el texto, pero si queremos un color especial para las líneas de código ponemos (despúes de cerrar el <code>body</code>) lo siguiente:</p>
+<pre><code>pre{
+  color: #273A00;
+  background-color: #E4F9BB;
+}</code></pre>
+</div>
+<div id="índice-del-archivo" class="section level3">
+<h3>Índice del archivo</h3>
+<p>Si se desea también cambiar el diseño del índice <em>(tabla de contenido)</em> agregamos <em>(de preferencia antes del body)</em> lo siguiente:</p>
+<pre><code>#TOC {
+  color: #022A3D;
+  font-family: Calibri;
+  font-size: 16px;
+  boder-color: #026696;
+}</code></pre>
+</div>
+<div id="encabezado-del-archivo" class="section level3">
+<h3>Encabezado del archivo</h3>
+<p>Si además queremos agregar propiedades particulares al encabezado (título, fecha y autor) entonces usamos <em>(de preferencia antes de #TOC)</em>:</p>
+<pre><code>#header {
+  color: #081137;
+  background-color: #C6DBF4;
+  opacity: 0.6;
+  font-family: Calibri;
+  font-size: 20px;
+}</code></pre>
+<p>Si queremos tener detalle tambíen por cada parte del encabezado (el título y el autor tengan distinto diseño, por ejemplo) entonces usamos el código:</p>
+<pre><code>h1.title {
+  color: #092547;
+  background-color: #375477;
+  opacity: 0.4;
+  font-family: Calibri;
+  font-size: 40px;`
+  }
+h4.author {
+  color: #223F61;
+  font-family: Calibri;
+  }
+h4.date {
+  color: #7C99BB;
+  font-family: Calibri;
+  }</code></pre>
+<div id="ejemplo" class="section level4">
+<h4>Ejemplo:</h4>
+<p>Notemos que la edición de la fuente, colores y demás temrinaría siendo el sifuiente código:</p>
+<pre><code>  &lt;style&gt;
+    #TOC {
+      color: #022A3D;
+      font-family: Calibri;
+      font-size: 16px;  
+      boder-color: #026696;
+      }
+    h1.title {
+      color: #092547;
+      background-color: #375477;
+      opacity: 0.4;  
+      font-family: Calibri;
+      font-size: 40px;
+      }
+    h4.author {
+      color: #223F61;
+      font-family: Calibri;
+      }
+    h4.date {
+      color: #7C99BB;
+      font-family: Calibri;
+      }
+    body{
+      color: #024B3B;
+      font-family: Calibri;
+      background-color: #F2FCFA;  
+      }
+    pre{
+      color: #273A00;
+      background-color: #E4F9BB;
+      }
+  &lt;/style&gt;</code></pre>
+<p>Para evitar tantas líneas de código en cada archivo, podemos hacer referencia a un archivo que contenga todas las especificaciones del estilo R Markdown. Esto se hace en el encabezado YAML luego del <code>html_document</code> de la forma:</p>
+<pre><code>html_document:
+  css: nombre_del_archivo_.css_con_extensión_css</code></pre>
+<p>La extensión es llamada css por el significado que es Cascading Style Sheet (CSS).</p>
+<p>Este archivo tiene las especificaciones de forma manual, sin embargo para encontrar más contenido sobre la forma de crear los archivos con extensión css, puede hacer diferentes consultas como: <a href="https://knowledge.hubspot.com/es/cos-general/create-edit-and-attach-css-files-to-style-your-site#crear-un-nuevo-archivo-de-css">esta</a> o <a href="https://youtu.be/znEqEmF8CNQ">esta</a> e incluso <a href="https://youtu.be/aSTOBvgtp30">esta</a>.</p>
+<p>En general se descarga primero el programa <strong>Notepad++</strong> <a href="https://notepad-plus-plus.org/downloads/">aquí</a>, luego crea un archivo con el nombre que desea (en el caso de <em>Ejemplo R Markdown</em> el archivo se llama style) y escribe la sintáxis previamente mencionada <strong>sin</strong> los #, guarda el archivo en un formato css en la misma carpeta donde tiene el R Markdown y por último agrega la sintáxis que se encuentra prvio a la explicación.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,643 @@
+---
+title: "R Markdown"
+author: "Carlos A. Ar. & DataCamp"
+output:
+   html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+        smooth_scroll: false
+     toc_depth: 2
+     number_sections: false
+date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
+params:
+  country: Indonesia
+---
+<style>
+  #TOC {
+    color: #724401;
+    font-family: Spectral;
+    font-size: 16px;
+    background-color: #FBECD1;
+    border-color: #958303;
+  }
+  h1.title {
+    color: #6D4101;
+    background-color: #FDFBEF;
+    opacity: 0.9;
+    font-family: Spectral;
+    font-size: 50px;
+  }
+  h4.author {
+    color: #012A6D;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+    font-size: 30px;
+  }
+  h4.date {
+    color: #7299D9;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+  }
+  body {
+    color: #08142A;
+    font-family: Spectral;
+    background-color: #FDFBEF;
+  }
+  pre {
+    color: #08142A;
+    background-color: #FEF9D7;
+  }
+</style>
+
+<div style="text-align: justify">
+<div/>
+
+```{r setup, include=FALSE}
+#El siguiente comando sirve para que, durante todo el archivo R Mardown (salvo que se especifique lo contrario), los gráficos que corresponden a las líneas de código (o chunks), aparezcan centrados, o en una alineación o tamaño particular.
+knitr::opts_chunk$set(fig.align = 'center', echo = T)
+knitr::opts_chunk$set(out.width= '80%', echo = T)
+
+#La línea que viene sirve por si se quiere que se corra el archivo a pesar de los errores (Ver capítulo 3 sección Warnings, mensajes y errores)
+
+#Por ahora la comentaré, solamente
+#knitr::opts_chunk$set(error = TRUE)
+```
+
+#### Crear el archivo
+
+Para poder crear el archivo R Markdown, puedes usar RStudio. En la pestaña "New File" das click, luego seleccionas "R Markdown" y listo. Este documento te servirá para aprender a editar lo que aparece dentro del archivo.
+
+![](https://www.uv.es/vcoll/imagenes/tt_8_crear_rmarkdown_1.png){width='500px'}
+
+##### ¿Para qué sirven los archivos R Markdown?
+
+La información puede presentarse de manera “reproducible” lo que significa que se pueden hacer modificaciones al archivo que hagan ver a las personas que lean los cambios que afecten los resultados deseados.
+
+# Capítulo 1. Aproximación a R Markdown
+
+Para poder ver los beneficios y herraminetas que tiene R Markdown, haremos uso de información relacionada con la inversión que ha hecho el Banco Mundial en proyectos de servicios públicos en los diferentes países del mundo desde el 2012 hasta el 2018.
+
+Primero se crea una sección de código o "chunk" para dar a conocer la información, un comando que facilita agregar secciones de código es `ctrl + alt + i`. En este caso incluiremos la información que cargamos en el chunk inicial.
+
+```{r data, message = FALSE, collapse=TRUE}
+#Es muy recomendable que las paqueterías que se desean usar se carguen previo al análisis
+library(readr)
+library(dplyr)
+library(ggplot2)
+#Las paqueterías aquí presentadas se utilizarán a lo largo del código.
+
+investment_annual_summary <-
+  read_csv(
+    "https://assets.datacamp.com/production/repositories/5756/datasets/d0251f26117bbcf0ea96ac276555b9003f4f7372/investment_annual_summary.csv"
+  )
+investment_services_projects <-
+  read_csv(
+    "https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv"
+  )
+```
+
+
+```{r}
+investment_annual_summary
+```
+Notemos que se imprime la parte del código y lo que "almacena" esa variable, es decir el código y sus resultados.
+
+También podemos añadir información antes del reporte que se analizará, por ejemplo la  descripción de la base de datos y la fuente consultada: _"The `investment_annual_summary` dataset provides a summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018."_
+
+Dentro del chunk (sección de código) no se puede poner texto, a menos que se escriba como comentario (lo cual se hace como en el código normal, es decir, con un gato #), por ejemplo:
+
+```{r, eval=FALSE}
+#Este es un comentario para ejemplificar lo que escribí arriba.
+investment_annual_summary
+```
+
+## Editar texto
+
+### Títulos
+
+Si queremos tener una mejor presentación y organización, podemos agregar títulos o subtítulos. Para crear un título se debe usar el símbolo  gato (#). Entre más gatos (#) usemos,  más pequeño será el título:
+
+    #### Título 1
+    ##### Título 2
+    ###### Título 3
+
+Se vuelve en:
+
+#### Título 1
+    
+##### Título 2
+    
+###### Título 3
+
+### Resaltar información
+
+También es posible querer alguna edición de texto que permita al lector tener atención en algo, por ejemplo:
+
+    _itálicas_, *itálicas*;
+
+    __bold__, **bold**;
+
+    ~~tachar~~.
+    
+Que se ve como:
+
+_itálicas_, *itálicas*;
+
+__bold__, **bold**;
+
+~~tachar~~.
+
+### Alineación del código
+
+- Justificado `#<div style="text-align: justify">` al inicio y `#<div/>` al final.
+
+- Centrado `#<div style="text-align: center">` al inicio y `#<div/>` al final.
+
+- A la izquierda `#<div style="text-align: left">` al inicio y `#<div/>` al final.
+
+### Formato tipo código
+
+Podemos hacer que el texto escrito se vea en el formato del código (para dar a notar que nos referimos a un objeto del código) de la forma `investment_services_projects`. Para obtener esta esritura se pone el texto _investment_services_projects_ dentro de dos comillas invertidas ``.
+
+### Agregar referencias
+
+#### Enlaces de internet
+
+Agregar parablas de referencia al link del cual obtuvimos la información es algo muy útil, eso se hace de la siguiente forma: primero se colocan corchetes dentro de los que se ecribirá la palabra que el lector seleccionará y se dirigirá a la página web que desea mostrar, posteriormente se coloca un par de paréntesis dentro de los que estará la liga de la página web. Es importante que no haya espacios entre los corchetes y los paréntesis.
+
+Ejemplo. [enlace] (dirección.de.enlace)
+
+La información aquí presentada viene del [Banco Mundial](https://www.kaggle.com/theworldbank/ifc-investment-summary-and-services-projects).
+
+#### Enlaces al propio texto
+
+Para poder llegar a alguna parte específica del texto, podemos usar una referencia hacia el mismo poniendo __en el título__ al que queremos dirigirnos la siguiente sintáxis: `#### Título 1 {#tit1}` para poder llegar a dicho título ponemos lo siguiente:`[Enlace a titulo1] (#tit1)` __en el texto__  del cual querramos llegar al título.
+
+### Agregar imágenes
+
+Podemos también agregar imágenes con una sintáxis parecida a la anterior, es decir, poner un par de corchetes después de un signo de admiración y posterior a los corchetes añadir el enlace donde se encuentra la imagen (entre paréntesis), como sigue: `![](enlace)`.
+
+Ejemplo.
+
+![](https://images.pexels.com/photos/41953/earth-blue-planet-globe-planet-41953.jpeg?auto=compress&cs=tinysrbg&dpr=2&h=80&=w=150)
+
+### El encabezado YAML 
+
+El encabezado YAML _(Hierarchical data structures)_ es la parte del archivo R Markdown que contiene, entre otras cosas, el título del archivo, la (el) autora (autor) del mismo, la fecha de creación y el tipo de formato en el que se "tejerá" o cargará el archivo (HTML ó PDF).
+
+![](https://bookdown.org/gboccardo/manual-ED-UCH/09-anexos/sintaxis_rmarkdown.png)
+
+Podemos empezar cambiando la forma en que se pone la fecha, en general esta fecha aparece por defecto con el día en que se crea el archivo. Con el código date: __'r format(Sys.Date(), '%d de %B del %Y')'__ y algunos [otros](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime) podremos poner la sintáxis de la fecha a nuestra conveniencia. En el ejemplo en negritas la fecha en el archivo aparecerá como: __05 de marzo del 2021__ (suponiendo que la fecha en la que se "teje" el archivo es la ejemplificada).
+
+# Capítulo 2. Análisis de información.
+
+## Filtrar información
+
+Veamos el caso de los proyectos de inversión realizados en Indonesia. Para ello usamos la función `filter` de la paquetería `dplyr`.
+
+__Nota:__ es recomendable hacer varias secciones de código (chunks) y que cada chunk tenga un nombre referente a lo que se escribe en el código. 
+
+```{r indonesia-investment-projects, collapse= TRUE}
+indonesia_investment_projects <-
+  investment_services_projects %>% filter(country == "Indonesia")
+indonesia_investment_projects
+```
+
+Si queremos información más específica, podemos usar de ejemplo la fecha de inicio y fin de un año fiscal.
+
+```{r indonesia-investment-projects-2012, collapse=TRUE}
+indonesia_investment_projects_2012 <-
+  investment_services_projects %>% filter(country == "Indonesia",
+                                          date_disclosed >= "2011-07-01",
+                                          date_disclosed <= "2012-06-30")
+indonesia_investment_projects_2012
+
+#Si queremos conocer la inversión total que se hizo en Indonesia podemos añadir una columna:
+indonesia_investment_projects_2012_total <-
+  indonesia_investment_projects_2012 %>% summarize(
+    sum_total_investments = sum(
+      total_ifc_investment_as_approved_by_board_million_usd ,
+      na.rm = T
+    )
+  )
+```
+
+### Insertar resultados en el texto {#IRET}
+
+Para poder usar algún resultado calculado dentro de los chunks en el texto, se usa la sintáxis __'r resultado_deseado'__ _(en vez de las comillas simples, se usan comillas invertidas)_, por ejemplo:
+
+The total investment amount for all projects in Indonesia in the 2012 fiscal year was __`r indonesia_investment_projects_2012_total`__ million dollars. Lo cual se obtuvo de la sintáxis __'r indonesia_investment_projects_2012_total'__. Notemos que esto es parecido a editar el texto en forma de código, la diferencia es que añadimos una __r__ y un espacio antes de seleccionar el __resultado_deseado__.
+
+Lo anterior es un ejemplo de cómo se pueden plasmar en el documento los datos que se han calculado hasta el momento en el código.
+
+Es importante que los resultados se pongan posterior al cálculo en los chunks porque al correr el archivo de R Markdown se hace una lectura ordenada del mismo y por tanto si se requieren resultados antes de su cálculo, habrá un error en la carga del archivo.
+
+## Añadir gráficas
+
+Añadir gráficas es muy similar que añadir código, primero se crea un chunk y luego con la función `plot` o `ggplot` se crea la gráfica. 
+
+Si se quieren gráficas que puedan ser mejor editadas, usar la paquetería `ggplot2` es lo más recomendable. En este caso debes cargar dicha paquetería en el primer chunk.
+
+Ejemplo:
+
+```{r investment-annual-summary}
+ggplot(
+  investment_annual_summary,
+  aes(x = fiscal_year, y = dollars_in_millions, color = region)
+) + geom_line() + labs(title = 'Inversión en Proyectos',x = "Año fiscal",y = 'Inversión total en millones de dólares')+theme_classic()
+```
+
+Posiblemente no queremos que el código para realizar la gráfica aparezca en el archivo, así que podemos usar `echo = FALSE` (los detalles [aquí](#OCC))
+
+```{r grafico-indonesia, echo=FALSE, collapse= TRUE, warning=FALSE}
+ggplot(indonesia_investment_projects,
+       aes(x = date_disclosed, y = total_ifc_investment_as_approved_by_board_million_usd, color = status)) + geom_point(lwd = 2) + labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')+theme_classic()
+
+ggplot(indonesia_investment_projects_2012,
+       aes(x = date_disclosed, y = total_ifc_investment_as_approved_by_board_million_usd, color = status)) + geom_point(lwd = 2) + labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')+theme_classic()
+```
+
+### Dimensiones
+
+Análogo a la especificación `echo = FALSE`, las funciones siguientes se colocan en el inicio de los chunks.
+
+Usemos las especificaciones `fig.width` (ancho) y `fig.height` (alto) para modificar las dimensiones de los gráficos que aparezcan en el documento "tejido". Estas funciones se hacen al inicio del chunk, por lo que no puedes ver su aplicación en lo que aparecerá al "tejer" el archivo.
+
+```{r grafico-indonesia1, fig.width = 5, fig.height = 3, echo=FALSE}
+ggplot(indonesia_investment_projects_2012,aes(x = date_disclosed, y = total_ifc_investment_as_approved_by_board_million_usd, color = status)) + geom_point() + labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')+theme_classic()
+```
+
+Una forma más resumida es con el comando `fig.dim` al cual se le especifica un vector `fig.dim = c(ancho, largo)`.
+
+Como a veces no conocemos las dimensiones precisas de los diagramas que queremos presentar, podemos usar la especificación `out.width` que se usa con un porcentaje (por ejemplo `30%`) para que tome el 30% del aspecto en el R Markdown.
+
+```{r grafico-indonesia3,out.width='30%', echo=FALSE}
+ggplot(indonesia_investment_projects_2012,
+       aes(x = date_disclosed, y = total_ifc_investment_as_approved_by_board_million_usd, color = status)) + geom_point() + labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')+theme_classic() 
+```
+Otro argumento que se puede agregar es la alineación del gráfico en el archivo, la cual puede ser izquierda _('left')_, centro _('center')_ o derecha _('right')_ con la especificación `fig.align`, por ejemplo: `fig.align='right'`
+
+```{r grafico-indonesia4,out.width='30%', fig.align='right', echo=FALSE}
+ggplot(indonesia_investment_projects_2012,
+       aes(x = date_disclosed, y = total_ifc_investment_as_approved_by_board_million_usd, color = status)) + geom_point() + labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')+theme_classic()
+```
+Algo que también nos puede interesar es una descripción o título del gráfico que aparezca en el R Markdown, esto se hace con el comando `fig.cap`.
+
+```{r grafico-indonesia5, out.width='60%', fig.align='center', fig.cap = 'Figure 1.1 Esto es un ejemplo de descripción de la gráfica que se muestra', echo=FALSE}
+ggplot(indonesia_investment_projects_2012,aes(x = date_disclosed, y =total_ifc_investment_as_approved_by_board_million_usd, color = status)) + geom_point() + labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')+theme_classic()
+```
+
+# Capítulo 3. Mejorar el código
+
+## Crear listas.
+
+Para crear una lista se usa generalmente un asterísco, un guión medio o algún otro síbolo para iniciarla, por ejemplo:
+
+- Días de entre semana
+  - Lunes
+  - Martes
+  - Miércoles
+  - Jueves
+  - Viernes
+
+* Días en fines de semana
+  * Sábado
+  * Domingo
+
+Lo anterior se hace usando el guión medio o asterísco, luego un espacio y al final la palabra. Si se desea añadir más subtextos solo se hace una sangría extra.
+
+Es __importante__ que antes y después de cada lista dejes un espacio para que aparezca en el R Markdown "tejido" (En el Knit).
+
+También podemos hacer listas numeradas:
+
+1. Primer elemento.
+
+    Aquí las cosas del primer elemento
+
+2. Segundo elemento.
+
+    Aquí las cosas del segundo elemento
+
+3. Tercer elemento.
+
+    Aquí las cosas del tercer elemento.
+
+## Crear tablas
+
+Para hacer una tabla necesitamos un chunk de R con el nombre `tables` además del código siguiente:
+
+```{r, include=FALSE}
+indonesia_investment_projects_2012_summary <- indonesia_investment_projects_2012%>%select(. , project_name, status, total_ifc_investment_as_approved_by_board_million_usd)
+indonesia_investment_projects_2012_summary <- as.data.frame(indonesia_investment_projects_2012_summary)
+```
+
+```{r tables}
+knitr::kable(indonesia_investment_projects_2012_summary, col.names = c("Nombre del Proyecto", "Status", "Total de Inversión"), align = "rcl", caption = "Tabla 1.1")
+```
+La función `kable` nos ayuda a crear tablas en un formato de caracteres, es decri que no se pueden hacer modificaciones dentro de esta tabla. 
+
+#### Nombre de las columnas
+
+Para agregar el nombre que queremos a las columnas, usamos el argumento `col.names`
+
+#### Alineación de las columnas
+
+Dentro de la función `kable` agregamos el argumento para el alineado de cada columna llamado `align`. Si queremos que la columna uno se aline a la derecha, la dos al centro y la tres a la izquierda, debemos usar el comando `aling = "rcl"` que significa __r__ ight, __c__ enter, __l__ eft.
+
+#### Título de la tabla
+
+Añadimos el argumento __caption__ en la función `kable`
+
+Hay [otras formas](http://destio.us.es/calvo/ficheros/ComoCrearTablasRMarkdown_PedroLuque_2019Sep_librodigital.pdf) de crear tablas que tengan mejores ediciones, con una sintaxis de HTML o Latex
+
+_Si deseas conocer más información sobre la edición de R Markdown, da click [aquí](https://rstudio-pubs-static.s3.amazonaws.com/330387_5a40ca72c3b14824acedceb7d34618d1.html#fnref1)_
+
+## Opciones de Código Chunk {#OCC}
+
+Para poder manejar mejor los fragmentos de código en el archivo de presentación podemos incluirlo o no. Las funciones que aquí se presentan deben agregarse en el encabezado de cada chunk, por ejemplo:
+
+      ``{r, echo=FALSE}
+      Chunk de código
+      ``
+#### Eval
+
+- Si se desea que el código __no__ se evalúe _(no se calcule)_ entonces al inicio del chunk se agrega una especificación  `eval = FALSE`. Esto evitará que se ejecute esa línea de código aun cuando éste aparezca en el archivo.
+
+#### Include
+
+- Si se desea que el código se cargue pero que no aparezca éste ni sus resultados en el archivo Markdown _(no se vea el código ni los resultados que calcula)_ entonces podemos usar la opción `include = FALSE`. Esta opción hace _invisible_ el código y los resultados por defecto pero sí permite usar los mismos como parte del texto en el archivo ([ver sección.](#IRET))
+
+#### Echo
+
+- Si queremos que no aparezca el código y sí los resultados entonces se puede usar la especificación `echo = FALSE`. Es una práctica usual cuando se presentan gráficas, porque se quiere el gráfico pero no el código con el cual se realiza.
+
+#### Collapse
+
+- Se puede usar `collapse = TRUE` si queremos que el código presentado en el archivo de R Markdown aparezca en el mismo espacio de chunk. Ejemplo:
+
+  - `collapse = FALSE` _por defecto_. Aquí se separan los resultados en dos partes del      código.
+  
+  ```{r}
+  investment_annual_summary
+  
+  ggplot(
+    investment_annual_summary,
+    aes(x = fiscal_year, y = dollars_in_millions, color = region)
+  ) + geom_line() + labs(title = 'Inversión en Proyectos',x = "Año fiscal",y = 'Inversión total en millones de dólares')+theme_classic()
+  ```
+  
+  - `collapse = TRUE` _se tiene que especificar_. Aquí se _"juntan"_ los resultados del     código.
+  
+  ```{r, collapse=TRUE}
+  investment_annual_summary
+  
+  ggplot(
+    investment_annual_summary,
+    aes(x = fiscal_year, y = dollars_in_millions, color = region)
+  ) + geom_line() + labs(title = 'Inversión en Proyectos',x = "Año fiscal",y = 'Inversión total en millones de dólares')+theme_classic()
+  ```
+
+## Warnings, mensajes y errores
+
+Análogo a las especificaciones anteriores, las funciones siguientes se colocan en el inicio de los chunks por ejemplo:
+
+      ``{r, echo=FALSE, warning=FALSE}
+          ggplot(indonesia_investment_projects_2012)
+      ``
+#### Warnings
+
+- Si no queremos que aparezcan _"Warnings"_ en el archivo final, agregamos el argumento `warning = FALSE` al inicio de cada chunk.
+
+  - Sin Warning:  
+```{r grafico-indonesia6, echo=FALSE, warning=FALSE}
+ggplot(indonesia_investment_projects_2012,aes(x = date_disclosed, y =total_ifc_investment_as_approved_by_board_million_usd, color = status))+ geom_point()+labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')
+    ```
+
+  - Con Warning _(por defecto)_:
+```{r grafico-indonesia7, echo=FALSE}
+ggplot(indonesia_investment_projects_2012,aes(x = date_disclosed, y =total_ifc_investment_as_approved_by_board_million_usd, color = status))+ geom_point()+labs(title = 'Inversión en Indonesia', x = "Date disclosed", y = 'Inversión total del BM en millones de dólares')
+```
+
+#### Mensajes
+    
+- Es probable que también se de información extra de las tablas que se descargaron, si no queremos que esos mensajes aparezcan, podemos agregar la opción `message = FALSE`
+    
+  - Con mensaje _(por defecto)_:
+```{r}
+investment_services_projects <-
+  read_csv(
+    "https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv"
+  )
+```
+    
+  - Sin mensaje: 
+```{r, message=FALSE}
+investment_services_projects <-
+  read_csv(
+    "https://assets.datacamp.com/production/repositories/5756/datasets/78b002735b6f620df7f2767e63b76aaca317bf8d/investment_services_projects.csv"
+  )
+```
+
+#### Errores
+
+- Si queremos hacer notar cuáles son los errores en algúno de los chunks que hemos creado, se usa el argumento `error = TRUE`. Por defecto el argumento de `error` es `FALSE` y esto impide que el archivo de R Markdown se "teja" _(Knit-ea)_ cuando hay errores en algún chunk. __Es preferible__ que esta opción se aplique de manera global al inicio del R Mardown para que se identifiquen y corran todos los chunks con sus respectivos errores.
+
+
+# Capítulo 4. Personalización del informe.
+
+## Tabla de contenidos.
+
+Mejor conocida como "índice", la tabla de contenidos nos permitirá hacer referecia a los contenidos dentro del archivo R Markdown. Es útil porque si se quiere llegar a una sección particular del archivo para enfatizar en un tema, solo se le da click en el apartado que resalta en color azul para llegar a leer dicha parte del documento.
+
+Para crear dicha tabla se debe agregar la sintáxis siguiente _(en el encamezado YAML)_:
+
+- `html_document:` 
+  
+  - `toc: true` _representa que sí se quiere hacer un índice (tabla de contenidos)_
+
+  - `toc_float: true` __Solo para HTML__ _sirve para que el índice aparezca en todo tiempo del lado izquierdo del documento_. __Advertencia:__ de usarse los siguientes dos "subapartados" (o especificaciones) se debe omitir la palabra `true`.
+    
+      - `collapsed: false` _por defecto_ `collapse: true`, _lo cual implica que el menú estará siempre retraido a los títulos superiores, es decir que si se eligen poner subtitulos en el índice, estos no aparecerán_. Al hacer `collapsed: false` logramos que no solo los títulos mayores se puedan ver, sino que también los subtítulos.
+    
+      - `smooth_scroll: false` _por defecto smooth_scroll: true, es decir que se hará una "animación" (o transición suave) para desplazarse al título correspondiente_. Si se usa `smooth_scroll: false` entonces se evitará el movimiento y llegaremos al título requerido "inmediatamente" (sin suavidad).
+      
+  - `toc_depth: 1` _para determinar el número de títulos en jerarquía a considerar_.
+  Si por ejemplo es necesario que aparezcan los capítlos con subcapítulos, entonces se usa un 2, indicando que el título mayor _(que se pone con ##, por ejemplo)_ así como sus apartados _(los que tengan ###, por ejemplo)_ se mostrarán en dicho índice.
+  
+  - `number_sections: false` _para enumerar los títulos en el índice_. Si se escribe `true` entonces se enumerarán los apartados del documento. En esta sección notemos que la numeración empieza en cero (0) cuando el títuloayor se ha puesto con dos gatos (##), si se iniciara el título mayor con un gato (#) entonces la numeración _(si se desea)_ iniciará en 1.
+  
+## Crear un reporte con parámetro.
+
+En este R Markdown hemos trabajado con información especial para Indonesia. ¿Qué pasa cuando nos piden el mísmo análisis pero de otro país? O lo que es peor, ¿qué pasa si nos piden reportes de cada país en América? La manera de solucionar esto es através de los parámetros. 
+
+Si queremos que el reporte tenga la misma estructura pero información un tanto diferente (que sea, por ejemplo, la inversión que se ha hecho en México por parte del Banco Mundial) entonces la herramienta que se presenta a continuación es de total utilidad para que los informes se creen con cambiar 10 carácteres y no 1000 líneas de reporte.
+
+La forma de hacer esto es en el encabezado YAML. Se agrega (como en este documento) la siguiente sintáxis:
+
+- `params:`
+
+  - `country: Indonesia`
+
+Es importante notar que __nosotros decidimos__ el nombre del parámetro que deseamos modificar en el código.
+
+__Advertencia sobre la generalidad del código para ser "replicable."__ Si se quiere hacer uso de esta automatización, hay que tener especial atención en que todas las referencias a dicho parámetro (que en este ejemplo fue el país) sean modificables. 
+
+¿Dónde debemos poner atención?
+
+1. Si se tenía el comando: `country == "Indonesia"` se deberá sustituir por `country == params$country` dado que al cambiar el parámetro llamado "country" en el encabezado YAML, también se cambiará la referencia y, por ende, el análisis.
+
+2. Si se usa el nombre del país en alguna parte del texto, debe hacerse consistente la referencia al país, si por ejemplo aparece en el texto "... la inversión que hizo el Banco Mundial para proyectos de servicios en Indonesia..." entonces es preferible que el texto esté escrito como "... la inversión que hizo el Banco Mundial para proyectos de servicios en _'r params$country'_..." y en vez de usar las comillas simples, se usen las comillas inversas __`__.
+
+3. Si en el nombre de la gráfica se hace uso del nombre, mejor poner títulos más genéricos o cargar el nombre en un vector para ponerlo como título.
+
+4. En el título del reporte también puede aparecer el país, por lo que se puede poner la misma sintáxis del ejemplo 2 para cambiar dicho país 
+
+## Multiples parámteros
+
+Se pueden agregar más parámetros como el año, el tipo de proyecto, entre otros. Esto es de utilidad si se requiere, por ejemplo, hacer un análisis de la infersión por año fiscal para cada país y además que los proyectos estén activos actualmente.
+
+Si queremos agregar el año fiscal de estudio y las fechas de inicio y fin del mismo podemos agregar a la sintáxis anterior lo siguiente:
+
+- `params:`
+
+  - `country: Indonesia`
+  
+  - `year_start: 2011-07-01`
+  
+  - `year_end: 2012-06-30`
+    
+  - `fy: 2012`
+
+Análogo a lo explicado en la sección anterior, se debe tener __cuidado__ para que el documento sea lo más general posible y la referencia a los parámetros agregados se hagan.
+
+_(Ver ejemplo completo en el documento "Ejemplo R Markdown")_
+
+
+## Personalizar el R Markdown
+
+Para poder tener los colres de fonto, fuente, color del título, entre otros detalles, es útil agregar algunas líneas de código que nos ayuden a esto. 
+
+En principio veremos los comandos necesarios que deben ir al inicio de todo el archivo R Markdown. Luego se explicará cómo hacer para que creemos nuestro propio estilo sin necesidad de especificar todos los comandos en el mismo archivo de R Markdown, sino hacer una referencia a un archivo con las especificaciones que deseamos.
+
+Para darle un estilo específico necesitamos poner lo que queremos cambiar entre la sintáxis `<style>` (al inicio) y `</style>` (al final). 
+
+### Cuerpo del archivo
+
+Si se desea hacer un cambio de color de letra en todo el "cuerpo" del documento, usamos la sintáxis:
+
+    <style>
+      body{
+        color: blue;
+      }
+    </style>
+
+Análogo al código anterior se puede agregar al "cuerpo" del documento el color de fondo, tipo de letra y tamaño de la letra. En tal caso tendremos el ejemplo siguiente:
+
+    <style>
+      body{
+        color: #024B3B;
+        font-family: Calibri;
+        background-color: #F2FCFA;
+      }
+    </style>
+
+Notemos que los colores no están dados de manera "regular". Esos colores se obtuvieron de la forma [hexadecimal](https://htmlcolorcodes.com/es/) que permite obtener una amplia gama de colores. Es importante incluir el símbolo gato "#" antes de cada código hexadecimal para que se pueda añadir dicho color.
+ 
+### Códigos chunk
+
+Lo anterior es en general para el texto, pero si queremos un color especial para las líneas de código ponemos (despúes de cerrar el  `body`) lo siguiente:
+
+    pre{
+      color: #273A00;
+      background-color: #E4F9BB;
+    }
+
+### Índice del archivo
+
+Si se desea también cambiar el diseño del índice _(tabla de contenido)_ agregamos _(de preferencia antes del body)_ lo siguiente:
+
+    #TOC {
+      color: #022A3D;
+      font-family: Calibri;
+      font-size: 16px;
+      boder-color: #026696;
+    }
+
+### Encabezado del archivo
+
+Si además queremos agregar propiedades particulares al encabezado (título, fecha y autor) entonces usamos _(de preferencia antes de #TOC)_:
+
+    #header {
+      color: #081137;
+      background-color: #C6DBF4;
+      opacity: 0.6;
+      font-family: Calibri;
+      font-size: 20px;
+    }
+
+Si queremos tener detalle tambíen por cada parte del encabezado (el título y el autor tengan distinto diseño, por ejemplo) entonces usamos el código:
+
+    h1.title {
+      color: #092547;
+      background-color: #375477;
+      opacity: 0.4;
+      font-family: Calibri;
+      font-size: 40px;`
+      }
+    h4.author {
+      color: #223F61;
+      font-family: Calibri;
+      }
+    h4.date {
+      color: #7C99BB;
+      font-family: Calibri;
+      }
+
+#### Ejemplo:
+
+Notemos que la edición de la fuente, colores y demás temrinaría siendo el sifuiente código:
+
+      <style>
+        #TOC {
+          color: #022A3D;
+          font-family: Calibri;
+          font-size: 16px;  
+          boder-color: #026696;
+          }
+        h1.title {
+          color: #092547;
+          background-color: #375477;
+          opacity: 0.4;  
+          font-family: Calibri;
+          font-size: 40px;
+          }
+        h4.author {
+          color: #223F61;
+          font-family: Calibri;
+          }
+        h4.date {
+          color: #7C99BB;
+          font-family: Calibri;
+          }
+        body{
+          color: #024B3B;
+          font-family: Calibri;
+          background-color: #F2FCFA;  
+          }
+        pre{
+          color: #273A00;
+          background-color: #E4F9BB;
+          }
+      </style>
+
+Para evitar tantas líneas de código en cada archivo, podemos hacer referencia a un archivo que contenga todas las especificaciones del estilo R Markdown. Esto se hace en el encabezado YAML luego del `html_document` de la forma:
+
+    html_document:
+      css: nombre_del_archivo_.css_con_extensión_css
+  
+La extensión es llamada css por el significado que es Cascading Style Sheet (CSS). 
+
+Este archivo tiene las especificaciones de forma manual, sin embargo para encontrar más contenido sobre la forma de crear los archivos con extensión css, puede hacer diferentes consultas como: [esta](https://knowledge.hubspot.com/es/cos-general/create-edit-and-attach-css-files-to-style-your-site#crear-un-nuevo-archivo-de-css) o [esta](https://youtu.be/znEqEmF8CNQ) e incluso [esta](https://youtu.be/aSTOBvgtp30).
+
+En general se descarga primero el programa __Notepad++__ [aquí](https://notepad-plus-plus.org/downloads/), luego crea un archivo con el nombre que desea (en el caso de _Ejemplo R Markdown_ el archivo se llama style) y escribe la sintáxis previamente mencionada __sin__ los #, guarda el archivo en un formato css en la misma carpeta donde tiene el R Markdown y por último agrega la sintáxis que se encuentra prvio a la explicación.

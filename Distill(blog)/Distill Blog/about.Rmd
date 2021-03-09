@@ -1,0 +1,9 @@
+---
+title: "Un poco más que Matemáticas"
+description: |
+  Generalmente no se asocia que la difusión del conocimiento deseado se haga de forma tan entretenida como en el blog que aquí presentamos. En este blog tratamos de dar herramientas a las personas para que puedan compartir conocimiento de cualquier índole de manera profesional y sencilla.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```

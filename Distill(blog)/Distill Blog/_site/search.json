@@ -1,0 +1,20 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "Un poco más que Matemáticas",
+      "description": "Generalmente no se asocia que la difusión del conocimiento deseado se haga de forma tan entretenida como en el blog que aquí presentamos. En este blog tratamos de dar herramientas a las personas para que puedan compartir conocimiento de cualquier índole de manera profesional y sencilla.",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-08T09:27:51-06:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Distill Blog",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-08T09:27:56-06:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
