@@ -1,0 +1,16 @@
+name: "my-website"
+navbar:
+  title: "Mi primer sitio Web"
+  left:
+    - text: "Principal"
+      href: index.html
+    - text: "Tutoriales"
+      href: about.html
+      menu:
+      - text: Tutorial de Git y GitHub
+        href: Tutorial-de-Git-y-GitHub.html  
+      - text: R Markdown
+        href: R-Markdown.html
+output:
+  html_document:
+    theme: flatly
