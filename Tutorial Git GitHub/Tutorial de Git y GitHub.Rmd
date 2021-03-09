@@ -51,7 +51,7 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 <div style="text-align: justify">
 <div/>
 
-# ¿Qué es Git y para qué sirve?
+# ¿Qué es Git y para qué aprenderlo?
 
 Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en los archivos de código que pueden ser con lenguaje de R, Python, Java, entre muchos otros. Su importancia radica en que podemos rastrear todos los cambios: desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código y a hacer cambios desde alguna de las versiones anteriores. 
 
