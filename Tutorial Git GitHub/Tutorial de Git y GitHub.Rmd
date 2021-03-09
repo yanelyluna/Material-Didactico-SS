@@ -281,7 +281,7 @@ Cada miembro del equipo puede crear una rama en el repositorio para trabajar en 
 
 - `git branch -d nombre_de_la_rama`: Elimina la rama `nombre_de_la_rama`. Se utiliza cuando ya hemos hecho la fusión de esta rama con la rama principal y ya no la necesitamos.
 
-### Merge - Fusión {#Merge}
+## Merge - Fusión {#Merge}
 
 Una vez que hemos trabajado en una rama y realizamos todos los cambios necesarios, podemos fusionar estos cambios con el contenido de la rama principal. Para esto usamos el comando `git merge rama_secundaria rama_principal`, el cual fusiona la rama_secundaria con la rama_principal. 
 
@@ -296,6 +296,26 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
      3. Actualizar el contenido de la rama principal en la rama secundaria (pull origin main).
      4. Hacer la fusión (push --set-upstream origin nombre_de_la_rama).
      5. Generar un pull request para hacer la fusión entre las ramas.
+
+## Pull Request
+
+Como su nombre lo indica, un Pull Request es una petición que el propietario de una rama (o fork) de un repositorio hace al propietario del repositorio original para que este último incorpore los commits que están en tal rama, a la rama principal.
+
+En otras palabras es una manera de pedir permiso para hacer "merge" o fusionar en un repositorioo del que no eres propietario.
+
+##### ¿Cómo se usa?
+
+Para poder hacer uso de esta herramienta, es necesario haber creado una rama y haberla modificado de tal forma que GitHub reconozca que hay diferncias con la rama principal.
+
+1. En GitHub, seleccionar PullRequest
+<div>
+<p style = 'text-align:center;'>
+![](pr.png){width='350px'}
+</p>
+</div>
+
+2. 
+3. 
 
 # RStudio - Git - GitHub
 
