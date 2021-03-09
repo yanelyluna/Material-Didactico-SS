@@ -13,6 +13,7 @@ output:
 <style>
   #TOC {
     color: #724401;
+    font-family: Corbel;
     font-size: 16px;
     background-color: #FBECD1;
     border-color: #958303;
@@ -21,19 +22,23 @@ output:
     color: #6D4101;
     background-color: #FDFBEF;
     opacity: 0.9;
+    font-family: Corbel;
     font-size: 50px;
   }
   h4.author {
     color: #012A6D;
     background-color: #FDFBEF;
+    font-family: Corbel;
     font-size: 30px;
   }
   h4.date {
     color: #7299D9;
     background-color: #FDFBEF;
+    font-family: Corbel;
   }
   body {
     color: #08142A;
+    font-family: Corbel;
     background-color: #FDFBEF;
   }
   pre {
@@ -45,7 +50,7 @@ output:
 <div style="text-align: justify">
 <div/>
 
-# ¿Qué es Git y para qué sirve?
+# ¿Qué es Git y para qué aprenderlo?
 
 Es un controlador de versiones _(de código)_ esto quiere decir que se puede dar seguimiento a los cambios que se hagan en los archivos de código que pueden ser con lenguaje de R, Python, Java, entre muchos otros. Su importancia radica en que podemos rastrear todos los cambios: desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código y a hacer cambios desde alguna de las versiones anteriores. 
 
@@ -275,7 +280,7 @@ Cada miembro del equipo puede crear una rama en el repositorio para trabajar en 
 
 - `git branch -d nombre_de_la_rama`: Elimina la rama `nombre_de_la_rama`. Se utiliza cuando ya hemos hecho la fusión de esta rama con la rama principal y ya no la necesitamos.
 
-### Merge - Fusión {#Merge}
+## Merge - Fusión {#Merge}
 
 Una vez que hemos trabajado en una rama y realizamos todos los cambios necesarios, podemos fusionar estos cambios con el contenido de la rama principal. Para esto usamos el comando `git merge rama_secundaria rama_principal`, el cual fusiona la rama_secundaria con la rama_principal. 
 
@@ -291,9 +296,113 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
      4. Hacer la fusión (push --set-upstream origin nombre_de_la_rama).
      5. Generar un pull request para hacer la fusión entre las ramas.
 
+__Antes de aprender Pull Reques, es importante conocer cuál es el objetoivo de su uso para lo cual se necesita saber sobre forking__
+
+### Forking {#forking}
+
+Si queremos trabajar con algún repositorio de GitHub del que no somos creadores, podemos hacer forking para copiar el repositorio ajeno a nuestra cuenta de GitHub. Al hacer cambios en el repositorio (del que hicimos forking), no formarán parte del repositorio orignial a menos que hagamos [Pull Request](#pr).
+
+#### ¿Cómo hacer forking?
+
+1. Seleccionar algún repo (repositorio) ajeno que quieras modificar.
+
+2. Una vez dentro del repositorio ajeno, dar click en el ícono que dice `fork`
+<div>
+<p style = 'text-align:center;'>
+![](fork.png){width='350px'}
+</p>
+</div>
+
+3. Posteriormente, en tu cuenta aparecerá el reopsitorio
+
+<div>
+<p style = 'text-align:center;'>
+![](fork1.png){width='350px'}
+</p>
+</div>
+
+4. Modificamos alguno de los archivos del repositorio.
+
+<div>
+<p style = 'text-align:center;'>
+![](fork2.png){width='350px'}
+</p>
+</div>
+
+Y los confirmamos
+
+
+<div>
+<p style = 'text-align:center;'>
+![](fork3.png){width='350px'}
+</p>
+</div>
+
+
+## Pull Request {#pr}
+
+
+Como su nombre lo indica, un Pull Request es una petición que el propietario de una rama (o [fork](#forking)) de un repositorio hace al propietario del repositorio original para que este último incorpore los commits que están en tal rama, a la rama principal.
+
+En otras palabras es una manera de pedir permiso para hacer "merge" o fusionar en un repositorioo del que no eres propietario.
+
+##### ¿Cómo se usa?
+
+Para poder hacer uso de esta herramienta, es necesario haber hecho modificaciones de un repo del que hicimos [forking](#forking) de tal forma que GitHub reconozca que hay diferncias.
+
+1. En GitHub, seleccionar PullRequest
+
+<div>
+<p style = 'text-align:center;'>
+![](pr1.png){width='350px'}
+</p>
+</div>
+
+2. Crear el PullRequest.
+
+<div>
+<p style = 'text-align:center;'>
+![](pr2.png){width='350px'}
+</p>
+</div>
+
+3. Puedes añadir alguna explicación que verá la creadora del repositorio.
+
+<div>
+<p style = 'text-align:center;'>
+![](pr3.png){width='450px'}
+</p>
+</div>
+
+4. Esperar que la personas dueña del repositorio acepte tus cambios como parte de su trabajo. Al creador del repositorio le aparecerá un mensaje como el siguiente:
+
+<div>
+<p style = 'text-align:center;'>
+![](pr4.jpeg){width='450px'}
+</p>
+</div>
+
+__NOTA:__ El pull request no solo se usa en el forking, se pueden hacer también peticiones dentro de un mismo repositorio cuando algún colaborador quiere fusionar su rama a la rama principal. Cuando se encuentran como colaboradores de un repositorio no es necesario hacerlo dado que desde la terminal se pueden solucionar los conflictos de merge, sin embargo, es conveniente hacer estas peticiones para que quede un registro más preciso de los cambios que otros colaboradores puedan ver.
+
 # RStudio - Git - GitHub
 
 Es posible conectar con Git y GitHub desde RStudio, lo cual tiene la ventaja de que al modificar archivos en RStudio podemos registrar los cambios en el repositorio sin la necesidad de movernos a la Terminal. Para hacer esto posible, es necesario verificar primero que Git esté instalado correctamente y R y RStudio estén actualizados (con una versión de R de 4.0 o más reciente debería funcionar correctamente). Una vez cumplidos estos requisitos, debemos verificar que Git esté conectado con RStudio en _Tools_ -> _Global options_ -> _Git/SVN_ verificando que el directorio de git.exe que se solicita sea el correcto.
+
+## Proyectos de R
+
+#### ¿Qué es un Proyecto de R?
+
+Es un archivo con extensión `.Rproj` que al momento de su creación genera un directorio. 
+
+#### ¿Cuáles son las ventajas de usar archivos .Rproj?
+
+1. Sirve para trabajar dentro de un mismo ambiente, es decir, mantener todos los archivos relacionados a un proyecto en un mismo lugar. Por ejemplo, si se desea hacer una página web, un libro web o análisis que impliquen varios archivos a trabajr en RStudio.
+
+    Estos se ve reflejado en la facilidad de uso de las rutas para archivos. Si por ejemplo se desea poner una imagen, ya no será necesario pegar toda la ruta de la imagen sino simplemente su nombre _(siempre y cuando la imagen esté dentro de la carpeta del proyecto)_.
+
+2. Podemos conectar RStudio con Git y GitHub sin necesidad de usar la terminal.
+
+Entre otras.
 
 ## Conectar un proyecto nuevo de RStudio con Git
 
