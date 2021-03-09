@@ -301,6 +301,22 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
 
 Es posible conectar con Git y GitHub desde RStudio, lo cual tiene la ventaja de que al modificar archivos en RStudio podemos registrar los cambios en el repositorio sin la necesidad de movernos a la Terminal. Para hacer esto posible, es necesario verificar primero que Git esté instalado correctamente y R y RStudio estén actualizados (con una versión de R de 4.0 o más reciente debería funcionar correctamente). Una vez cumplidos estos requisitos, debemos verificar que Git esté conectado con RStudio en _Tools_ -> _Global options_ -> _Git/SVN_ verificando que el directorio de git.exe que se solicita sea el correcto.
 
+## Proyectos de R
+
+#### ¿Qué es un Proyecto de R?
+
+Es un archivo con extensión `.Rproj` que al momento de su creación genera un directorio. 
+
+#### ¿Cuáles son las ventajas de usar archivos .Rproj?
+
+1. Sirve para trabajar dentro de un mismo ambiente, es decir, mantener todos los archivos relacionados a un proyecto en un mismo lugar. Por ejemplo, si se desea hacer una página web, un libro web o análisis que impliquen varios archivos a trabajr en RStudio.
+
+    Estos se ve reflejado en la facilidad de uso de las rutas para archivos. Si por ejemplo se desea poner una imagen, ya no será necesario pegar toda la ruta de la imagen sino simplemente su nombre _(siempre y cuando la imagen esté dentro de la carpeta del proyecto)_.
+
+2. Podemos conectar RStudio con Git y GitHub sin necesidad de usar la terminal.
+
+Entre otras.
+
 ## Conectar un proyecto nuevo de RStudio con Git
 
 La forma más sencilla de comenzar a trabajar Git con RStudio es creando un nuevo proyecto desde RStudio y seleccionar la opción que se muestra:
@@ -338,9 +354,3 @@ Para realizar los comandos previamente presentados (como `add`, `commit`, `pull`
 ![](comandos_en_RStudio.png){width='350px'}
 </p>
 </div>
-
-
-
-
-
-
