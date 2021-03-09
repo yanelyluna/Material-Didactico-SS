@@ -297,25 +297,93 @@ Supongamos que mientras trabajabamos en una nueva rama, el contenido de la rama 
      4. Hacer la fusión (push --set-upstream origin nombre_de_la_rama).
      5. Generar un pull request para hacer la fusión entre las ramas.
 
-## Pull Request
+__Antes de aprender Pull Reques, es importante conocer cuál es el objetoivo de su uso para lo cual se necesita saber sobre forking__
 
-Como su nombre lo indica, un Pull Request es una petición que el propietario de una rama (o fork) de un repositorio hace al propietario del repositorio original para que este último incorpore los commits que están en tal rama, a la rama principal.
+### Forking {#forking}
+
+Si queremos trabajar con algún repositorio de GitHub del que no somos creadores, podemos hacer forking para copiar el repositorio ajeno a nuestra cuenta de GitHub. Al hacer cambios en el repositorio (del que hicimos forking), no formarán parte del repositorio orignial a menos que hagamos [Pull Request](#pr).
+
+#### ¿Cómo hacer forking?
+
+1. Seleccionar algún repo (repositorio) ajeno que quieras modificar.
+
+2. Una vez dentro del repositorio ajeno, dar click en el ícono que dice `fork`
+<div>
+<p style = 'text-align:center;'>
+![](fork.png){width='350px'}
+</p>
+</div>
+
+3. Posteriormente, en tu cuenta aparecerá el reopsitorio
+
+<div>
+<p style = 'text-align:center;'>
+![](fork1.png){width='350px'}
+</p>
+</div>
+
+4. Modificamos alguno de los archivos del repositorio.
+
+<div>
+<p style = 'text-align:center;'>
+![](fork2.png){width='350px'}
+</p>
+</div>
+
+Y los confirmamos
+
+
+<div>
+<p style = 'text-align:center;'>
+![](fork3.png){width='350px'}
+</p>
+</div>
+
+
+## Pull Request {#pr}
+
+
+Como su nombre lo indica, un Pull Request es una petición que el propietario de una rama (o [fork](#forking)) de un repositorio hace al propietario del repositorio original para que este último incorpore los commits que están en tal rama, a la rama principal.
 
 En otras palabras es una manera de pedir permiso para hacer "merge" o fusionar en un repositorioo del que no eres propietario.
 
 ##### ¿Cómo se usa?
 
-Para poder hacer uso de esta herramienta, es necesario haber creado una rama y haberla modificado de tal forma que GitHub reconozca que hay diferncias con la rama principal.
+Para poder hacer uso de esta herramienta, es necesario haber hecho modificaciones de un repo del que hicimos [forking](#forking) de tal forma que GitHub reconozca que hay diferncias.
 
 1. En GitHub, seleccionar PullRequest
+
 <div>
 <p style = 'text-align:center;'>
-![](pr.png){width='350px'}
+![](pr1.png){width='350px'}
 </p>
 </div>
 
-2. 
-3. 
+2. Crear el PullRequest.
+
+<div>
+<p style = 'text-align:center;'>
+![](pr2.png){width='350px'}
+</p>
+</div>
+
+3. Puedes añadir alguna explicación que verá la creadora del repositorio.
+
+<div>
+<p style = 'text-align:center;'>
+![](pr3.png){width='450px'}
+</p>
+</div>
+
+4. Esperar que la personas dueña del repositorio acepte tus cambios como parte de su trabajo. Al creador del repositorio le aparecerá un mensaje como el siguiente:
+
+<div>
+<p style = 'text-align:center;'>
+![](pr4.jpeg){width='450px'}
+</p>
+</div>
+
+__NOTA:__ El pull request no solo se usa en el forking, se pueden hacer también peticiones dentro de un mismo repositorio cuando algún colaborador quiere fusionar su rama a la rama principal. Cuando se encuentran como colaboradores de un repositorio no es necesario hacerlo dado que desde la terminal se pueden solucionar los conflictos de merge, sin embargo, es conveniente hacer estas peticiones para que quede un registro más preciso de los cambios que otros colaboradores puedan ver.
 
 # RStudio - Git - GitHub
 
