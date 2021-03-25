@@ -8,7 +8,7 @@ navbar:
     - text: "Tutoriales"
       href: about.html
       menu:
-      - text: Tutorial de Git y GitHub
+      - text: Git y GitHub
         href: Tutorial-de-Git-y-GitHub.html  
       - text: R Markdown
         href: R-Markdown.html
