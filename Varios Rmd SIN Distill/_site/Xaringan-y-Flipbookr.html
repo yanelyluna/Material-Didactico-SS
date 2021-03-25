@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Carlos A. Ar." />
+
+
+<title>Xaringan y Flipbookr</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Mi primer sitio Web</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Principal</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tutoriales
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Tutorial-de-Git-y-GitHub.html">Tutorial de Git y GitHub</a>
+    </li>
+    <li>
+      <a href="R-Markdown.html">R Markdown</a>
+    </li>
+    <li>
+      <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Xaringan y Flipbookr</h1>
+<h4 class="author">Carlos A. Ar.</h4>
+<h4 class="date">Última edición 24 de marzo del 2021</h4>
+
+</div>
+
+
+<style>
+  #TOC {
+    color: #724401;
+    font-family: Spectral;
+    font-size: 16px;
+    background-color: #FBECD1;
+    border-color: #958303;
+  }
+  h1.title {
+    color: #6D4101;
+    background-color: #FDFBEF;
+    opacity: 0.9;
+    font-family: Spectral;
+    font-size: 50px;
+  }
+  h4.author {
+    color: #012A6D;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+    font-size: 30px;
+  }
+  h4.date {
+    color: #7299D9;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+  }
+  body {
+    color: #08142A;
+    font-family: Spectral;
+    background-color: #FDFBEF;
+  }
+  pre {
+    color: #08142A;
+    background-color: #FEF9D7;
+  }
+</style>
+<div style="text-align: justify">
+<div/>
+
+
+
+<p><strong>Objetivo:</strong> crear una presentación en RStudio con código además de añadir LO DE FLIPBOOKR.</p>
+<div id="crear-una-presentación-en-xaringan" class="section level2">
+<h2>Crear una presentación en Xaringan</h2>
+<ol style="list-style-type: decimal">
+<li><p>Instalar la libraría xaringan <code>install.package("xaringan")</code> y cargar la librería <code>library(xaringan)</code>.</p></li>
+<li><p>Crear un proyecto de R para que las imágenes y demás archivos se queden en la carpeta que se crea en automático en la creación del proyecto.</p></li>
+<li><p>Dentro del proyecto crear un archivo de RMarkdown y cambiar el encabezado YAML:</p></li>
+</ol>
+<div>
+<p style="text-align:center;">
+<img src="xaringan_yaml.png" width="250" />
+</p>
+</div>
+<p>La diferencia con este encabezado y el de un Rmd es el output, mientras que en Rmd el <code>output</code> es <code>html_document</code> o <code>pdf_document</code>, para compartir una presentación de xaringan es necesario usar <code>xaringan::moon_reader</code> lo que implica una forma particular de presentación.</p>
+<p>Notemos que existen algunas especificaciones extra como el estilo de la presentación que se pones en el parámetro <code>css</code>. ára poder identificar los diferentes estilos posibles en las presentaciones de sharingan usamos el siguiente comando:</p>
+<pre class="r"><code>names(xaringan:::list_css())</code></pre>
+<pre><code>##  [1] &quot;chocolate-fonts&quot;  &quot;chocolate&quot;        &quot;default-fonts&quot;    &quot;default&quot;         
+##  [5] &quot;duke-blue&quot;        &quot;fc-fonts&quot;         &quot;fc&quot;               &quot;hygge-duke&quot;      
+##  [9] &quot;hygge&quot;            &quot;ki-fonts&quot;         &quot;ki&quot;               &quot;kunoichi&quot;        
+## [13] &quot;lucy-fonts&quot;       &quot;lucy&quot;             &quot;metropolis-fonts&quot; &quot;metropolis&quot;      
+## [17] &quot;middlebury-fonts&quot; &quot;middlebury&quot;       &quot;nhsr-fonts&quot;       &quot;nhsr&quot;            
+## [21] &quot;ninjutsu&quot;         &quot;rladies-fonts&quot;    &quot;rladies&quot;          &quot;robot-fonts&quot;     
+## [25] &quot;robot&quot;            &quot;rutgers-fonts&quot;    &quot;rutgers&quot;          &quot;shinobi&quot;         
+## [29] &quot;tamu-fonts&quot;       &quot;tamu&quot;             &quot;uio-fonts&quot;        &quot;uio&quot;             
+## [33] &quot;uo-fonts&quot;         &quot;uo&quot;               &quot;uol-fonts&quot;        &quot;uol&quot;             
+## [37] &quot;useR-fonts&quot;       &quot;useR&quot;</code></pre>
+<p>En general el parámetro <code>css</code> describe las características de personalización de la presentació.</p>
+<p>Por otro lado</p>
+<pre><code>  `nature:`
+      `higlightStyle: github`
+      `highlighLine: true`
+      `countIncrementalSlides: true`</code></pre>
+<p>hace referencia a la forma en que queremos que aparezcan las líneas de código dentro de la presentación. Por ejemplo, <code>highlighLine: true</code> implica que se hará un subrayado para los códigos que aparezcan en la presentación. Mientras que <code>countIncrementalSlides: true</code> permitirá que las diapositivas se enumeren.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Cargar las librerías a ocupar en un chunk de R.</p></li>
+<li><p>Escribir tres guiones medios <strong>—</strong> cada que se requiera una nueva diapositiva. Al inicio de cada diapositiva debe existir un título el cual se pone como la <a href="https://dreamy-beaver-cd6aad.netlify.app/r-markdown#Editar_texto">sintáxis de Rmd</a>.</p></li>
+</ol>
+</div>
+<div id="personalizar-la-presentación" class="section level2">
+<h2>Personalizar la presentación</h2>
+<ul>
+<li><p>En cada diapositica es posible hacer que esta tenga imágenes, lo cual se logra con sintáxis de Rmd o de HTML. Aquí pongo el ejemplo de HTML.</p>
+<pre><code>&lt;div&gt;
+&lt;p style = &#39;text-align:center;&#39;&gt;
+![](xaringan_yaml.png){width=&#39;250px&#39;}
+&lt;/p&gt;
+&lt;/div&gt;</code></pre></li>
+</ul>
+<p>En este caso la imagen se llama xaringan_yaml y tiene extensión png. Esta imagen debe ser previamente guardada en la carpeta del RProject donde se está trabajando, de esta manera no será necesario escribir el <code>path</code> del directorio.</p>
+<ul>
+<li><p>Si se desea dividir una diapositiva en dos columnas se usa la sintáxis siguiente:</p>
+<pre><code>.pull-left[
+Hola, este es el lado izquierdo
+]
+
+.pull-right[
+Hola, este es el lado derechairo
+]</code></pre></li>
+</ul>
+<p>Donde el contenido de la izquierda irá entre los corchetes así como el de la derecha.</p>
+<ul>
+<li>Para hacer referencias a páginas o insertar código con sus múltiples opciones de aparición en la presentación, basta con usar la <a href="https://dreamy-beaver-cd6aad.netlify.app/r-markdown">sintáxis de Rmd</a>.</li>
+</ul>
+<p>Para más información sobre la personalización de Xaringan consulta <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">Xaringan Presentations</a></p>
+</div>
+<div id="flipbookr" class="section level2">
+<h2>Flipbookr</h2>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

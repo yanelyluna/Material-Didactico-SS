@@ -11,6 +11,8 @@ navbar:
         href: Tutorial-de-Git-y-GitHub.html  
       - text: R Markdown
         href: R-Markdown.html
+      - text: Xaringan y Flipbookr
+        href: Xaringan-y-Flipbookr.html
 output:
   html_document:
     theme: flatly
