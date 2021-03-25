@@ -1,4 +1,51 @@
 ---
-title: "My Website"
+title: "Sitio de consulta"
+author: "CEY"
 ---
-Este es el index
+<style>
+  #TOC {
+    color: #724401;
+    font-family: Spectral;
+    font-size: 16px;
+    background-color: #FBECD1;
+    border-color: #958303;
+  }
+  h1.title {
+    color: #6D4101;
+    background-color: #FDFBEF;
+    opacity: 0.9;
+    font-family: Spectral;
+    font-size: 50px;
+  }
+  h4.author {
+    color: #012A6D;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+    font-size: 30px;
+  }
+  h4.date {
+    color: #7299D9;
+    background-color: #FDFBEF;
+    font-family: Spectral;
+  }
+  body {
+    color: #08142A;
+    font-family: Spectral;
+    background-color: #FDFBEF;
+  }
+  pre {
+    color: #08142A;
+    background-color: #FEF9D7;
+  }
+</style>
+
+<div style="text-align: justify">
+<div/>
+
+Este sitio tiene la finalidad de guardar el conocimiento de las herramientas necesarias para el desarrollo de material en R en términos de documentación, presentaciones así como una herramienta que permite trabajar con código en equipo de manera remota.
+
+Se ha creado el sitio desde marzo de 2021, su fundamento está en el desarrollo del Servicio Social en la [Facultad de Ciencias](https://web.fciencias.unam.mx/) de la [UNAM](https://www.unam.mx/) con la guía de Eduardo S. M. M. y la implementación de Yanely L.G. y Carlos A. A.
+
+La información aquí vertida está referenciada para consultas de mayor alcance.
+
+__Esperamos que te agrade.__

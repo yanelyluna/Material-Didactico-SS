@@ -1,9 +1,10 @@
-name: "my-website"
+name: "servicio_social"
 navbar:
-  title: "Mi primer sitio Web"
+  title: "Material de Consulta"
   left:
     - text: "Principal"
       href: index.html
+  right:
     - text: "Tutoriales"
       href: about.html
       menu:
