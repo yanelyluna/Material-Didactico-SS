@@ -55,8 +55,12 @@ date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 library(xaringan)
 ```
 
-__Objetivo:__ crear una presentación en RStudio con código además de añadir LO DE FLIPBOOKR.
+__Objetivo:__ crear una presentación en RStudio con código a través del paquete `xaringan`, definir y crear un flipbook.
 
+# ¿Qué es Xaringan?
+
+El nombre viene de un animé pero aquí nos referimos al paquete de R que permite realizar presentaciones con sintáxis de RMarkdown. Las ventajas son heredadas por RMarkdown, es decir, que existe la posibilidad de ver código, hacer divérsos análisis automatizados y no hacer siempre copy-paste de los gráficos que se elaboran en RStudio.
+ 
 ## Crear una presentación en Xaringan
 
 1. Instalar la libraría xaringan `install.package("xaringan")` y cargar la librería `library(xaringan)`.
@@ -67,7 +71,7 @@ __Objetivo:__ crear una presentación en RStudio con código además de añadir 
 
 <div>
 <p style = 'text-align:center;'>
-![](xaringan_yaml.png){width='250px'}
+![](xaringan_yaml.png){width='450px'}
 </p>
 </div>
 
@@ -93,6 +97,9 @@ names(xaringan:::list_css())
 4. Cargar las librerías a ocupar en un chunk de R. 
 
 5. Escribir tres guiones medios __---__ cada que se requiera una nueva diapositiva. Al inicio de cada diapositiva debe existir un título el cual se pone como la [sintáxis de Rmd](https://dreamy-beaver-cd6aad.netlify.app/r-markdown#Editar_texto).
+
+
+__NOTA:__ si deseas ver las modifiaciones que haces de tu presentación en el momento de que haces los cambios en el código utiliza en consola el comando: `xaringan::inf_mr()` 
 
 ## Personalizar la presentación
 
@@ -122,9 +129,102 @@ Donde el contenido de la izquierda irá entre los corchetes así como el de la d
 
 Para más información sobre la personalización de Xaringan consulta [Xaringan Presentations](https://bookdown.org/yihui/rmarkdown/xaringan.html)
 
-## Flipbookr
+# Flipbookr
 
+### ¿Qué es un _Flipbook_?
+Los flipbooks presentan el código paso a paso y en paralelo con la salida. Es una forma de ver resultados de manera incremental.
 
+__Ejemplo__
 
+<div>
+<p style = 'text-align:center;'>
+![](https://raw.githubusercontent.com/simplystats/simplystats.github.io/master/_images/life-expectancy-versus-fertility-rate.gif){width='450px'}
+</p>
+</div>
 
+En general un flipbook permite tener la visualización de manera secuencial o progresiva lo cual permite tener un mejor entendimiento de lo que sucede paso a paso.
 
+En particular, se puede hacer una presentación con Xaringan que contengan a su vez los flipbooks. [Evangeline Reynols](https://evangelinereynolds.netlify.app/post/introducing-flipbookr/) describe que _La idea de los flipbooks es ofrecer a los "lectores" conocimientos sobre el comportamiento de funciones específicas en el contexto de un proyecto más amplio. El “lector” puede aislar funciones desconocidas y alternar entre estados de salida antes y después de que se use una función, viendo cómo esa función afecta el resultado._
+
+## Ventajas del uso de flipbooks
+
+1. Permite digerir el proceso de manipulación de datos y construcción de gráficos. ¡Como en forma de película!
+2. Se puede obtener información de tramos cortos para generar análisis similares pero con otra información.
+3. Observar cambios del código a través del movimiento en vez de la lectura exaustiva de código.
+
+## Utilidad de flipbooks.
+
+Algunas formas en las que se practica la creación de flipbooks son:
+
+- Negociación de datos.
+- Visualización de datos con ggplot2.
+- Análisis Estadístico.
+
+# Xaringan y Flipbookr
+
+Para poder crear un Flipbook en R que se reproduzca en Xaringan:
+
+1. Instalar la plataforma de presentación de diapositivas Xaringan  install.packages("xaringan")
+2. Instalar flipbookr - `remotes::install_github("EvaMaeRey/flipbookr")`
+3. Reiniciar R.
+4. Crea un Rmd y elige la opción `From Template -> A Minimal Flipbook`
+
+<div>
+<p style = 'text-align:center;'>
+![](flipbookr.png){width='450px'}
+</p>
+</div>
+
+5. Use esta plantilla para comenzar o reemplácela con sus propias requerimientos.
+
+  Dentro del documento podremos notar un encabezado igual al de una presentación de Xaringan por lo cual sí se puede adaptar al diseño o estilo que requieras.
+  
+  Por otro lado una de las cosas interesantes en el documento es la función `chunk_reveal` que permite obtener la forma de flipbook a partir de un chunk de código. Es decir que esta función toma el código de un fragmento de código referenciado y devuelve una secuencia de código parcial a una serie de fragmentos de código separados por saltos de diapositiva. Al compilar, obtendrá un recorrido del código paso a paso.
+  
+  Para poder usar la función `chunk_reveal()` es importante conocer los parámetros mínimos que requiere y sus parámetros:
+  
+  - `chunk_name`: una cadena de caracteres que hace referencia al nombre del fragmento de origen del flipbooking.
+  - `break_type`: __"auto"__ es la búsqueda predeterminada de puntos de interrupción apropiados, "usuario" se puede usar con el mensaje de comentario especial #BREAK dentro del fragmento del código fuente, __"non_seq"__ se puede usar para la visualización no secuencial de código con mensajes de comentarios especiales # BREAK2 (se mostrará en segundo fotograma) y # BREAK3 (se mostrará en el tercer fotograma), también se puede dar una entrada entera, para mostrar simplemente el fragmento de código fuente varias veces, lo cual es apropiado para observar múltiples realizaciones de muestreo, __"rotar"__ permite recorrer diferentes líneas código, el comentario #ROTATE se usa para las líneas que se recorren cíclicamente
+  - `left_assign`: un valor lógico. El valor predeterminado es FALSO, si es VERDADERO imprimirá el objeto creado en la esquina superior izquierda del fragmento de código fuente al final de cada revelación parcial.
+  - `title`: una cadena de caracteres que puede contener un título para los marcos del flipbook; esto puede incluir información de encabezado "## Mi título", por ejemplo, es un título de descuento de segundo nivel en Xaringan
+  - `widths`: un vector numérico que contiene anchos relativos para paneles.
+
+El valor que regresa la función solo se puede ver implementado en el "tejimiento" de la presnetación o después de hacer el "knit".
+
+La función puede vere así:
+
+    chunk_reveal(
+      chunk_name = NULL,
+      break_type = "auto",
+      left_assign = F,
+      left_assign_add = NULL,
+      lang = "r",
+      omit = "#OMIT",
+      code_seq = NULL,
+      code_seq_lag = NULL,
+      code_seq_lag2 = NULL,
+      code_seq_target = NULL,
+      code_seq_start = NULL,
+      func_seq = NULL,
+      num_breaks = NULL,
+      display_type = c("code", "output"),
+      title = "",
+      md = NULL,
+      md2 = NULL,
+      replacements = NULL,
+      replace = NULL,
+      replacements2 = replacements,
+      replace2 = replace,
+      replacements3 = replacements,
+      replace3 = replace,
+      widths = NULL,
+      float = "left",
+      chunk_options = "",
+      color = c("black", "black",
+                "black"),
+      font_size_code = "80%"
+    )
+
+6. Compile su documento - "Knit" en RStudio
+
+Conoce más en la página de Eva sobre [flipbookr](https://evamaerey.github.io/flipbooks/about)

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Data Camp" />
+
+
+<title>Investment Report for Projects in Brazil</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="estil.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Material de Consulta</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Principal</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejemplos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="primer_flipbookr.html">Flipbookr</a>
+    </li>
+    <li>
+      <a href="Ejemplo-R-Markdown.html">RMarkdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tutoriales
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Tutorial-de-Git-y-GitHub.html">Git y GitHub</a>
+    </li>
+    <li>
+      <a href="R-Markdown.html">R Markdown</a>
+    </li>
+    <li>
+      <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Investment Report for Projects in Brazil</h1>
+<h4 class="author">Data Camp</h4>
+<h4 class="date">25 marzo 2021</h4>
+
+</div>
+
+
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<div id="investment-annual-summary" class="section level3">
+<h3>Investment Annual Summary</h3>
+<p>The <code>investment_annual_summary</code> dataset provides a summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018.</p>
+<pre class="r"><code>ggplot(investment_annual_summary, aes(x = fiscal_year, y = dollars_in_millions, color = region)) +
+  geom_line() +
+  labs(
+    title = &quot;Investment Annual Summary&quot;,
+    x = &quot;Fiscal Year&quot;,
+    y = &quot;Dollars in Millions&quot;
+  )</code></pre>
+<p><img src="Ejemplo-R-Markdown_files/figure-html/investment-annual-summary-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="investment-projects-in-brazil" class="section level3">
+<h3>Investment Projects in Brazil</h3>
+<p>The <code>investment_services_projects</code> dataset provides information about each investment project from 2012 to 2018. Information listed includes the project name, company name, sector, project status, and investment amounts. Projects that do not have an associated investment amount are excluded from the plot.</p>
+<pre class="r"><code>country_investment_projects &lt;- investment_services_projects %&gt;%
+  filter(country == params$country) 
+
+ggplot(country_investment_projects, aes(x = date_disclosed, y = total_investment, color = status)) +
+  geom_point() +
+  labs(
+    title = &quot;Investment Services Projects&quot;,
+    x = &quot;Date Disclosed&quot;,
+    y = &quot;Total IFC Investment in Dollars in Millions&quot;
+  )</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<p><img src="Ejemplo-R-Markdown_files/figure-html/country-investment-projects-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="investment-projects-in-brazil-in-2018" class="section level3">
+<h3>Investment Projects in Brazil in 2018</h3>
+<p>The <code>investment_services_projects</code> dataset was filtered below to focus on information about each investment project from the 2018 fiscal year, and is referred to as <code>country_annual_investment_projects</code>. Projects that do not have an associated investment amount are excluded from the plot.</p>
+<pre class="r"><code>country_annual_investment_projects &lt;- investment_services_projects %&gt;%
+  filter(country == params$country,
+         date_disclosed &gt;= params$year_start,
+         date_disclosed &lt;= params$year_end) 
+
+ggplot(country_annual_investment_projects, aes(x = date_disclosed, y = total_investment, color = status)) +
+  geom_point() +
+  labs(
+    title = &quot;Investment Services Projects&quot;,
+    x = &quot;Date Disclosed&quot;,
+    y = &quot;Total IFC Investment in Dollars in Millions&quot;
+  ) </code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
+<p><img src="Ejemplo-R-Markdown_files/figure-html/country-annual-investment-projects-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkludmVzdG1lbnQgUmVwb3J0IGZvciBQcm9qZWN0cyBpbiBgciBwYXJhbXMkY291bnRyeWAiDQphdXRob3I6ICJEYXRhIENhbXAiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50Og0KICAgIGNzczogZXN0aWwuY3NzDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0Og0KICAgICAgY29sbGFwc2U6IGZhbHNlDQogICAgICBzbW9vdGhfc2Nyb2xsOiBmYWxzZQ0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCmRhdGU6ICJgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVkICVCICVZJylgIg0KcGFyYW1zOg0KICBjb3VudHJ5OiBCcmF6aWwNCiAgZnk6IDIwMTgNCiAgeWVhcl9zdGFydDogMjAxNy0wNy0wMQ0KICB5ZWFyX2VuZDogMjAxOC0wNi0zMA0KLS0tDQoNCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLmFsaWduID0gJ2NlbnRlcicsIGVjaG8gPSBUUlVFKQ0KYGBgDQoNCmBgYHtyIGRhdGEsIGluY2x1ZGUgPSBGQUxTRX0NCmxpYnJhcnkocmVhZHIpDQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShnZ3Bsb3QyKQ0KDQppbnZlc3RtZW50X2FubnVhbF9zdW1tYXJ5IDwtIHJlYWRfY3N2KCJodHRwczovL2Fzc2V0cy5kYXRhY2FtcC5jb20vcHJvZHVjdGlvbi9yZXBvc2l0b3JpZXMvNTc1Ni9kYXRhc2V0cy9kMDI1MWYyNjExN2JiY2YwZWE5NmFjMjc2NTU1YjkwMDNmNGY3MzcyL2ludmVzdG1lbnRfYW5udWFsX3N1bW1hcnkuY3N2IikNCmludmVzdG1lbnRfc2VydmljZXNfcHJvamVjdHMgPC0gcmVhZF9jc3YoImh0dHBzOi8vYXNzZXRzLmRhdGFjYW1wLmNvbS9wcm9kdWN0aW9uL3JlcG9zaXRvcmllcy81NzU2L2RhdGFzZXRzL2JjYjJlMzllY2JlNTIxZjRiNDE0YTIxZTM1ZjdiOGI1YzUwYWVjNjQvaW52ZXN0bWVudF9zZXJ2aWNlc19wcm9qZWN0cy5jc3YiKQ0KYGBgDQoNCg0KIyMgRGF0YXNldHMgDQoNCiMjIyBJbnZlc3RtZW50IEFubnVhbCBTdW1tYXJ5DQoNClRoZSBgaW52ZXN0bWVudF9hbm51YWxfc3VtbWFyeWAgZGF0YXNldCBwcm92aWRlcyBhIHN1bW1hcnkgb2YgdGhlIGRvbGxhcnMgaW4gbWlsbGlvbnMgcHJvdmlkZWQgdG8gZWFjaCByZWdpb24gZm9yIGVhY2ggZmlzY2FsIHllYXIsIGZyb20gMjAxMiB0byBgciBwYXJhbXMkZnlgLg0KYGBge3IgaW52ZXN0bWVudC1hbm51YWwtc3VtbWFyeX0NCmdncGxvdChpbnZlc3RtZW50X2FubnVhbF9zdW1tYXJ5LCBhZXMoeCA9IGZpc2NhbF95ZWFyLCB5ID0gZG9sbGFyc19pbl9taWxsaW9ucywgY29sb3IgPSByZWdpb24pKSArDQogIGdlb21fbGluZSgpICsNCiAgbGFicygNCiAgICB0aXRsZSA9ICJJbnZlc3RtZW50IEFubnVhbCBTdW1tYXJ5IiwNCiAgICB4ID0gIkZpc2NhbCBZZWFyIiwNCiAgICB5ID0gIkRvbGxhcnMgaW4gTWlsbGlvbnMiDQogICkNCmBgYA0KDQojIyMgSW52ZXN0bWVudCBQcm9qZWN0cyBpbiBgciBwYXJhbXMkY291bnRyeWANCg0KVGhlIGBpbnZlc3RtZW50X3NlcnZpY2VzX3Byb2plY3RzYCBkYXRhc2V0IHByb3ZpZGVzIGluZm9ybWF0aW9uIGFib3V0IGVhY2ggaW52ZXN0bWVudCBwcm9qZWN0IGZyb20gMjAxMiB0byBgciBwYXJhbXMkZnlgLiBJbmZvcm1hdGlvbiBsaXN0ZWQgaW5jbHVkZXMgdGhlIHByb2plY3QgbmFtZSwgY29tcGFueSBuYW1lLCBzZWN0b3IsIHByb2plY3Qgc3RhdHVzLCBhbmQgaW52ZXN0bWVudCBhbW91bnRzLiBQcm9qZWN0cyB0aGF0IGRvIG5vdCBoYXZlIGFuIGFzc29jaWF0ZWQgaW52ZXN0bWVudCBhbW91bnQgYXJlIGV4Y2x1ZGVkIGZyb20gdGhlIHBsb3QuDQoNCmBgYHtyIGNvdW50cnktaW52ZXN0bWVudC1wcm9qZWN0c30NCmNvdW50cnlfaW52ZXN0bWVudF9wcm9qZWN0cyA8LSBpbnZlc3RtZW50X3NlcnZpY2VzX3Byb2plY3RzICU+JQ0KICBmaWx0ZXIoY291bnRyeSA9PSBwYXJhbXMkY291bnRyeSkgDQoNCmdncGxvdChjb3VudHJ5X2ludmVzdG1lbnRfcHJvamVjdHMsIGFlcyh4ID0gZGF0ZV9kaXNjbG9zZWQsIHkgPSB0b3RhbF9pbnZlc3RtZW50LCBjb2xvciA9IHN0YXR1cykpICsNCiAgZ2VvbV9wb2ludCgpICsNCiAgbGFicygNCiAgICB0aXRsZSA9ICJJbnZlc3RtZW50IFNlcnZpY2VzIFByb2plY3RzIiwNCiAgICB4ID0gIkRhdGUgRGlzY2xvc2VkIiwNCiAgICB5ID0gIlRvdGFsIElGQyBJbnZlc3RtZW50IGluIERvbGxhcnMgaW4gTWlsbGlvbnMiDQogICkNCmBgYA0KDQojIyMgSW52ZXN0bWVudCBQcm9qZWN0cyBpbiBgciBwYXJhbXMkY291bnRyeWAgaW4gYHIgcGFyYW1zJGZ5YA0KDQpUaGUgYGludmVzdG1lbnRfc2VydmljZXNfcHJvamVjdHNgIGRhdGFzZXQgd2FzIGZpbHRlcmVkIGJlbG93IHRvIGZvY3VzIG9uIGluZm9ybWF0aW9uIGFib3V0IGVhY2ggaW52ZXN0bWVudCBwcm9qZWN0IGZyb20gdGhlIGByIHBhcmFtcyRmeWAgZmlzY2FsIHllYXIsIGFuZCBpcyByZWZlcnJlZCB0byBhcyBgY291bnRyeV9hbm51YWxfaW52ZXN0bWVudF9wcm9qZWN0c2AuIFByb2plY3RzIHRoYXQgZG8gbm90IGhhdmUgYW4gYXNzb2NpYXRlZCBpbnZlc3RtZW50IGFtb3VudCBhcmUgZXhjbHVkZWQgZnJvbSB0aGUgcGxvdC4NCmBgYHtyIGNvdW50cnktYW5udWFsLWludmVzdG1lbnQtcHJvamVjdHN9DQpjb3VudHJ5X2FubnVhbF9pbnZlc3RtZW50X3Byb2plY3RzIDwtIGludmVzdG1lbnRfc2VydmljZXNfcHJvamVjdHMgJT4lDQogIGZpbHRlcihjb3VudHJ5ID09IHBhcmFtcyRjb3VudHJ5LA0KICAgICAgICAgZGF0ZV9kaXNjbG9zZWQgPj0gcGFyYW1zJHllYXJfc3RhcnQsDQogICAgICAgICBkYXRlX2Rpc2Nsb3NlZCA8PSBwYXJhbXMkeWVhcl9lbmQpIA0KDQpnZ3Bsb3QoY291bnRyeV9hbm51YWxfaW52ZXN0bWVudF9wcm9qZWN0cywgYWVzKHggPSBkYXRlX2Rpc2Nsb3NlZCwgeSA9IHRvdGFsX2ludmVzdG1lbnQsIGNvbG9yID0gc3RhdHVzKSkgKw0KICBnZW9tX3BvaW50KCkgKw0KICBsYWJzKA0KICAgIHRpdGxlID0gIkludmVzdG1lbnQgU2VydmljZXMgUHJvamVjdHMiLA0KICAgIHggPSAiRGF0ZSBEaXNjbG9zZWQiLA0KICAgIHkgPSAiVG90YWwgSUZDIEludmVzdG1lbnQgaW4gRG9sbGFycyBpbiBNaWxsaW9ucyINCiAgKSANCmBgYA==</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Ejemplo R Markdown.Rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

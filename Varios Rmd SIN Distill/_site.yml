@@ -5,6 +5,13 @@ navbar:
     - text: "Principal"
       href: index.html
   right:
+    - text: "Ejemplos"
+      href: about.html
+      menu:
+      - text: Flipbookr
+        href: primer_flipbookr.html  
+      - text: RMarkdown
+        href: Ejemplo-R-Markdown.html  
     - text: "Tutoriales"
       href: about.html
       menu:
