@@ -1,17 +1,18 @@
 ---
-title: "Un flipbook sencillo"
-subtitle: "Con flipbookr y xaringan"
-author: "Carlos"
+title: "Flipbooking"
+subtitle: "With flipbookr and xaringan"
+author: "Gina Reynolds, December 2019"
 output:
   xaringan::moon_reader:
     lib_dir: libs
     css: [default, hygge, ninjutsu]
     nature:
-      ratio: 16:9
+      ratio: 16:10
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
 
 
 ```{r, include = F}
@@ -23,95 +24,233 @@ library(tidyverse)
 ```
 
 
+# Welcome
 
-# Esta es una presentación de Xaringan con Flipbookr
-
-
---
-
-¡Esta plantilla de 'flipbook mínimo' tiene un par de ejemplos clásicos para que pueda construir sus primeros flipbooks!
+- Yes, there is now a package called `flipbookr`
 
 --
 
-Los flipbooks son películas en código. Los fotogramas de las películas son diapositivas. Aquí usamos el paquete R {xaringan} para crear una presentación de diapositivas.
+- Yes, it's still under construction 
 
 --
 
-Los saltos de diapositivas se indican con '---' (tenga cuidado con los espacios en blanco finales no están permitidos)
-
---
-
-`chunk_reveal ()` de flipbookr desensambla un solo fragmento de código y crea la "construcción" de múltiples fragmentos de código parcial en diferentes diapositivas (el --- se genera automáticamente para usted también).
-
---
-
-Usamos `chunk_reveal ()` en 'inline', no en un fragmento de código. Es decir que la función se usa fuera de un chunk de R.
-
---
-
-¡Empecemos!
+- Yes, you can help make it less fragile and awesome by letting us know if/how it breaks and frustrates you and/or contributing at https://github.com/EvaMaeRey/flipbookr!  
 
 ---
-clase: inversa, media, central
+
+# Spread the word and giving feedback
+
+Please help us spread the word about flipbooks.  Let your audience know *how* you created your flipbook with a quick acknowledgment, for example, *The flipbooked portion of this presentation was created with the new {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")*  
+
+Also consider sharing your work on social media, and let me know what you've built on Twitter with a mention to @EvaMaeRey
+
+Feedback? Contributions? Leave an issue at:  https://github.com/EvaMaeRey/flipbookr 
 
 
-# Primero: flipbook clásico, usando valores predeterminados para recorrer la tubería de código
-
-
-
-
-
-<!-- obtenga una versión de flipbook del fragmento de código my_cars - las pausas son donde los paréntesis están equilibrados -->
 ---
 
-`r chunk_reveal("my_cars")`
+# "Flipbooks"? 
+
+“Flipbooks” are tools that present side-by-side, aligned, incremental code-output evolution via automated code parsing and reconstruction. More about Flipbooks [here](https://evamaerey.github.io/little_flipbooks_library/about/what_the_flipbook).  There now exists a package for making Flipbooks for R: `flipbookr`.  This is under development, but you are welcome to try it out by installing from github:
+
+``` r
+devtools::install_github("EvaMaeRey/flipbookr")
+```
+
+You can see the template that was used to build this flipbook that you are looking at right now  [here](https://raw.githubusercontent.com/EvaMaeRey/flipbookr/master/inst/rmarkdown/templates/template-name/skeleton/skeleton.Rmd).
+
+
+Or, once you install the package (and restart R) a template for making the flipbook that you are looking at will also be available from within RStudio, File -> New File -> R Markdown -> From Template -> "A Minimal Flipbook".
+
+
+---
+
+# How Flipbooking with Xaringan works
+
+The flipbook you will be building here uses a member of the [rmarkdown](https://rmarkdown.rstudio.com/lesson-1.html) family called [Xaringan (presentation ninja)](https://github.com/yihui/xaringan), which creates a slide show in html.  Dynamic documents like `rmarkdown` documents allow you to co-mingle code and prose in a single document.  
+
+It may be obvious by now, if you are following along with the source template, that slide breaks are indicated with `---` (be careful trailing white space is not allowed)
+
+---
+
+
+Flipbooks are built by spawning new *partial* code chunks from a single, user-input code chunk.  The partial code chunks build up and are display consecutively in a slide show alongside its output; this yields a movie-like experience that should make each step easier to understand.  
+
+As you begin with flipbooks, I'd recommend using the code chunk option `include = F` for your "source" code chunks, and with no caching throughout.  As you begin to get more comfortable with flipbooking, you might change these choices.
+
+
+---
+
+## Set-up
+
+We use the flipbookr package, of course! This does the work of disassembling a single code chunk and creating the "build" of multiple partial-code chunks.  You'll see the library call for flipbookr at the top of this file in the "setup" code chunk.
+
+Also, at the top of this template in that "setup" code chunk, I set *code chunk* options for the code chunks that follow.  These will apply to the spawned code chunks.
+
+<!-- Hi there!  It's me, the developer.  So that I can sometimes work interactively on the package, I still am making the local source script available for myself - the code in the following chunk is for this purpose.  It will just work for your, but because I'm using "try" it won't throw an error for you!-->
+
+```{r just_for_evamaerey, cache = FALSE, echo = FALSE, message=F, warning=F}
+try(source("../../../../../R/a_create_test_code.R"))
+try(source("../../../../../R/b_parsing.R"))
+try(source("../../../../../R/c_prep_sequences.R"))
+try(source("../../../../../R/d_prep_rmd_chunks.R"))
+try(source("../../../../../R/e_define_css.R"))
+try(source("../../../../../R/f_chunk_expand.R"))
+try(source("../../../../../R/g_exported_functions.R"))
+
+#try(source("../../../../../R/mini.R"))
+```
+
+
+
+
+
+---
+
+# Using `flipbookr::chunk_reveal()`
+
+You will use the `chunk_reveal()` function [*inline*](https://rmarkdown.rstudio.com/lesson-4.html) to generate the derivative code chunks, so that the text that is generated is interpreted correctly when rendered.  The inline code will look something like this:
+
+<!-- The above is for the html output version, just look at the examples below if you are in the source! -->
+```markdown
+``r "r chunk_reveal(chunk_name = \"cars\", break_type = \"user\")"``
+``` 
+
+
+There are several modes that you might be interested in using for "flipbooking" your code and the next section is dedicated to demoing some of them below.
+
+- **break type** -- *which lines of code should be revealed when*, `break_type` defaults to "auto"
+- **display type** -- *display code and output, or just output, or just code?*, `display_type` defaults to "both"
+- **assignment type** -- *does code chunk use left assignment?*, `left_assign` defaults to FALSE
+
+
+
+---
+
+At first we'll apply `chunk_reveal()` to the below input code - the code chunk is named "my_cars".  For now I set echo = TRUE for this code chunk, so you can see the code content but sometimes you might like to set echo to FALSE. This code uses tidyverse tools, so we loaded that too in the "setup" code chunk at the beginning of the template. 
 
 ```{r my_cars, include = FALSE}
 cars %>%
   filter(speed > 4) %>%
   ggplot() +
-  aes(x = speed) + #BREAK
+  aes(x = speed) +
   aes(y = dist) + #BREAK
   geom_point(
-    alpha = .8, 
-    color = "blue" 
-    ) + 
+    alpha = .8, #BREAK2
+    color = "blue" #BREAK3
+    ) + #BREAK
   aes(size = speed) #BREAK
 ```
 
----
-clase: inversa, central, media
 
-
-# Siguiente: consulte el mismo fragmento, pero use puntos de interrupción definidos por el usuario y muestre solo la salida
-
-
-
-
-
-
-<!-- obtenga otra versión de flipbook del fragmento de código my_cars, esta vez en los descansos definidos y solo mostrando la salida -->
----
-
-`r chunk_reveal("my_cars", break_type = "user", display_type = "output", title = "### user defined break! using #BREAK message")`
 
 
 
 ---
-clase: inversa, central, media
 
-# Siguiente: recorre diferentes líneas de código
+# `break_type`
+
+There are several ways that input code can be revealed:
+
+- auto
+- user
+- non_seq
+- rotate
+- 5 (set to an integer)
 
 
+In the above input code, notice the regular comments and the special *#BREAK* comments, these will be used for a couple of the different `break_type` modes.
 
 
+```{r, code = knitr::knit_code$get("my_cars"), eval = FALSE, echo = TRUE}
+```
 
-<!-- obtén un flipbook que gira a través de líneas, my_fill -->
+<!-- Also notice how we've created a new code chunk with the code from the previous chunk by calling knitr::knit_code$get("my_cars"). -->
+<!-- This slide is also about giving you some intuition about how flipbooking works in the background. -->
+<!-- (more on this [here](https://emitanaka.rbind.io/post/knitr-knitr-code/)) -->
+
+
 ---
 
-`r chunk_reveal("my_fill", break_type = "rotate", widths = c(1,1), title = "### cycle through lines of code marked #ROTATE")`
+## `break_type = "auto"`
 
-```{r my_fill, eval = F, echo = F}
+The default break_type is "auto", in which appropriate breakpoints are determined automatically --- by finding where parentheses are balanced. 
+
+<!-- display the user input code as a refresher -->
+```{r, code = knitr::knit_code$get("my_cars"), eval = FALSE, echo = TRUE}
+```
+
+  
+
+---
+
+`r chunk_reveal("my_cars", break_type = "auto")`
+
+---
+
+## `break_type = "user"`, with #BREAK
+
+If the break_type is set to "user", the breakpoints are those indicated by the user with the special comment #BREAK
+
+<!-- display the user input code as a refresher -->
+```{r, code = knitr::knit_code$get("my_cars"), eval = FALSE, echo = TRUE}
+```
+
+---
+
+`r chunk_reveal("my_cars", break_type = "user")`
+
+
+
+
+---
+
+## `break_type = "non_seq"`, with #BREAK2, #BREAK3
+
+If the break_type is set to "non_seq", the breakpoints are those indicated by the user with the special numeric comment #BREAK2, #BREAK3 etc to indicate at which point in time the code should appear.  
+
+<!-- display the user input code as a refresher -->
+```{r, code = knitr::knit_code$get("my_cars"), eval = FALSE, echo = TRUE}
+```
+
+
+
+---
+
+
+`r chunk_reveal("my_cars", break_type = "non_seq")`
+
+---
+
+
+`r chunk_reveal("removing", chunk_options = "fig.width = 12", break_type = "non_seq")`
+
+```{r removing, include = F}
+ggplot(cars) +
+  aes(x = dist) + #BREAK3
+  aes(y = speed) + #BREAK-3
+  geom_rug() #BREAK2
+```
+
+
+
+
+---
+
+## `break_type = "rotate"`
+
+And break_type = "rotate" is used to to cycle through distinct lines of code. The special comment to indicate which lines should be cycled through is *#ROTATE*. 
+
+--
+
+Sometimes, you will need to set the chunk option to eval = F, echo = F instead of include = F.  This will be true when the input code itself cannot be executed as code to be cycled through is incompatible and would throw an error. 
+
+
+---
+
+`r chunk_reveal("my_rotate", break_type = "rotate", widths = c(50,50))`
+
+```{r my_rotate, eval = F, echo = F}
 ggplot(data = cars) +
   aes(x = speed) +
   aes(y = dist) +
@@ -125,22 +264,59 @@ ggplot(data = cars) +
   scale_fill_viridis_c(option = "plasma") #ROTATE
 ```
 
-
----
-clase: inversa, central, media
-
-# A continuación: observe varias realizaciones del mismo código
-
-
-
-
-
-<!-- obtenga un flipbook que muestre múltiples realizaciones del mismo código -->
 ---
 
-`r chunk_reveal("cars_multi", break_type = 5, title = "### see multiple realizations of code")`
+You might want to combine the reveal experience and rotate as one idea.  This can be done with the omit function.  
 
-```{r cars_multi, include = FALSE}
+
+
+
+---
+
+`r chunk_reveal("omit", omit = "#ROTATE", break_type = "auto")`
+
+---
+
+`r chunk_reveal("omit", omit = "#OMIT", break_type = "rotate")`
+
+```{r omit, include = F}
+ggplot(data = cars) +
+  theme_minimal(base_size = 13) +
+  aes(x = speed) +
+  aes(y = dist) +
+  geom_point(size = 8,
+             shape = 21,
+             alpha = .9,
+             color = "snow") +
+  aes(fill = speed) + 
+  scale_fill_viridis_c(option = "viridis") + #OMIT
+  scale_fill_viridis_c(option = "magma") + #ROTATE
+  scale_fill_viridis_c(option = "cividis") + #ROTATE
+  scale_fill_viridis_c(option = "plasma") + #ROTATE
+  labs(title = "Cars") +
+  labs(speed = "Speed\n(mph)") +
+  theme(legend.position = "none")
+```
+
+
+
+
+---
+
+## `break_type = 5` (or "entering the multiverse")
+
+Another mode is to set break_type equal to a positive integer, indicating that you want the same code chunk to be displayed multiple times. 
+
+--
+
+This makes the most sense in a setting where there is some randomization or random sampling and you want to see different realizations. Let's see this used on the user input code chunk "cars_multi", whose first step is to randomly sample rows from the data set cars with replacement.  
+
+---
+
+`r chunk_reveal("cars_multi", break_type = 3)`
+
+
+```{r cars_multi, include = FALSE, fig.height=5}
 cars %>% 
   sample_frac(size = 1, replace = TRUE) %>%      
   ggplot() +              
@@ -157,12 +333,686 @@ cars %>%
   theme(legend.position = c(.9, .2))
 ```
 
+---
+
+## `break_type = 1`
+
+Of course gives you the side-by-side with no walk through, which is sometimes handy
+
+---
+
+`r chunk_reveal("cars_multi", break_type = 1)`
+
+
+---
+
+## break_type = "replace" 
+
+This is going to let you inject some different code (number, argument option) into each slide to be displayed. 
+
+Use with caution! Experimental
+
+---
+
+`r chunk_reveal("for_loop", break_type = "replace", replace = "10", replacements = 1:4,  replace2 = "500", replacements2 = 5:8)`
+
+
+```{r for_loop, eval = F, echo = F}
+for (i in 1:10){
+     
+    print(i)
+     
+}
+
+500
+```
+
+---
+
+`r chunk_reveal("palettes", break_type = "replace", replacements = c("cadetblue", "darkolivegreen", "firebrick2", "firebrick"), replace = "orange")`
+
+
+```{r palettes, include = F}
+cars %>% 
+  ggplot() +
+  aes(x = speed) +
+  geom_histogram(fill = "orange")
+```
+
+
+
+---
+
+# `display_type`
+
+There are also different display modes.  
+
+--
+
+The default is `display_type = c("code", "output")` which will give you the classic flipbook --- code and output co-evolution. (Note this was formerly "both", but that is now deprecated)
+
+---
+
+Display type can be set to a vector of up to three (currently) inputs:
+
+- "code"
+- "output"
+- "func"
+- "output_lag"
+- "code_lag"
+
+--
+
+Also "md" is allowed but the requires you to give an input for another argument `md` with is the markdown text that you would like displayed at each stage in the flipbook.
+
+
+---
+
+## `display_type = "output"`
+
+Let's look at where only the *output* is displayed for the "my_cars" code chunk.
+
+
+---
+
+`r chunk_reveal("my_cars", display_type = "output")`
+
+---
+
+## `display_type = "code"`
+
+And now where only the *code* is displayed for the "my_cars" code chunk.
+
+
+---
+
+`r chunk_reveal("my_cars", display_type = "code")`
+
+---
+
+## `display_type = c("code", "output", "output_lag")`
+
+If you want to allow for lateral comparison (so not just temporal displacement) of states of the output, using `output_lag` is the solution.
+
+--
+
+Sometimes we might want to compare the previous output or with the current one *laterally* -- i.e. spatial offset instead of temporal (temporal offset is the essence of flipbooks) but sometimes we might want to have that lateral (spatial) comparison as well. This is most true when differencing via motion detection is not easy.  i.e. when there are large jumps in the position of tabular/text output.
+
+
+
+---
+
+`r chunk_reveal("short", break_type = "auto", display_type = c("code", "output", "output_lag"), widths = c(1,1,1))`
+
+```{r short, include=FALSE}
+cars %>% 
+  ggplot() +
+  aes(x = dist)
+```
+
+---
+
+Another example follows, showing too how the color parameter can be set to deemphasize the lagged output. 
+
+
+---
+
+
+`r chunk_reveal("logical", display_type = c("code", "output", "output_lag"), color = c("black", "black", "grey"), widths = c(1,1,1))`
+
+```{r logical, include=F}
+list(1, 2) %>% 
+  list(1:5, 5, 
+       ., letters[1:4]) %>% 
+  .[[4]] %>% 
+  .[3]
+```
+
+---
+
+
+## `display_type = c("code", "output", "output_target")`
+
+Perhaps we want the target to appear on every slide as we build to this target...
+
+---
+
+
+`r chunk_reveal("goodbye", display_type = c("code", "output", "output_target"), widths = c(20, 20, 10))`
+
+```{r goodbye, include = F}
+ggplot(data = cars) +
+  aes(x = speed) +
+  aes(y = dist) +
+  geom_point(size = 8,
+             shape = 21,
+             alpha = .9,
+             color = "snow") +
+  aes(fill = speed) +
+  scale_fill_viridis_c(option = "magma") 
+```
+
+---
+
+## `display_type = c("code", "output", "output_start")`
+
+Or maybe we want the input to appear on every slide ...
+
+---
+
+`r chunk_reveal("hello", display_type = c("code", "output", "output_start"), widths = c(20, 20, 10))`
+
+
+```{r hello, include = F}
+cars %>% 
+  ggplot(data = .) +
+  aes(x = speed) +
+  aes(y = dist) +
+  geom_point(size = 8,
+             shape = 21,
+             alpha = .9,
+             color = "snow") +
+  aes(fill = speed) +
+  scale_fill_viridis_c(option = "magma") 
+```
+
+---
+
+## `display_type = c("output", "code")`
+
+Not sure why you'd want to do this, but you can flip output and code.
+
+
+---
+
+`r chunk_reveal("my_cars", break_type = "auto", display_type = c("output", "code"))`
+
+---
+
+## `display_type = c("md", "code"), md = c("hi", "by")`
+
+Now to include a panel for markdown "md" should be one of the inputs of the display_type vector.  Then you'll enter markdown text as a vector for the argument md. 
+
+--
+
+You'll probably plan on the length of the md vector will likely be the same length as the slides in the flipbook which is calculated from the number of breaks for the code sequence.
+
+--
+
+Double backslashes may be required for escape characters.
+
+
+
+---
+
+`r chunk_reveal("custom_example", md = c("### hello", "# goodbye", "## $$\\frac{\\sum(x)}{2}$$"), display_type = c("md", "code"))`
+
+---
+
+## `display_type = c("md", "md2")`
+
+Sometimes, perhaps your only inputs will be markdown sequences.
+
+---
+
+`r chunk_reveal(md = c("### hello", "# goodbye", "## $$\\frac{\\sum(x)}{2}$$"), md2 = c("greeting", "another", "math mode"), display_type = c("md", "md2"))`
+
+
+---
+
+
+```{r custom_example, include=F}
+library(magrittr)
+
+cars %$%
+  cor(x = speed,
+      y = dist)
+```
+
+
+
+
+---
+
+## `display_type = "func"`
+
+to display the contents of the functions of a pipeline, you can use display_type = c("code", "func").  The function panel will show the contents of composition of the function that is in the highlighted line. 
+
+
+---
+
+`r chunk_reveal("rnorm", display_type = c("code", "func", "output"), widths = c(32, 32, 33))`
+
+```{r rnorm, include=F}
+rnorm(50) %>% 
+  sd() %>% 
+  length()
+```
+
+
+
+
+---
+class: middle, inverse, center
+
+# `title = "## My title"`
+
+You may give your flipbook slides a consistent title if you like that will show throughout the code evolution. 
+
+---
+
+# `widths = c(32, 32, 33)`
+
+Depending on how many display panels you have, you can also adjust relative widths with a vector.
+
+
+
+---
+
+`r chunk_reveal("adjustable_widths", title = "## Using a title and custom widths", widths = c(24, 75))`
+
+```{r adjustable_widths, include=F}
+cars %>% 
+  ggplot() +
+  aes(x = speed) +
+  aes(y = dist) +
+  geom_point()
+```
+
+---
+
+`r chunk_reveal("top_bottom", title = "## top/bottom display - experimental", widths = c(24, 75), float = "top")`
+
+```{r top_bottom, include=F}
+cars %>% 
+  slice(1:10) %>% 
+  t()
+```
+
+
+
+
+---
+
+# Assignment
+
+If you want to create an object in your flipbooks, it is most "natural" to use [right assignment](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html).  Working sequentially with a pipeline of code, you get feedback all along the way until you get to the point of assigning all of what you have done to a new object with right assignment.  Creating objects in one "source" code chunk, means that you can break up a pipeline of tasks into multiple code chunks.  Let's see this in action.
+
+
+---
+
+`r chunk_reveal("plot_object")`
+
+```{r plot_object, include = FALSE}
+cars %>% 
+  ggplot() +
+  aes(x = speed) +
+  aes(y = dist) +
+  geom_point() ->
+cars_plot
+```
+
+
+---
+
+
+`r chunk_reveal("further_building")`
+
+```{r further_building, include = FALSE}
+cars_plot +
+  labs(x = "Speed (mph)") + 
+  labs(y = "Stopping distance (ft)")
+```
+
+
+
+---
+
+
+# `left_assign = TRUE`
+
+
+With left assignment in R, you don't get any feedback, so flipbooking prefers this step at the end of a pipeline, so we can enjoy all the nice feedback. So the parameter left_assign is by default set to FALSE.
+
+But, setting the left_assign parameter to T and using left assignment, you can still create a meaningful flipbook that gives you feedback.   When left_assign = TRUE, the first object that is created prints at the end of the derivative code chunks. 
+
+
+---
+
+`r chunk_reveal("left_assign", break_type = "auto", display_type = c("code", "output"), left_assign = TRUE)`
+
+
+```{r left_assign, include = FALSE}
+my_plot <- cars %>%   # the data  
+  filter(speed > 4) %>%  # subset
+  ggplot() +       # pipe to ggplot
+  aes(x = speed) +
+  aes(y = dist) +
+  geom_point()
+```
+
+---
+
+# left assign, table formatting
+
+```{r}
+# right now, for some reason 
+# library needs to be loaded, no double colons, below I use another data table printer so this library isn't necessary
+# library(gt)
+```
+
+
+---
+
+`r chunk_reveal("table_formatting", break_type = "auto", display_type = c("code", "output"), left_assign = TRUE, left_assign_add = "data.frame %>% head(6)")`
+
+
+```{r table_formatting, include = FALSE}
+the_cars <- cars %>%   # the data  
+  filter(speed > 4) %>% 
+  select(speed)
+```
+
+
+
+
+---
+
+# Manageing source code chunks
+
+So, it is pretty cool that we can create a bunch of derivative code chunks from one input code chunk (a foundational blog post by Emi Tanaka on this [here](https://emitanaka.rbind.io/post/knitr-knitr-code/)). 
+
+--
+
+But there are some considerations then for this source chunk.  What should its chunk options be?  The easy way is to set all "source" code chunks to include = F, as I do throughout the book.  However, you might consider a combination of `eval` and `echo` instead; you can come back to this idea as you become a more seasoned flipbooker.    
+
+
+
+---
+
+# Beyond the tidyverse
+
+It is no surprise that Flipbooks are born in the context of the popularity of the tidyverse tools --- tools that are designed be be used in sequential pipelines and that give a satisfying amount of feedback along the way!
+
+But base R techniques and other popular tools can certainly also be employed.  
+
+---
+
+# "chaining" by overwriting objects
+
+---
+
+`r chunk_reveal("left_assign2", break_type = "auto", left_assign = TRUE)`
+
+
+```{r left_assign2, include = FALSE}
+cars_mod <- cars
+cars_mod$half_dist <- cars$dist / 2
+names(cars_mod)[2] <- "distance"
+cars_mod <- cars_mod[cars_mod$distance > 10,]
+cars_mod <- cars_mod["distance"]
+```
+
+
+---
+
+## using the .[] and .[[]] syntax with the migrittr pipe - %>%
+
+Flipbooking can also be applied to logical indexing workflows if the steps are broken up using the %>% followed by .[] and .[[]].  
+
+
+---
+
+`r chunk_reveal("dot_notation")`
+
+```{r dot_notation, include = FALSE}
+cars %>% 
+  .[cars$speed > median(cars$speed),] %>% 
+  .["speed"] %>% 
+  .[,1] ->
+top_speeds
+```
+
+---
+
+
+# Base R plotting
+
+Let's see how flipbookr might be used with base R graphics. 
+
+---
+
+`r chunk_reveal("base_r_plotting")`
+
+```{r base_r_plotting, include = FALSE}
+plot(cars, xlab = "Speed (mph)", 
+     ylab = "Stopping distance (ft)",
+     las = 1)
+lines(lowess(cars$speed, cars$dist, 
+             f = 2/3, iter = 3), 
+      col = "red")
+title(main = "the `cars` data")
+title(sub = "Data is from Ezekiel's (1930) 'Methods of Correlation Analysis'.")
+```
+
+
+---
+
+`r chunk_reveal("cars_anova")`
+
+```{r cars_anova, include = FALSE, fig.keep='none'}
+## An example of polynomial regression
+plot(cars, xlab = "Speed (mph)", 
+     ylab = "Stopping distance (ft)",
+    las = 1, xlim = c(0, 25))
+
+lm(dist ~ poly(speed, 3), 
+   data = cars) -> 
+model
+
+seq(0, 25, length.out = 25) ->
+inputs_of_x  
+
+predict(model, 
+        data.frame(speed = inputs_of_x)) ->
+prediction_y
+
+lines(inputs_of_x, 
+      prediction_y, 
+      col = "blue")
+```
+
+---
+
+# And arithmetic operations
+
+We can do some numeric calculations too.  But this should be done with care.  *The order of operations hold -- PEMDAS -- which is not the logic of the magrittr pipelines (sequential ordering).* 
+
+---
+
+`r chunk_reveal("arith")`
+
+```{r arith, include = FALSE}
+(4 + 5) / # just be careful
+  6 * # because order of operations 
+  7 - # hold
+  3 * # contrasting to pipe logic
+  12 # PEMDAS
+
+1:10 %%
+  3
+
+1:10 %/% 
+  3
+
+33 %% 
+  15
+
+4 %/%
+  2
+
+4 ^
+  5
+
+matrix(1:4, ncol = 1) %*%
+  matrix(1:4, nrow = 1)
+
+matrix(1:4, ncol = 4) %*%
+  matrix(1:4, nrow = 4)
+```
 
 
 
 
 
-<!-- ajusta el tamaño de fuente en este fragmento de código CSS, actualmente 80 -->
+---
+
+A new addition is the %$% pipe from the magrittr library.  And example follows. 
+
+---
+
+`r chunk_reveal("new_pipe")`
+
+```{r new_pipe, include=F}
+library(magrittr)
+
+cars %$%
+  cor(x = speed,
+      y = dist)
+```
+
+
+
+
+
+---
+class: middle, inverse, center
+
+# `text_reveal`
+
+--
+
+Instead of `chunk_reveal()` you may use `text_reveal(text = ?)` to deliver a slow deliberate message. 
+
+--
+
+The input is a character string, and delimiter can be defined using the `sep` argument. 
+
+---
+
+`r text_reveal("This is my text.", sep = " ")`
+
+---
+
+```{r, echo = F}
+"Sometimes, it's helpful to slow down and look at exactly one decision.   Flipbooks present code step-by-step and side-by-side with output.   They parse code pipelines.   And reconstruct code into partial builds.   Then present those builds with their output.   Both code and output are superimposed on the previous state.   This makes seeing what changed --- both in code and output --- easy." ->
+  philosophy
+```
+
+
+`r text_reveal(text = philosophy, sep = "   ")`
+
+---
+
+<!-- 'One driver of equality we should invest in is upskilling everyone - not just the select few.' -->
+
+
+---
+
+## Xaringan slide show look and feel
+
+To quickly change the look and feel of your {xaringan} slide show, you might check out the [available themes](https://github.com/yihui/xaringan/wiki/Themes#avaliable-themes) from the xaringan package and [xaringanthemer](https://github.com/gadenbuie/xaringanthemer) package.
+
+Another extremely useful resource for xaringan styling is Alison Hill's ["Meet xaringan: Making slides in R Markdown"](https://arm.rbind.io/slides/xaringan.html).
+
+
+---
+
+# Sharing your flipbooks
+
+Flipbooks created with Xaringan are multi-file creations.  The figures produced are stored separately from the main html document.  This presents a little bit of a challenge for sharing your work.  You can zip up all the associated files and share that way.  Alternatively, you can share as a website.  I've shared my work on github with github pages.  
+
+- flip, zip, and ship
+- get it on github, with github pages.  A good walk through is the one that I learned with (to get [the ggplot2 flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html) online) is by Brian Caffo https://www.youtube.com/watch?v=BBCesiebEuQ  Larger flipbooks will take longer to load in the browser - something to keep in mind as you are building. 
+- print to pdf using pagedown::chrome_print()
+
+
+---
+
+## Convert to pdf
+
+to create a pdf from you may use the pagedown package as follows to use chrome print to pdf (here, eval is set to FALSE):
+
+```{r, eval = F}
+pagedown::chrome_print(input = "my_flipbook.Rmd")
+
+# or (recommended):
+
+pagedown::chrome_print(input = "my_flipbook.html")
+```
+
+Note:  This works for flipbooks when css is set as it is in the last css code chunk (the media print part) else only the last frame from the flipbooked chunks will display in the pdf.  Thanks to Bryan Shalloway for thinking about conversion to pdf, [the exposition of this last frame problem, and proposing a solution](https://github.com/EvaMaeRey/flipbookr/issues/21) and also to Antoine Bichat! Be sure to preview your work before you present --- translation might not be 100% visual match!
+
+---
+
+## flipbook preview -- as gif
+
+If you want to create a preview of your flipbook, you can pass the pdf to functions from magick (here, eval is set to FALSE):  
+
+```{r, eval = F}
+# then create gif as follows
+magick::image_read_pdf(path = "my_flipbook.pdf", density = 100) %>% # create images
+  magick::image_write_gif(path = "my_flipbook.gif", delay = .4) # images to gif
+```
+
+Bryan Shalloway proposed this workflow.  Thanks Bryan!
+
+Coming soon, build a preview, using [viztoc](https://github.com/EvaMaeRey/viztoc). Development package!  Breaking changes are the norm! 
+
+
+
+---
+class: middle, center
+
+The flipbooked portion of this presentation was created with the new {flipbookr} package.  Get it with remotes::install_github("EvaMaeRey/flipbookr")
+
+
+
+
+
+
+---
+
+
+```{r cars2, include = F}
+ggplot(data = cars) +
+  aes(x = speed) +
+  aes(y = dist) + 
+  geom_point(alpha = .8) + 
+  aes(size = speed) + 
+  aes(color = speed) +
+  scale_size(range = c(3,8)) +
+  scale_color_viridis_c(option = "magma") +
+  labs(title = "Cars") +
+  theme(plot.title.position = "plot")
+```
+
+
+
+
+
+
+# The End!
+
+
+```{r, code = chunk_code_seq_as_vector("cars2"), echo = F, fig.show="hold", out.width="20%"}
+```
+
+---
+
+
+
+
 
 ```{css, eval = TRUE, echo = FALSE}
 .remark-code{line-height: 1.5; font-size: 80%}
@@ -184,15 +1034,6 @@ code.r.hljs.remark-code:hover{
   width: 500px;
   border-style: solid;
 }
+
+
 ```
-
-
-
----
-
-# Notas:
-
-- Este flipbook mínimo asume que está en línea cuando crea y ve. Va a encontrar la información de comment.js más reciente en línea.
-
-- Las presentaciones de diapositivas de xaringan / comment.js no son presentaciones de diapositivas de un solo archivo independientes. Asegúrese de enviar todos los archivos asociados que se crean para mostrar sus folletos / presentaciones de diapositivas. Me gusta enviar .html y los archivos asociados al repositorio de github y usar las páginas de Github para alojar más allá del uso compartido local. :-)
-

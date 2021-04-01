@@ -12,6 +12,8 @@ navbar:
         href: primer_flipbookr.html  
       - text: RMarkdown
         href: Ejemplo-R-Markdown.html  
+      - text: Presentación de datos
+        href: yane_presentation.html  
     - text: "Tutoriales"
       href: about.html
       menu:
