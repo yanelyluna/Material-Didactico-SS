@@ -14,6 +14,7 @@
 
 <title>Xaringan y Flipbookr</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -375,7 +376,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Xaringan y Flipbookr</h1>
 <h4 class="author">Carlos A. Ar.</h4>
-<h4 class="date">Última edición 31 de marzo del 2021</h4>
+<h4 class="date">Última edición 05 de abril del 2021</h4>
 
 </div>
 
@@ -417,6 +418,7 @@ div.tocify {
   }
 </style>
 <div style="text-align: justify">
+
 <div/>
 
 
@@ -434,7 +436,7 @@ div.tocify {
 </ol>
 <div>
 <p style="text-align:center;">
-<img src="xaringan_yaml.png" width="450" />
+<p><img src="xaringan_yaml.png" width="450" /></p>
 </p>
 </div>
 <p>La diferencia con este encabezado y el de un Rmd es el output, mientras que en Rmd el <code>output</code> es <code>html_document</code> o <code>pdf_document</code>, para compartir una presentación de xaringan es necesario usar <code>xaringan::moon_reader</code> lo que implica una forma particular de presentación.</p>
@@ -499,7 +501,7 @@ Hola, este es el lado derechairo
 <p><strong>Ejemplo</strong></p>
 <div>
 <p style="text-align:center;">
-<img src="https://raw.githubusercontent.com/simplystats/simplystats.github.io/master/_images/life-expectancy-versus-fertility-rate.gif" width="450" />
+<p><img src="https://raw.githubusercontent.com/simplystats/simplystats.github.io/master/_images/life-expectancy-versus-fertility-rate.gif" width="450" /></p>
 </p>
 </div>
 <p>En general un flipbook permite tener la visualización de manera secuencial o progresiva lo cual permite tener un mejor entendimiento de lo que sucede paso a paso.</p>
@@ -534,7 +536,7 @@ Hola, este es el lado derechairo
 </ol>
 <div>
 <p style="text-align:center;">
-<img src="flipbookr.png" width="450" />
+<p><img src="flipbookr.png" width="450" /></p>
 </p>
 </div>
 <ol start="5" style="list-style-type: decimal">
@@ -542,51 +544,56 @@ Hola, este es el lado derechairo
 </ol>
 <p>Dentro del documento podremos notar un encabezado igual al de una presentación de Xaringan por lo cual sí se puede adaptar al diseño o estilo que requieras.</p>
 <p>Por otro lado una de las cosas interesantes en el documento es la función <code>chunk_reveal</code> que permite obtener la forma de flipbook a partir de un chunk de código. Es decir que esta función toma el código de un fragmento de código referenciado y devuelve una secuencia de código parcial a una serie de fragmentos de código separados por saltos de diapositiva. Al compilar, obtendrá un recorrido del código paso a paso.</p>
-<p>Para poder usar la función <code>chunk_reveal()</code> es importante conocer los parámetros mínimos que requiere y sus parámetros:</p>
+<div id="parámetros-de-chunk_reveal" class="section level2">
+<h2>Parámetros de <code>chunk_reveal()</code>:</h2>
 <ul>
-<li><code>chunk_name</code>: una cadena de caracteres que hace referencia al nombre del fragmento de origen del flipbooking.</li>
-<li><code>break_type</code>: <strong>“auto”</strong> es la búsqueda predeterminada de puntos de interrupción apropiados, “usuario” se puede usar con el mensaje de comentario especial #BREAK dentro del fragmento del código fuente, <strong>“non_seq”</strong> se puede usar para la visualización no secuencial de código con mensajes de comentarios especiales # BREAK2 (se mostrará en segundo fotograma) y # BREAK3 (se mostrará en el tercer fotograma), también se puede dar una entrada entera, para mostrar simplemente el fragmento de código fuente varias veces, lo cual es apropiado para observar múltiples realizaciones de muestreo, <strong>“rotar”</strong> permite recorrer diferentes líneas código, el comentario #ROTATE se usa para las líneas que se recorren cíclicamente</li>
-<li><code>left_assign</code>: un valor lógico. El valor predeterminado es FALSO, si es VERDADERO imprimirá el objeto creado en la esquina superior izquierda del fragmento de código fuente al final de cada revelación parcial.</li>
-<li><code>title</code>: una cadena de caracteres que puede contener un título para los marcos del flipbook; esto puede incluir información de encabezado “## Mi título”, por ejemplo, es un título de descuento de segundo nivel en Xaringan</li>
-<li><code>widths</code>: un vector numérico que contiene anchos relativos para paneles.</li>
+<li><p><code>chunk_name</code>: una cadena de caracteres que hace referencia al nombre del fragmento del chunk de código.</p>
+<p><img src="ejemplo_flipbook1.png" style="width:9.5cm;height:1.5cm" /></p></li>
+<li><p><code>break_type</code>: permite dar opciones de vizualización del flipbook, es decir que indica qué linea del código del chunk se revelará y en qué momento. Las posibles entradas son:</p>
+<ul>
+<li><p>“auto”: por defecto, el parámetro toma esta opción. La forma en que aparecerá el código del flipbook dependerá de los paréntesis o pipes (%&gt;%) que aparezcan en ese orden.</p></li>
+<li><p>“user”: aquí puedes decidir qué parte del código aparecerá en qué momento. La forma en que la función detecta cuándo quieres que se detenga (en leer el código) será con un <strong>#BREAK</strong> que le pongas dentro del chunk de código.</p>
+<p><img src="ejemplo_flipbook4.png" /></p></li>
+<li><p>“non_seq”: análogo a la opción “user” solo que esta vez se ejecutará todo el código <strong>excepto</strong> aquel que tenga #BREAK2, #BREAK3, …, las lineas de código que tengan esas características, se mostrarán (así como sus resultados) en el orden de su número asociado, es decir, primero se ejecutará #BREAK2, luego BREAK3, …</p>
+<p><img src="ejemplo_flipbook5.png" /></p></li>
+<li><p>“rotate”: permite que se cambien las opciones de alguna parte del código (por ejemplo el color de una gráfica).</p>
+<p><img src="ejemplo_flipbook6.png" /></p></li>
+<li><p>“n”: la n es sustituida por un número natural (1, 2, 3, …) el cual indica las veces que se desea ejecutar ese chunk de código. Se usa cuando se tienen muestras “aleatorias” que cambian en cada ejecución para mostrar los posibles resultados distintos.</p></li>
+<li><p>“replace”: En vez de dar otros colores como <em>posibilidades (como en rotate),</em> esta opción permite remplazar alguna parte del código (y a la vez, claro, cambiar los resultados que dependen de esa parte del código).</p></li>
+</ul></li>
+<li><p><code>display_style</code>: es el parámetro que permite distinguir qué se desea ver en el flipbook creado. Las opciones de este parámetro son:</p>
+<ul>
+<li><p>“output”: se ve solo el resultado en el flipbook</p></li>
+<li><p>“code”: se ve solo el código en el flipbook</p></li>
+<li><p>“output_lag”: se ve el resultado del código pero con UN RETRASO</p></li>
+<li><p>“output_target”: se ve solo el resultado final del código en el flipbook</p></li>
+<li><p>“output_start”: se ve solo lo primero del código</p></li>
+<li><p>“md”: se puede usar para mostrar caracteres</p>
+<p>Es evidente que de manera aislada, no siempre servirá ver el código, el resultado, letras, etc. Por lo cual este parámetro puede tener una entrada como vector que combine hasta tres opciones de las anteriores.</p>
+<p>Por ejemplo: <code>display_style = "c("output_lag", "code", "output")"</code> permitirá que se vea en el flipbook: el resultado del código con el atraso de una linea, el código y además el resultado que le corresponde.</p>
+<p>Jugar con las combinaciones de este vector es lo recomendado para que veas la forma en que se obtienen los resultados de tu flipbook. 🤪</p></li>
+</ul></li>
+<li><p><code>left_assign</code>: un valor lógico. El valor predeterminado es FALSE, si es VERDADERO entonces el objeto asignado al código aparecerá al final del chunk de código durante todo el flipbook.</p></li>
+<li><p><code>title</code>: una cadena de caracteres que puede contener un título para los marcos del flipbook; esto puede incluir información de encabezado “## Mi título”.</p></li>
+<li><p><code>widths</code>: un vector numérico que contiene anchos relativos para los paneles. Este parámetro se relaciona íntimamente con <code>display_style</code> ya que dependiendo del número de columans que aparezcan en el flipbook, es el número de entradas que tendrá este vector.</p>
+<p>Por ejemplo: Si <code>display_style = "c("output_lag", "code", "output")"</code>, entonces <code>widths = c(20, 30, 10)</code> donde 20 será el ancho para el “output_lag”; 30 será el ancho para “code” (para que se vea el código) y 10 será el ancho destinado al resultado. En general es arbitraria la forma en que se destina el ancho a cada panel.</p></li>
 </ul>
 <p>El valor que regresa la función solo se puede ver implementado en el “tejimiento” de la presnetación o después de hacer el “knit”.</p>
 <p>La función puede vere así:</p>
 <pre><code>chunk_reveal(
-  chunk_name = NULL,
-  break_type = &quot;auto&quot;,
-  left_assign = F,
-  left_assign_add = NULL,
-  lang = &quot;r&quot;,
-  omit = &quot;#OMIT&quot;,
-  code_seq = NULL,
-  code_seq_lag = NULL,
-  code_seq_lag2 = NULL,
-  code_seq_target = NULL,
-  code_seq_start = NULL,
-  func_seq = NULL,
-  num_breaks = NULL,
-  display_type = c(&quot;code&quot;, &quot;output&quot;),
-  title = &quot;&quot;,
-  md = NULL,
-  md2 = NULL,
-  replacements = NULL,
-  replace = NULL,
-  replacements2 = replacements,
-  replace2 = replace,
-  replacements3 = replacements,
-  replace3 = replace,
-  widths = NULL,
-  float = &quot;left&quot;,
-  chunk_options = &quot;&quot;,
-  color = c(&quot;black&quot;, &quot;black&quot;,
-            &quot;black&quot;),
-  font_size_code = &quot;80%&quot;
+chunk_name = &quot;pinguinos&quot;,
+break_type = &quot;non_sequence&quot;, 
+display_type = c(&quot;code&quot;, &quot;output&quot;, &quot;output_target&quot;),
+title =  &quot;### Deseamos un flipbook con nuestra secuencia propia que además nos diga a dónde vamos a llegar&quot;,
+widths = c(20, 20, 10),
+font_size_code = &quot;110%&quot;
 )</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Compile su documento - “Knit” en RStudio</li>
 </ol>
+<p>Para poder ver en acción los diferentes parámetros de la función que hace flipbooks, además de otras cosas extra, te invito a ver en esta página: Ejemplos -&gt; Flipbookr</p>
 <p>Conoce más en la página de Eva sobre <a href="https://evamaerey.github.io/flipbooks/about">flipbookr</a></p>
+</div>
 </div>
 
 
