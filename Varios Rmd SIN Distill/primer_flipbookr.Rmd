@@ -196,11 +196,8 @@ Hay 3 especies diferentes de pingüinos en este conjunto de datos, recopilados e
 
 class: middle, center
 
-<div>
-<p style = 'text-align:center;'>
-![](ejemplo_flipbook2.png){width='550px'}
-</p>
-</div>
+
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
 
 ---
 .pull-left[
@@ -269,11 +266,8 @@ Los siguientes parámetros son fundamentales para entender la función:
 
 - **chunk_name** se le asigna el nombre del chunk de código, del ejemplo "cars". Para asignar el nombre a un chunk de código, solo es necesario escribirlo al lado de la  letra r:
 
-<div>
-<p style = 'text-align:center;'>
-![](ejemplo_flipbook1.png){width='250px'}
-</p>
-</div>
+
+![](ejemplo_flipbook1.png)
 
 --
 
@@ -293,12 +287,7 @@ class: middle, center
 
 ## Veremos en esta presentación las diferentes formas de usar estos parámetros así como sus resultados.
 
-<div>
-<p style = 'text-align:center;'>
-![](ejemplo_flipbook3.png){width='350px'}
-</p>
-</div>
-
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png)
 
 ---
 
