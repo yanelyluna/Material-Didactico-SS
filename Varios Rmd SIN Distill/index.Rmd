@@ -2,6 +2,8 @@
 title: "Sitio de consulta"
 author: "CEY"
 ---
+
+```{=html}
 <style>
   #TOC {
     color: #724401;
@@ -38,8 +40,9 @@ author: "CEY"
     background-color: #FEF9D7;
   }
 </style>
-
+```
 <div style="text-align: justify">
+
 <div/>
 
 Este sitio tiene la finalidad de guardar el conocimiento de las herramientas necesarias para el desarrollo de material en R en términos de documentación, presentaciones así como una herramienta que permite trabajar con código en equipo de manera remota.
@@ -48,4 +51,4 @@ Se ha creado el sitio desde marzo de 2021, su fundamento está en el desarrollo 
 
 La información aquí vertida está referenciada para consultas de mayor alcance.
 
-__Esperamos que te agrade.__
+**Esperamos que te agrade.**
