@@ -4,11 +4,37 @@ navbar:
   left:
     - text: "Principal"
       href: index.html
-    - text: "Tutoriales"
+  right:
+    - text: "Documentación"
+      href: about.html
+      menu:
+      - text: R Markdown
+        href: R-Markdown.html
+      - text: Xaringan y Flipbook
+        href: 
+    - text: "Trabajo en equipo"
       href: about.html
       menu:
       - text: Tutorial de Git y GitHub
-        href: Tutorial-de-Git-y-GitHub.html  
-      - text: R Markdown
-        href: R-Markdown.html  
+        href: Tutorial-de-Git-y-GitHub.html
+    - text: "Shiny y Rmd"
+      href: about.html
+      menu:
+      - text: Shiny App
+        href: 
+      - text: Shiy Dashboard
+        href: 
+      - text: Flexdashboard
+        href:  
+    - text: "Ejemplos"
+      href: about.html
+      menu:
+      - text: Rmarkdown
+        href: 
+      - text: Flipbookr
+        href: 
+      - text: Flexdashboard
+        href: 
+      - text: Presentación de Datos
+        href: 
 output: distill::distill_article

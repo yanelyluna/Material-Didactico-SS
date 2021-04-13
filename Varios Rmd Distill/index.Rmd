@@ -1,11 +1,19 @@
 ---
 title: "Mi primer sitio web"
 author: 
-  - name: "Yanely"
-    affiliation: "Facultad de Ciencias"
-  - name: "Carlos"
-    affiliation: "Facultad de Ciencias" 
+  - name: "Yanely LG"
+    affiliation: "Facultad de Ciencias, UNAM"
+  - name: "Carlos A. Ar."
+    affiliation: "Facultad de Ciencias, UNAM" 
+  - name: "Eduardo Selim M.M."
+    affiliation: "Departamento de Matemáticas, Facultad de Ciencias" 
 site: distill::distill_website
 ---
 
-Este es el primer Sitio Web que hago con RStudio
+Este sitio tiene la finalidad de guardar el conocimiento de las herramientas necesarias para el desarrollo de material en R en términos de documentación, presentaciones (xaringan, flexdashboard, RMarkdown, _learnr próximamente_ ) así como una herramienta que permite trabajar con código en equipo de manera remota.
+
+Se ha creado el sitio desde marzo de 2021, su fundamento está en el desarrollo del Servicio Social en la [Facultad de Ciencias](https://web.fciencias.unam.mx/) de la [UNAM](https://www.unam.mx/) con la guía de Eduardo S. M. M. y la implementación de Yanely L.G. y Carlos A. A.
+
+La información aquí vertida está referenciada para consultas de mayor alcance.
+
+**Esperamos que te agrade.**
