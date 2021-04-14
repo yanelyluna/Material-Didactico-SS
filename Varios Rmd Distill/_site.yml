@@ -10,31 +10,31 @@ navbar:
       menu:
       - text: R Markdown
         href: R-Markdown.html
-      - text: Xaringan y Flipbook
-        href: 
+      - text: Xaringan y Flipbookr
+        href: Xaringan-y-Flipbookr.html
     - text: "Trabajo en equipo"
       href: about.html
       menu:
-      - text: Tutorial de Git y GitHub
+      - text: Git y GitHub
         href: Tutorial-de-Git-y-GitHub.html
     - text: "Shiny y Rmd"
       href: about.html
       menu:
       - text: Shiny App
-        href: 
+        href: Intro-Shiny.html
       - text: Shiy Dashboard
-        href: 
+        href: Shiny-Dashboards.html
       - text: Flexdashboard
-        href:  
+        href: Felxdashboards.html
     - text: "Ejemplos"
       href: about.html
       menu:
       - text: Rmarkdown
-        href: 
+        href: Ejemplo-R-Markdown.html
       - text: Flipbookr
-        href: 
+        href: primer_flipbookr.html
       - text: Flexdashboard
-        href: 
+        href: primer_flexdashboard.html
       - text: Presentación de Datos
-        href: 
+        href: yane_presentation.html
 output: distill::distill_article

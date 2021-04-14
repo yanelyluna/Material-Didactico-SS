@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Carlos A. Ar." />
+
+
+<title>Flexdashboard</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Material de Consulta</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Principal</a>
+</li>
+<li>
+  <a href="como_funciona.html">Cómo usar este sitio</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Documentación
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="R-Markdown.html">R Markdown</a>
+    </li>
+    <li>
+      <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Trabajo en equipo
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Tutorial-de-Git-y-GitHub.html">Git y GitHub</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny y Rmd
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Intro-Shiny.html">Shiny App</a>
+    </li>
+    <li>
+      <a href="Shiny-Dashboards.html">Shiy Dashboard</a>
+    </li>
+    <li>
+      <a href="Flexdashboards.html">Flexdashboard</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejemplos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Ejemplo-R-Markdown.html">Rmarkdown</a>
+    </li>
+    <li>
+      <a href="primer_flipbookr.html">Flipbookr</a>
+    </li>
+    <li>
+      <a href="primer_flexdashboard.html">Flexdashboard</a>
+    </li>
+    <li>
+      <a href="yane_presentation.html">Presentación de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Flexdashboard</h1>
+<h4 class="author">Carlos A. Ar.</h4>
+<h4 class="date">Última edición 13 de abril del 2021</h4>
+
+</div>
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Librerías</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;flexdashboard&quot;)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flexdashboard)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Opciones Globales</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="estructura-de-un-flexdashboard." class="section level2">
+<h2>1. Estructura de un flexdashboard.</h2>
+<p>Un <strong>dashboard</strong> o tablero, es un documento donde se puede consultar iformación de direntes tipos de una manera simple, compuesto por “tablas” que pueden contener gráficos, tablas, texto y mapas.</p>
+<p>En particular <strong>flexdashboard</strong> es un paquete de R que tiene el objetivo de crear un <strong>dashboard</strong> pero a partir de un <a href="https://tutorialesmg.netlify.app/r-markdown">archivo Rmd</a> e incluso poner componentes interactivos con <a href="https://shinys.netlify.app/">shiny</a>.</p>
+<div id="crear-el-flexdashboard." class="section level3">
+<h3>Crear el flexdashboard.</h3>
+<p>Para eso tenemos que:</p>
+<ol style="list-style-type: decimal">
+<li><p>Generar un archivo Rmd</p></li>
+<li><p>Cambiar el encabezado YAML donde el <code>output</code> será: <code>felxdashboard::flex_dashboard</code></p></li>
+<li><p><strong>Charts.</strong> Agregar <code>chart's</code>. Los chart son los componentes del dashboard y tienen la finalidad de “dividir” un flex dashboard. Cada chart creado se vuelve en automático una columna, sin embargo se pueden hacer mpultiples charts en una columna, así como múltiples columnas.</p></li>
+<li><p>Para entender el punto anterior:</p>
+<p><img src="flexd1.png" /></p></li>
+<li><p>Podemos ajustar el ancho de las columnas a nuestro gusto usando: <code>Column {data-width = lo_que_sea}</code> donde “lo que sea” va de 1 a 1000.</p></li>
+<li><p>Si en vez de hacer el acomodo de lo que deseamos en columnas, lo queremos en filas, simplemente agregamos una especificación en el encabezado YAML como sigue:</p>
+<pre><code>output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows</code></pre></li>
+<li><p>Si usas la sintáxis anterior, ahora veremos lo resultados de manera horizontal y además en vez de definir el ancho, se define el alto por lo que la sintáxis siguiente: <code>Row {data-heigh = 456}</code> permitirá que la altura de la Fila sea de 456. Esto se ponría en vez del punto 5.</p></li>
+<li><p>Si no te alcanza todo en una hoja, puedes permitir que el usuario vea un tipo documento Rmd, pero eso no es lo usual. De cualquier manera, puedes hacerlo agregando en el YAML lo siguiente:</p>
+<pre><code>output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll</code></pre>
+<p>Por defecto <code>vertical_layout: fill</code> lo cual significa que cada chart definido aquí se verá en una sola página ajustando el largo, por tanto si el usuario hace más grande su ventana, en esta proporción se alargarán los charts.</p>
+<p>Lo anterior no pasa cuando <code>vertical_layout: scroll</code>, de hecho, con este comando se está diciendo que se respete el largo de cada chart aun cuando el usuario cambie el largo de la ventana. Esta indicación es útil para que puedas crear muchos charts y el usuario pueda “ir hacia abajo” en el contenido.</p></li>
+<li><p><strong>Tabset.</strong> Una mejor solución al punto 8, es agregar varios charts por cada columna . Esto se hace:</p>
+<p><img src="flexd2.png" /></p>
+<p>El uso de estas herramientas se hace para poder presentar información secundaria e interesante que no es la primordial.</p>
+<p><em>Los .tabset van en las columnas</em></p></li>
+<li><p><strong>Pages.</strong> Si aún con lo anterior no te quedas convencid@, no te preocupes, puedes agregar tantas páginas como desees, para indicar esto, necesitas al menos 16 signos de igual y en el renglón de arriba, el nombre de la página correspondiente.</p>
+<p><img src="flexd3.png" /></p></li>
+<li><p><strong>Menú de páginas.</strong> Aún más!!! Puedes generar un menú de páginas para cada página agregando (En la página) <code>{data-navmenu=Nombre_del_menú}</code>. Esto está incrible porque te permite insertar muchas hojas en un mismo tema.</p>
+<p>Es importante que cada una de las hojas que quieras meter en un mismo menú tengan el mismo <code>Nombre_de_menú</code>.</p>
+<div class="figure">
+<img src="flexd4.png" alt="" />
+<p class="caption">Observa que puedes poner páginas sin menú (antes y después de la del menú). Se irá creando el menú conforme se crean las páginas.</p>
+</div></li>
+</ol>
+<p>Ahora, recuerda que existen dos tipos de “acomodos” que son por columnas o filas. Si en alguna de tus páginas tienes la intención de cambiar la orientación, puedes hacerlo:</p>
+<p><img src="flexd5.png" /></p>
+<p>Añadiendo el atributo <code>data-orientation = (rows/columns)</code> solo puedes elegir rows o columns.</p>
+<p>Hasta ahora puedes tener una estructura de flexdashboard increíble.</p>
+</div>
+</div>
+<div id="gráficos-interactivos" class="section level2">
+<h2>2. Gráficos interactivos</h2>
+<div id="gráficos" class="section level3">
+<h3>Gráficos</h3>
+<p>La ventaja de flexdashbard es la posibilidad de insertar el cógido del gráfico dentro del chunk (como en Rmd) pero no solo eso, sino que existen formas de solcionar que el gráfico se ajuste a las medidas según el usuario abra una ventana más chica o más grande.</p>
+<p>Las opciones siguientes dentro del “encabezado” del chunk de código, permitirán ajustar las dimensiones del gráfico que se verá (en cualquiera de los <code>charts</code>).</p>
+<ul>
+<li><p><code>fig.width =</code> 10, es para ajustar el ancho del gráfico.</p></li>
+<li><p><code>fig.height =</code> 6, es para ajustar la altura del gráfico.</p></li>
+</ul>
+</div>
+<div id="plotly" class="section level3">
+<h3>Plotly</h3>
+<p>Para poder sanar los problemas de cambiar tamaños para ser más amigables con el usuario o usuaria del Dashboard, podemos usar diversas opciones que sirven para hacer interactivo el usuario con el gráfico.</p>
+<p>Estas son algunas opciones:</p>
+<p><img src="flexd6.png" /></p>
+<p>La ventaja de <code>plotly</code> es que podemos hacer gráficas interactivas sin necesidad de saber más que <code>ggplot</code>.</p>
+<p>Para hacerlo simplemente hay que hacer lo siguiente:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Primero definimos el gráfico con la función ggplot (recuerda que puede ser)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#un gráfico muy muy elaborado</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mi_grafico_con_ggplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">geom_line</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Posteriormente solo metemos el gráfico (o incluso todo el código) dentro de la función &quot;ggplotly&quot;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(mi_grafico_de_ggplot)</span></code></pre></div>
+<p>Las ventajas de usar este paquete es que el usuario tendrá más interacción con los gráficos generados a partir de ciertos datos. (Un histograma, gráfico de barras, boxplot, serie de tiempo, funciones de probabildiad <em>(densidad, distribución),</em> trayectorias de procesos estocásticos <em>(caminata aleatoria, movimiento browniano, proceso de renovación, cadena de markow a tiempo continuo-discreto)</em> o simplemente gráficos de funciones “no aleatorias” como polinómicas, logarítmicas, exponenciales, truncadas, etc…).</p>
+<p>Más información <a href="https://plotly.com/r/">aquí</a></p>
+</div>
+<div id="leaflet" class="section level3">
+<h3>Leaflet</h3>
+<p>Análogo a Plotly, esta paquetería permite generar gráficos interactivos pero para mapas, así es, un mapa que sirve para ver por ejemplo: cómo se distribuyen geográficamente los casos de contagio en una pandemia.</p>
+<p>En general es importante de esta librería que sepas que las entradas, son coordenadas y que tales coordenadas son útiles para “ubicar” el dato con referencia a lo que quieres.</p>
+<p>Por ejemplo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Opción 1</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addMarkers</span>(<span class="fu">addTiles</span>(<span class="fu">leaflet</span>()), <span class="at">lat =</span> stations_df<span class="sc">$</span>latitude, stations_df<span class="sc">$</span>longitude)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Opción 2: más fácil</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(stations_df) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>()</span></code></pre></div>
+<p>Más infromación <a href="https://rstudio.github.io/leaflet/">aquí</a></p>
+</div>
+</div>
+<div id="destacar-datos" class="section level2">
+<h2>3. Destacar datos</h2>
+<div id="números" class="section level3">
+<h3>Números</h3>
+<p>Para destacar los números (datos en particular) se genera primero un chun de código dentro del cual se usará (demás de los cálculos para llegar al número) la función <code>valueBox(valor, caption = "Descripción del número", icon = "algún ícolo representativo del número")</code></p>
+<p>Al valor se le puede añadir cosas bonitas como comas o signos de pesos y eso se logra con la función <code>prettyNum(valor, big.mark = ",")</code>, esto se convertirá en el valor que irá dentro de la función <code>valueBox()</code>.</p>
+<p>Al final tendremos lo siguiente:</p>
+<p><img src="flexd7.png" /></p>
+<p>Notemos que tiene la caja un color particular. Podemos añadir a la función <code>valueBox()</code> el parámetro <code>color</code> que indique otras posibilidades. Por ejemplo “primary” <em>(por defecto, azul)</em>, “info” <em>(amarillo)</em>, “success” <em>(verde)</em>, “warning” <em>(naranja)</em> y “danger” <em>(rojo).</em></p>
+<p>Hay otros parámetro sinteresantes para esta función que permiten que tengas un resultado más llamativo y completo.</p>
+</div>
+<div id="medidores-como-el-de-la-gasolina" class="section level3">
+<h3>Medidores (como el de la gasolina)</h3>
+<p>Se usa la función <code>gauge()</code> que explicaremos con un ejemplo</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para dar una medida (por ejemplo el porcentaje de riesgo  </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># de la población según su edad), creamos un medidor</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gauge</span>(<span class="at">value =</span> valor_del_1_al_100, <span class="co"># &lt;- que contiene los datos que medirá</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">0</span>, <span class="co"># además de un mínimo aceptado (en el &quot;rango&quot; de la medida)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">100</span>, <span class="co"># y un máximo</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Además podemos añadir un poquito de mensajes por si lo consideramos</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">sectors =</span> <span class="fu">gaugeSectors</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Por ejemplo tenemos (en este código) éxito cuando el valor está </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># entre 90 - 100</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">success =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">100</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Sin embargo aparecerá un mensaje de advertencia cuando el valor</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># se encuentre entre 70-89</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">warning =</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">89</span>),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">danger =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">69</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Además que podemos decir que el valor metido se le añadirá el símbolo</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># de porcentaje</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">symbol =</span> <span class="st">&quot;%&quot;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Notemos que cuando estamos en la zona de éxito, tenemos un color verde en la barra, naranja en la de “warning” y rojo en “danger”.</p>
+</div>
+<div id="interconectar" class="section level3">
+<h3>Interconectar</h3>
+<p>Podemos hacer que el dashboard sea un poco más interactivo logrando que el usuario al “dar click” sobre uno de los <a href="#números">Números</a>, entonces el usuario vea otra pantalla con información más detallada al respecto de ese número.</p>
+<p>Esto se hace con los pasos siguientes:</p>
+<ol style="list-style-type: decimal">
+<li>Tener al menos dos páginas dentro del dashboard. Supongamos que una se llama Page 1 y otra Page 2</li>
+<li>Tener un valor (en alguno de los charts) con la función <code>valueBox()</code>. Supongamos que el valor está en la Page 1</li>
+<li>Supongamos que en Page 2 hay más información acerca de la obtención del valor de la Page 1.</li>
+<li>Añadir a la función <code>valueBox()</code> el parámetro <code>href</code> al que en este ejemplo se le asignará “#page-2”.</li>
+</ol>
+<p>El proceso anterior permitirá que cuando el usuario de click sobre el valor (que aparece en la Page 1), entonces se redirija a la Page 2 para ver más detalles. <em>Nota que la referencia se quitan mayúsculas y los espacios se sustituyen por guines medios.</em></p>
+</div>
+<div id="tablas" class="section level3">
+<h3>Tablas</h3>
+<p>Para poder ver gráficos de manera interactiva, puede ser intersante usar la librería <strong><code>DT</code></strong> que funciona particularmente para data frames.</p>
+<p>Esta librería permite al usuario incluso descargar la información presentada en las tablas, por lo cual sí es una librería bastante amable con el usuario del dashboard.</p>
+<p>En el ejemplo siguiente veremos cómo se usa:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Esta es la librería que necesitamos para poder hacer tablas interactivas</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Esta es la función que, así como en plotly, permite una tabla interactiva.</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Esta es la información que se desea</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  mi_data_frame, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Este parámetro indica que no se desean los números que siempre aparecen </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#por defecto</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#El argumento etentions permite que el usuario por medio de botones </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (en este caso) tenga acceso a los datos que se muestran en la tabla</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">extensions =</span> <span class="st">&quot;Buttons&quot;</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Con diversas opciones</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">&quot;Bfrtip&quot;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Que hasta pueden copiar los datos y descargarlos en estos formatos.</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">buttons =</span> <span class="fu">c</span>(<span class="st">&quot;copy&quot;</span>, <span class="st">&quot;csv&quot;</span>, <span class="st">&quot;excel&quot;</span>, <span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;print&quot;</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>La otra opción aunque es menos ineractiva es el uso de la función <code>kable</code> que de la misma forma le permitirá al usuario ver los datos aunque no pueda tener interacción con los mismos.</p>
+</div>
+<div id="texto" class="section level3">
+<h3>Texto</h3>
+<p>A diferencia de cualquier RMarkdown, en los dashboar conviene añadir texto de una manera padre y eso de hace entro de los charts pero fuera de los chunks que este contiene además de que inician con un signo &gt; y luego un espacio.</p>
+<p>Es probable que el trabajo presentado sea como una historia, es decir que se presente el desarrollo de resultados a lo largo del tiempo (y además se desea todo lo que se ha planificado en el dashboard en otras páginas).</p>
+<p>Para poder desarrollar una historia EN TODO EL DASHBOARD es necesario agregar en el encabezado YAML lo siguiente:</p>
+<p><img src="flexd8.png" width="375" /></p>
+<p>Donde <code>storyboard: true</code> significa que se hará una tipo historia.</p>
+<p>Para poder construir esta historia se usa lo siguiente:</p>
+<p><img src="flexd9..png" /></p>
+<p>Donde lo azul es el título del chart (que contienen los códigos o gráficos, mapas, etc.) y lo negro es la descripcón que se pone al lado del contenido para explicar el mismo.</p>
+<p><img src="flexd10.png" /></p>
+<p>Posiblemente no quiere que todo el Dashboard sea una storyboard, por lo cual podemos hacer lo siguiente:</p>
+<ol style="list-style-type: decimal">
+<li>Dentro de la página que queremos que sea Storyboard podemos añadir en las especificaciones <code>{.storyboard}</code> lo cual hará que tengamos una página que sea storyboard pero el resto será como en la <a href="#estructura-de-un-flexdashboard.">1. Estructura de un flexdashboard.</a></li>
+</ol>
+</div>
+</div>
+<div id="interacción-con-shiny" class="section level2">
+<h2>4. Interacción con Shiny</h2>
+<p>Los dashboards que hemos creado con flexdashboard no soy tan interactivos como una shiny app, sin embargo, podemos hacerlo casi como una shiny app. SOlo hay que cambiar el encabezado YAML:</p>
+<pre><code>---
+title: &quot;Mi primer dashboard&quot;
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+  dowload_code: true
+runtime: shiny
+---</code></pre>
+<p>Empecemos con un ejemplo:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flexdashboard)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">shiny.sanitize.errors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>trips_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;http://s3.amazonaws.com/assets.datacamp.com/production/course_6961/datasets/sanfran_bikeshare_joined_oneday.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration_min =</span> duration_sec <span class="sc">/</span> <span class="dv">60</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>sf_bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">123.0137</span>, <span class="fl">37.6040</span>, <span class="sc">-</span><span class="fl">122.3549</span>, <span class="fl">37.8324</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>sj_bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">122.0457</span>, <span class="fl">37.1255</span>, <span class="sc">-</span><span class="fl">121.5891</span>, <span class="fl">37.4692</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>trips_df <span class="ot">&lt;-</span> trips_df <span class="sc">%&gt;%</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">city =</span> <span class="fu">ifelse</span>((start_latitude <span class="sc">&gt;=</span> sf_bbox[<span class="dv">2</span>] <span class="sc">&amp;</span> start_latitude <span class="sc">&lt;=</span> sf_bbox[<span class="dv">4</span>]) <span class="sc">&amp;</span> (start_longitude <span class="sc">&gt;=</span> sf_bbox[<span class="dv">1</span>] <span class="sc">&amp;</span> start_longitude <span class="sc">&lt;=</span> sf_bbox[<span class="dv">3</span>]), <span class="st">&#39;San Francisco&#39;</span>, <span class="fu">ifelse</span>((start_latitude <span class="sc">&gt;=</span> sj_bbox[<span class="dv">2</span>] <span class="sc">&amp;</span> start_latitude <span class="sc">&lt;=</span> sj_bbox[<span class="dv">4</span>]) <span class="sc">&amp;</span> (start_longitude <span class="sc">&gt;=</span> sj_bbox[<span class="dv">1</span>] <span class="sc">&amp;</span> start_longitude <span class="sc">&lt;=</span> sj_bbox[<span class="dv">3</span>]), <span class="st">&#39;San Jose&#39;</span>, <span class="st">&#39;Other&#39;</span>)))</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>Column {data<span class="sc">-</span>width<span class="ot">=</span><span class="dv">200</span> .sidebar}</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="sc">---------------------------------------------------------------</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Esto sirve para definir una opción de botones que sean &quot;All, San Francisco&quot;</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># o San José. </span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="fu">radioButtons</span>(<span class="st">&quot;origin_location&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Select trip origin region to display:&quot;</span>, <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&#39;All&#39;</span> <span class="ot">=</span> <span class="st">&#39;all&#39;</span>, <span class="st">&#39;San Francisco&#39;</span> <span class="ot">=</span> <span class="st">&#39;sf&#39;</span>, <span class="st">&#39;San Jose&#39;</span> <span class="ot">=</span> <span class="st">&#39;sj&#39;</span>), <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">&#39;all&#39;</span>))</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Creamos una reacción que dependa de la elección anterior en los botones</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>trips <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(input<span class="sc">$</span>origin_location <span class="sc">==</span> <span class="st">&#39;sf&#39;</span>) {</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    trips_df <span class="ot">&lt;-</span> trips_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(city <span class="sc">==</span> <span class="st">&#39;San Francisco&#39;</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(input<span class="sc">$</span>origin_location <span class="sc">==</span> <span class="st">&#39;sj&#39;</span>) {</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    trips_df <span class="ot">&lt;-</span> trips_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(city <span class="sc">==</span> <span class="st">&#39;San Jose&#39;</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  trips_df</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>Column {data<span class="sc">-</span>width<span class="ot">=</span><span class="dv">450</span>}</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------------------------------------------------------------------</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="do">### Origins</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Hacemos el render de un mapa interactivo</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="fu">renderLeaflet</span>({</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">trips</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">latitude =</span> start_latitude,</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>           <span class="at">longitude =</span> start_longitude) <span class="sc">%&gt;%</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(start_station_id, latitude, longitude) <span class="sc">%&gt;%</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addCircles</span>(<span class="at">radius =</span> <span class="sc">~</span>n)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>Column {data<span class="sc">-</span>width<span class="ot">=</span><span class="dv">350</span>}</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------------------------------------------------------------------</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="do">### Total Trips</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="co">#Renderizamos la caja de valor que tiene el número de viajes hechos</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="fu">renderValueBox</span>({</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">valueBox</span>(<span class="fu">prettyNum</span>(<span class="fu">trips</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">nrow</span>(), <span class="at">big.mark =</span> <span class="st">&#39;,&#39;</span>), </span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>           <span class="at">icon =</span> <span class="st">&#39;fa-bicycle&#39;</span>)</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="co"># valueBox(prettyNum(nrow(trips_df), big.mark = &#39;,&#39;), icon = &#39;fa-bicycle&#39;)</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="do">### Trips by Start Time</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Y por úlimo agregamos un plot interactivo para ver la &quot;distribución de los viajes&quot;</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="fu">renderPlot</span>({<span class="fu">trips</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">hour =</span> <span class="fu">hour</span>(start_date)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(hour) <span class="sc">%&gt;%</span></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Trips Started</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> <span class="st">`</span><span class="at">Trips Started</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Trips Started </span><span class="sc">\n</span><span class="st">&#39;</span>) <span class="sc">+</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) </span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>Puedes notar que la forma anterior es un poco más compleja pues necesita de las funciones de shiny para ejercer además que hace una sintáxis similar solo que a diferencia de shiny, flexdashboard no necesita de la definición de un server o de una UI aunque sabemos que todo se está haciendo (todo lo que corresponde hacer en el server) en la UI.</p>
+<p><img src="flexd11.png" /></p>
+<p>Pasos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Crear una columna que tenga el atributo <code>.sidebar</code></p>
+<p><code>Columna reactiva {data-widht=250 .sidebar}</code></p></li>
+<li><p>Añadir inputs en tal olumna dentro de un chunk.</p>
+<p><code>___Input</code></p></li>
+<li><p>Cambiar los “outputs” en términos de los inputs usando <code>reactive</code></p></li>
+<li><p>Renderizar “los outputs” <em>(gráficas, tablas, mapas, …)</em> con <code>render___</code> (y el reactive que depende del input.)</p></li>
+</ol>
+<p>Recordemos que.</p>
+<ul>
+<li><p>El <code>input</code>lo mete el usuario</p></li>
+<li><p>El <code>reactive</code>hace cálculos cada que cambia el input y se guarda en un objeto</p></li>
+<li><p>Podemos <strong>crear objetos</strong> a partir de reactives, pero para mandarlos a llamar hay que usar <code>nombre_del_reactive()</code></p></li>
+<li><p>Para que los objetos se vean en la pantalla del flexdashboard primero los ponemos donde queremos que aparezcan y luego usamos <code>render</code> para que salgan.</p></li>
+</ul>
+<div id="poner-inputs-en-los-charts" class="section level3">
+<h3>Poner inputs en los charts</h3>
+<p>Para poder insertar los inputs no solo en la <code>.sidebar</code> sino también en ciertos charts (donde el output solo cambie con ese input, o inputs) usamos la función <code>fillCol.</code></p>
+<p>Veamos la función y expliqeumosla en el ejemplo:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fillCol</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">600</span>, <span class="co"># Se define la altula de la columna</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flex</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="cn">NA</span>, <span class="co"># Se dice que la primer entrada de esa columna (en este caso &quot;el</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>          <span class="co"># input&quot;) no va a cambiar de sus dimensiones cuando la pantalla</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>          <span class="co"># lo haga.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span>), <span class="co"># Sin embargo, la segunda parte de la columna (&quot;la salida&quot;) sí </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>          <span class="co"># tendrá la flexibilidad total para cambiar sus dimensiones cuando</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>          <span class="co"># la pantalla lo haga.</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(...cosasDeInput...), <span class="co"># &lt;- se mete el input que se desea con</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="co"># parámetros correspondientes</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(    <span class="co"># &lt;- Inmediatamente después tenemos que poner el Output</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;xyzPlot&quot;</span>,   <span class="co"># que en este caso se llama &quot;xyzPlot&quot; y es un tipo Plot</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="st">&quot;100%&quot;</span> <span class="co"># Aquí añadimos que haya la posibilidad de flexibilizar</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>xyxPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({<span class="fu">ggplot</span>(...)}) <span class="co"># Y por último (dentro del mismo</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="co"># chart) se renderiza el plot que se haya </span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>                              <span class="co"># creado para generar el output </span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Que como siempre, DEBE TENER EL MISMO NOMBRE</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># QUE EL QUE SE PONFA EN EL ____Output</span></span></code></pre></div>
+<p>También podríamos desear que una misma <code>sidebar</code> se vea en cada página del flexdashboard para lo cual el inicio del mismo ponemos lo siguiente:</p>
+<p><img src="flexd12.png" /></p>
+<p>Nota que para hacer una <code>sidebar</code> global, es necesario poner el argumento sobre la página y no sólo sobre una columna de una página. Además tiene que estár al inicio.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Bike Shares Daily&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  flexdashboard<span class="sc">::</span>flex_dashboard<span class="sc">:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    orientation<span class="sc">:</span> columns</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    vertical_layout<span class="sc">:</span> fill</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>runtime<span class="sc">:</span> shiny</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flexdashboard)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>trips_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://assets.datacamp.com/production/repositories/1448/datasets/1f12031000b09ad096880bceb61f6ca2fd95e2eb/sanfran_bikeshare_joined_oneday.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration_min =</span> duration_sec <span class="sc">/</span> <span class="dv">60</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>Barra laterlal global {.sidebar}</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="er">==================</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">&quot;duration_slider&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Select maximum trip duration to display (in minutes):&quot;</span>,</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">120</span>, <span class="at">value =</span> <span class="dv">15</span>, <span class="at">step =</span> <span class="dv">5</span>, <span class="at">dragRange =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">&quot;duration_bin&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Select # of minutes to bin trip durations:&quot;</span>,</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>           <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">15</span>, <span class="at">value =</span> <span class="dv">1</span>, <span class="at">step =</span> <span class="dv">1</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>show_trips_df <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  trips_df <span class="sc">%&gt;%</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(duration_sec <span class="sc">&lt;=</span> input<span class="sc">$</span>duration_slider <span class="sc">*</span> <span class="dv">60</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>Column {data<span class="sc">-</span>width<span class="ot">=</span><span class="dv">450</span>}</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------------------------------------------------------------------</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="do">### Origins</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="fu">renderLeaflet</span>({</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_trips_df</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">latitude =</span> start_latitude,</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>           <span class="at">longitude =</span> start_longitude) <span class="sc">%&gt;%</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(start_station_id, latitude, longitude) <span class="sc">%&gt;%</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addCircles</span>(<span class="at">radius =</span> <span class="sc">~</span>n)</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>Column {data<span class="sc">-</span>width<span class="ot">=</span><span class="dv">350</span>}</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------------------------------------------------------------------</span></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="do">### Total Trips</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="fu">renderValueBox</span>({</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">valueBox</span>(<span class="fu">prettyNum</span>(<span class="fu">show_trips_df</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">nrow</span>(), <span class="at">big.mark =</span> <span class="st">&#39;,&#39;</span>), </span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>           <span class="at">icon =</span> <span class="st">&#39;fa-bicycle&#39;</span>)</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a><span class="do">### Trips by Start Time</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="fu">renderPlot</span>({<span class="fu">show_trips_df</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">hour =</span> <span class="fu">hour</span>(start_date)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(hour) <span class="sc">%&gt;%</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Trips Started</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> <span class="st">`</span><span class="at">Trips Started</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Trips Started </span><span class="sc">\n</span><span class="st">&#39;</span>) <span class="sc">+</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) </span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>Duration</span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="er">==================</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="do">### Trip Durations</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="fu">renderPlot</span>({<span class="fu">show_trips_df</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Trip Duration (min)</span><span class="st">`</span> <span class="ot">=</span> duration_sec <span class="sc">/</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Trip Duration (min)</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> input<span class="sc">$</span>duration_bin) <span class="sc">+</span></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;# Trips&#39;</span>)</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+</div>
+</div>
+<div id="referencias" class="section level2">
+<h2>Referencias</h2>
+<ul>
+<li><p><a href="https://rmarkdown.rstudio.com/flexdashboard/index.html" class="uri">https://rmarkdown.rstudio.com/flexdashboard/index.html</a></p></li>
+<li><p><a href="https://learn.datacamp.com/" class="uri">https://learn.datacamp.com/</a></p></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

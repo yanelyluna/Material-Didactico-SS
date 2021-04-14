@@ -34,8 +34,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -46,16 +44,6 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
 
 
@@ -327,29 +315,29 @@ div.tocify {
         <li>
   <a href="index.html">Principal</a>
 </li>
+<li>
+  <a href="como_funciona.html">Cómo usar este sitio</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Ejemplos
+    Documentación
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="primer_flipbookr.html">Flipbookr</a>
+      <a href="R-Markdown.html">R Markdown</a>
     </li>
     <li>
-      <a href="Ejemplo-R-Markdown.html">RMarkdown</a>
-    </li>
-    <li>
-      <a href="yane_presentation.html">Presentación de datos</a>
+      <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Tutoriales
+    Trabajo en equipo
      
     <span class="caret"></span>
   </a>
@@ -357,11 +345,44 @@ div.tocify {
     <li>
       <a href="Tutorial-de-Git-y-GitHub.html">Git y GitHub</a>
     </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny y Rmd
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="R-Markdown.html">R Markdown</a>
+      <a href="Intro-Shiny.html">Shiny App</a>
     </li>
     <li>
-      <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
+      <a href="Shiny-Dashboards.html">Shiy Dashboard</a>
+    </li>
+    <li>
+      <a href="Flexdashboards.html">Flexdashboard</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejemplos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Ejemplo-R-Markdown.html">Rmarkdown</a>
+    </li>
+    <li>
+      <a href="primer_flipbookr.html">Flipbookr</a>
+    </li>
+    <li>
+      <a href="primer_flexdashboard.html">Flexdashboard</a>
+    </li>
+    <li>
+      <a href="yane_presentation.html">Presentación de Datos</a>
     </li>
   </ul>
 </li>
@@ -376,49 +397,11 @@ div.tocify {
 
 <h1 class="title toc-ignore">Tutorial de Git y GitHub</h1>
 <h4 class="author">Yanely &amp; Carlos</h4>
-<h4 class="date">Última edición 05 de abril del 2021</h4>
+<h4 class="date">Última edición 13 de abril del 2021</h4>
 
 </div>
 
 
-<style>
-  #TOC {
-    color: #724401;
-    font-family: Corbel;
-    font-size: 16px;
-    background-color: #FBECD1;
-    border-color: #958303;
-  }
-  h1.title {
-    color: #6D4101;
-    background-color: #FDFBEF;
-    opacity: 0.9;
-    font-family: Corbel;
-    font-size: 50px;
-  }
-  h4.author {
-    color: #012A6D;
-    background-color: #FDFBEF;
-    font-family: Corbel;
-    font-size: 30px;
-  }
-  h4.date {
-    color: #7299D9;
-    background-color: #FDFBEF;
-    font-family: Corbel;
-  }
-  body {
-    color: #08142A;
-    font-family: Corbel;
-    background-color: #FDFBEF;
-  }
-  pre {
-    color: #08142A;
-    background-color: #FEF9D7;
-  }
-</style>
-<div style="text-align: justify">
-<div>
 <div id="qué-es-git-y-para-qué-aprenderlo" class="section level1">
 <h1>¿Qué es Git y para qué aprenderlo?</h1>
 <p>Es un controlador de versiones <em>(de código)</em> esto quiere decir que se puede dar seguimiento a los cambios que se hagan en los archivos de código que pueden ser con lenguaje de R, Python, Java, entre muchos otros. Su importancia radica en que podemos rastrear todos los cambios: desde que subimos el primer código, lo modificamos-cargamos, hasta que terminamos el proyecto. Esto implica que se pueden rastrear errores por la fecha en que se “subió-cargó” el código y a hacer cambios desde alguna de las versiones anteriores.</p>
@@ -677,16 +660,10 @@ div.tocify {
 <li><p>Una vez dentro del repositorio ajeno, dar click en el ícono que dice <code>fork</code></p>
 <div>
 <p style="text-align:center;">
-<p><img src="fork.png" width="350" /></p>
-</p></li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</div>
-<ol start="3" style="list-style-type: decimal">
-<li>Posteriormente, en tu cuenta aparecerá el reopsitorio</li>
+<img src="fork.png" width="350" />
+</p>
+</div></li>
+<li><p>Posteriormente, en tu cuenta aparecerá el reopsitorio</p></li>
 </ol>
 <div>
 <p style="text-align:center;">
@@ -706,6 +683,9 @@ div.tocify {
 <p style="text-align:center;">
 <img src="fork3.png" width="350" />
 </p>
+</div>
+</div>
+</div>
 </div>
 <div id="pr" class="section level2">
 <h2>Pull Request</h2>
@@ -747,6 +727,7 @@ div.tocify {
 </p>
 </div>
 <p><strong>NOTA:</strong> El pull request no solo se usa en el forking, se pueden hacer también peticiones dentro de un mismo repositorio cuando algún colaborador quiere fusionar su rama a la rama principal. Cuando se encuentran como colaboradores de un repositorio no es necesario hacerlo dado que desde la terminal se pueden solucionar los conflictos de merge, sin embargo, es conveniente hacer estas peticiones para que quede un registro más preciso de los cambios que otros colaboradores puedan ver.</p>
+</div>
 </div>
 </div>
 <div id="rstudio---git---github" class="section level1">
@@ -801,10 +782,10 @@ Podemos clonar un repositorio de GitHub a nuestra computadota directamente desde
 <div>
 <p style="text-align:center;">
 <img src="comandos_en_RStudio.png" width="350" />
-</p></li>
+</p>
+</div></li>
 </ul></li>
 </ol>
-</div>
 </div>
 </div>
 

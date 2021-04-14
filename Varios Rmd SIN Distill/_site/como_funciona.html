@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Carlos A. Ar." />
+
+
+<title>¿Cómo uso tanta información?</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Material de Consulta</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Principal</a>
+</li>
+<li>
+  <a href="como_funciona.html">Cómo usar este sitio</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Documentación
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="R-Markdown.html">R Markdown</a>
+    </li>
+    <li>
+      <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Trabajo en equipo
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Tutorial-de-Git-y-GitHub.html">Git y GitHub</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny y Rmd
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Intro-Shiny.html">Shiny App</a>
+    </li>
+    <li>
+      <a href="Shiny-Dashboards.html">Shiy Dashboard</a>
+    </li>
+    <li>
+      <a href="Flexdashboards.html">Flexdashboard</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejemplos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Ejemplo-R-Markdown.html">Rmarkdown</a>
+    </li>
+    <li>
+      <a href="primer_flipbookr.html">Flipbookr</a>
+    </li>
+    <li>
+      <a href="primer_flexdashboard.html">Flexdashboard</a>
+    </li>
+    <li>
+      <a href="yane_presentation.html">Presentación de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">¿Cómo uso tanta información?</h1>
+<h4 class="author">Carlos A. Ar.</h4>
+
+</div>
+
+
+<div id="qué-hago-aquí" class="section level1">
+<h1>¿Qué hago aquí?</h1>
+<p>Probablemente viste el link de la página en <a href="https://m.facebook.com/">Facebook</a>, o te la han mandado como material de consulta.</p>
+<p>A lo mejor ninguna de las opciones anteriores son reales y eres amigo, conocido, o alguien interesado en el curriculum de quienes la creamos.</p>
+<p>Independientemente de la razón por la cual estás aquí, te damos la bienvenida y deseamos que este material sea útil y agradable para tu desarrollo personal, profesional o académico.</p>
+<div id="quién-soy-yo" class="section level3">
+<h3>¿Quién soy yo?</h3>
+<p>La página contiene material didáctico útil para conocer herramientas de código en el lenguaje de programación R y su plataforma de uso <a href="https://www.rstudio.com/">RStudio</a>.</p>
+</div>
+</div>
+<div id="cómo-debo-empezar-a-usar-el-sitio" class="section level1">
+<h1>¿Cómo debo empezar a usar el sitio?</h1>
+<p>Mi recomendación como creador es que primero des click en cada cosa para que generes una idea del contenido.</p>
+<p>La recomendación como alumno es que leas tutoriales con alguno de los temas:</p>
+<ul>
+<li><p><a href="https://tutorialesmg.netlify.app/r-markdown">RMarkdown</a>: para hacer documentos (tipo “Word”) replicables y con código. <em>Entre muchas otras cosas</em>.</p></li>
+<li><p><a href="https://tutorialesmg.netlify.app/xaringan-y-flipbookr">Xaringan y Flipbookr</a>: para hacer presentaciones que contengan videos (de Youtube), fotos, tutoriales… y <strong>código</strong>. La utilidad es que se puede enseñar de forma muy didáctica el uso de código y sus respectivos resultados.</p></li>
+<li><p><a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github">Git y GitHub</a>: son plataformas (programas) que permiten tener control sobre los archivos de código (Java, Python, R, entre otros) y además <em>evitan mandar por correo o whats app</em> muchas versiones de un mismo código.</p></li>
+<li><p><a href="https://tutorialesmg.netlify.app/intro-shiny">Shiny App</a>: shiny es una biblioteca de R que te permite hacer aplicaciones. Pueden enfocarse en código de R para análisis de datos o interacción con los mismos.</p></li>
+<li><p><a href="https://tutorialesmg.netlify.app/shiny-dashboards">Shiny Dashboard</a>: una manera para hacer una aplicación un poco más amplia de información es shiny dashboard.</p></li>
+<li><p><a href="https://tutorialesmg.netlify.app/Flexdashboards.html">Flexdashboard</a>: una herramienta muy útil que entre Shiny y RMarkdown, pueden lograr que compartas en una página web información interactiva y replicable.</p></li>
+</ul>
+<p>Los <strong>Ejemplos</strong> son archivos que muestran un poco de lo que se puede lograr con los conocimientos anteriores listados.</p>
+</div>
+<div id="qué-requiero-para-entender-la-página" class="section level1">
+<h1>¿Qué requiero para entender la página?</h1>
+<ol style="list-style-type: decimal">
+<li><p>Gusto por compartir tus proyectos de forma profesional.</p></li>
+<li><p>Para que te sea más útil, saber R y RStudio es fundametal ya que la elaboración de todos los gráficos, tablas y análisis de datos se hace con este programa.</p></li>
+</ol>
+</div>
+<div id="cómo-inicio" class="section level1">
+<h1>¿Cómo inicio?</h1>
+<p>Recomiendo revisar los documentos en el siguiente orden:</p>
+<ol style="list-style-type: decimal">
+<li>Git y GitHub (opcional)</li>
+</ol>
+<p>Para hacer material no interactivo</p>
+<ol start="2" style="list-style-type: decimal">
+<li>RMarkdown <em>y su ejemplo</em></li>
+<li>Xaringan y flipbookr <em>y su ejemplo “Flipbookr”</em></li>
+</ol>
+<p>Para hacer material interactivo</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Shiny app.</li>
+<li>Shiny dashboard.</li>
+<li>Flexdashboard. <em>Y su ejemplo.</em></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

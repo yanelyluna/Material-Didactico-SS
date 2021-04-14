@@ -9,47 +9,10 @@ output:
         smooth_scroll: false
      toc_depth: 2
      number_sections: false
+     theme: flatly
+     highlight: tango
 date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 ---
-<style>
-  #TOC {
-    color: #724401;
-    font-family: Corbel;
-    font-size: 16px;
-    background-color: #FBECD1;
-    border-color: #958303;
-  }
-  h1.title {
-    color: #6D4101;
-    background-color: #FDFBEF;
-    opacity: 0.9;
-    font-family: Corbel;
-    font-size: 50px;
-  }
-  h4.author {
-    color: #012A6D;
-    background-color: #FDFBEF;
-    font-family: Corbel;
-    font-size: 30px;
-  }
-  h4.date {
-    color: #7299D9;
-    background-color: #FDFBEF;
-    font-family: Corbel;
-  }
-  body {
-    color: #08142A;
-    font-family: Corbel;
-    background-color: #FDFBEF;
-  }
-  pre {
-    color: #08142A;
-    background-color: #FEF9D7;
-  }
-</style>
-
-<div style="text-align: justify">
-<div/>
 
 # ¿Qué es Git y para qué aprenderlo?
 

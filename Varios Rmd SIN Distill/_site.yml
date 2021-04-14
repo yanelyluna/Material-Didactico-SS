@@ -4,25 +4,41 @@ navbar:
   left:
     - text: "Principal"
       href: index.html
+    - text: "Cómo usar este sitio"
+      href: como_funciona.html
   right:
-    - text: "Ejemplos"
+    - text: "Documentación"
       href: about.html
       menu:
-      - text: Flipbookr
-        href: primer_flipbookr.html  
-      - text: RMarkdown
-        href: Ejemplo-R-Markdown.html  
-      - text: Presentación de datos
-        href: yane_presentation.html 
-    - text: "Tutoriales"
-      href: about.html
-      menu:
-      - text: Git y GitHub
-        href: Tutorial-de-Git-y-GitHub.html  
       - text: R Markdown
         href: R-Markdown.html
       - text: Xaringan y Flipbookr
         href: Xaringan-y-Flipbookr.html
+    - text: "Trabajo en equipo"
+      href: about.html
+      menu:
+      - text: Git y GitHub
+        href: Tutorial-de-Git-y-GitHub.html
+    - text: "Shiny y Rmd"
+      href: about.html
+      menu:
+      - text: Shiny App
+        href: Intro-Shiny.html
+      - text: Shiy Dashboard
+        href: Shiny-Dashboards.html
+      - text: Flexdashboard
+        href: Flexdashboards.html
+    - text: "Ejemplos"
+      href: about.html
+      menu:
+      - text: Rmarkdown
+        href: Ejemplo-R-Markdown.html
+      - text: Flipbookr
+        href: primer_flipbookr.html
+      - text: Flexdashboard
+        href: primer_flexdashboard.html
+      - text: Presentación de Datos
+        href: yane_presentation.html
 output:
   html_document:
     theme: flatly

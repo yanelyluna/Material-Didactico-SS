@@ -9,49 +9,13 @@ output:
         smooth_scroll: false
      toc_depth: 2
      number_sections: false
+     theme: flatly
+     highlight: tango
 date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 params:
   country: Indonesia
 ---
 
-```{=html}
-<style>
-  #TOC {
-    color: #724401;
-    font-family: Spectral;
-    font-size: 16px;
-    background-color: #FBECD1;
-    border-color: #958303;
-  }
-  h1.title {
-    color: #6D4101;
-    background-color: #FDFBEF;
-    opacity: 0.9;
-    font-family: Spectral;
-    font-size: 50px;
-  }
-  h4.author {
-    color: #012A6D;
-    background-color: #FDFBEF;
-    font-family: Spectral;
-    font-size: 30px;
-  }
-  h4.date {
-    color: #7299D9;
-    background-color: #FDFBEF;
-    font-family: Spectral;
-  }
-  body {
-    color: #08142A;
-    font-family: Spectral;
-    background-color: #FDFBEF;
-  }
-  pre {
-    color: #08142A;
-    background-color: #FEF9D7;
-  }
-</style>
-```
 <div style="text-align: justify">
 
 <div/>
@@ -676,59 +640,31 @@ Las opciones que existen para `theme` son:
 
 -   `default`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-0102B901.png)
-
 -   `cerulean`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-67CBEC08.png)
 
 -   `journal`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-6D6F6D6D.png)
-
 -   `flatly`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-3EB29B4C.png)
 
 -   `darkly`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-9EA3AC30.png)
-
 -   `readable`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-A2D9F952.png)
 
 -   `spacelab`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-3E7C4A7A.png)
-
 -   `united`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-281A0D93.png)
 
 -   `cosmo`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-7F758244.png)
-
 -   `lumen`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-D24F254A.png)
 
 -   `paper`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-CE289545.png)
-
 -   `sandstone`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-A2E424C3.png)
 
 -   `simplex`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-4FA937DD.png)
-
 -   `yeti`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-A353714C.png)
 
 #### Highlight
 
@@ -749,45 +685,25 @@ Las opciones para estos resaltados son:
 
 -   `default`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-E5CC3CBB.png)
-
 -   `tango`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-6A3CF3EE.png)
 
 -   `pygments`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-AF62499C.png)
-
 -   `kate`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-3BD8213B.png)
 
 -   `monochrome`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-66D3320A.png)
-
 -   `espresso`
-
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-E06503A6.png)
 
 -   `zenburn`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-6BEB6150.png)
-
 -   `haddock`
 
-    ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-FB588EEA.png)
-
--   `breezedark` ![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-BF41B5BE.png)
+-   `breezedark`
 
 Ya que seleccionaste los temas que más te gustan, quizá también te interesa otra letra. Debes saber que css y lo anterior presentado no están del todo peleado, se puede combinar un `higlight` particular (de los predefinidos), y hacer a tu gusto el resto del documento.
 
 También se puede modificar el formato del código y elegir un `theme` particular.
-
-Te muestro un ejemplo:
-
-![](C:/Users/carlo/AppData/Local/RStudio/tmp/paste-82A5C28B.png)
 
 Que un cierto tipo de letra y fondo que no corresponde a los temas predeterminados, pero el código sigue guardando la estructura del `expresso` que tiene `highlight.`
 

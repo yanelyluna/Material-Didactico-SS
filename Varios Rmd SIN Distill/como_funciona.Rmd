@@ -1,0 +1,67 @@
+---
+title: "¿Cómo uso tanta información?"
+author: "Carlos A. Ar."
+output:
+   html_document:
+     toc: true
+     toc_float: true
+     toc_depth: 1
+     number_sections: false
+     highlight: tango
+     theme: flatly
+---
+
+# ¿Qué hago aquí?
+
+Probablemente viste el link de la página en [Facebook](https://m.facebook.com/), o te la han mandado como material de consulta.
+
+A lo mejor ninguna de las opciones anteriores son reales y eres amigo, conocido, o alguien interesado en el curriculum de quienes la creamos.
+
+Independientemente de la razón por la cual estás aquí, te damos la bienvenida y deseamos que este material sea útil y agradable para tu desarrollo personal, profesional o académico.
+
+### ¿Quién soy yo?
+
+La página contiene material didáctico útil para conocer herramientas de código en el lenguaje de programación R y su plataforma de uso [RStudio](https://www.rstudio.com/).
+
+# ¿Cómo debo empezar a usar el sitio?
+
+Mi recomendación como creador es que primero des click en cada cosa para que generes una idea del contenido.
+
+La recomendación como alumno es que leas tutoriales con alguno de los temas:
+
+-   [RMarkdown](https://tutorialesmg.netlify.app/r-markdown): para hacer documentos (tipo "Word") replicables y con código. *Entre muchas otras cosas*.
+
+-   [Xaringan y Flipbookr](https://tutorialesmg.netlify.app/xaringan-y-flipbookr): para hacer presentaciones que contengan videos (de Youtube), fotos, tutoriales... y **código**. La utilidad es que se puede enseñar de forma muy didáctica el uso de código y sus respectivos resultados.
+
+-   [Git y GitHub](https://tutorialesmg.netlify.app/tutorial-de-git-y-github): son plataformas (programas) que permiten tener control sobre los archivos de código (Java, Python, R, entre otros) y además *evitan mandar por correo o whats app* muchas versiones de un mismo código.
+
+-   [Shiny App](https://tutorialesmg.netlify.app/intro-shiny): shiny es una biblioteca de R que te permite hacer aplicaciones. Pueden enfocarse en código de R para análisis de datos o interacción con los mismos.
+
+-   [Shiny Dashboard](https://tutorialesmg.netlify.app/shiny-dashboards): una manera para hacer una aplicación un poco más amplia de información es shiny dashboard.
+
+-   [Flexdashboard](https://tutorialesmg.netlify.app/Flexdashboards.html): una herramienta muy útil que entre Shiny y RMarkdown, pueden lograr que compartas en una página web información interactiva y replicable.
+
+Los **Ejemplos** son archivos que muestran un poco de lo que se puede lograr con los conocimientos anteriores listados.
+
+# ¿Qué requiero para entender la página?
+
+1.  Gusto por compartir tus proyectos de forma profesional.
+
+2.  Para que te sea más útil, saber R y RStudio es fundametal ya que la elaboración de todos los gráficos, tablas y análisis de datos se hace con este programa.
+
+# ¿Cómo inicio?
+
+Recomiendo revisar los documentos en el siguiente orden:
+
+1.  Git y GitHub (opcional)
+
+Para hacer material no interactivo
+
+2.  RMarkdown *y su ejemplo*
+3.  Xaringan y flipbookr *y su ejemplo "Flipbookr"*
+
+Para hacer material interactivo
+
+4.  Shiny app.
+5.  Shiny dashboard.
+6.  Flexdashboard. *Y su ejemplo.*
