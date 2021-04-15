@@ -1,0 +1,243 @@
+---
+title: "Tutorial"
+output: 
+  learnr::tutorial:
+    theme: flatly
+runtime: shiny_prerendered
+description: "Esto es un tutorial de learnr para aprender a usar learnr."
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Crear un tutorial interactivo
+
+### Instalar `learnr`
+
+La paquetería `learnr` sirve para crear tutoriales interactivos como este. Pueden incluir texto, imágenes, link, y código entre otras cosas que ya incluye un Rmarkdown pero además se puede editar y ejecutar código dentro del mismo archivo. Un ejemplo del tipo de ejercicios que se pueden incluir es este:
+
+```{r quiz1}
+quiz(
+  question(
+    text = "¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?",
+    allow_retry=TRUE,
+    answer("xaringan",message = "Esta paquetería sirve para crear presentaciones en R."),
+    answer("flipbookr",message = "Esta paquetería sirve para mostrar código incremental."),
+    answer("learnr", correct = TRUE, message = "¡Correcto!"),
+    correct = "¡Felicidades, vas al camino del éxito!",
+    try_again = "Tú puedes mejorar",
+    submit_button = "Confirmar",
+    try_again_button = "Intenta de nuevo"
+  )
+)
+```
+
+Para instalar: `install.packages("learnr")`.
+
+### Crear un tutorial
+
+**Opción 1**:
+
+1.  Crear un nuevo Rmarkdown:
+
+    ![](images/learnr1.png){width="489"}
+
+2.  Seleccionar la plantilla de *Interactive tutorial*
+
+    ![](images/learnr2.png){width="473"}
+
+**Opción 2:**
+
+1.  En un archivo Rmarkdown modificar el [YAML](https://tutorialesmg.netlify.app/r-markdown) header para incluir el output que se muestra:
+
+<!-- -->
+
+    ---
+    title: "Tutorial"
+    output: 
+      learnr::tutorial:
+        theme: flatly
+        highlight: tango
+    runtime: shiny_prerendered
+    description: "Esto es un tutorial de learnr para aprender a usar learnr."
+    ---
+
+## Modificar un tutorial
+
+### Incluir imágenes
+
+Para mostrar imágenes dentro del tutorial, debe crearse una carpeta dentro del directorio del tutorial con el nombre *images* y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta:
+
+`![Mi imagen](images/mi_imagen.png)`
+
+También se pueden incluir imágenes de internet:
+
+`![Imagen](https://link-a-la-imagen)`
+
+### Ejercicios de código
+
+Para hacer interactivo el tutorial se pueden incluir secciones en las que el usuario proporcione código a ejecutar. La opción `exercise=TRUE` en un chunk permite convertirlo en un ejercicio.
+
+```{r eval=FALSE,echo=TRUE}
+{r ejercicio, exercise=TRUE}
+#Aquí puedes ingresar código de R y ejecutarlo.
+
+```
+
+Para más información ve a la sección [Personalizar ejercicios de código](#PEC)
+
+### Quiz
+
+Podemos incluir preguntas de opción múltiple con la siguiente estructura:
+
+```{r,echo=TRUE,eval=FALSE}
+{r quiz}
+quiz(
+  question("Aquí escribes la pregunta",
+    answer("Opción 1"),
+    answer("Opción 2"),
+    answer("Opción correcta", correct = TRUE),
+  ),
+  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
+    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
+    answer("Una opción incorrecta", message = "Mensaje adicional"),
+    answer("Otra opción incorrecta"),
+    answer("Otra opción correcta", correct = TRUE)
+  )
+)
+```
+
+## Personalizar ejercicios de código {#PEC}
+
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
+
+### Exercise with Hint
+
+*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+
+Modify the following code to limit the number of rows printed to 5:
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+mtcars
+```
+
+```{r print-limit-hint}
+head(mtcars)
+```
+
+## Personalizar los quiz
+
+Para poder hacer una pregunta de opción múltiple (que incluso tenga múltiples respuestas) usamos la función `question` para definir tanto la pregunta como su(s) posible(s) respuesta(s)*.*
+
+### Parámetros de `question`
+
+-   `text = "¿Esta es la pregunta?"` El parámeto `text` contiene una cadena de caracteres o **strings** (es decir texto dentro de "comillas").
+
+-   `answer("Esta es la respuesta correcta", correct = TRUE, message = "Aquí le dices al usuario algo bonito por haber acertado ;)")`
+
+    -   La función answer es un parámetro de question y contiene a su vez los siguentes parámetros:
+
+        -   `text` parámetro de caracteres que definen una posible respuesta a la pregunta
+
+        -   `correct` un parámetro boolean(o), es decir, TRUE o FALSE. Por defecto, `correct = FALSE` lo cual indica que esa posible respuesta NO ES correcta.
+
+        -   `message` parámetro de caracteres para dar un mensaje adicional al usuario sobre la opción de respuesta que eligió.
+
+-   `allow_retry` parámetro boolean(o), es decri `allow_retry = FALSE` o `allow_retry = TRUE`. Por defecto (es decir, sino se especifica el valor del parámetro) `allow_retry = FALSE` lo cual implica que NO habrá posibilidad de que el usuario intente contestar de nuevo (si es que contestó incorrectamente).
+
+-   `correct = "Este mensaje saldrá cuando aciertes en tu respuesta"`
+
+-   `incorrect = "Este mensaje saldrá cuando NO aciertes en tu respuesta"`, **solo aparecerá si** `allow_retry = FALSE`
+
+    `try_again = "Este mensaje saldrá cuando NO aciertes en tu respuesta y tengas la opción de intentarlo de nuevo"`
+
+-   `submit_button = "Mensaje que tiene el botón para confirmar tu respuesta"`, por defecto `submit_button = "Submit Answer"`
+
+-   `try_again_button = "Mensaje que tiene el botón para hacer otro intento"` (siempre y cuando te equivoques), por defecto`try_again_button = "Try Again"`
+
+-   `random_answer_order = TRUE` es un parámetro que permite cambiar el orden de las opciones de respuesta cada que vuleves a realizar el tutorial. *Es decir dar click en `Start over`*
+
+**Ejemplo**
+
+```{r quiz2, echo = TRUE}
+
+  question(
+    text = "¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?",
+    allow_retry=TRUE,
+    answer("incorrect",message = "No sabes. Este sirve para dar un mensaje cuando te equivocas"),
+    answer("submit_button",message = "No sabes. Aquí cambias de mesnaje de confirmación"),
+    answer("try_again_button", correct = TRUE, message = "¡Maravillos@ estudiante!"),
+    correct = "¡Sí que has puesto atención!",
+    try_again = "Vuelve a leer la sección de parámetros",
+    submit_button = "Yo sé que sé",
+    try_again_button = "Acuérdate de mí",
+    random_answer_order = TRUE
+  )
+
+```
+
+Si queremos hacer múltiples preguntas usamos la función `quiz` que tenga por parámetros las diferentes `quiestion`s.
+
+**Ejemplo:**
+
+```{r quiz3, echo=TRUE}
+quiz( 
+  question(
+    text = "¿Cuáles son los parámetros de answer?",
+    answer("text",correct = TRUE),
+    answer("correct",correct = TRUE),
+    answer("message", correct = TRUE), 
+    correct = "¡Muy bien!",
+    submit_button = "Yo sé que sé", 
+    allow_retry = TRUE,
+    try_again_button = "Intenta de nuevo",
+    try_again = "A lo mejor no leiste bien la pregunta"
+    ),
+  question(
+    text = "¿Qué función se usa para armar un cuestionario?",
+    allow_retry=TRUE,
+    answer("quiz", correct = TRUE, message = "Vas por buen camino"),
+    answer("questions",message = "Esta función no existe en learnr"),
+    answer("quizes", message = "Esta función no existe en learnr"), 
+    correct = "Sigue adelante",
+    try_again = "Intenta de nuevo",
+    submit_button = "Yo sé que sé",
+    try_again_button = "Date otra oportunidad"
+  ),
+caption = "Cuestionario"
+)
+```
+
+### Símbolos matemáticos en las preguntas.
+
+Para poder hacer uso de fórmulas dentro de las preguntas, solo ponemos las fórmulas entre signos de pesos (\$) en sintáxis de $\mathbb{L_aT_ex}$ y dos backslash `\\`, por ejempo:
+
+```{r quiz4, echo=TRUE}
+question(
+
+  
+  text = "¿A qué distribución corresponde la siguiente función de densidad? $f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}$",
+
+  
+  answer("Gaussiana", correct = TRUE),
+  answer("Normal", correct = TRUE), 
+  
+  
+#Este parámetro permite al usuario que aun cuando seleccione una respuesta correcta de muchas, ésta se evaluará como correcta (a diferencia de "checkbox" en la que hay que marcar todas las respuestas correctas para que se evalúe como correcta).
+  type = "radio", 
+
+
+  correct = "¡¿Eres Gauss!?",
+  submit_button = "Confía en tí"
+)
+```
