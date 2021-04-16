@@ -9,6 +9,7 @@ description: "Esto es un tutorial de learnr para aprender a usar learnr."
 
 ```{r setup, include=FALSE}
 library(learnr)
+library(checkr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -109,17 +110,55 @@ quiz(
 )
 ```
 
+### Personalizar el diseño del tutorial
+
+De manera simple, podemos hacer que el tutorial se vea con estilo personal poniendo en el encabezado YAML `theme: "default"`, donde default se puede cambiar por alguno de los temas predetirminados, siguientes:
+
+|              |              |               |
+|:------------:|:------------:|:-------------:|
+| `"default"`  | `"readable"` |   `"paper"`   |
+| `"cerulean"` | `"spacelab"` | `"sandstone"` |
+| `"journal"`  |  `"united"`  |  `"simplex"`  |
+|  `"flatly"`  |  `"cosmo"`   |   `"yeti"`    |
+|  `"darkly"`  |  `"lumen"`   |               |
+
 ## Personalizar ejercicios de código {#PEC}
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+Veamos algunas formas de personalizar estos ejercicios modificando las **opciones del chunk** de código:
 
-Now write a function that adds any two numbers and then call it:
+    ```{r nombre_del_chunk, diversas_opciones_que_mostraremos}
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
-```
+    # Tu código
+
+    ```
+
+Las opciones de código chunk no se muestran en el tutorial (y en general no se muestran en los Rmd).
+
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| Opción                      | Descripción                                                                                                      | Resultado   |
++:============================+:=================================================================================================================+=============+
+| `exercise.lines = n`        | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.        |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.cap`              | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`        |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.eval`             | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera. |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.timelimit`        | **Tiempo límite de ejecución del código.**                                                                       |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.checker`          | NO SABEMOS QUÉ ONDA                                                                                              |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.error.check.code` | NO SABEMOS QUÉ ONDA                                                                                              |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.completion`       |                                                                                                                  |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.diagnostics`      |                                                                                                                  |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.startover`        |                                                                                                                  |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.warn_invisible`   |                                                                                                                  |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
+| `exercise.reveal_solution`  |                                                                                                                  |             |
++-----------------------------+------------------------------------------------------------------------------------------------------------------+-------------+
 
 ### Exercise with Hint
 
@@ -127,12 +166,20 @@ add <- function() {
 
 Modify the following code to limit the number of rows printed to 5:
 
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE, exercise.cap = "Texto"}
 mtcars
 ```
 
 ```{r print-limit-hint}
 head(mtcars)
+```
+
+```{r eje2, exercise = TRUE, exercise.eval = FALSE, exercise.completion = TRUE}
+head(mtcars, n = )
+```
+
+```{r eje2-completion}
+head(subset(mtcars,mtcars$mpg == 15), n = 5)
 ```
 
 ## Personalizar los quiz
