@@ -2,7 +2,7 @@
 title: "Tutorial"
 output: 
   learnr::tutorial:
-    theme: flatly
+    theme:  flatly
 runtime: shiny_prerendered
 description: "Esto es un tutorial de learnr para aprender a usar learnr."
 ---
