@@ -2,7 +2,10 @@
 title: "Tutorial"
 output: 
   learnr::tutorial:
-    theme: flatly
+    progressive: true
+    allow_skip: true
+    theme:  flatly
+    highlight: tango
 runtime: shiny_prerendered
 description: "Esto es un tutorial de learnr para aprender a usar learnr."
 ---
@@ -10,6 +13,7 @@ description: "Esto es un tutorial de learnr para aprender a usar learnr."
 ```{r setup, include=FALSE}
 library(learnr)
 library(checkr)
+library(ggplot2)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -84,7 +88,6 @@ Para hacer interactivo el tutorial se pueden incluir secciones en las que el usu
 ```{r eval=FALSE,echo=TRUE}
 {r ejercicio, exercise=TRUE}
 #Aquí puedes ingresar código de R y ejecutarlo.
-
 ```
 
 Para más información ve a la sección [Personalizar ejercicios de código](#PEC)
@@ -122,64 +125,159 @@ De manera simple, podemos hacer que el tutorial se vea con estilo personal ponie
 |  `"flatly"`  |  `"cosmo"`   |   `"yeti"`    |
 |  `"darkly"`  |  `"lumen"`   |               |
 
+### Avance progresivo
+
+Para mostrar los subtópicos del tutorial (aquellos que tienen \#\#\#) uno a la vez dando click al botón *Continue* para avanzar, tenemos dos opciones:
+
+-   Aplicarlo a todo el documento activando la opción `progressive: true` en el encabezado YAML.
+
+        ---
+        title: "Hello, Tutorial!"
+        output: 
+          learnr::tutorial:
+            progressive: true
+        runtime: shiny_prerendered
+        --- 
+
+-   Aplicarlo solo a algunos subtópicos agregando `{data-progressive=TRUE}` adelante de cada encabezado de tema (con \#\# ) que queremos revelar de manera progresiva.
+
+        ## Tema {data-progressive=TRUE}
+
+Una vez activada la opción `progressive` no podremos avanzar en el tutorial sin contestar los ejercicios de cada sección. Para permitir el avance sin contestar los ejercicios, podemos agregar `allow_skip: true` en el encabezado YAML.
+
+    ---
+    title: "Hello, Tutorial!"
+    output: 
+      learnr::tutorial:
+        progressive: true
+        allow_skip: true
+    runtime: shiny_prerendered
+    --- 
+
+Para solo permitir avanzar en algunas secciones y no en otras sin contestar, podemos especificar`{data-allow-skip=TRUE}` o `{data-allow-skip=FALSE}` en cada tema.
+
 ## Personalizar ejercicios de código {#PEC}
+
+### Opciones del chunk
 
 Veamos algunas formas de personalizar estos ejercicios modificando las **opciones del chunk** de código:
 
     ```{r nombre_del_chunk, diversas_opciones_que_mostraremos}
-
     # Tu código
-
     ```
 
 Las opciones de código chunk no se muestran en el tutorial (y en general no se muestran en los Rmd).
 
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| Opción                      | Descripción                                                                                                      | Resultado      |
-+:============================+:=================================================================================================================+================+
-| `exercise.lines = n`        | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.        |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.cap`              | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`        |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.eval`             | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera. |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.timelimit`        | **Tiempo límite de ejecución del código.**                                                                       |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.checker`          | NO SABEMOS QUÉ ONDA                                                                                              |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.error.check.code` | NO SABEMOS QUÉ ONDA                                                                                              |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.completion`       |                                                                                                                  |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.diagnostics`      |                                                                                                                  |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.startover`        |                                                                                                                  |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.warn_invisible`   |                                                                                                                  |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
-| `exercise.reveal_solution`  |                                                                                                                  |                |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------+----------------+
+| Opción                      | Descripción                                                                                                      | Resultado |
+|:----------------------------|:-----------------------------------------------------------------------------------------------------------------|-----------|
+| `exercise.lines = n`        | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.        |           |
+| `exercise.cap`              | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`        |           |
+| `exercise.eval`             | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera. |           |
+| `exercise.timelimit`        | **Tiempo límite de ejecución del código.**                                                                       |           |
+| `exercise.checker`          | NO SABEMOS QUÉ ONDA                                                                                              |           |
+| `exercise.error.check.code` | NO SABEMOS QUÉ ONDA                                                                                              |           |
+| `exercise.completion`       |                                                                                                                  |           |
+| `exercise.diagnostics`      |                                                                                                                  |           |
+| `exercise.startover`        | Por defecto es `TRUE`. Indica si queremos que aparezca un botón que permita reiniciar el ejercicio.              |           |
+| `exercise.warn_invisible`   |                                                                                                                  |           |
+| `exercise.reveal_solution`  |                                                                                                                  |           |
 
-### Exercise with Hint
+La función `tutorial_options()` puede usarse para especificar las opciones del chunk para todas los chunks del tutorial.
 
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+El código y los resultados de un chunk de ejercicio no estarán disponible para los demás chunks a menos que se especifíque, Una forma de hacer esto es usando la opción `exercise.setup="nombre-chunk-a-usar"`en el chunk de ejercicio en el que queremos usar el resultado previo. Podemos ir formando una cadena de resultados a usar de esta forma.
 
-Modify the following code to limit the number of rows printed to 5:
+### Ejercicios con hints y soluciones
 
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE, exercise.cap = "Texto"}
-mtcars
+Podemos dar hints a un ejercicio usando el sufijo `-hint` en el nombre del chunk que contiene el hint o mostrar el código de la solución añadiendo `-solution` al nombre del chunk que contiene la solución.
+
+Por ejemplo, para proporcionar código que de una pista para resolver el ejercicio que tiene nombre de chunk `ejercicio1`, escribimos la pista en un chunk que tenga nombre `ejercicio1-hint`. De manera similar, para proporcionar el código de la solución de este ejercicio lo escribimos en un chunk con nombre `ejercicio1-solution`.
+
+    '''{r ejercicio1, exercise=TRUE}
+    #Aquí va el ejercicio:
+
+    # Cambia al color de los puntos a rosa
+    ggplot(mtcars, aes(x=mpg,y=cyl)) +
+      geom_point()
+    '''
+
+    '''{r ejercicio1-hint}
+    #Aquí va el hint para el ejercicio 1
+
+    # Usa el parámetro color dentro de geom_point()
+    '''
+
+```{r ejercicio1, exercise=TRUE}
+# Cambia al color de los puntos a rosa
+ggplot(mtcars, aes(x=mpg,y=cyl)) +
+  geom_point()
 ```
 
-```{r print-limit-hint}
-head(mtcars)
+```{r ejercicio1-hint}
+#Usa el parámetro color dentro de geom_point()
 ```
 
-```{r eje2, exercise = TRUE, exercise.eval = FALSE, exercise.completion = TRUE}
-head(mtcars, n = )
+    '''{r ejercicio2, exercise=TRUE}
+    #Aquí va el ejercicio:
+
+    # Cambia al color de los puntos a verde
+    ggplot(mtcars, aes(x=mpg,y=cyl)) +
+      geom_point()
+    '''
+
+    '''{r ejercicio2-solution}
+    #Aquí va la solución del ejercicio 1
+
+    ggplot(mtcars, aes(x=mpg,y=cyl)) +
+      geom_point(color = "green")
+    '''
+
+```{r ejercicio2, exercise=TRUE}
+# Cambia al color de los puntos a verde
+ggplot(mtcars, aes(x=mpg,y=cyl)) +
+  geom_point()
 ```
 
-```{r eje2-completion}
-head(subset(mtcars,mtcars$mpg == 15), n = 5)
+```{r ejercicio2-solution}
+ggplot(mtcars, aes(x=mpg,y=cyl)) +
+  geom_point(color= "green")
+```
+
+Al proporcionar hints y también la solución en un ejercicio, ésta aparecerá dentro del apartado de las hints y se mostrará al final.
+
+    '''{r ejercicio3, exercise=TRUE}
+    #Aquí va el ejercicio:
+
+    # Cambia al color de los puntos a verde
+    ggplot(mtcars, aes(x=mpg,y=cyl)) +
+      geom_point()
+    '''
+
+    '''{r ejercicio3-hint}
+    #Aquí va el hint
+
+    # Usa el parámetro color dentro de geom_point()
+    '''
+
+    '''{r ejercicio3-solution}
+    #Aquí va la solución del ejercicio 1
+
+    ggplot(mtcars, aes(x=mpg,y=cyl)) +
+      geom_point(color = "green")
+    '''
+
+```{r ejercicio3, exercise=TRUE, highlight=TRUE}
+# Cambia al color de los puntos a verde
+ggplot(mtcars, aes(x=mpg,y=cyl)) +
+  geom_point()
+```
+
+```{r ejercicio3-hint}
+# Usa el parámetro color dentro de geom_point()
+```
+
+```{r ejercicio3-solution}
+ggplot(mtcars, aes(x=mpg,y=cyl)) +
+  geom_point(color= "green")
 ```
 
 ## Personalizar los quiz
@@ -217,7 +315,6 @@ Para poder hacer una pregunta de opción múltiple (que incluso tenga múltiples
 **Ejemplo**
 
 ```{r quiz2, echo = TRUE}
-
   question(
     text = "¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?",
     allow_retry=TRUE,
@@ -230,7 +327,6 @@ Para poder hacer una pregunta de opción múltiple (que incluso tenga múltiples
     try_again_button = "Acuérdate de mí",
     random_answer_order = TRUE
   )
-
 ```
 
 Si queremos hacer múltiples preguntas usamos la función `quiz` que tenga por parámetros las diferentes `quiestion`s.
@@ -271,10 +367,8 @@ Para poder hacer uso de fórmulas dentro de las preguntas, solo ponemos las fór
 
 ```{r quiz4, echo=TRUE}
 question(
-
   
   text = "¿A qué distribución corresponde la siguiente función de densidad? $f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}$",
-
   
   answer("Gaussiana", correct = TRUE),
   answer("Normal", correct = TRUE), 
@@ -282,8 +376,6 @@ question(
   
 #Este parámetro permite al usuario que aun cuando seleccione una respuesta correcta de muchas, ésta se evaluará como correcta (a diferencia de "checkbox" en la que hay que marcar todas las respuestas correctas para que se evalúe como correcta).
   type = "radio", 
-
-
   correct = "¡¿Eres Gauss!?",
   submit_button = "Confía en tí"
 )
