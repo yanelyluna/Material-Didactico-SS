@@ -1,0 +1,69 @@
+---
+title: "Habits"
+author: John Doe
+date: March 22, 2005
+output: slidy_presentation
+runtime: shiny_prerendered
+---
+
+# In the morning
+
+## Getting up
+
+- Turn off alarm
+- Get out of bed
+
+## Breakfast
+
+- Eat eggs
+- Drink coffee
+
+# In the evening
+
+## Dinner
+
+- Eat spaghetti
+- Drink wine
+
+---
+
+```{r setup, include=FALSE}
+#Librerías a usar
+library(learnr)
+library(checkr)
+library(ggplot2)
+#Modificaciónes para los chunks
+knitr::opts_chunk$set(echo = FALSE)
+#Modificaciones en el tutorial
+```
+
+
+## Going to sleep
+
+```{r quiz1}
+quiz(
+  question(
+    text = "¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?",
+    allow_retry=TRUE,
+    answer("xaringan",message = "Esta paquetería sirve para crear presentaciones en R."),
+    answer("flipbookr",message = "Esta paquetería sirve para mostrar código incremental."),
+    answer("learnr", correct = TRUE, message = "¡Correcto!"),
+    correct = "¡Felicidades, vas al camino del éxito!",
+    try_again = "Tú puedes mejorar",
+    submit_button = "Confirmar",
+    try_again_button = "Intenta de nuevo"
+  )
+)
+```
+
+- Get in bed
+- Count sheep
+
+## Ejericio
+
+```{r ejercicio1, exercise=TRUE}
+# Cambia al color de los puntos a rosa
+library(plotly)
+ggplotly(ggplot(mtcars, aes(x=mpg,y=cyl)) +
+  geom_point())
+```

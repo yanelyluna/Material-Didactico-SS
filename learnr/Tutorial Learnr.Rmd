@@ -495,4 +495,8 @@ Es posible incluir ejercicios en otros tipos de documentos además de un tutoria
     output: slidy_presentation
     runtime: shiny_prerendered
 
+<<<<<<< HEAD
 Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
+=======
+Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
+>>>>>>> 5c248923f96874b3b691396fc5e71ff2104a03ba
