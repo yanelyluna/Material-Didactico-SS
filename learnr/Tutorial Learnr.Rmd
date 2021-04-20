@@ -484,3 +484,15 @@ question(
   submit_button = "Confía en tí"
 )
 ```
+
+## Formatos del tutorial
+
+Es posible incluir ejercicios en otros tipos de documentos además de un tutorial (`learnr::tutorial`) como dentro de una presentación tipo `slidy`. Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML:
+
+    title: "Habits"
+    author: John Doe
+    date: March 22, 2005
+    output: slidy_presentation
+    runtime: shiny_prerendered
+
+Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
