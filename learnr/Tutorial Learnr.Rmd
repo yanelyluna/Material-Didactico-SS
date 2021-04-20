@@ -3,7 +3,8 @@ title: "Tutorial de learnr"
 author: 
   - name: "Yanely L.G."
   - name: "Carlos A. Ar."
-  - name: "Facultad de Ciencias, UNAM"
+  - name: "Facultad de Ciencias"
+  - name: "UNAM"  
 output: 
   learnr::tutorial:
     progressive: true
@@ -25,53 +26,57 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{=html}
 <style>
 /***********************/
-/* Títulos con # o ## */
+/*Títulos ## y autoría F6EACD*/
 /***********************/
 
 h2 {
   color: #6D4101;
-  background-color: #F6EACD;
-  padding: .6em; /*es decir el 60 por ciento del tamño de la letra*/
+  padding: .4em; /*es decir el 60 por ciento del tamaño de la letra*/
   font-family: "Courier New", monospace;
   font-size: 35px;
   font-weight: bold;
   opacity: 0.95;
 }
-h4.author {
-  color: #012A6D;
-  background-color: #F6EACD;
+em {
+  color: #8A6C0C;
   font-family: "Courier New", monospace;
+  font-size: 18px;
+  padding: .2em;
   opacity: 0.97;
 }
+
 /***********************/
 /* Cuerpo */
 /***********************/
 body {
   font-family: Verdana, Helvetica, sans-serif;
-  font-size: 14;
+  font-size: 16;
+  background-color: #F0F6F3;
+  color: #000000;
 }
+
 /***********************/
-/* No sé qué sea */
-/***********************/
-em {
-    color: #2b2b2b;
-}
-/***********************/
-/* Títulos con ### o #### */
+/* Títulos con ###     */
 /***********************/
 h3, h4, h5{
-  color: #C83737;
+  color: #06116C;
+  font-family: Verdana, Helvetica, sans-serif;
 }
 
-
+/*******************************************/
+/* Referencias a páginas o a otro documento*/
+/*******************************************/
 a {
-    color: #C83737;
+    color: #B8870F;
     text-decoration: none;
 }
 
+/**********************/
+/* Chunks de exercises*/
+/**********************/
 .ace-tm {
-    background-color: #ffffff;
-    color: black;
+    background-color: #FFFEF7;
+    color: #010730;
 }
 
 /***********************/
@@ -82,25 +87,23 @@ a {
 }
 
 .topicsHeader {
-  background-color: #f7f7f7;
-  color: #2b2b2b;
+  color: #06116C;
   padding: .5em;
 }
 
 .topicsList #doc-metadata {
-  background-color: #f7f7f7;
-  color: #2b2b2b;
+  color: #06116C;
   padding: .5em;
 }
 
 .topicsList .topic.current {
-  background-color: #f7f7f7;
-  color: #C83737;
+  background-color: #FFFBE2;
+  color: #06116C;
 }
 
 .topicsList .topic:hover, .topicsList .topic:active {
-  background-color: #f7f7f7;
-  color: #C83737;
+  background-color: #FFFBE2;
+  color: #01053D;
 }
 
 /***********/
@@ -108,29 +111,33 @@ a {
 /***********/
 
 .btn {
-  background-color: #C83737;
-  color: #fff;
+  background-color: #000857;
+  color: #EBEDFF;
 }
 
+/* cambiar de página */
 .btn-default {
-    color: #ffffff;
-    background-color: #C83737;
+    color: #EBEDFF;
+    background-color: #000857;
     border: none;
 }
 
+/* cambiar de página */
 .btn-light {
-  background-color: #aa2f2f;
-  color: #fff;
+  background-color: #000857;
+  color: #EBEDFF;
 }
 
+/* run code */
 .btn-primary , .btn-success, .btn-info{
-  background-color: #C83737;
-  color: #fff;
+  background-color: #000857;
+  color: #EBEDFF;
 }
 
+/* mientras está desabilitados */
 .btn:hover, .btn:active, .btn:disabled {
-  background-color: #aa2f2f;
-  color: #fff;
+  background-color: #000857;
+  color: #EBEDFF;
 }
 
 /****************/
@@ -138,18 +145,19 @@ a {
 /****************/
 
 code {
-    color: #C83737;
-    background-color:  #f7f7f7;
-    font-size: 14px;
+    color: #6D4101;
+    background-color:  #F7FBF9;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 
-/****************/
+/**************************/
 /* Recuadro para ejemplos */
-/****************/
+/**************************/
 
 .boxed {
-        background: lightgrey;
+        background: #F7FBF9;
         color: black;
         border: 3px solid #C83737;
         margin: 0px auto;
@@ -181,7 +189,7 @@ code {
     background-position: 15px 15px;
     min-height: 120px;
     color: black;
-    background-color: white;
+    background-color: #F7FBF9;
     border: solid 5px #C83737;
     background-image: url("manzana.png");
   }
