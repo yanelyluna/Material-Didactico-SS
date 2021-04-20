@@ -15,12 +15,9 @@ description: "Esto es un tutorial de learnr para aprender a usar learnr."
 library(learnr)
 library(checkr)
 library(ggplot2)
-
 #Modificaciónes para los chunks
 knitr::opts_chunk$set(echo = FALSE)
-
 #Modificaciones en el tutorial
-
 ```
 
 ## Crear un tutorial interactivo
@@ -331,10 +328,8 @@ Esto se hace con la opción `exercise.star-over` en el chunk de código (por def
 Por defecto, en cada ejercicio de código se tiene que`exercise.completion = TRUE` lo cual hace que mientras el usuario escribe una función de R (por ejemplo `mean)`, se muestren los parámetros que requiere esa función (por ejemplo `x = , na.rm =` ).
 
 ```{r ejercicio5, exercise = TRUE, exercise.completion = FALSE, exercise.cap = "Sin ayuda para completar"}
-
 #Intenta volver a llenar los argumentos de la función seq para NO ver en marcha exercise.completion (pues pusimos exercise.completion = FALSE)
 x <- seq(0,10,2)
-
 ```
 
 Por otro lado `exercise.diagnostics = TRUE` para avisar al usuario cuando cometa un error en el código, por ejemplo `function(` es un error de codificación porque falta un paréntesis, si se escribe `exercise.diagnostics = FALSE` no se le dará aviso al usuario que es un error.
@@ -348,19 +343,15 @@ Por otro lado `exercise.diagnostics = TRUE` para avisar al usuario cuando cometa
     ![](images/learnr4.png)
 
 ```{r ejercicio6, exercise = TRUE, exercise.diagnostics = FALSE, exercise.cap = "Sin diagnóstico"}
-
 # Observa que no aparece del lado izquerdo alguna advertencia de los siguientes errores:
-
 function(
   
 mean(
-
 ```
 
 ### Calificar NO SABEMOS
 
 ```{r}
-
 custom_checker <- function(label, user_code, solution_code, envir_result, evaluate_result, last_value) {
   # this is a code check
   if (is.null(envir_result)) {
@@ -375,25 +366,21 @@ custom_checker <- function(label, user_code, solution_code, envir_result, evalua
   }
   list(message = "Great job!", correct = TRUE, location = "append")
 }
-
 #tutorial_options(exercise.checker = custom_checker)
 ```
 
 ```{r muestra, exercise = TRUE, exercise.checker = custom_checker}
 # Agrega el 30 dentro de sqrt
-
 sqrt()
 ```
 
 ```{r muestra-solution, exercise.reveal_solution = FALSE}
 # Agrega el 30 dentro de sqrt
-
 sqrt(30)
 ```
 
 ```{r muestra-check}
 # Agrega el 30 dentro de sqrt
-
 sqrt(30)
 ```
 
@@ -497,3 +484,15 @@ question(
   submit_button = "Confía en tí"
 )
 ```
+
+## Formatos del tutorial
+
+Es posible incluir ejercicios en otros tipos de documentos además de un tutorial (`learnr::tutorial`) como dentro de una presentación tipo `slidy`. Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML:
+
+    title: "Habits"
+    author: John Doe
+    date: March 22, 2005
+    output: slidy_presentation
+    runtime: shiny_prerendered
+
+Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
