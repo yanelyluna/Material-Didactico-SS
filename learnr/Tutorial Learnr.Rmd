@@ -1,13 +1,16 @@
 ---
-title: "Tutorial"
-output: 
+title: "Tutorial de learnr"
+author: 
+  - name: "Yanely L.G."
+  - name: "Carlos A. Ar."
+  - name: "Facultad de Ciencias"
+  - name: "UNAM"
+output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
-    theme:  flatly
-    highlight: tango
 runtime: shiny_prerendered
-description: "Esto es un tutorial de learnr para aprender a usar learnr."
+description: "Este es un tutorial de learnr para aprender a usar learnr."
 ---
 
 ```{r setup, include=FALSE}
@@ -20,6 +23,182 @@ knitr::opts_chunk$set(echo = FALSE)
 #Modificaciones en el tutorial
 ```
 
+```{=html}
+<style>
+div {
+  text-align: justify;
+}
+/***********************/
+/*Títulos ## y autoría F6EACD*/
+/***********************/
+
+h2 {
+  color: #6D4101;
+  padding: .4em; /*es decir el 60 por ciento del tamaño de la letra*/
+  font-family: "Courier New", monospace;
+  font-size: 35px;
+  font-weight: bold;
+  opacity: 0.95;
+}
+em {
+  color: #8A6C0C;
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  padding: .2em;
+  opacity: 0.97;
+}
+
+/***********************/
+/* Cuerpo */
+/***********************/
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 16;
+  background-color: #F0F6F3;
+  color: #000000;
+}
+
+/***********************/
+/* Títulos con ###     */
+/***********************/
+h3, h4, h5{
+  color: #06116C;
+  font-family: Verdana, Helvetica, sans-serif;
+}
+
+/*******************************************/
+/* Referencias a páginas o a otro documento*/
+/*******************************************/
+a {
+    color: #B8870F;
+    text-decoration: none;
+}
+
+/**********************/
+/* Chunks de exercises*/
+/**********************/
+.ace-tm {
+    background-color: #FFFEF7;
+    color: #010730;
+}
+
+/***********************/
+/* tabla de contenidos */
+/***********************/
+.topicsList {
+  padding: .5em;
+}
+
+.topicsHeader {
+  color: #06116C;
+  padding: .5em;
+}
+
+.topicsList #doc-metadata {
+  color: #06116C;
+  padding: .5em;
+}
+
+.topicsList .topic.current {
+  background-color: #FFFBE2;
+  color: #06116C;
+}
+
+.topicsList .topic:hover, .topicsList .topic:active {
+  background-color: #FFFBE2;
+  color: #01053D;
+}
+
+/***********/
+/* Botones */
+/***********/
+
+.btn {
+  background-color: #000857;
+  color: #EBEDFF;
+}
+
+/* cambiar de página */
+.btn-default {
+    color: #EBEDFF;
+    background-color: #000857;
+    border: none;
+}
+
+/* cambiar de página */
+.btn-light {
+  background-color: #000857;
+  color: #EBEDFF;
+}
+
+/* run code */
+.btn-primary , .btn-success, .btn-info{
+  background-color: #000857;
+  color: #EBEDFF;
+}
+
+/* mientras está desabilitados */
+.btn:hover, .btn:active, .btn:disabled {
+  background-color: #000857;
+  color: #EBEDFF;
+}
+
+/**********/
+/* Código */
+/**********/
+
+code {
+    color: #6D4101;
+    background-color:  #F7FBF9;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/**************************/
+/* Recuadro para ejemplos */
+/**************************/
+
+.boxed {
+    background: #F7FBF9;
+    color: black;
+    border: 3px solid #C83737;
+    margin: 0px auto;
+    width: 456px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+    min-height: 120px;
+    color: black;
+    background-color: lightgrey;
+    border: solid 5px #C83737;
+    background-image: url("manzana.png");
+  }
+
+.note_white {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+    min-height: 120px;
+    color: black;
+    background-color: #F7FBF9;
+    border: solid 5px #C83737;
+    background-image: url("manzana.png");
+  }
+
+</style>
+```
 ## Crear un tutorial interactivo
 
 ### Instalar `learnr`
@@ -27,7 +206,6 @@ knitr::opts_chunk$set(echo = FALSE)
 La paquetería `learnr` sirve para crear tutoriales interactivos como este. Pueden incluir texto, imágenes, link, y código entre otras cosas que ya incluye un Rmarkdown pero además se puede editar y ejecutar código dentro del mismo archivo. Un ejemplo del tipo de ejercicios que se pueden incluir es este:
 
 ```{r quiz1}
-quiz(
   question(
     text = "¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?",
     allow_retry=TRUE,
@@ -39,7 +217,6 @@ quiz(
     submit_button = "Confirmar",
     try_again_button = "Intenta de nuevo"
   )
-)
 ```
 
 Para instalar: `install.packages("learnr")`.
@@ -174,39 +351,33 @@ Las opciones de código chunk no se muestran en el tutorial (y en general no se 
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
 | Opción                      | Descripción                                                                                                                  | Resultado                                             |
 +:============================+:=============================================================================================================================+=======================================================+
-| `exercise.lines = n`        | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.                    | ![](images/learnr5.png)                               |
+| `exercise.lines = n`        | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.                    | ![](images/learnr5.png){width="203"}                  |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.cap`              | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`                    | ![](images/learnr6.png)                               |
+| `exercise.cap`              | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`                    | ![](images/learnr6.png){width="201"}                  |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.eval`             | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera.             | ![](images/learnr7.png)                               |
+| `exercise.eval`             | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera.             | ![](images/learnr7.png){width="201"}                  |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.timelimit`        | Tiempo límite de ejecución del código en segundos. (Si el código tarda en ejecutar más del tiempo límite, aparece un error). | ![](images/learnr8.png)                               |
+| `exercise.timelimit`        | Tiempo límite de ejecución del código en segundos. (Si el código tarda en ejecutar más del tiempo límite, aparece un error). | ![](images/learnr8.png){width="208"}                  |
 |                             |                                                                                                                              |                                                       |
 |                             | **No significa** que el usuario tenga ese tiempo para completar el código.                                                   |                                                       |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
 | `exercise.checker`          | NO SABEMOS QUÉ ONDA                                                                                                          |                                                       |
 |                             |                                                                                                                              |                                                       |
-|                             | El paquete `gradethis` no se puede instalar en nuestra versión de RStudio.                                                   |                                                       |
+| `exercise.error.check.code` | El paquete `gradethis` no se puede instalar en nuestra versión de RStudio.                                                   |                                                       |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.error.check.code` | NO SABEMOS QUÉ ONDA                                                                                                          |                                                       |
-|                             |                                                                                                                              |                                                       |
-|                             | El paquete `gradethis` no se puede instalar en nuestra versión de RStudio.                                                   |                                                       |
+| `exercise.completion`       | Es `TRUE` por defecto y permite que el usuario vea los posibles parámetros que requiere una función.                         | ![](images/learnr9.png){width="208"}                  |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.completion`       | Es `TRUE` por defecto y permite que el usuario vea los posibles parámetros que requiere una función.                         | ![](images/learnr9.png)                               |
-+-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.diagnostics`      | Es `TRUE` por defecto y permite que el usuario vea los posibles errores que comete al escribir código.                       | [Ver ejempl](#AU)                                     |
+| `exercise.diagnostics`      | Es `TRUE` por defecto y permite que el usuario vea los posibles errores que comete al escribir código.                       | [Ver ejempl](#AU)o                                    |
 |                             |                                                                                                                              |                                                       |
 |                             |                                                                                                                              | **Poner referencias dentro del tutorial no funciona** |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.startover`        | Por defecto es `TRUE`. Indica si queremos que aparezca un botón que permita reiniciar el ejercicio.                          | ![](images/learnr10.png)                              |
+| `exercise.startover`        | Por defecto es `TRUE`. Indica si queremos que aparezca un botón que permita reiniciar el ejercicio.                          | ![](images/learnr10.png){width="258"}                 |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.warn_invisible`   | NO SABEMOS                                                                                                                   |                                                       |
+| `exercise.warn_invisible`   | NO SABEMOS cómo se usa ni para qué sirve.                                                                                    |                                                       |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
-| `exercise.reveal_solution`  | Por defecto es `TRUE` lo cual implica que si se tiene una solución, ésta podrá verse reflejada ([ver sección](#syh)).        |                                                       |
+| `exercise.reveal_solution`  | Por defecto es `TRUE` lo cual implica que si se tiene una solución, ésta podrá verse reflejada ([ver sección](#syh)).        | **NO SIRVE**                                          |
 |                             |                                                                                                                              |                                                       |
 |                             | A lo mejor necesitas la solución para *calificar* pero no quieres que el usuario la vea.                                     |                                                       |
-|                             |                                                                                                                              |                                                       |
-|                             | NO SIRVE                                                                                                                     |                                                       |
 +-----------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------+
 
 La función `tutorial_options()` puede usarse para especificar las opciones del chunk para todas los chunks del tutorial.
@@ -489,10 +660,10 @@ question(
 
 Es posible incluir ejercicios en otros tipos de documentos además de un tutorial (`learnr::tutorial`) como dentro de una presentación tipo `slidy`. Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML:
 
-    title: "Habits"
-    author: John Doe
-    date: March 22, 2005
-    output: slidy_presentation
-    runtime: shiny_prerendered
+    # title: "Habits"
+    # author: John Doe
+    # date: March 22, 2005
+    # output: slidy_presentation
+    # runtime: shiny_prerendered
 
 Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
