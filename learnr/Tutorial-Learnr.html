@@ -138,6 +138,7 @@ em {
   font-size: 18px;
   padding: .2em;
   opacity: 0.97;
+  font-weight: bold;
 }
 
 /***********************/
@@ -146,7 +147,7 @@ em {
 body {
   font-family: Verdana, Helvetica, sans-serif;
   font-size: 16;
-  background-color: #F0F6F3;
+  background-color: #EEF5F9;
   color: #000000;
 }
 
@@ -192,12 +193,13 @@ a {
 }
 
 .topicsList .topic.current {
-  background-color: #FFFBE2;
-  color: #06116C;
+  background-color: #8A6C0C;
+  color: #FFFFFF;
+  font-weight: bold;
 }
 
 .topicsList .topic:hover, .topicsList .topic:active {
-  background-color: #FFFBE2;
+  background-color: #E0CD4E;
   color: #01053D;
 }
 
@@ -225,13 +227,13 @@ a {
 
 /* run code */
 .btn-primary , .btn-success, .btn-info{
-  background-color: #000857;
+  background-color: #786300;
   color: #EBEDFF;
 }
 
 /* mientras está desabilitados */
 .btn:hover, .btn:active, .btn:disabled {
-  background-color: #000857;
+  background-color: #786300;
   color: #EBEDFF;
 }
 
@@ -311,7 +313,7 @@ code {
 <ol style="list-style-type: decimal">
 <li><p>Crear un nuevo Rmarkdown:</p>
 <p><img src="images/learnr1.png" width="489" /></p></li>
-<li><p>Seleccionar la plantilla de <em>Interactive tutorial</em></p>
+<li><p>Seleccionar la plantilla de <strong>Interactive tutorial</strong></p>
 <p><img src="images/learnr2.png" width="473" /></p></li>
 </ol>
 <p><strong>Opción 2:</strong></p>
@@ -334,7 +336,7 @@ description: &quot;Esto es un tutorial de learnr para aprender a usar learnr.&qu
 <h2>Modificar un tutorial</h2>
 <div id="section-incluir-imágenes" class="section level3">
 <h3>Incluir imágenes</h3>
-<p>Para mostrar imágenes dentro del tutorial, debe crearse una carpeta dentro del directorio del tutorial con el nombre <em>images</em> y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta:</p>
+<p>Para mostrar imágenes dentro del tutorial, debe crearse una carpeta dentro del directorio del tutorial con el nombre <strong>images</strong> y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta:</p>
 <p><code>![Mi imagen](images/mi_imagen.png)</code></p>
 <p>También se pueden incluir imágenes de internet:</p>
 <p><code>![Imagen](https://link-a-la-imagen)</code></p>
@@ -399,7 +401,7 @@ quiz(
 </div>
 <div id="section-avance-progresivo" class="section level3">
 <h3>Avance progresivo</h3>
-<p>Para mostrar los subtópicos del tutorial (aquellos que tienen ###) uno a la vez dando click al botón <em>Continue</em> para avanzar, tenemos dos opciones:</p>
+<p>Para mostrar los subtópicos del tutorial (aquellos que tienen ###) uno a la vez dando click al botón <strong>Continue</strong> para avanzar, tenemos dos opciones:</p>
 <ul>
 <li><p>Aplicarlo a todo el documento activando la opción <code>progressive: true</code> en el encabezado YAML.</p>
 <pre><code>---
@@ -432,9 +434,9 @@ runtime: shiny_prerendered
 <p>Las opciones de código chunk no se muestran en el tutorial (y en general no se muestran en los Rmd).</p>
 <table>
 <colgroup>
-<col width="14%" />
-<col width="59%" />
-<col width="26%" />
+<col width="13%" />
+<col width="63%" />
+<col width="22%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -479,9 +481,9 @@ runtime: shiny_prerendered
 </tr>
 <tr class="odd">
 <td align="left"><code>exercise.diagnostics</code></td>
-<td align="left">Es <code>TRUE</code> por defecto y permite que el usuario vea los posibles errores que comete al escribir código.</td>
-<td><p><a href="#section-AU">Ver ejempl</a>o</p>
-<p><strong>Poner referencias dentro del tutorial no funciona</strong></p></td>
+<td align="left"><p>Es <code>TRUE</code> por defecto y permite que el usuario vea los posibles errores que comete al escribir código.</p>
+<p><strong><em>Poner referencias dentro del tutorial no funciona</em></strong></p></td>
+<td>Ve ejemplo en la sección: <strong>Ayudar al usuario</strong></td>
 </tr>
 <tr class="even">
 <td align="left"><code>exercise.startover</code></td>
@@ -495,8 +497,8 @@ runtime: shiny_prerendered
 </tr>
 <tr class="even">
 <td align="left"><code>exercise.reveal_solution</code></td>
-<td align="left"><p>Por defecto es <code>TRUE</code> lo cual implica que si se tiene una solución, ésta podrá verse reflejada (<a href="#section-syh">ver sección</a>).</p>
-<p>A lo mejor necesitas la solución para <em>calificar</em> pero no quieres que el usuario la vea.</p></td>
+<td align="left"><p>Por defecto es <code>TRUE</code> lo cual implica que si se tiene una solución, ésta podrá verse reflejada (ver los ejercicios con hints y soluciones).</p>
+<p>A lo mejor necesitas la solución para <strong>calificar</strong> pero no quieres que el usuario la vea.</p></td>
 <td><strong>NO SIRVE</strong></td>
 </tr>
 </tbody>
@@ -604,7 +606,7 @@ ggplot(mtcars, aes(x=mpg,y=cyl)) +
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-AU" class="section level3">
+<div id="section-ayudar-al-usuario-completar-código-y-aviso-de-fallas" class="section level3">
 <h3>Ayudar al usuario <em>(completar código y aviso de fallas)</em></h3>
 <p>Por defecto, en cada ejercicio de código se tiene que<code>exercise.completion = TRUE</code> lo cual hace que mientras el usuario escribe una función de R (por ejemplo <code>mean)</code>, se muestren los parámetros que requiere esa función (por ejemplo <code>x = , na.rm =</code> ).</p>
 <div class="tutorial-exercise" data-label="ejercicio5" data-caption="Sin ayuda para completar" data-completion="0" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -666,7 +668,7 @@ sqrt(30)</code></pre>
 <p><code>try_again = "Este mensaje saldrá cuando NO aciertes en tu respuesta y tengas la opción de intentarlo de nuevo"</code></p></li>
 <li><p><code>submit_button = "Mensaje que tiene el botón para confirmar tu respuesta"</code>, por defecto <code>submit_button = "Submit Answer"</code></p></li>
 <li><p><code>try_again_button = "Mensaje que tiene el botón para hacer otro intento"</code> (siempre y cuando te equivoques), por defecto<code>try_again_button = "Try Again"</code></p></li>
-<li><p><code>random_answer_order = TRUE</code> es un parámetro que permite cambiar el orden de las opciones de respuesta cada que vuleves a realizar el tutorial. <em>Es decir dar click en <code>Start over</code></em></p></li>
+<li><p><code>random_answer_order = TRUE</code> es un parámetro que permite cambiar el orden de las opciones de respuesta cada que vuleves a realizar el tutorial. <strong>Es decir dar click en <code>Start over</code></strong></p></li>
 </ul>
 <p><strong>Ejemplo</strong></p>
 <pre class="r"><code>  question(
@@ -790,7 +792,7 @@ session$onSessionEnded(function() {
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz1", question = structure("¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_6d536be",     option = "xaringan", value = "xaringan", label = structure("xaringan", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta paquetería sirve para crear presentaciones en R.", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d5c443b", option = "flipbookr",     value = "flipbookr", label = structure("flipbookr", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta paquetería sirve para mostrar código incremental.", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d1b892", option = "learnr",     value = "learnr", label = structure("learnr", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("¡Correcto!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Confirmar", html = TRUE, class = c("html", "character")), try_again = structure("Intenta de nuevo", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡Felicidades, vas al camino del éxito!", html = TRUE, class = c("html", "character")), try_again = structure("Tú puedes mejorar", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz1-answer", question = "quiz1"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 1663018925.7256, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz1", question = structure("¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_6f06c3",     option = "xaringan", value = "xaringan", label = structure("xaringan", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta paquetería sirve para crear presentaciones en R.", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fdedb2c", option = "flipbookr",     value = "flipbookr", label = structure("flipbookr", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta paquetería sirve para mostrar código incremental.", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a453cad", option = "learnr",     value = "learnr", label = structure("learnr", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("¡Correcto!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Confirmar", html = TRUE, class = c("html", "character")), try_again = structure("Intenta de nuevo", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡Felicidades, vas al camino del éxito!", html = TRUE, class = c("html", "character")), try_again = structure("Tú puedes mejorar", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz1-answer", question = "quiz1"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 1784757198.16891, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -843,19 +845,19 @@ output$`tutorial-exercise-muestra-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2", question = structure("¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_8ba7c43",     option = "incorrect", value = "incorrect", label = structure("incorrect", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("No sabes. Este sirve para dar un mensaje cuando te equivocas", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9bf0fb3", option = "submit_button",     value = "submit_button", label = structure("submit_button", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("No sabes. Aquí cambias de mesnaje de confirmación", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ff1bbd0", option = "try_again_button",     value = "try_again_button", label = structure("try_again_button", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("¡Maravillos@ estudiante!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Yo sé que sé", html = TRUE, class = c("html", "character")), try_again = structure("Acuérdate de mí", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡Sí que has puesto atención!", html = TRUE, class = c("html", "character")), try_again = structure("Vuelve a leer la sección de parámetros", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz2-answer", question = "quiz2"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = TRUE, allow_retry = TRUE,     seed = 1901126363.61472, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2", question = structure("¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_4e621a4",     option = "incorrect", value = "incorrect", label = structure("incorrect", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("No sabes. Este sirve para dar un mensaje cuando te equivocas", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_27d030", option = "submit_button",     value = "submit_button", label = structure("submit_button", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("No sabes. Aquí cambias de mesnaje de confirmación", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e008d4f", option = "try_again_button",     value = "try_again_button", label = structure("try_again_button", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("¡Maravillos@ estudiante!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Yo sé que sé", html = TRUE, class = c("html", "character")), try_again = structure("Acuérdate de mí", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡Sí que has puesto atención!", html = TRUE, class = c("html", "character")), try_again = structure("Vuelve a leer la sección de parámetros", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz2-answer", question = "quiz2"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = TRUE, allow_retry = TRUE,     seed = 1346286619.37309, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "quiz3-1", question = structure("¿Cuáles son los parámetros de answer?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_a0a3380",     option = "text", value = "text", label = structure("text", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a485ac7",     option = "correct", value = "correct", label = structure("correct", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bbd042b",     option = "message", value = "message", label = structure("message", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Yo sé que sé", html = TRUE, class = c("html", "character")), try_again = structure("Intenta de nuevo", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡Muy bien!", html = TRUE, class = c("html", "character")), try_again = structure("A lo mejor no leiste bien la pregunta", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz3-1-answer", question = "quiz3-1"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Cuáles son los parámetros de answer?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 114055153.946889, options = list()), class = c("learnr_checkbox", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "quiz3-1", question = structure("¿Cuáles son los parámetros de answer?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_fd41122",     option = "text", value = "text", label = structure("text", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_66724c",     option = "correct", value = "correct", label = structure("correct", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9f57c00",     option = "message", value = "message", label = structure("message", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Yo sé que sé", html = TRUE, class = c("html", "character")), try_again = structure("Intenta de nuevo", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡Muy bien!", html = TRUE, class = c("html", "character")), try_again = structure("A lo mejor no leiste bien la pregunta", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz3-1-answer", question = "quiz3-1"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Cuáles son los parámetros de answer?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 786961545.633542, options = list()), class = c("learnr_checkbox", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz3-2", question = structure("¿Qué función se usa para armar un cuestionario?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_19933ff",     option = "quiz", value = "quiz", label = structure("quiz", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("Vas por buen camino", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fa55aa2", option = "questions",     value = "questions", label = structure("questions", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta función no existe en learnr", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_14e4599", option = "quizes",     value = "quizes", label = structure("quizes", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta función no existe en learnr", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Yo sé que sé", html = TRUE, class = c("html", "character")), try_again = structure("Date otra oportunidad", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Sigue adelante", html = TRUE, class = c("html", "character")), try_again = structure("Intenta de nuevo", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz3-2-answer", question = "quiz3-2"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Qué función se usa para armar un cuestionario?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 211788719.401378, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz3-2", question = structure("¿Qué función se usa para armar un cuestionario?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_84afa7e",     option = "quiz", value = "quiz", label = structure("quiz", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("Vas por buen camino", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5b4260c", option = "questions",     value = "questions", label = structure("questions", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta función no existe en learnr", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3354570", option = "quizes",     value = "quizes", label = structure("quizes", html = TRUE, class = c("html",     "character")), correct = FALSE, message = structure("Esta función no existe en learnr", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Yo sé que sé", html = TRUE, class = c("html", "character")), try_again = structure("Date otra oportunidad", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Sigue adelante", html = TRUE, class = c("html", "character")), try_again = structure("Intenta de nuevo", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz3-2-answer", question = "quiz3-2"), loading = structure("<strong>Loading:<\u002fstrong> \n¿Qué función se usa para armar un cuestionario?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 446376317.29214, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz4", question = structure("¿A qué distribución corresponde la siguiente función de densidad? \\(f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}\\)", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_7b07c13",     option = "Gaussiana", value = "Gaussiana", label = structure("Gaussiana", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f0bb31a",     option = "Normal", value = "Normal", label = structure("Normal", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Confía en tí", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡¿Eres Gauss!?", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz4-answer", question = "quiz4"), loading = structure("<strong>Loading:<\u002fstrong> \n¿A qué distribución corresponde la siguiente función de densidad? \\(f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}\\)\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 321476021.350301, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz4", question = structure("¿A qué distribución corresponde la siguiente función de densidad? \\(f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}\\)", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_cac26b5",     option = "Gaussiana", value = "Gaussiana", label = structure("Gaussiana", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_734de61",     option = "Normal", value = "Normal", label = structure("Normal", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Confía en tí", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("¡¿Eres Gauss!?", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "quiz4-answer", question = "quiz4"), loading = structure("<strong>Loading:<\u002fstrong> \n¿A qué distribución corresponde la siguiente función de densidad? \\(f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}\\)\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 1078632277.99772, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">
