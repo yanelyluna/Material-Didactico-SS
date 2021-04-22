@@ -201,13 +201,22 @@ code {
 
 </style>
 ```
-## Crear un tutorial interactivo
+## Introducción
 
-### Instalar `learnr`
+### Objetivo de este tutorial
 
-La paquetería `learnr` sirve para crear tutoriales interactivos como este. Pueden incluir texto, imágenes, link, y código entre otras cosas que ya incluye un Rmarkdown pero además se puede editar y ejecutar código dentro del mismo archivo. Un ejemplo del tipo de ejercicios que se pueden incluir es este:
+El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜) interactivo en R usando la paquetería `learnr`. Esta paquetería consta de funciones que permiten modificar un [archivo .Rmd](https://tutorialesmg.netlify.app/r-markdown) para incluir cuestionarios, ejercicios de código entre otras cosas.
 
-```{r quiz1}
+### Esquema de este tutorial
+
+Aquí va el diagrama.
+
+### Primeros pasos
+
+![](https://www.youtube.com/watch?v=EBAvQkP9Kyc)
+
+```{r cuestionario1}
+quiz(
   question(
     text = "¿Qué paquetería se requiere para crear un tutorial interactivo en RStudio?",
     allow_retry=TRUE,
@@ -218,10 +227,38 @@ La paquetería `learnr` sirve para crear tutoriales interactivos como este. Pued
     try_again = "Tú puedes mejorar",
     submit_button = "Confirmar",
     try_again_button = "Intenta de nuevo"
-  )
+  ),
+  question(
+    text = "¿Qué necesitas para crear un tutorial interactivo?",
+    allow_retry=TRUE,
+    answer("Determinar los objetivos del tutorial",correct=TRUE),
+    answer("La paquetería learnr",correct=TRUE),
+    answer("Saber matemáticas"),
+    correct = "¡Felicidades!",
+    try_again = "Tú puedes mejorar",
+    submit_button = "Confirmar",
+    try_again_button = "Intenta de nuevo"
+  ),
+  caption = "Cuestionario"
+)
+
 ```
 
-Para instalar: `install.packages("learnr")`.
+## Crear un tutorial interactivo
+
+### Instalar y cargar `learnr`
+
+Usa este comando `install.packages("learnr")` en tu consola de R/RStudio para instalar el paquete `learnr`.
+
+Ingresa el comando para cargar la paquetería dentro del archivo de tu tutorial.
+
+```{r ej1, exercise=TRUE,exercise.cap="Cargar learnr"}
+
+```
+
+```{r ej1-solution}
+library(learnr)
+```
 
 ### Crear un tutorial
 
@@ -251,17 +288,7 @@ Para instalar: `install.packages("learnr")`.
     description: "Esto es un tutorial de learnr para aprender a usar learnr."
     ---
 
-## Modificar un tutorial
-
-### Incluir imágenes
-
-Para mostrar imágenes dentro del tutorial, debe crearse una carpeta dentro del directorio del tutorial con el nombre **images** y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta:
-
-`![Mi imagen](images/mi_imagen.png)`
-
-También se pueden incluir imágenes de internet:
-
-`![Imagen](https://link-a-la-imagen)`
+## Ejercicios de código
 
 ### Ejercicios de código
 
@@ -271,74 +298,6 @@ Para hacer interactivo el tutorial se pueden incluir secciones en las que el usu
 {r ejercicio, exercise=TRUE}
 #Aquí puedes ingresar código de R y ejecutarlo.
 ```
-
-Para más información ve a la sección [Personalizar ejercicios de código](#PEC)
-
-### Quiz
-
-Podemos incluir preguntas de opción múltiple con la siguiente estructura:
-
-```{r,echo=TRUE,eval=FALSE}
-{r quiz}
-quiz(
-  question("Aquí escribes la pregunta",
-    answer("Opción 1"),
-    answer("Opción 2"),
-    answer("Opción correcta", correct = TRUE),
-  ),
-  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
-    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
-    answer("Una opción incorrecta", message = "Mensaje adicional"),
-    answer("Otra opción incorrecta"),
-    answer("Otra opción correcta", correct = TRUE)
-  )
-)
-```
-
-### Personalizar el diseño del tutorial
-
-De manera simple, podemos hacer que el tutorial se vea con estilo personal poniendo en el encabezado YAML `theme: "default"`, donde default se puede cambiar por alguno de los temas predetirminados, siguientes:
-
-|              |              |               |
-|:------------:|:------------:|:-------------:|
-| `"default"`  | `"readable"` |   `"paper"`   |
-| `"cerulean"` | `"spacelab"` | `"sandstone"` |
-| `"journal"`  |  `"united"`  |  `"simplex"`  |
-|  `"flatly"`  |  `"cosmo"`   |   `"yeti"`    |
-|  `"darkly"`  |  `"lumen"`   |               |
-
-### Avance progresivo
-
-Para mostrar los subtópicos del tutorial (aquellos que tienen \#\#\#) uno a la vez dando click al botón **Continue** para avanzar, tenemos dos opciones:
-
--   Aplicarlo a todo el documento activando la opción `progressive: true` en el encabezado YAML.
-
-        ---
-        title: "Hello, Tutorial!"
-        output: 
-          learnr::tutorial:
-            progressive: true
-        runtime: shiny_prerendered
-        --- 
-
--   Aplicarlo solo a algunos subtópicos agregando `{data-progressive=TRUE}` adelante de cada encabezado de tema (con \#\# ) que queremos revelar de manera progresiva.
-
-        ## Tema {data-progressive=TRUE}
-
-Una vez activada la opción `progressive` no podremos avanzar en el tutorial sin contestar los ejercicios de cada sección. Para permitir el avance sin contestar los ejercicios, podemos agregar `allow_skip: true` en el encabezado YAML.
-
-    ---
-    title: "Hello, Tutorial!"
-    output: 
-      learnr::tutorial:
-        progressive: true
-        allow_skip: true
-    runtime: shiny_prerendered
-    --- 
-
-Para solo permitir avanzar en algunas secciones y no en otras sin contestar, podemos especificar`{data-allow-skip=TRUE}` o `{data-allow-skip=FALSE}` en cada tema.
-
-## Personalizar ejercicios de código {#PEC}
 
 ### Opciones del chunk
 
@@ -557,7 +516,30 @@ sqrt(30)
 sqrt(30)
 ```
 
-## Personalizar los quiz
+## Cuestionarios
+
+### Preguntas
+
+Podemos incluir preguntas de opción múltiple con la siguiente estructura:
+
+```{r,echo=TRUE,eval=FALSE}
+{r quiz}
+quiz(
+  question("Aquí escribes la pregunta",
+    answer("Opción 1"),
+    answer("Opción 2"),
+    answer("Opción correcta", correct = TRUE),
+  ),
+  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
+    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
+    answer("Una opción incorrecta", message = "Mensaje adicional"),
+    answer("Otra opción incorrecta"),
+    answer("Otra opción correcta", correct = TRUE)
+  )
+)
+```
+
+### 
 
 Para poder hacer una pregunta de opción múltiple (que incluso tenga múltiples respuestas) usamos la función `question` para definir tanto la pregunta como su(s) posible(s) respuesta(s)*.*
 
@@ -658,7 +640,92 @@ question(
 )
 ```
 
-## Formatos del tutorial
+## Incluir elementos externos
+
+### Imágenes
+
+Debe crearse una carpeta dentro del directorio del tutorial con el nombre **images** y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta. Por ejemplo:
+
+`![Mi imagen](images/mi_imagen.png)`
+
+También se pueden incluir imágenes (gifs) de internet:
+
+`![Imagen](https://link-a-la-imagen)`
+
+![](https://media.tenor.com/images/36f456475f98b4770b4e9ad1016934f1/tenor.gif){style="figure-align: center"}
+
+### Videos
+
+Se usa la misma sintáxis que para incluir una imagen de internet pero ahora escribimos el link al video. Solo pueden incluirse links a videos de YouTube o vimeo.
+
+El video se reproducirá dentro del mismo archivo del tutorial (no te redirige a otra página).
+
+### Links
+
+Si deseas añadir material de consulta que se encuentra en internet, puedes incluir referencias dentro del tutorial que te lleven a dichas páginas web.
+
+`[Texto de la referencia](https://link-a-la-pagina-de-referencia)`
+
+```{r cuestionario2}
+question(text="¿Cuál de los siguientes comandos sirve para añadir un video dentro del tutorial?",
+         answer("`![video](images/mi_imagen.png)`"),
+         answer("`![video](https://link-al-video`)",correct=TRUE),
+         answer("`https://link-al-video`"),
+         allow_retry=TRUE,
+         correct = "¡Muy bien!",
+        try_again = "Te estás confundiendo",
+        submit_button = "Confirmar",
+        try_again_button = "Intentalo de nuevo")
+```
+
+## Personalizar el diseño del tutorial
+
+### Temas
+
+De manera simple, podemos hacer que el tutorial se vea con estilo personal poniendo en el encabezado YAML `theme: "default"`, donde default se puede cambiar por alguno de los temas predetirminados, siguientes:
+
+|              |              |               |
+|:------------:|:------------:|:-------------:|
+| `"default"`  | `"readable"` |   `"paper"`   |
+| `"cerulean"` | `"spacelab"` | `"sandstone"` |
+| `"journal"`  |  `"united"`  |  `"simplex"`  |
+|  `"flatly"`  |  `"cosmo"`   |   `"yeti"`    |
+|  `"darkly"`  |  `"lumen"`   |               |
+
+### CSS
+
+### Avance progresivo
+
+Para mostrar los subtópicos del tutorial (aquellos que tienen \#\#\#) uno a la vez dando click al botón **Continue** para avanzar, tenemos dos opciones:
+
+-   Aplicarlo a todo el documento activando la opción `progressive: true` en el encabezado YAML.
+
+        ---
+        title: "Hello, Tutorial!"
+        output: 
+          learnr::tutorial:
+            progressive: true
+        runtime: shiny_prerendered
+        --- 
+
+-   Aplicarlo solo a algunos subtópicos agregando `{data-progressive=TRUE}` adelante de cada encabezado de tema (con \#\# ) que queremos revelar de manera progresiva.
+
+        ## Tema {data-progressive=TRUE}
+
+Una vez activada la opción `progressive` no podremos avanzar en el tutorial sin contestar los ejercicios de cada sección. Para permitir el avance sin contestar los ejercicios, podemos agregar `allow_skip: true` en el encabezado YAML.
+
+    ---
+    title: "Hello, Tutorial!"
+    output: 
+      learnr::tutorial:
+        progressive: true
+        allow_skip: true
+    runtime: shiny_prerendered
+    --- 
+
+Para solo permitir avanzar en algunas secciones y no en otras sin contestar, podemos especificar`{data-allow-skip=TRUE}` o `{data-allow-skip=FALSE}` en cada tema.
+
+### Otro formato del tutorial
 
 Es posible incluir ejercicios en otros tipos de documentos además de un tutorial (`learnr::tutorial`) como dentro de una presentación tipo `slidy`. Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML:
 
