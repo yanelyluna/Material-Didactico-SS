@@ -31,7 +31,7 @@ div {
 /***********************/
 /*Títulos ## y autoría F6EACD*/
 /***********************/
-h2 {
+h1, h2 {
   color: #6D4101;
   padding: .4em; /*es decir el 60 por ciento del tamaño de la letra*/
   font-family: "Courier New", monospace;
@@ -180,7 +180,6 @@ code {
 ## Introducción
 
 ### Objetivo de este tutorial
-<<<<<<< HEAD
 
 El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜) interactivo en R usando la paquetería `learnr`. Esta paquetería consta de funciones que permiten modificar un [archivo .Rmd](https://tutorialesmg.netlify.app/r-markdown) para incluir cuestionarios, ejercicios de código entre otras cosas.
 
@@ -188,15 +187,6 @@ El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜)
 
 Aquí va el diagrama.
 
-=======
-
-El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜) interactivo en R usando la paquetería `learnr`. Esta paquetería consta de funciones que permiten modificar un [archivo .Rmd](https://tutorialesmg.netlify.app/r-markdown) para incluir cuestionarios, ejercicios de código entre otras cosas.
-
-### Esquema de este tutorial
-
-Aquí va el diagrama.
-
->>>>>>> 0cc1fccbd873dbfd8a3893a087f721e2f8f80d7b
 ### Primeros pasos
 
 ![](https://www.youtube.com/watch?v=EBAvQkP9Kyc)
@@ -227,10 +217,7 @@ quiz(
   ),
   caption = "Cuestionario"
 )
-<<<<<<< HEAD
-=======
 
->>>>>>> 0cc1fccbd873dbfd8a3893a087f721e2f8f80d7b
 ```
 
 ## Crear un tutorial interactivo
@@ -242,10 +229,7 @@ Usa este comando `install.packages("learnr")` en tu consola de R/RStudio para in
 Ingresa el comando para cargar la paquetería dentro del archivo de tu tutorial.
 
 ```{r ej1, exercise=TRUE,exercise.cap="Cargar learnr"}
-<<<<<<< HEAD
-=======
 
->>>>>>> 0cc1fccbd873dbfd8a3893a087f721e2f8f80d7b
 ```
 
 ```{r ej1-solution}
@@ -293,13 +277,17 @@ Para hacer interactivo el tutorial se pueden incluir secciones en las que el usu
 
 ### Opciones del chunk
 
-Veamos algunas formas de personalizar estos ejercicios modificando las **opciones del chunk** de código:
+Las opciones de código chunk no se muestran en el tutorial (y en general no se muestran en los Rmd).
 
     ```{r nombre_del_chunk, diversas_opciones_que_mostraremos}
     # Tu código
     ```
 
-Las opciones de código chunk no se muestran en el tutorial (y en general no se muestran en los Rmd).
+Ejemplo:
+
+![](images/learnr16.png)
+
+Veamos para qué sirven estas opciones en la siguiente tabla:
 
 +-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
 | Opción                      | Descripción                                                                                                                                 | Resultado                                       |
@@ -512,17 +500,21 @@ sqrt(30)
 
 ### Preguntas
 
-Podemos incluir preguntas de opción múltiple con la siguiente estructura:
+Además de los ejercicios de código, puedes incluir preguntas de opción múltiple con la siguiente estructura:
+
+**Código**
 
 ```{r,echo=TRUE,eval=FALSE}
 {r quiz}
 quiz(
   question("Aquí escribes la pregunta",
+    allow_retry = TRUE, #Que lo vuelva a intentar
     answer("Opción 1"),
     answer("Opción 2"),
-    answer("Opción correcta", correct = TRUE),
+    answer("Opción correcta", correct = TRUE)
   ),
   question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
+    allow_retry = TRUE,
     answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
     answer("Una opción incorrecta", message = "Mensaje adicional"),
     answer("Otra opción incorrecta"),
@@ -531,9 +523,25 @@ quiz(
 )
 ```
 
-### 
+**Resultado**
 
-Para poder hacer una pregunta de opción múltiple (que incluso tenga múltiples respuestas) usamos la función `question` para definir tanto la pregunta como su(s) posible(s) respuesta(s)*.*
+```{r cuestionario6}
+quiz(
+  question(text = "Aquí escribes la pregunta",
+    allow_retry = TRUE,
+    answer("Opción 1"),
+    answer("Opción 2"),
+    answer("Opción correcta", correct = TRUE)
+  ),
+  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
+    allow_retry = TRUE,
+    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
+    answer("Una opción incorrecta", message = "Mensaje adicional"),
+    answer("Otra opción incorrecta"),
+    answer("Otra opción correcta", correct = TRUE)),
+  caption = "Ejemplo"
+)
+```
 
 ### Parámetros de `question`
 
@@ -563,9 +571,7 @@ Para poder hacer una pregunta de opción múltiple (que incluso tenga múltiples
 
 -   `random_answer_order = TRUE` es un parámetro que permite cambiar el orden de las opciones de respuesta cada que vuleves a realizar el tutorial. **Es decir dar click en `Start over`**
 
-**Ejemplo**
-
-```{r quiz2, echo = TRUE}
+```{r cuestionario7, echo = TRUE}
   question(
     text = "¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?",
     allow_retry=TRUE,
@@ -582,9 +588,7 @@ Para poder hacer una pregunta de opción múltiple (que incluso tenga múltiples
 
 Si queremos hacer múltiples preguntas usamos la función `quiz` que tenga por parámetros las diferentes `quiestion`s.
 
-**Ejemplo:**
-
-```{r quiz3, echo=TRUE}
+```{r cuestionario8, echo=TRUE}
 quiz( 
   question(
     text = "¿Cuáles son los parámetros de answer?",
@@ -608,7 +612,7 @@ quiz(
     submit_button = "Yo sé que sé",
     try_again_button = "Date otra oportunidad"
   ),
-caption = "Cuestionario"
+caption = "¿Aprendiste?"
 )
 ```
 
@@ -684,7 +688,79 @@ De manera simple, podemos hacer que el tutorial se vea con estilo personal ponie
 |  `"flatly"`  |  `"cosmo"`   |   `"yeti"`    |
 |  `"darkly"`  |  `"lumen"`   |               |
 
+```{r cuestionario3}
+question(
+  text = "¿Cuál es la forma correcta de cambiar el tema del tutorial a `flatly`?",
+  allow_retry = TRUE,
+  answer("![](images/learnr11.png)", correct = TRUE),
+  answer("![](images/learnr12.png)"),
+  answer("![](images/learnr13.png)"),
+    correct = "¡Perfecto!",
+    try_again = "Intenta de nuevo",
+    submit_button = "Lo lograré",
+    try_again_button = "Quiero salir bien",
+    random_answer_order = TRUE
+)
+```
+
 ### CSS
+
+Si quieres un diseño distinto (y propio) a los temas predeterminados (de la sección anterior) puedes crear un archivo o sección CSS para el tutorial.
+
+Para ello considera el siguiente esquema que ayudará a entender la sintáxis que veremos más adelante:
+
+![](images/learnr14.png){width="694"}
+
+CSS significa Cascading Style Sheets y es un lenguaje de hojas de estilo en cascada que separa los elementos del tutorial para que puedas modificarlos.
+
+Los comandos principales para hacer estos cambios son:
+
+-   `color` color de la letra
+
+-   `font-family` tipo de letra
+
+-   `font-size` tamaño de la letra
+
+-   `background-color` color de fondo
+
+Un ejemplo para cambiar el body (ver imagen) es el siguiente:
+
+![](images/learnr15.png)
+
+Nota que el color lo pusimos en formato [hexadecimal](https://htmlcolorcodes.com/es/).
+
+**Ejercicio.** Completa el siguiente código para cambiar el tipo de letra del nombre de los autores (Arial, Verdana, Helvetica [o la que se pueda](https://www.w3schools.com/css/css_font.asp)).
+
+```{r ej2, exercise = TRUE, exercise.cap = "Mi primer CSS"}
+__ {
+  color: #8A6C0C;
+  font-family: ______;
+  font-size: 18px;
+}
+
+#Como esta no es sintáxis de R, habrá un error al dar click en "Run Code"
+```
+
+Estas especificaones se pueden realizar en un archivo CSS o al inicio del tutorial.
+
+Si lo pones al inicio del tutorial (no en un chunk de código) necesitarás un esquema como este:
+
+    <style>
+
+        h2 {
+          color: #6D4101;
+          font-size: 35px;
+        }
+        body {
+          font-family: Verdana, Helvetica, sans-serif;
+          font-size: 16;
+          background-color: #EEF5F9;
+          color: #000000;
+        }
+        
+    </style>
+
+Que se pone después del encabezado YAML.
 
 ### Avance progresivo
 
@@ -704,6 +780,20 @@ Para mostrar los subtópicos del tutorial (aquellos que tienen \#\#\#) uno a la 
 
         ## Tema {data-progressive=TRUE}
 
+```{r cuestionario4}
+question(
+  text = "`data-progressive=TRUE` sirve para revelar el contenido de los subtitulos poco a poco...",
+  allow_retry = TRUE,
+  answer("En todo el documento"),
+  answer("En algún tema del documento", correct = TRUE),
+  answer("En todos los temas subsecuentes a esta especificación"),
+    correct = "¡Perfecto!",
+    try_again = "Intenta de nuevo",
+    submit_button = "Lo lograré",
+    try_again_button = "Quiero salir bien"
+)
+```
+
 Una vez activada la opción `progressive` no podremos avanzar en el tutorial sin contestar los ejercicios de cada sección. Para permitir el avance sin contestar los ejercicios, podemos agregar `allow_skip: true` en el encabezado YAML.
 
     ---
@@ -716,6 +806,20 @@ Una vez activada la opción `progressive` no podremos avanzar en el tutorial sin
     --- 
 
 Para solo permitir avanzar en algunas secciones y no en otras sin contestar, podemos especificar`{data-allow-skip=TRUE}` o `{data-allow-skip=FALSE}` en cada tema.
+
+```{r cuestionario5}
+question(
+  text = "¿Con qué comando se permite al usuario avanzar en el tutorial sin haber contestado los ejercicios? (en todo el documento)",
+  allow_retry = TRUE,
+  answer("data-allow-skip=TRUE"),
+  answer("allow_skip: false"),
+  answer("allow_skip: true", correct = TRUE),
+    correct = "¡Perfecto!",
+    try_again = "Intenta de nuevo",
+    submit_button = "Lo lograré",
+    try_again_button = "Quiero salir bien"
+)
+```
 
 ### Otro formato del tutorial
 
