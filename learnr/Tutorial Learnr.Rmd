@@ -180,6 +180,7 @@ code {
 ## Introducción
 
 ### Objetivo de este tutorial
+<<<<<<< HEAD
 
 El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜) interactivo en R usando la paquetería `learnr`. Esta paquetería consta de funciones que permiten modificar un [archivo .Rmd](https://tutorialesmg.netlify.app/r-markdown) para incluir cuestionarios, ejercicios de código entre otras cosas.
 
@@ -187,6 +188,15 @@ El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜)
 
 Aquí va el diagrama.
 
+=======
+
+El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜) interactivo en R usando la paquetería `learnr`. Esta paquetería consta de funciones que permiten modificar un [archivo .Rmd](https://tutorialesmg.netlify.app/r-markdown) para incluir cuestionarios, ejercicios de código entre otras cosas.
+
+### Esquema de este tutorial
+
+Aquí va el diagrama.
+
+>>>>>>> 0cc1fccbd873dbfd8a3893a087f721e2f8f80d7b
 ### Primeros pasos
 
 ![](https://www.youtube.com/watch?v=EBAvQkP9Kyc)
@@ -217,6 +227,10 @@ quiz(
   ),
   caption = "Cuestionario"
 )
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0cc1fccbd873dbfd8a3893a087f721e2f8f80d7b
 ```
 
 ## Crear un tutorial interactivo
@@ -228,6 +242,10 @@ Usa este comando `install.packages("learnr")` en tu consola de R/RStudio para in
 Ingresa el comando para cargar la paquetería dentro del archivo de tu tutorial.
 
 ```{r ej1, exercise=TRUE,exercise.cap="Cargar learnr"}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0cc1fccbd873dbfd8a3893a087f721e2f8f80d7b
 ```
 
 ```{r ej1-solution}
