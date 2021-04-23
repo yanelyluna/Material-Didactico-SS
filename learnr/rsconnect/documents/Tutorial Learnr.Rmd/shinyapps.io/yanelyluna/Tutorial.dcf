@@ -1,0 +1,14 @@
+name: Tutorial
+title: Tutorial
+username:
+account: yanelyluna
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4020941
+bundleId: 4510907
+url: https://yanelyluna.shinyapps.io/Tutorial/
+when: 1619202322.64006
+lastSyncTime: 1619202322.64006
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Ejemplo.html|slidy.html|slidy.Rmd|tabla_exercise.Rmd

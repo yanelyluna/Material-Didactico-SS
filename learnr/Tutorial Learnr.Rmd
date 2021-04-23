@@ -16,7 +16,6 @@ description: "Este es un tutorial de learnr para aprender a usar learnr."
 ```{r setup, include=FALSE}
 #Librerías a usar
 library(learnr)
-library(checkr)
 library(ggplot2)
 library(palmerpenguins)
 library(DiagrammeR)
