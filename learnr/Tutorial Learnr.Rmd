@@ -19,6 +19,7 @@ library(learnr)
 library(checkr)
 library(ggplot2)
 library(palmerpenguins)
+library(DiagrammeR)
 #Modificaciónes para los chunks
 knitr::opts_chunk$set(echo = FALSE)
 #Modificaciones en el tutorial
@@ -186,7 +187,47 @@ El objetivo de este tutorial es que aprendas a generar tu propio tutorial (😜)
 
 ### Esquema de este tutorial
 
-Aquí va el diagrama.
+```{r, echo=FALSE, eval = FALSE}
+DiagrammeR("
+graph LR;
+  A[learnr] --> B[Imágenes y Videos];
+  A --> D[Cuestionarios];
+  A --> C[Ejercicios de código];
+  A --> E[Diseño del tutorial];
+  C --> F[Opciones de Código];
+  C --> H[solution y hints];
+  F --> I[exercise.cap];
+  F --> J[exercise.completion];
+  F --> K[exercise.setup];
+  D --> L[quiz];
+  D --> M[question];
+  D --> N[answer];
+  E --> O[CSS];
+  E --> P[theme];
+  style A fill:#EAE38F, stroke:#A59800;  
+  
+  style B fill:#FCF3CF, stroke:#F0B27A; 
+  style C fill:#73C6B6, stroke:#138D75;
+  style D fill:#C39BD3, stroke:#A569BD;  
+  style E fill:#AED6F1, stroke:#5499C7;
+  
+  style F fill:#A9DFBF, stroke:#82E0AA;  
+  style H fill:#A9DFBF, stroke:#82E0AA; 
+  
+  style L fill:#E8DAEF, stroke:#D2B4DE;  
+  style M fill:#E8DAEF, stroke:#D2B4DE;
+  style N fill:#E8DAEF, stroke:#D2B4DE;  
+  
+  style O fill:#EBF5FB, stroke:#7FB3D5;
+  style P fill:#EBF5FB, stroke:#7FB3D5;
+  
+  style I fill:#D0ECE7, stroke:#73C6B6;  
+  style J fill:#D0ECE7, stroke:#73C6B6;
+  style K fill:#D0ECE7, stroke:#73C6B6;
+")
+```
+
+![](images/esquema.png)
 
 ### Primeros pasos
 
@@ -365,9 +406,8 @@ El código y los resultados de un chunk de ejercicio no estarán disponible para
     grafica_pinguinos
     ```
 
-```{=html}
 <!-- -->
-```
+
 2.  Agrega el tema `minimal` al gráfico anterior.
 
     ```{r ejercicio7_2, exercise=TRUE, exercise.setup="respuesta",message=FALSE,warning=FALSE}
