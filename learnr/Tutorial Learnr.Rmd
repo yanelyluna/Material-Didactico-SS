@@ -18,6 +18,7 @@ description: "Este es un tutorial de learnr para aprender a usar learnr."
 library(learnr)
 library(checkr)
 library(ggplot2)
+library(palmerpenguins)
 #Modificaciónes para los chunks
 knitr::opts_chunk$set(echo = FALSE)
 #Modificaciones en el tutorial
@@ -289,41 +290,97 @@ Ejemplo:
 
 Veamos para qué sirven estas opciones en la siguiente tabla:
 
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| Opción                      | Descripción                                                                                                                                 | Resultado                                       |
-+:============================+:============================================================================================================================================+=================================================+
-| `exercise.lines = n`        | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.                                   | ![](images/learnr5.png){width="203"}            |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.cap`              | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`                                   | ![](images/learnr6.png){width="201"}            |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.eval`             | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera.                            | ![](images/learnr7.png){width="201"}            |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.timelimit`        | Tiempo límite de ejecución del código en segundos. (Si el código tarda en ejecutar más del tiempo límite, aparece un error).                | ![](images/learnr8.png){width="208"}            |
-|                             |                                                                                                                                             |                                                 |
-|                             | **No significa** que el usuario tenga ese tiempo para completar el código.                                                                  |                                                 |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.checker`          | NO SABEMOS QUÉ ONDA                                                                                                                         |                                                 |
-|                             |                                                                                                                                             |                                                 |
-| `exercise.error.check.code` | El paquete `gradethis` no se puede instalar en nuestra versión de RStudio.                                                                  |                                                 |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.completion`       | Es `TRUE` por defecto y permite que el usuario vea los posibles parámetros que requiere una función.                                        | ![](images/learnr9.png){width="208"}            |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.diagnostics`      | Es `TRUE` por defecto y permite que el usuario vea los posibles errores que comete al escribir código.                                      | Ve ejemplo en la sección: **Ayudar al usuario** |
-|                             |                                                                                                                                             |                                                 |
-|                             | ***Poner referencias dentro del tutorial no funciona***                                                                                     |                                                 |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.startover`        | Por defecto es `TRUE`. Indica si queremos que aparezca un botón que permita reiniciar el ejercicio.                                         | ![](images/learnr10.png){width="258"}           |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.warn_invisible`   | NO SABEMOS cómo se usa ni para qué sirve.                                                                                                   |                                                 |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.reveal_solution`  | Por defecto es `TRUE` lo cual implica que si se tiene una solución, ésta podrá verse reflejada (ver los ejercicios con hints y soluciones). | **NO SIRVE**                                    |
-|                             |                                                                                                                                             |                                                 |
-|                             | A lo mejor necesitas la solución para **calificar** pero no quieres que el usuario la vea.                                                  |                                                 |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| Opción                 | Descripción                                                                                                                  | Resultado                                       |
++:=======================+:=============================================================================================================================+=================================================+
+| `exercise.lines = n`   | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.                    | ![](images/learnr5.png){width="203"}            |
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| `exercise.cap`         | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`                    | ![](images/learnr6.png){width="201"}            |
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| `exercise.eval`        | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera.             | ![](images/learnr7.png){width="201"}            |
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| `exercise.timelimit`   | Tiempo límite de ejecución del código en segundos. (Si el código tarda en ejecutar más del tiempo límite, aparece un error). | ![](images/learnr8.png){width="208"}            |
+|                        |                                                                                                                              |                                                 |
+|                        | **No significa** que el usuario tenga ese tiempo para completar el código.                                                   |                                                 |
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| `exercise.completion`  | Es `TRUE` por defecto y permite que el usuario vea los posibles parámetros que requiere una función.                         | ![](images/learnr9.png){width="208"}            |
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| `exercise.diagnostics` | Es `TRUE` por defecto y permite que el usuario vea los posibles errores que comete al escribir código.                       | Ve ejemplo en la sección: **Ayudar al usuario** |
+|                        |                                                                                                                              |                                                 |
+|                        | ***Poner referencias dentro del tutorial no funciona***                                                                      |                                                 |
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| `exercise.startover`   | Por defecto es `TRUE`. Indica si queremos que aparezca un botón que permita reiniciar el ejercicio.                          | ![](images/learnr10.png){width="258"}           |
++------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
 
-La función `tutorial_options()` puede usarse para especificar las opciones del chunk para todas los chunks del tutorial.
+La función `tutorial_options()` puede usarse para especificar las opciones del chunk para todas los chunks del tutorial. Esta configuración global puede especificarse en un chunk con nombre `setup` al inicio del tutorial. Es recomendable cargar todas las librerías que se requieran para el tutorial en dicho chunk.
 
 El código y los resultados de un chunk de ejercicio no estarán disponible para los demás chunks a menos que se especifíque, Una forma de hacer esto es usando la opción `exercise.setup="nombre-chunk-a-usar"`en el chunk de ejercicio en el que queremos usar el resultado previo. Podemos ir formando una cadena de resultados a usar de esta forma.
+
+**Ejemplo.**
+
+    {r respuesta}
+    grafica_pinguinos <- ggplot(data = penguins) +
+           aes(x = flipper_length_mm) +
+      geom_histogram(aes(fill = species),
+                     alpha = 0.5,
+                     position = "identity") 
+                     
+                    
+    1.
+
+    {r ejercicio7, exercise=TRUE, message=FALSE,warning=FALSE}
+    grafica_pinguinos <- ggplot(data = ______) +
+           aes(x = flipper_length_mm) +
+      geom_histogram(aes(fill = species),
+                     alpha = 0.5,
+                     position = "identity") +
+      labs(x = "Flipper length (mm)",
+           y = "Frequency",
+           title = "Penguin flipper lengths") + 
+      scale_fill_manual(values = c("darkorange","purple","cyan4"))
+      
+      grafica_pinguinos
+      
+    2. 
+
+    {r ejercicio7_2, exercise=TRUE, exercise.setup="respuesta"}
+    grafica_pinguinos + _____
+
+1.  Completa el siguiente código para generar una gráfica con los datos del data.frame `penguins`
+
+    ```{r respuesta}
+    grafica_pinguinos <- ggplot(data = penguins) +
+           aes(x = flipper_length_mm) +
+      geom_histogram(aes(fill = species),
+                     alpha = 0.5,
+                     position = "identity") 
+    ```
+
+    ```{r ejercicio7, exercise=TRUE, message=FALSE,warning=FALSE}
+    grafica_pinguinos <- ggplot(data = ____) +
+           aes(x = flipper_length_mm) +
+      geom_histogram(aes(fill = species),
+                     alpha = 0.5,
+                     position = "identity") 
+    grafica_pinguinos
+    ```
+
+```{=html}
+<!-- -->
+```
+2.  Agrega el tema `minimal` al gráfico anterior.
+
+    ```{r ejercicio7_2, exercise=TRUE, exercise.setup="respuesta",message=FALSE,warning=FALSE}
+    grafica_pinguinos + _____
+
+    ```
+
+```{r ejercicio7_2-solution}
+grafica_pinguinos  + theme_minimal()
+
+```
+
+*Notemos que la segunda parte del ejercicio va ligada a un chunk que contiene la respuesta correcta y no al chunk de la parte 1 del ejercicio (que contiene la respuesta del usuario).* 😢
 
 ### Ejercicios con hints y soluciones {#syh}
 
@@ -421,7 +478,7 @@ ggplot(mtcars, aes(x=mpg,y=cyl)) +
 
 ### Reiniciar un ejercicio
 
-Esto se hace con la opción `exercise.star-over` en el chunk de código (por defecto es TRUE). El siguiente ejercicio NO se pued reiniciar (es decir `exercise.star-over = FALSE`)
+Esto se hace con la opción `exercise.star-over` en el chunk de código (por defecto es TRUE). El siguiente ejercicio NO se puede reiniciar (es decir `exercise.star-over = FALSE`)
 
     '''{r ejercicio4, exercise = TRUE, exercise.startover = FALSE}
 
@@ -461,39 +518,29 @@ function(
 mean(
 ```
 
-### Calificar NO SABEMOS
+### Examen sorpresa 🤨
 
-```{r}
-custom_checker <- function(label, user_code, solution_code, envir_result, evaluate_result, last_value) {
-  # this is a code check
-  if (is.null(envir_result)) {
-    if (is_bad_code(user_code, solution_code)) {
-      return(list(message = "I wasn't expecting that code", correct = FALSE))
-    }
-    return(list(message = "Nice code!", correct = TRUE))
-  }
-  # this is a fully evaluated chunk check
-  if (is_bad_result(last_value, solution_code)) {
-    return(list(message = "I wasn't expecting that result", correct = FALSE))
-  }
-  list(message = "Great job!", correct = TRUE, location = "append")
-}
-#tutorial_options(exercise.checker = custom_checker)
-```
+```{r cuestionario9}
+quiz(
+  question("¿Qué opción del chunk se usa para que aparezca el botón de `Start over` en cada ejercicio?",
+           answer("`exercise.diagnostics`",message="Esta opción es para advertirte sobre los errores de código en el editor."),
+           answer("`exercise.start-over`",correct=TRUE),
+           answer("`exercise.cap`",message="Esta opción te permite cambiar el título del ejercicio."),
+           allow_retry=TRUE,
+           correct = "¡Sí que has puesto atención!",
+           try_again = "Vuelve a leer la sección anterior",
+           submit_button = "Yo sé que sé",
+           try_again_button = "Inténtalo de nuevo "),
+  question("La opción `exercise.timelimit` sirve para limitar el tiempo que tiene el usuario para responder.",
+           answer("Verdadero"),
+           answer("Falso", correct=TRUE),
+           allow_retry=TRUE,
+           correct = "¡Sí que has puesto atención!",
+           try_again = "![](https://images.gr-assets.com/hostedimages/1512773227ra/24632217.gif)",
+           submit_button = "Yo sé que sé",
+           try_again_button = "Inténtalo de nuevo")
+)
 
-```{r muestra, exercise = TRUE, exercise.checker = custom_checker}
-# Agrega el 30 dentro de sqrt
-sqrt()
-```
-
-```{r muestra-solution, exercise.reveal_solution = FALSE}
-# Agrega el 30 dentro de sqrt
-sqrt(30)
-```
-
-```{r muestra-check}
-# Agrega el 30 dentro de sqrt
-sqrt(30)
 ```
 
 ## Cuestionarios
@@ -674,7 +721,7 @@ question(text="¿Cuál de los siguientes comandos sirve para añadir un video de
         try_again_button = "Intentalo de nuevo")
 ```
 
-## Personalizar el diseño del tutorial
+## Diseño del tutorial
 
 ### Temas
 
@@ -832,3 +879,15 @@ Es posible incluir ejercicios en otros tipos de documentos además de un tutoria
     # runtime: shiny_prerendered
 
 Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
+
+## ¿Una última pregunta?
+
+```{r cuestionario10}
+question("¿Usarás `learnr` después de revisar este tutorial?",
+         type="radio",
+         answer("¡Por supuesto!", correct=TRUE),
+         answer("¡Claro que sí!", correct=TRUE),
+         correct="![](https://media1.tenor.com/images/4869c336eb8589454f7dc3582d623eb5/tenor.gif?itemid=6247482)",
+         submit_button="Ya es lo último")
+
+```
