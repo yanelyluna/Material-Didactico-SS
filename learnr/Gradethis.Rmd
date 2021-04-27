@@ -9,7 +9,9 @@ library(learnr)
 library(gradethis)
 library(ggplot2)
 library(palmerpenguins)
+library(DiagrammeR)
 knitr::opts_chunk$set(echo = FALSE)
+gradethis::gradethis_setup(pass="¡Corecto!", fail="Incorrecto",allow_partial_matching=TRUE)
 ```
 
 ## `grade_this_code()`
@@ -26,13 +28,13 @@ Estamos probando la función `grade_this_code()`
 ```
 
 ```{r ejercicio1-check}
-gradethis::grade_this_code(correct = "Sabes leer", incorre = "No sabes nada")
+gradethis::grade_this_code()
 ```
 
 Este ejemplo nos hace ver que no es demasiado estricto con los espacios o el lugar donde se ponga la respuesta (dentro del ejercicio chunk)
 
 ```{r ejercicio2, exercise = TRUE, exercise.cap = "Usamos allow_partial_matching"}
-#Haz una muestra de 10 normales con media 3 y varianza 4
+#Haz una muestra de 10 normales con media 3 y varianza 2
 
 ```
 
@@ -41,7 +43,7 @@ rnorm(10, mean = 3, sd = 2)
 ```
 
 ```{r ejercicio2-check}
-gradethis::grade_this_code(correct = "Sabes leer", incorre = "No sabes nada", allow_partial_matching = TRUE)
+gradethis::grade_this_code(correct = "Sabes leer", incorrect = "No sabes nada", allow_partial_matching = TRUE)
 ```
 
 Nos aparece un mensaje de "error" cuando usamos `allow_partial_matching = TRUE` (si es que no escribimos bien algún caracter de la solution) pero no podemos hasta ahora modificar tal mensaje.
@@ -76,13 +78,14 @@ gradethis::grade_this_code(correct = "Felicidades", incorrect = "No felicidades"
 
 ## `grade_this()`
 
-```{r ejercicio4, exercise = TRUE, exercise.cap = "Con grade_this()"}
-#Obtener la media de la longitud de las alas de los pinguinos del dataset penguins
+La función `grade_this()` remplazó a la función `grade_result()`. Ambas evaluan solo el resultado del ejercicio con el resultado de la solución sin comparar el código. Sin embargo, `grade_this()` puede ser personalizada para definir lo que queremos evaluar en cada ejercicio.
 
+```{r ejercicio4, exercise = TRUE, exercise.cap = "Con grade_this()"}
+#Suma 2 + 24
 ```
 
 ```{r ejercicio4-solution}
-mean(penguins$flipper_length_mm, na.rm   = TRUE)
+2+24
 ```
 
 ```{r ejercicio4-check}
@@ -99,3 +102,16 @@ gradethis::grade_this(
 Al usuar `.result` hace referencia al resultado que se calcule en el chunk donde el usuario escribió.
 
 Por otro lado `.solution` considera lo que resulta del chunk-solution.
+```{r diagrama}
+DiagrammeR("
+A[gradethis] --> B[grade_this_code()];
+A --> C[grade_this()];
+B --> D[Correct];
+B --> E[Incorrect];
+B --> F[allow_partial_matching];
+C --> G[pass(), fail(), .result, .solution];
+
+")
+```
+
+
