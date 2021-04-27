@@ -1,0 +1,101 @@
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(palmerpenguins)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## `grade_this_code()`
+
+Estamos probando la función `grade_this_code()`
+
+```{r ejercicio1, exercise = TRUE, exercise.cap = "Usamos correct/incorrect"}
+#Suma 2 + 24
+
+```
+
+```{r ejercicio1-solution}
+2+24
+```
+
+```{r ejercicio1-check}
+gradethis::grade_this_code(correct = "Sabes leer", incorre = "No sabes nada")
+```
+
+Este ejemplo nos hace ver que no es demasiado estricto con los espacios o el lugar donde se ponga la respuesta (dentro del ejercicio chunk)
+
+```{r ejercicio2, exercise = TRUE, exercise.cap = "Usamos allow_partial_matching"}
+#Haz una muestra de 10 normales con media 3 y varianza 4
+
+```
+
+```{r ejercicio2-solution, exercise.reveal_solution = FALSE}
+rnorm(10, mean = 3, sd = 2)
+```
+
+```{r ejercicio2-check}
+gradethis::grade_this_code(correct = "Sabes leer", incorre = "No sabes nada", allow_partial_matching = TRUE)
+```
+
+Nos aparece un mensaje de "error" cuando usamos `allow_partial_matching = TRUE` (si es que no escribimos bien algún caracter de la solution) pero no podemos hasta ahora modificar tal mensaje.
+
+Aparece correcta la opción aun cuando dentro de la función (`rnorm`) no especificamos el nombre del argumento sino solo el valor que deseamos que tome.
+
+```{r ejercicio3, exercise = TRUE, exercise.cap = "Usando mock", exercise.lines = 8, message=FALSE, warning=FALSE}
+# Completa el sieguiente código con los datos de código:
+grafica_pinguinos <- ggplot(data = ____) +
+ aes(x = flipper_length_mm) +
+ geom_histogram(aes(fill = species),
+                     alpha = 0.5,
+                     position = "identity") 
+
+grafica_pinguinos
+```
+
+```{r ejercicio3-solution, exercise.reveal_solution = FALSE}
+# Completa el siguiente código:
+grafica_pinguinos <- ggplot(data = penguins) +
+ aes(x = flipper_length_mm) +
+ geom_histogram(aes(fill = species),
+                     alpha = 0.5,
+                     position = "identity") 
+
+grafica_pinguinos
+```
+
+```{r ejercicio3-check}
+gradethis::grade_this_code(correct = "Felicidades", incorrect = "No felicidades")
+```
+
+## `grade_this()`
+
+```{r ejercicio4, exercise = TRUE, exercise.cap = "Con grade_this()"}
+#Obtener la media de la longitud de las alas de los pinguinos del dataset penguins
+
+```
+
+```{r ejercicio4-solution}
+mean(penguins$flipper_length_mm, na.rm   = TRUE)
+```
+
+```{r ejercicio4-check}
+#Obtener la media de la longitud de las alas de los pinguinos del dataset penguins
+gradethis::grade_this(
+  if(.result == .solution){
+    pass("Muy bien")
+  } else{
+    fail("Intenta usar na.rm   = TRUE para el cálculo")
+  }
+)
+```
+
+Al usuar `.result` hace referencia al resultado que se calcule en el chunk donde el usuario escribió.
+
+Por otro lado `.solution` considera lo que resulta del chunk-solution.

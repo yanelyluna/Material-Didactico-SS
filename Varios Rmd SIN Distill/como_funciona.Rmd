@@ -41,6 +41,8 @@ La recomendación como alumno es que leas tutoriales con alguno de los temas:
 
 -   [Flexdashboard](https://tutorialesmg.netlify.app/Flexdashboards.html): una herramienta muy útil que entre Shiny y RMarkdown, pueden lograr que compartas en una página web información interactiva y replicable.
 
+-   [Learnr](https://yanelyluna.shinyapps.io/Tutorial/): una librería de R para generar tutoriales interactivos donde el usuario pueda ingresar código de R, ver vídeos, esquemas, etc.
+
 Los **Ejemplos** son archivos que muestran un poco de lo que se puede lograr con los conocimientos anteriores listados.
 
 # ¿Qué requiero para entender la página?
@@ -65,3 +67,4 @@ Para hacer material interactivo
 4.  Shiny app.
 5.  Shiny dashboard.
 6.  Flexdashboard. *Y su ejemplo.*
+7.  Tutorial Learnr

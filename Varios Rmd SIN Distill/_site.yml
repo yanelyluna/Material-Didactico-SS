@@ -14,6 +14,8 @@ navbar:
         href: R-Markdown.html
       - text: Xaringan y Flipbookr
         href: Xaringan-y-Flipbookr.html
+      - text: Tutorial Learnr
+        href: https://yanelyluna.shinyapps.io/Tutorial/
     - text: "Trabajo en equipo"
       href: about.html
       menu:
