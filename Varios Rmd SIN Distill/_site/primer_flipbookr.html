@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # ¿Cómo hacer Flipbooks?
 ## Con flipbookr y xaringan
 ### Carlos A. Ar.
-### Última edición 13 de abril del 2021
+### Última edición 23 de abril del 2021
 
 ---
 
@@ -177,7 +177,7 @@ str(penguins)
 ```
 
 ```
-tibble [344 x 8] (S3: tbl_df/tbl/data.frame)
+tibble[,8] [344 x 8] (S3: tbl_df/tbl/data.frame)
  $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
  $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
@@ -4653,11 +4653,11 @@ __Nota:__ el número de entradas entre los vectores `md` y `md2` debe coincidir.
 count: false
  
 
-.panel1-66381-auto[
+.panel1-53171-auto[
 # Fórmula 1
 ]
  
-.panel2-66381-auto[
+.panel2-53171-auto[
 ## `$$\frac{X_1+X_2+...+X_n}{n}$$`
 ]
 
@@ -4665,11 +4665,11 @@ count: false
 count: false
  
 
-.panel1-66381-auto[
+.panel1-53171-auto[
 # Fórmula 2
 ]
  
-.panel2-66381-auto[
+.panel2-53171-auto[
 ## `$$\frac{1}{n} \sum_{i=1}^{n}X_i$$`
 ]
 
@@ -4677,16 +4677,16 @@ count: false
 count: false
  
 
-.panel1-66381-auto[
+.panel1-53171-auto[
 ### ¿Cuál crees que es mejor?
 ]
  
-.panel2-66381-auto[
+.panel2-53171-auto[
 Son lo mismo, la media muestral.
 ]
 
 &lt;style&gt;
-.panel1-66381-auto {
+.panel1-53171-auto {
   color: black;
   width: 38.6060606060606%;
   hight: 32%;
@@ -4694,7 +4694,7 @@ Son lo mismo, la media muestral.
   padding-left: 1%;
   font-size: 80%
 }
-.panel2-66381-auto {
+.panel2-53171-auto {
   color: black;
   width: 59.3939393939394%;
   hight: 32%;
@@ -4702,7 +4702,7 @@ Son lo mismo, la media muestral.
   padding-left: 1%;
   font-size: 80%
 }
-.panel3-66381-auto {
+.panel3-53171-auto {
   color: black;
   width: NA%;
   hight: 33%;
@@ -4739,7 +4739,7 @@ count: false
 ```
 function (n, mean = 0, sd = 1) 
 .Call(C_rnorm, n, mean, sd)
-&lt;bytecode: 0x0000000013503aa0&gt;
+&lt;bytecode: 0x000000003ac977e0&gt;
 &lt;environment: namespace:stats&gt;
 ```
 ]
@@ -4754,15 +4754,15 @@ function (n, mean = 0, sd = 1)
 .panel3-rnorm-auto[
 
 ```
- [1]  0.09631704 -0.15900464  0.75598945 -1.28021079  0.98130590 -1.68864687
- [7] -1.74821055  0.27757050  0.68209470  0.92173853  0.59675297  0.08082244
-[13] -1.16278438 -0.10661692 -0.54879706  1.94290869 -1.96540206 -1.03685946
-[19] -1.62374442 -0.65421073 -0.20378555 -1.12734572  0.50899736 -0.52051495
-[25] -0.17688893  0.91164344 -0.33698912 -0.01140647  0.76712877 -0.33466095
-[31]  0.87186150 -0.17503799 -1.04299470  0.36108756  2.27144093 -0.06208943
-[37] -0.14855220  0.49194956 -0.17911272 -1.35431650 -0.49226342 -0.80591669
-[43] -0.05615415  0.70924572  1.69014136  0.14707922  2.40854052 -1.31787934
-[49]  0.68218766  0.25588834
+ [1]  0.35949942 -1.00588261  1.37263791 -2.96850583 -0.57425681  1.11102941
+ [7]  1.29191027 -1.36331994 -0.26583011  0.77505947 -0.14035961  1.76360294
+[13] -0.51839429  0.20748057 -1.83077470 -0.11830221 -0.33186332  0.24360919
+[19]  0.81164427  1.60296859 -0.83477373 -0.45998857 -0.17111411  0.20556800
+[25]  0.89805187  0.58206256  2.73514375 -1.63893898 -1.23105820  1.63063733
+[31]  1.78834581  0.55276074  0.60468429 -0.91525850 -0.37144816 -0.13877738
+[37] -0.80238865  1.34232533 -0.78242459  0.32742319  0.23000774  0.01237976
+[43]  0.46478626 -1.13049473 -2.03729914 -0.02634369 -0.17319697  0.47905933
+[49] -0.95139895 -0.24767846
 ```
 ]
 
@@ -4776,7 +4776,7 @@ count: false
 function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x000000002a48d250&gt;
+&lt;bytecode: 0x0000000005741398&gt;
 &lt;environment: namespace:stats&gt;
 ```
 ]
@@ -4792,7 +4792,7 @@ rnorm(50) %&gt;%
 .panel3-rnorm-auto[
 
 ```
-[1] 0.9298432
+[1] 1.155042
 ```
 ]
 
