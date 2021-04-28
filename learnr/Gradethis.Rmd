@@ -115,9 +115,9 @@ C --> G[pass(), fail(), .result, .solution];
 ")
 ```
 
-# ☺RESTRINGIR LA DE EJERCICIOS 
+# ☺RESTRINGIR LA DE EJERCICIOS
 
-## Calificar ejercicios de código 
+## Calificar ejercicios de código
 
 Si deseas que los usuarios tengan retroalimentación cuando cometan algún error en los ejercicios de código (en términos del objetivo de aprendizaje en el ejercicio), puedes implementarlo con lo que veremos en esta sección.
 
@@ -272,3 +272,210 @@ quiz(
   caption = "Pongamos a prueba lo que haz aprendido"
 )
 ```
+
+### grade_this()
+
+**Ejemplo:**
+
+Implementemos un ejercicio donde el usuario tenga que obtener el resultado de sumar 2+2 (= 🐟) y se evaluará que dicho resultado sea `4`.
+
+1.  Crear el chunk de ejercicio.
+
+2.  Crear el chunk solution.
+
+    ```{r gtejercicio-solution, exercise.reveal_solution = FALSE}
+    2+2
+    ```
+
+3.  Crear el chunk check:
+
+    El chunk de ejercicio se llama `gtejericicio`, por lo que el nombre del chunk check debe ser `gtejercicio-check`.
+
+    En el chunk siguiente se usará la función `grade_this()`. Dentro de esta función se debe definir la lógica que se usa para evaluar el ejercicio. En el ejemplo se muestra una forma de comparar el resultado del usuario (`.result`) con el resultado correcto (`.solution`) y si son iguales se marca como correcto el ejercicio.
+
+    Esta es solo una forma de varias que se pueden implementar para evaluar el ejercicio, las cuales veremos más a detalle en la sección siguiente.
+
+        '''{r gtejercicio-check}
+
+        grade_this(
+          if(.result == .solution){
+            pass("Muy bien")
+          } else{
+            fail("El resultado debe ser igual a 2+2")
+          }
+        )
+
+        '''
+
+    ```{r gtejercicio-check}
+    gradethis::grade_this(
+      if(.result == .solution){
+        pass("Muy bien")
+      } else{
+        fail("El resultado debe ser igual a 2+2")
+      }
+    )
+    ```
+
+Resultado:
+
+```{r gtejercicio, exercise = TRUE, exercise.cap = "Suma"}
+# Obten el resultado de sumar dos más dos
+
+```
+
+-   Notemos que no importa si el resultado correcto (`4`) se obtiene de otra forma diferente (`3+1`, `4*1`, `4+0`) a la propuesta. Mientras sea `4` el ejercicio se marca como correcto.
+
+### Funciones para definir la lógica de evaluación
+
+Dentro de `gradethis` existen funciones que se puede usar en `grade_this()` para ayudar a definir la forma de evaluar los ejercicios de código.
+
+**Funciones necesarias**
+
++-------------+----------------------------------------------------------------------------------------------------+
+| `pass()`    | En esta función se escribe el mensaje que aparecerá cuando se marque como correcto el ejercicio.   |
++-------------+----------------------------------------------------------------------------------------------------+
+| `fail()`    | En esta función se escribe el mensaje que aparecerá cuando se marque como incorrecto el ejercicio. |
++-------------+----------------------------------------------------------------------------------------------------+
+| `.result`   | Hace referencia al resultado que se obtiene con el código del usuario.                             |
++-------------+----------------------------------------------------------------------------------------------------+
+| `.solution` | Hace referencia al resultado correcto que se obtiene con el código del chunk `solution`.           |
++-------------+----------------------------------------------------------------------------------------------------+
+
+**Funciones auxiliares para evaluar**
+
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `pass_if()`       | En el parámetro `cond` se recibe la condición que debe cumplir .`result` para que el ejercicio sea correcto y en el parámetro `message` se escribe el mensaje que aparecerá cuando la condición anterior se cumpla. |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `fail_if()`       | En el parámetro `cond` se recibe la condición con la cual se evaluará como incorrecto el ejercicio y el parámetro `message` recibe el mensaje que aparecerá cuando dicha condición se cumpla.                       |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `pass_if_equal()` | Compara los parámetros `y` y `x` y evalua el ejercicio como correcto cuando estos son iguales, devolviendo el mensaje que se le pase con el parámetro `message`. Por default `y` es `.solution` y `x` es `.result`. |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `fail_if_equal()` | Compara los parámetros `y` y `x` y evalua el ejercicio como incorrecto cuando estos son iguales, devolviendo el mensaje que se le pase en el parámetro `message`. Por default `y` es `.solution` y x es `.result`.  |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Ejemplo:
+
+En el ejercicio `gt_ejercicio` se pide obtener cuántas observaciones de la tabla `penguins` tienen el valor `Torgensen` en el atributo `island`.
+
+    '''{r gt_ejercicio-check}
+    grade_this({
+        # Se evalua automáticamente como correcto si .result es igual a .solution
+        pass_if_equal(message="¡Muy bien!")
+        
+        # Se evalua como incorrecto cuando el número que se especificó no es el         #  correcto y se muestra un mensaje personalizado.
+        fail_if_equal(sum(penguins$island=="Biscoe"), message = "No son las observaciones de la isla correcta.")
+        fail_if_equal(sum(penguins$island=="Dream"), message = "No son las observaciones de la isla correcta.")
+        
+        # Se muestra el mensaje automático de retroalimentación cuando existe           #  cualquier otro error en el código.
+        fail()
+      })
+    '''
+
+Resultado:
+
+```{r gt_ejercicio, exercise=TRUE}
+# Usando los datos de la tabla penguins, ¿cuántos pingüinos provienen de la isla Torgersen?
+
+```
+
+```{r gt_ejercicio-solution}
+sum(penguins$island=="Torgersen")
+```
+
+```{r gt_ejercicio-check}
+grade_this({
+    # Se evalua automáticamente como correcto si .result es igual a .solution
+    pass_if_equal(message="¡Muy bien!")
+    
+    # Se evalua como incorrecto cuando el número que se especificó no es el         #  correcto y se muestra un mensaje personalizado.
+    fail_if_equal(sum(penguins$island=="Biscoe"), message = "No son las
+                  observaciones de la isla correcta.")
+    fail_if_equal(sum(penguins$island=="Dream"), message = "No son las 
+                  observaciones de la isla correcta.")
+    
+    # Se muestra el mensaje automático de retroalimentación cuando existe           #  cualquier otro error en el código.
+    fail()
+  })
+```
+
+-   Intenta escribiendo `sum(penguins$island=="Biscoe")` o `168` para ver el mensaje.
+
+También se puede definir una lógica para evaluar usando claúsulas `if()` y `else()` como en el primer ejemplo de esta sección y usar `pass()` y `fail()` para indicar cuándo se evalua como correcto y cuándo como incorrecto.
+
+![](https://www.youtube.com/watch?v=fIqmew1pF6I)
+
+Ejemplo:
+
+Código del chunk-check
+
+```{r echo=TRUE,eval=FALSE, message=FALSE,warning=FALSE}
+grade_this({
+  # ¿El resultado es un objeto data.frame?
+  if (!inherits(.result, "data.frame")) {
+    fail("Tu resultado debe ser un data.frame")
+  }
+
+  # Ahora que sabemos que .result es un data.frame veremos si tiene la especie correcta...
+  if (.result$species[1] != "Gentoo") {
+    fail("Las observaciones deben ser de la especie Gentoo.")
+  }
+
+  # ...ahora comprobamos que la isla sea la correcta
+  if (.result$island != "Biscoe") {
+    fail("Las observaciones deben ser de la isla Biscoe.")
+  }
+  
+  # ...comprobamos que el número de observaciones es el que debe ser
+  if (nrow(.result) != 124) {
+    fail("La tabla debe tener 124 observaciones.")
+  }
+  # all of the above checks have passed now.
+  pass(message="Ahora ya sabes filtrar datos de una tabla.")
+})
+```
+
+```{r ejercicio_if-check, echo=TRUE,message=FALSE,warning=FALSE}
+grade_this({
+  # ¿El resultado es un objeto data.frame?
+  if (!inherits(.result, "data.frame")) {
+    fail("Tu resultado debe ser un data.frame")
+  }
+
+  # Ahora que sabemos que .result es un data.frame veremos si tiene la especie correcta...
+  if (.result$species[1] != "Gentoo") {
+    fail("Las observaciones deben ser de la especie Gentoo.")
+  }
+
+  # ...ahora comprobamos que la isla sea la correcta
+  if (.result$island != "Biscoe") {
+    fail("Las observaciones deben ser de la isla Biscoe.")
+  }
+  
+  # ...comprobamos que el número de observaciones es el que debe ser
+  if (nrow(.result) != 124) {
+    fail("La tabla debe tener 124 observaciones.")
+  }
+  # all of the above checks have passed now.
+  pass(message="Ahora ya sabes filtrar datos de una tabla.")
+})
+
+```
+
+Resultado:
+
+```{r ejercicio_if, exercise=TRUE, exercise.cap="if - else", exercise.lines=5, message=FALSE,warning=FALSE}
+# Crea una tabla que contenga solo los pingüinos de la especie Gentoo 
+#  y la isla Biscoe usando el data.frame penguins.
+library(dplyr)
+penguins %>% filter(species=="  ", island=="  ")
+
+```
+
+Intenta:
+
+-    `penguins %>% filter(species=="Adelie", island=="Dream")`
+
+-   `head(penguins %>% filter(species=="Gentoo", island=="Biscoe"))`
+
+-   `matrix(NA,3,2)`
