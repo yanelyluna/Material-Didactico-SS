@@ -278,6 +278,10 @@ Ingresa el comando para cargar la paquetería dentro del archivo de tu tutorial.
 library(learnr)
 ```
 
+```{r ej1-check}
+gradethis::grade_this_code(correct = "Excelente", incorrect = "Usa la función library")
+```
+
 ### Crear un tutorial
 
 **Opción 1**:
