@@ -397,31 +397,29 @@ El código y los resultados de un chunk de ejercicio no estarán disponible para
 
 1.  Completa el siguiente código para generar una gráfica con los datos del data.frame `penguins`
 
-    ```{r respuesta}
-    grafica_pinguinos <- ggplot(data = penguins) +
-           aes(x = flipper_length_mm) +
-      geom_histogram(aes(fill = species),
-                     alpha = 0.5,
-                     position = "identity") 
-    ```
+```{r respuesta}
+grafica_pinguinos <- ggplot(data = penguins) +
+  aes(x = flipper_length_mm) + 
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") 
+```
 
-    ```{r ejercicio7, exercise=TRUE, message=FALSE,warning=FALSE}
-    grafica_pinguinos <- ggplot(data = ____) +
-           aes(x = flipper_length_mm) +
-      geom_histogram(aes(fill = species),
+```{r ejercicio7, exercise=TRUE, message=FALSE,warning=FALSE}
+grafica_pinguinos <- ggplot(data = ____) +
+    aes(x = flipper_length_mm) +
+    geom_histogram(aes(fill = species),
                      alpha = 0.5,
                      position = "identity") 
-    grafica_pinguinos
-    ```
+grafica_pinguinos
+```
 
 <!-- -->
 
 2.  Agrega el tema `minimal` al gráfico anterior.
 
-    ```{r ejercicio7_2, exercise=TRUE, exercise.setup="respuesta",message=FALSE,warning=FALSE}
-    grafica_pinguinos + _____
+```{r ejercicio7_2, exercise=TRUE, exercise.setup="respuesta",message=FALSE,warning=FALSE}
+grafica_pinguinos + _____
 
-    ```
+```
 
 ```{r ejercicio7_2-solution}
 grafica_pinguinos  + theme_minimal()
@@ -526,7 +524,7 @@ ggplot(mtcars, aes(x=mpg,y=cyl)) +
 
 ### Reiniciar un ejercicio
 
-Esto se hace con la opción `exercise.star-over` en el chunk de código (por defecto es TRUE). El siguiente ejercicio NO se puede reiniciar (es decir `exercise.star-over = FALSE`)
+Esto se hace con la opción `exercise.startover` en el chunk de código (por defecto es TRUE). El siguiente ejercicio NO se puede reiniciar (es decir `exercise.startover = FALSE`)
 
     '''{r ejercicio4, exercise = TRUE, exercise.startover = FALSE}
 
@@ -908,7 +906,7 @@ grade_this({
   if (nrow(.result) != 124) {
     fail("La tabla debe tener 124 observaciones.")
   }
-  # all of the above checks have passed now.
+  # ahora que revisamos las condiciones anteriores mostramos el mensaje de que el resultado es correcto
   pass(message="Ahora ya sabes filtrar datos de una tabla.")
 })
 ```
