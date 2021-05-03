@@ -196,6 +196,7 @@ graph LR;
   A --> E[Diseño del tutorial];
   C --> F[Opciones de Código];
   C --> H[solution y hints];
+  C --> Q[Calificar ejercicios de código];
   F --> I[exercise.cap];
   F --> J[exercise.completion];
   F --> K[exercise.setup];
@@ -204,6 +205,8 @@ graph LR;
   D --> N[answer];
   E --> O[CSS];
   E --> P[theme];
+  Q --> R[gradethis];
+  
   style A fill:#EAE38F, stroke:#A59800;  
   
   style B fill:#FCF3CF, stroke:#F0B27A; 
@@ -213,6 +216,7 @@ graph LR;
   
   style F fill:#A9DFBF, stroke:#82E0AA;  
   style H fill:#A9DFBF, stroke:#82E0AA; 
+  style Q fill:#A9DFBF, stroke:#82E0AA; 
   
   style L fill:#E8DAEF, stroke:#D2B4DE;  
   style M fill:#E8DAEF, stroke:#D2B4DE;
@@ -224,7 +228,7 @@ graph LR;
   style I fill:#D0ECE7, stroke:#73C6B6;  
   style J fill:#D0ECE7, stroke:#73C6B6;
   style K fill:#D0ECE7, stroke:#73C6B6;
-")
+  style R fill:#D0ECE7, stroke:#73C6B6;")
 ```
 
 ![](images/esquema.png)
