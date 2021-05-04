@@ -5,10 +5,10 @@ account: yanelyluna
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4020941
-bundleId: 4551839
+bundleId: 4553237
 url: https://yanelyluna.shinyapps.io/Tutorial/
-when: 1620064519.45882
-lastSyncTime: 1620064519.45882
+when: 1620091514.74645
+lastSyncTime: 1620091514.74645
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: Ejemplo.html|slidy.html|slidy.Rmd|tabla_exercise.Rmd

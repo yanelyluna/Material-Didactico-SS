@@ -589,7 +589,298 @@ quiz(
 
 ```
 
-## Calificar código
+
+## Cuestionarios
+
+### Preguntas
+
+Además de los ejercicios de código, puedes incluir preguntas de opción múltiple con la siguiente estructura:
+
+**Código**
+
+```{r,echo=TRUE,eval=FALSE}
+{r quiz}
+quiz(
+  question("Aquí escribes la pregunta",
+    allow_retry = TRUE, #Que lo vuelva a intentar
+    answer("Opción 1"),
+    answer("Opción 2"),
+    answer("Opción correcta", correct = TRUE)
+  ),
+  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
+    allow_retry = TRUE,
+    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
+    answer("Una opción incorrecta", message = "Mensaje adicional"),
+    answer("Otra opción incorrecta"),
+    answer("Otra opción correcta", correct = TRUE)
+  )
+)
+```
+
+**Resultado**
+
+```{r cuestionario6}
+quiz(
+  question(text = "Aquí escribes la pregunta",
+    allow_retry = TRUE,
+    answer("Opción 1"),
+    answer("Opción 2"),
+    answer("Opción correcta", correct = TRUE)
+  ),
+  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
+    allow_retry = TRUE,
+    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
+    answer("Una opción incorrecta", message = "Mensaje adicional"),
+    answer("Otra opción incorrecta"),
+    answer("Otra opción correcta", correct = TRUE)),
+  caption = "Ejemplo"
+)
+```
+
+### Parámetros de `question`
+
+-   `text = "¿Esta es la pregunta?"` El parámeto `text` contiene una cadena de caracteres o **strings** (es decir texto dentro de "comillas").
+
+-   `answer("Esta es la respuesta correcta", correct = TRUE, message = "Aquí le dices al usuario algo bonito por haber acertado ;)")`
+
+    -   La función answer es un parámetro de question y contiene a su vez los siguentes parámetros:
+
+        -   `text` parámetro de caracteres que definen una posible respuesta a la pregunta
+
+        -   `correct` un parámetro boolean(o), es decir, TRUE o FALSE. Por defecto, `correct = FALSE` lo cual indica que esa posible respuesta NO ES correcta.
+
+        -   `message` parámetro de caracteres para dar un mensaje adicional al usuario sobre la opción de respuesta que eligió.
+
+-   `allow_retry` parámetro boolean(o), es decri `allow_retry = FALSE` o `allow_retry = TRUE`. Por defecto (es decir, sino se especifica el valor del parámetro) `allow_retry = FALSE` lo cual implica que NO habrá posibilidad de que el usuario intente contestar de nuevo (si es que contestó incorrectamente).
+
+-   `correct = "Este mensaje saldrá cuando aciertes en tu respuesta"`
+
+-   `incorrect = "Este mensaje saldrá cuando NO aciertes en tu respuesta"`, **solo aparecerá si** `allow_retry = FALSE`
+
+    `try_again = "Este mensaje saldrá cuando NO aciertes en tu respuesta y tengas la opción de intentarlo de nuevo"`
+
+-   `submit_button = "Mensaje que tiene el botón para confirmar tu respuesta"`, por defecto `submit_button = "Submit Answer"`
+
+-   `try_again_button = "Mensaje que tiene el botón para hacer otro intento"` (siempre y cuando te equivoques), por defecto`try_again_button = "Try Again"`
+
+-   `random_answer_order = TRUE` es un parámetro que permite cambiar el orden de las opciones de respuesta cada que vuleves a realizar el tutorial. **Es decir dar click en `Start over`**
+
+```{r cuestionario7, echo = TRUE}
+  question(
+    text = "¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?",
+    allow_retry=TRUE,
+    answer("incorrect",message = "No sabes. Este sirve para dar un mensaje cuando te equivocas"),
+    answer("submit_button",message = "No sabes. Aquí cambias de mesnaje de confirmación"),
+    answer("try_again_button", correct = TRUE, message = "¡Maravillos@ estudiante!"),
+    correct = "¡Sí que has puesto atención!",
+    try_again = "Vuelve a leer la sección de parámetros",
+    submit_button = "Yo sé que sé",
+    try_again_button = "Acuérdate de mí",
+    random_answer_order = TRUE
+  )
+```
+
+Si queremos hacer múltiples preguntas usamos la función `quiz` que tenga por parámetros las diferentes `quiestion`s.
+
+```{r cuestionario8, echo=TRUE}
+quiz( 
+  question(
+    text = "¿Cuáles son los parámetros de answer?",
+    answer("text",correct = TRUE),
+    answer("correct",correct = TRUE),
+    answer("message", correct = TRUE), 
+    correct = "¡Muy bien!",
+    submit_button = "Yo sé que sé", 
+    allow_retry = TRUE,
+    try_again_button = "Intenta de nuevo",
+    try_again = "A lo mejor no leiste bien la pregunta"
+    ),
+  question(
+    text = "¿Qué función se usa para armar un cuestionario?",
+    allow_retry=TRUE,
+    answer("quiz", correct = TRUE, message = "Vas por buen camino"),
+    answer("questions",message = "Esta función no existe en learnr"),
+    answer("quizes", message = "Esta función no existe en learnr"), 
+    correct = "Sigue adelante",
+    try_again = "Intenta de nuevo",
+    submit_button = "Yo sé que sé",
+    try_again_button = "Date otra oportunidad"
+  ),
+caption = "¿Aprendiste?"
+)
+```
+
+### Símbolos matemáticos en las preguntas.
+
+Para poder hacer uso de fórmulas dentro de las preguntas, solo ponemos las fórmulas entre signos de pesos (\$) en sintáxis de $\mathbb{L_aT_ex}$ y dos backslash `\\`, por ejempo:
+
+```{r quiz4, echo=TRUE}
+question(
+  
+  text = "¿A qué distribución corresponde la siguiente función de densidad? $f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}$",
+  
+  answer("Gaussiana", correct = TRUE),
+  answer("Normal", correct = TRUE), 
+  
+  
+#Este parámetro permite al usuario que aun cuando seleccione una respuesta correcta de muchas, ésta se evaluará como correcta (a diferencia de "checkbox" en la que hay que marcar todas las respuestas correctas para que se evalúe como correcta).
+  type = "radio", 
+  correct = "¡¿Eres Gauss!?",
+  submit_button = "Confía en tí"
+)
+```
+
+## Incluir elementos externos
+
+### Imágenes
+
+Debe crearse una carpeta dentro del directorio del tutorial con el nombre **images** y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta. Por ejemplo:
+
+`![Mi imagen](images/mi_imagen.png)`
+
+También se pueden incluir imágenes (gifs) de internet:
+
+`![Imagen](https://link-a-la-imagen)`
+
+![](https://media.tenor.com/images/36f456475f98b4770b4e9ad1016934f1/tenor.gif){style="figure-align: center"}
+
+### Videos
+
+Se usa la misma sintáxis que para incluir una imagen de internet pero ahora escribimos el link al video. Solo pueden incluirse links a videos de YouTube o vimeo.
+
+El video se reproducirá dentro del mismo archivo del tutorial (no te redirige a otra página).
+
+### Links
+
+Si deseas añadir material de consulta que se encuentra en internet, puedes incluir referencias dentro del tutorial que te lleven a dichas páginas web.
+
+`[Texto de la referencia](https://link-a-la-pagina-de-referencia)`
+
+```{r cuestionario2}
+question(text="¿Cuál de los siguientes comandos sirve para añadir un video dentro del tutorial?",
+         answer("`![video](images/mi_imagen.png)`"),
+         answer("`![video](https://link-al-video`)",correct=TRUE),
+         answer("`https://link-al-video`"),
+         allow_retry=TRUE,
+         correct = "¡Muy bien!",
+        try_again = "Te estás confundiendo",
+        submit_button = "Confirmar",
+        try_again_button = "Intentalo de nuevo")
+```
+
+## Diseño del tutorial
+
+### Temas
+
+De manera simple, podemos hacer que el tutorial se vea con estilo personal poniendo en el encabezado YAML `theme: "default"`, donde default se puede cambiar por alguno de los temas predetirminados, siguientes:
+
+|              |              |               |
+|:------------:|:------------:|:-------------:|
+| `"default"`  | `"readable"` |   `"paper"`   |
+| `"cerulean"` | `"spacelab"` | `"sandstone"` |
+| `"journal"`  |  `"united"`  |  `"simplex"`  |
+|  `"flatly"`  |  `"cosmo"`   |   `"yeti"`    |
+|  `"darkly"`  |  `"lumen"`   |               |
+
+```{r cuestionario3}
+question(
+  text = "¿Cuál es la forma correcta de cambiar el tema del tutorial a `flatly`?",
+  allow_retry = TRUE,
+  answer("![](images/learnr11.png)", correct = TRUE),
+  answer("![](images/learnr12.png)"),
+  answer("![](images/learnr13.png)"),
+    correct = "¡Perfecto!",
+    try_again = "Intenta de nuevo",
+    submit_button = "Lo lograré",
+    try_again_button = "Quiero salir bien",
+    random_answer_order = TRUE
+)
+```
+
+### Avance progresivo
+
+Para mostrar los subtópicos del tutorial (aquellos que tienen \#\#\#) uno a la vez dando click al botón **Continue** para avanzar, tenemos dos opciones:
+
+-   Aplicarlo a todo el documento activando la opción `progressive: true` en el encabezado YAML.
+
+        ---
+        title: "Hello, Tutorial!"
+        output: 
+          learnr::tutorial:
+            progressive: true
+        runtime: shiny_prerendered
+        --- 
+
+-   Aplicarlo solo a algunos subtópicos agregando `{data-progressive=TRUE}` adelante de cada encabezado de tema (con \#\# ) que queremos revelar de manera progresiva.
+
+        ## Tema {data-progressive=TRUE}
+
+```{r cuestionario4}
+question(
+  text = "`data-progressive=TRUE` sirve para revelar el contenido de los subtitulos poco a poco...",
+  allow_retry = TRUE,
+  answer("En todo el documento"),
+  answer("En algún tema del documento", correct = TRUE),
+  answer("En todos los temas subsecuentes a esta especificación"),
+    correct = "¡Perfecto!",
+    try_again = "Intenta de nuevo",
+    submit_button = "Lo lograré",
+    try_again_button = "Quiero salir bien"
+)
+```
+
+Una vez activada la opción `progressive` no podremos avanzar en el tutorial sin contestar los ejercicios de cada sección. Para permitir el avance sin contestar los ejercicios, podemos agregar `allow_skip: true` en el encabezado YAML.
+
+    ---
+    title: "Hello, Tutorial!"
+    output: 
+      learnr::tutorial:
+        progressive: true
+        allow_skip: true
+    runtime: shiny_prerendered
+    --- 
+
+Para solo permitir avanzar en algunas secciones y no en otras sin contestar, podemos especificar`{data-allow-skip=TRUE}` o `{data-allow-skip=FALSE}` en cada tema.
+
+```{r cuestionario5}
+question(
+  text = "¿Con qué comando se permite al usuario avanzar en el tutorial sin haber contestado los ejercicios? (en todo el documento)",
+  allow_retry = TRUE,
+  answer("data-allow-skip=TRUE"),
+  answer("allow_skip: false"),
+  answer("allow_skip: true", correct = TRUE),
+    correct = "¡Perfecto!",
+    try_again = "Intenta de nuevo",
+    submit_button = "Lo lograré",
+    try_again_button = "Quiero salir bien"
+)
+```
+
+### Otro formato del tutorial
+
+Es posible incluir ejercicios en otros tipos de documentos además de un tutorial (`learnr::tutorial`) como dentro de una presentación tipo `slidy`. Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML:
+
+    # title: "Habits"
+    # author: John Doe
+    # date: March 22, 2005
+    # output: slidy_presentation
+    # runtime: shiny_prerendered
+
+Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
+
+## ¿Una última pregunta?
+
+```{r cuestionario10}
+question("¿Usarás `learnr` después de revisar este tutorial?",
+         type="radio",
+         answer("¡Por supuesto!", correct=TRUE),
+         answer("¡Claro que sí!", correct=TRUE),
+         correct="![](https://media1.tenor.com/images/4869c336eb8589454f7dc3582d623eb5/tenor.gif?itemid=6247482)",
+         submit_button="Ya es lo último")
+
+```
+
+## Algo extra: Calificar código
 
 Si deseas que los usuarios tengan retroalimentación cuando cometan algún error en los ejercicios de código (en términos del objetivo de aprendizaje en el ejercicio), puedes implementarlo con lo que veremos en esta sección.
 
@@ -956,212 +1247,7 @@ Intenta sustituir la respuesta anterior por:
 
 -   `matrix(NA,3,2)`
 
-## Cuestionarios
-
-### Preguntas
-
-Además de los ejercicios de código, puedes incluir preguntas de opción múltiple con la siguiente estructura:
-
-**Código**
-
-```{r,echo=TRUE,eval=FALSE}
-{r quiz}
-quiz(
-  question("Aquí escribes la pregunta",
-    allow_retry = TRUE, #Que lo vuelva a intentar
-    answer("Opción 1"),
-    answer("Opción 2"),
-    answer("Opción correcta", correct = TRUE)
-  ),
-  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
-    allow_retry = TRUE,
-    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
-    answer("Una opción incorrecta", message = "Mensaje adicional"),
-    answer("Otra opción incorrecta"),
-    answer("Otra opción correcta", correct = TRUE)
-  )
-)
-```
-
-**Resultado**
-
-```{r cuestionario6}
-quiz(
-  question(text = "Aquí escribes la pregunta",
-    allow_retry = TRUE,
-    answer("Opción 1"),
-    answer("Opción 2"),
-    answer("Opción correcta", correct = TRUE)
-  ),
-  question("Pueses incluir mensajes para cada opción y más de una opción correcta.",
-    allow_retry = TRUE,
-    answer("Una opción correcta", correct = TRUE,message = "Mensaje adicional"),
-    answer("Una opción incorrecta", message = "Mensaje adicional"),
-    answer("Otra opción incorrecta"),
-    answer("Otra opción correcta", correct = TRUE)),
-  caption = "Ejemplo"
-)
-```
-
-### Parámetros de `question`
-
--   `text = "¿Esta es la pregunta?"` El parámeto `text` contiene una cadena de caracteres o **strings** (es decir texto dentro de "comillas").
-
--   `answer("Esta es la respuesta correcta", correct = TRUE, message = "Aquí le dices al usuario algo bonito por haber acertado ;)")`
-
-    -   La función answer es un parámetro de question y contiene a su vez los siguentes parámetros:
-
-        -   `text` parámetro de caracteres que definen una posible respuesta a la pregunta
-
-        -   `correct` un parámetro boolean(o), es decir, TRUE o FALSE. Por defecto, `correct = FALSE` lo cual indica que esa posible respuesta NO ES correcta.
-
-        -   `message` parámetro de caracteres para dar un mensaje adicional al usuario sobre la opción de respuesta que eligió.
-
--   `allow_retry` parámetro boolean(o), es decri `allow_retry = FALSE` o `allow_retry = TRUE`. Por defecto (es decir, sino se especifica el valor del parámetro) `allow_retry = FALSE` lo cual implica que NO habrá posibilidad de que el usuario intente contestar de nuevo (si es que contestó incorrectamente).
-
--   `correct = "Este mensaje saldrá cuando aciertes en tu respuesta"`
-
--   `incorrect = "Este mensaje saldrá cuando NO aciertes en tu respuesta"`, **solo aparecerá si** `allow_retry = FALSE`
-
-    `try_again = "Este mensaje saldrá cuando NO aciertes en tu respuesta y tengas la opción de intentarlo de nuevo"`
-
--   `submit_button = "Mensaje que tiene el botón para confirmar tu respuesta"`, por defecto `submit_button = "Submit Answer"`
-
--   `try_again_button = "Mensaje que tiene el botón para hacer otro intento"` (siempre y cuando te equivoques), por defecto`try_again_button = "Try Again"`
-
--   `random_answer_order = TRUE` es un parámetro que permite cambiar el orden de las opciones de respuesta cada que vuleves a realizar el tutorial. **Es decir dar click en `Start over`**
-
-```{r cuestionario7, echo = TRUE}
-  question(
-    text = "¿Cuál parámetro sirve para cambiar el mensaje del botón para intentar de nuevo?",
-    allow_retry=TRUE,
-    answer("incorrect",message = "No sabes. Este sirve para dar un mensaje cuando te equivocas"),
-    answer("submit_button",message = "No sabes. Aquí cambias de mesnaje de confirmación"),
-    answer("try_again_button", correct = TRUE, message = "¡Maravillos@ estudiante!"),
-    correct = "¡Sí que has puesto atención!",
-    try_again = "Vuelve a leer la sección de parámetros",
-    submit_button = "Yo sé que sé",
-    try_again_button = "Acuérdate de mí",
-    random_answer_order = TRUE
-  )
-```
-
-Si queremos hacer múltiples preguntas usamos la función `quiz` que tenga por parámetros las diferentes `quiestion`s.
-
-```{r cuestionario8, echo=TRUE}
-quiz( 
-  question(
-    text = "¿Cuáles son los parámetros de answer?",
-    answer("text",correct = TRUE),
-    answer("correct",correct = TRUE),
-    answer("message", correct = TRUE), 
-    correct = "¡Muy bien!",
-    submit_button = "Yo sé que sé", 
-    allow_retry = TRUE,
-    try_again_button = "Intenta de nuevo",
-    try_again = "A lo mejor no leiste bien la pregunta"
-    ),
-  question(
-    text = "¿Qué función se usa para armar un cuestionario?",
-    allow_retry=TRUE,
-    answer("quiz", correct = TRUE, message = "Vas por buen camino"),
-    answer("questions",message = "Esta función no existe en learnr"),
-    answer("quizes", message = "Esta función no existe en learnr"), 
-    correct = "Sigue adelante",
-    try_again = "Intenta de nuevo",
-    submit_button = "Yo sé que sé",
-    try_again_button = "Date otra oportunidad"
-  ),
-caption = "¿Aprendiste?"
-)
-```
-
-### Símbolos matemáticos en las preguntas.
-
-Para poder hacer uso de fórmulas dentro de las preguntas, solo ponemos las fórmulas entre signos de pesos (\$) en sintáxis de $\mathbb{L_aT_ex}$ y dos backslash `\\`, por ejempo:
-
-```{r quiz4, echo=TRUE}
-question(
-  
-  text = "¿A qué distribución corresponde la siguiente función de densidad? $f(x) = \\frac{e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}}{\\sqrt{2\\pi\\sigma^2}}$",
-  
-  answer("Gaussiana", correct = TRUE),
-  answer("Normal", correct = TRUE), 
-  
-  
-#Este parámetro permite al usuario que aun cuando seleccione una respuesta correcta de muchas, ésta se evaluará como correcta (a diferencia de "checkbox" en la que hay que marcar todas las respuestas correctas para que se evalúe como correcta).
-  type = "radio", 
-  correct = "¡¿Eres Gauss!?",
-  submit_button = "Confía en tí"
-)
-```
-
-## Incluir elementos externos
-
-### Imágenes
-
-Debe crearse una carpeta dentro del directorio del tutorial con el nombre **images** y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta. Por ejemplo:
-
-`![Mi imagen](images/mi_imagen.png)`
-
-También se pueden incluir imágenes (gifs) de internet:
-
-`![Imagen](https://link-a-la-imagen)`
-
-![](https://media.tenor.com/images/36f456475f98b4770b4e9ad1016934f1/tenor.gif){style="figure-align: center"}
-
-### Videos
-
-Se usa la misma sintáxis que para incluir una imagen de internet pero ahora escribimos el link al video. Solo pueden incluirse links a videos de YouTube o vimeo.
-
-El video se reproducirá dentro del mismo archivo del tutorial (no te redirige a otra página).
-
-### Links
-
-Si deseas añadir material de consulta que se encuentra en internet, puedes incluir referencias dentro del tutorial que te lleven a dichas páginas web.
-
-`[Texto de la referencia](https://link-a-la-pagina-de-referencia)`
-
-```{r cuestionario2}
-question(text="¿Cuál de los siguientes comandos sirve para añadir un video dentro del tutorial?",
-         answer("`![video](images/mi_imagen.png)`"),
-         answer("`![video](https://link-al-video`)",correct=TRUE),
-         answer("`https://link-al-video`"),
-         allow_retry=TRUE,
-         correct = "¡Muy bien!",
-        try_again = "Te estás confundiendo",
-        submit_button = "Confirmar",
-        try_again_button = "Intentalo de nuevo")
-```
-
-## Diseño del tutorial
-
-### Temas
-
-De manera simple, podemos hacer que el tutorial se vea con estilo personal poniendo en el encabezado YAML `theme: "default"`, donde default se puede cambiar por alguno de los temas predetirminados, siguientes:
-
-|              |              |               |
-|:------------:|:------------:|:-------------:|
-| `"default"`  | `"readable"` |   `"paper"`   |
-| `"cerulean"` | `"spacelab"` | `"sandstone"` |
-| `"journal"`  |  `"united"`  |  `"simplex"`  |
-|  `"flatly"`  |  `"cosmo"`   |   `"yeti"`    |
-|  `"darkly"`  |  `"lumen"`   |               |
-
-```{r cuestionario3}
-question(
-  text = "¿Cuál es la forma correcta de cambiar el tema del tutorial a `flatly`?",
-  allow_retry = TRUE,
-  answer("![](images/learnr11.png)", correct = TRUE),
-  answer("![](images/learnr12.png)"),
-  answer("![](images/learnr13.png)"),
-    correct = "¡Perfecto!",
-    try_again = "Intenta de nuevo",
-    submit_button = "Lo lograré",
-    try_again_button = "Quiero salir bien",
-    random_answer_order = TRUE
-)
-```
+## Un paso más allá: Un diseño personalizado
 
 ### CSS
 
@@ -1221,86 +1307,3 @@ Si lo pones al inicio del tutorial (no en un chunk de código) necesitarás un e
     </style>
 
 Que se pone después del encabezado YAML.
-
-### Avance progresivo
-
-Para mostrar los subtópicos del tutorial (aquellos que tienen \#\#\#) uno a la vez dando click al botón **Continue** para avanzar, tenemos dos opciones:
-
--   Aplicarlo a todo el documento activando la opción `progressive: true` en el encabezado YAML.
-
-        ---
-        title: "Hello, Tutorial!"
-        output: 
-          learnr::tutorial:
-            progressive: true
-        runtime: shiny_prerendered
-        --- 
-
--   Aplicarlo solo a algunos subtópicos agregando `{data-progressive=TRUE}` adelante de cada encabezado de tema (con \#\# ) que queremos revelar de manera progresiva.
-
-        ## Tema {data-progressive=TRUE}
-
-```{r cuestionario4}
-question(
-  text = "`data-progressive=TRUE` sirve para revelar el contenido de los subtitulos poco a poco...",
-  allow_retry = TRUE,
-  answer("En todo el documento"),
-  answer("En algún tema del documento", correct = TRUE),
-  answer("En todos los temas subsecuentes a esta especificación"),
-    correct = "¡Perfecto!",
-    try_again = "Intenta de nuevo",
-    submit_button = "Lo lograré",
-    try_again_button = "Quiero salir bien"
-)
-```
-
-Una vez activada la opción `progressive` no podremos avanzar en el tutorial sin contestar los ejercicios de cada sección. Para permitir el avance sin contestar los ejercicios, podemos agregar `allow_skip: true` en el encabezado YAML.
-
-    ---
-    title: "Hello, Tutorial!"
-    output: 
-      learnr::tutorial:
-        progressive: true
-        allow_skip: true
-    runtime: shiny_prerendered
-    --- 
-
-Para solo permitir avanzar en algunas secciones y no en otras sin contestar, podemos especificar`{data-allow-skip=TRUE}` o `{data-allow-skip=FALSE}` en cada tema.
-
-```{r cuestionario5}
-question(
-  text = "¿Con qué comando se permite al usuario avanzar en el tutorial sin haber contestado los ejercicios? (en todo el documento)",
-  allow_retry = TRUE,
-  answer("data-allow-skip=TRUE"),
-  answer("allow_skip: false"),
-  answer("allow_skip: true", correct = TRUE),
-    correct = "¡Perfecto!",
-    try_again = "Intenta de nuevo",
-    submit_button = "Lo lograré",
-    try_again_button = "Quiero salir bien"
-)
-```
-
-### Otro formato del tutorial
-
-Es posible incluir ejercicios en otros tipos de documentos además de un tutorial (`learnr::tutorial`) como dentro de una presentación tipo `slidy`. Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML:
-
-    # title: "Habits"
-    # author: John Doe
-    # date: March 22, 2005
-    # output: slidy_presentation
-    # runtime: shiny_prerendered
-
-Antes de incluir un chunk de ejercicio en la presentación solo cargamos la paquetería `learnr`.
-
-## ¿Una última pregunta?
-
-```{r cuestionario10}
-question("¿Usarás `learnr` después de revisar este tutorial?",
-         type="radio",
-         answer("¡Por supuesto!", correct=TRUE),
-         answer("¡Claro que sí!", correct=TRUE),
-         correct="![](https://media1.tenor.com/images/4869c336eb8589454f7dc3582d623eb5/tenor.gif?itemid=6247482)",
-         submit_button="Ya es lo último")
-
-```
