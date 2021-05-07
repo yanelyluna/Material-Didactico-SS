@@ -272,7 +272,7 @@ quiz(
 
 Usa este comando `install.packages("learnr")` en tu consola de R/RStudio para instalar el paquete `learnr`.
 
-Ingresa el comando para cargar la paquetería dentro del archivo de tu tutorial.
+Como ejercicio, ingresa el comando para cargar la paquetería dentro del archivo de tu tutorial.
 
 ```{r ej1, exercise=TRUE,exercise.cap="Cargar learnr"}
 
@@ -288,7 +288,7 @@ gradethis::grade_this_code(correct = "Excelente", incorrect = "Usa la función l
 
 ### Crear un tutorial
 
-**Opción 1**:
+**Opción 1: Para crear el tutorial desde cero**
 
 1.  Crear un nuevo Rmarkdown:
 
@@ -298,7 +298,7 @@ gradethis::grade_this_code(correct = "Excelente", incorrect = "Usa la función l
 
     ![](images/learnr2.png){width="473"}
 
-**Opción 2:**
+**Opción 2: Modificar un .Rmd ya existente**
 
 1.  En un archivo Rmarkdown modificar el [YAML](https://tutorialesmg.netlify.app/r-markdown) header para incluir el output que se muestra:
 
@@ -316,18 +316,33 @@ gradethis::grade_this_code(correct = "Excelente", incorrect = "Usa la función l
 
 ## Ejercicios de código {data-allow-skip="FALSE"}
 
-### Ejercicios de código
+**¿Te gustaría que los estudiantes puedan aplicar lo que se enseña en tu tutorial sin la necesidad de abrir otro archivo o la consola de R?** En esta sección aprenderemos a crear ejercicios de código, los cuales permiten ejecutar código de R dentro del tutorial.
 
-Para hacer interactivo el tutorial se pueden incluir secciones en las que el usuario proporcione código a ejecutar. La opción `exercise=TRUE` en un chunk permite convertirlo en un ejercicio.
+### ¿Cómo crear un ejercicio de código?
+
+1.  Crear un chunk de código R. En RStudio podemos usar el atajo `CTRL + ALT + I`.
+
+2.  Añadir la opción `exercise=TRUE` en el chunk para convertirlo en un ejercicio.
+
+Ejemplo:
+
+Código
 
 ```{r eval=FALSE,echo=TRUE}
-{r ejercicio, exercise=TRUE}
+'''{r ejercicio, exercise=TRUE}
+#Aquí puedes ingresar código de R y ejecutarlo.
+'''
+```
+
+Resultado
+
+```{r ejercicio0, exercise=TRUE}
 #Aquí puedes ingresar código de R y ejecutarlo.
 ```
 
-### Opciones del chunk
+### ¿Cómo modificar un ejercicio de código?
 
-Las opciones de código chunk no se muestran en el tutorial (y en general no se muestran en los Rmd).
+Para modificar un ejercicio de código usamos las opciones del chunk del ejercicio, las cuales no se muestran en el tutorial (y en general no se muestran en los .Rmd).
 
     ```{r nombre_del_chunk, diversas_opciones_que_mostraremos}
     # Tu código
@@ -337,33 +352,35 @@ Ejemplo:
 
 ![](images/learnr16.png)
 
-Veamos para qué sirven estas opciones en la siguiente tabla:
+Veamos qué es posible hacer con los ejercicios de código usando las opciones de la siguiente tabla:
 
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| Opción                 | Descripción                                                                                                                  | Resultado                                       |
-+:=======================+:=============================================================================================================================+=================================================+
-| `exercise.lines = n`   | n puede ser: 1, 2, 3, .... Y ese número será el número de filas de código que se muestren en el tutorial.                    | ![](images/learnr5.png){width="203"}            |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.cap`         | Título del ejercicio que aparecerá en la esquina superior izquierda. Por default, `exercise.cap = "Code"`                    | ![](images/learnr6.png){width="201"}            |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.eval`        | Por defecto es `FALSE` lo que implica que el código proporcionado no se evalúa sino hasta que el usuario quiera.             | ![](images/learnr7.png){width="201"}            |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.timelimit`   | Tiempo límite de ejecución del código en segundos. (Si el código tarda en ejecutar más del tiempo límite, aparece un error). | ![](images/learnr8.png){width="208"}            |
-|                        |                                                                                                                              |                                                 |
-|                        | **No significa** que el usuario tenga ese tiempo para completar el código.                                                   |                                                 |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.completion`  | Es `TRUE` por defecto y permite que el usuario vea los posibles parámetros que requiere una función.                         | ![](images/learnr9.png){width="208"}            |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.diagnostics` | Es `TRUE` por defecto y permite que el usuario vea los posibles errores que comete al escribir código.                       | Ve ejemplo en la sección: **Ayudar al usuario** |
-|                        |                                                                                                                              |                                                 |
-|                        | ***Poner referencias dentro del tutorial no funciona***                                                                      |                                                 |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
-| `exercise.startover`   | Por defecto es `TRUE`. Indica si queremos que aparezca un botón que permita reiniciar el ejercicio.                          | ![](images/learnr10.png){width="258"}           |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| ¿Quieres...                                                         | Usa la opción:         | ¿Qué valores toma la opción?                                                               | Resultado                                                    |
++=====================================================================+:=======================+:===========================================================================================+==============================================================+
+| cambiar el número de lineas que aparecen en el ejercicio?           | `exercise.lines = n`   | n puede ser: 1, 2, 3, .... Es el número de filas de código que se muestren en el tutorial. | ![](images/learnr5.png){width="281"}                         |
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| modificar el título del ejercicio?                                  | `exercise.cap`         | Una cadena de caracteres. Por default, `exercise.cap = "Code"`                             | ![](images/learnr6.png){width="281"}                         |
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| preevaluar el código del ejercicio?                                 | `exercise.eval`        | Un boleano. Por default es `FALSE`.                                                        | ![](images/learnr7.png){width="281"}                         |
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| evitar que el código ingresado tome demasiado tiempo en ejecutarse? | `exercise.timelimit`   | Un entero. Representa el tiempo límite de ejecución del código en segundos.                | ![](images/learnr8.png){width="281"}                         |
+|                                                                     |                        |                                                                                            |                                                              |
+|                                                                     |                        | **No significa** que el usuario tenga ese tiempo para completar el código.                 |                                                              |
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| brindar o quitar ayuda al estudiante?                               | `exercise.completion`  | Un boleano. Por default es `TRUE`.                                                         | ![](images/learnr9.png){width="281"}                         |
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| prevenir al estudiante sobre errores de codificación?               | `exercise.diagnostics` | Un boleano. Por default es `TRUE`.                                                         | Ve ejemplo en la sección: **¿Cómo puedo ayudar al usuario?** |
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| permitir que se reinicie el ejercicio?                              | `exercise.startover`   | Un boleano. Por default es `TRUE`.                                                         | ![](images/learnr10.png){width="281"}                        |
++---------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------+
 
-La función `tutorial_options()` puede usarse para especificar las opciones del chunk para todas los chunks del tutorial. Esta configuración global puede especificarse en un chunk con nombre `setup` al inicio del tutorial. Es recomendable cargar todas las librerías que se requieran para el tutorial en dicho chunk.
+El uso de estas opciones depende del propósito del tutorial, pero es posible que se requiera la misma opción para todos los ejercicios. **¿Existe alguna forma de fijar opciones para todos los chunks de ejercicio a la vez?**
 
-El código y los resultados de un chunk de ejercicio no estarán disponible para los demás chunks a menos que se especifíque, Una forma de hacer esto es usando la opción `exercise.setup="nombre-chunk-a-usar"`en el chunk de ejercicio en el que queremos usar el resultado previo. Podemos ir formando una cadena de resultados a usar de esta forma.
+**¡Sí!** con la función `tutorial_options()` podemos ahorrar tiempo al fijar dichas opciones. Esta configuración global puede especificarse en un chunk con nombre `setup` al inicio del tutorial. También es recomendable cargar todas las librerías que se requieran para el tutorial en dicho chunk.
+
+**¿Cómo funciona un chunk de ejercicio?** Cada chunk de ejercicio tiene su propio ambiente en R, por lo que los objetos creados en un ejercicio no estarán disponibles para cualquier otro chunk.
+
+Una forma permitir que dichos objetos estén disponibles fuera del ejercicio en el que se crean es usando la opción `exercise.setup="nombre-chunk-a-usar"`en el chunk de ejercicio en el que queremos usar el resultado previo. Podemos ir formando una cadena de resultados a usar de esta forma.
 
 **Ejemplo.**
 
@@ -430,23 +447,32 @@ grafica_pinguinos  + theme_minimal()
 
 ### Ejercicios con hints y soluciones {#syh}
 
-Podemos dar hints a un ejercicio usando el sufijo `-hint` en el nombre del chunk que contiene el hint o mostrar el código de la solución añadiendo `-solution` al nombre del chunk que contiene la solución.
+Si algún ejercicio de tu tutorial requiere una muy buena comprensión del código o consideras que tiene un nivel alto de dificultad, **puedes incluir hints para los estudiantes (sujerencias/orientación sobre cómo resolver el ejercicio).** Además puedes **incluir el código de la solución para que los estudiantes puedan identificar la forma correcta de resolver el ejercicio.**
+
+Para lograr esto usamos el sufijo `-hint` en el nombre del chunk que contiene el hint o mostrar el código de la solución añadiendo `-solution` al nombre del chunk que contiene la solución.
 
 Por ejemplo, para proporcionar código que de una pista para resolver el ejercicio que tiene nombre de chunk `ejercicio1`, escribimos la pista en un chunk que tenga nombre `ejercicio1-hint`. De manera similar, para proporcionar el código de la solución de este ejercicio lo escribimos en un chunk con nombre `ejercicio1-solution`.
 
-    '''{r ejercicio1, exercise=TRUE}
-    #Aquí va el ejercicio:
+Código:
 
-    # Cambia al color de los puntos a rosa
-    ggplot(mtcars, aes(x=mpg,y=cyl)) +
-      geom_point()
-    '''
+    Este es el código del chunk del ejercicio:
 
-    '''{r ejercicio1-hint}
-    #Aquí va el hint para el ejercicio 1
+      '''{r ejercicio1, exercise=TRUE}
+      #Aquí va el ejercicio:
+      
+      # Cambia al color de los puntos a rosa
+      ggplot(mtcars, aes(x=mpg,y=cyl)) +
+        geom_point()
+      '''
+    Este es el código del chunk del hint:
 
-    # Usa el parámetro color dentro de geom_point()
-    '''
+      '''{r ejercicio1-hint}
+      #Aquí va el hint para el ejercicio 1
+      
+      # Usa el parámetro color dentro de geom_point()
+      '''
+
+Resultado:
 
 ```{r ejercicio1, exercise=TRUE}
 # Cambia al color de los puntos a rosa
@@ -458,20 +484,27 @@ ggplot(mtcars, aes(x=mpg,y=cyl)) +
 #Usa el parámetro color dentro de geom_point()
 ```
 
-    '''{r ejercicio2, exercise=TRUE}
-    #Aquí va el ejercicio:
+Código:
 
-    # Cambia al color de los puntos a verde
-    ggplot(mtcars, aes(x=mpg,y=cyl)) +
-      geom_point()
-    '''
+    Este es el código del chunk del ejercicio:
 
-    '''{r ejercicio2-solution}
-    #Aquí va la solución del ejercicio 1
+      '''{r ejercicio2, exercise=TRUE}
+      #Aquí va el ejercicio:
+      
+      # Cambia al color de los puntos a verde
+      ggplot(mtcars, aes(x=mpg,y=cyl)) +
+        geom_point()
+      '''
+    Este es el código del chunk de la solución:
 
-    ggplot(mtcars, aes(x=mpg,y=cyl)) +
-      geom_point(color = "green")
-    '''
+      '''{r ejercicio2-solution}
+      #Aquí va la solución del ejercicio 1
+      
+      ggplot(mtcars, aes(x=mpg,y=cyl)) +
+        geom_point(color = "green")
+      '''
+
+Resultado:
 
 ```{r ejercicio2, exercise=TRUE}
 # Cambia al color de los puntos a verde
@@ -486,26 +519,35 @@ ggplot(mtcars, aes(x=mpg,y=cyl)) +
 
 Al proporcionar hints y también la solución en un ejercicio, ésta aparecerá dentro del apartado de las hints y se mostrará al final.
 
-    '''{r ejercicio3, exercise=TRUE}
-    #Aquí va el ejercicio:
+Código:
 
-    # Cambia al color de los puntos a verde
-    ggplot(mtcars, aes(x=mpg,y=cyl)) +
-      geom_point()
-    '''
+    Este es el código del chunk del ejercicio:
 
-    '''{r ejercicio3-hint}
-    #Aquí va el hint
+      '''{r ejercicio3, exercise=TRUE}
+      #Aquí va el ejercicio:
+      
+      # Cambia al color de los puntos a verde
+      ggplot(mtcars, aes(x=mpg,y=cyl)) +
+        geom_point()
+      '''
 
-    # Usa el parámetro color dentro de geom_point()
-    '''
+    Este es el código del chunk del hint:
 
-    '''{r ejercicio3-solution}
-    #Aquí va la solución del ejercicio 1
+      '''{r ejercicio3-hint}
+      #Aquí va el hint
+      
+      # Usa el parámetro color dentro de geom_point()
+      '''
+    Este es el código del chunk de la solución:
 
-    ggplot(mtcars, aes(x=mpg,y=cyl)) +
-      geom_point(color = "green")
-    '''
+      '''{r ejercicio3-solution}
+      #Aquí va la solución del ejercicio 1
+      
+      ggplot(mtcars, aes(x=mpg,y=cyl)) +
+        geom_point(color = "green")
+      '''
+
+Resultado:
 
 ```{r ejercicio3, exercise=TRUE, highlight=TRUE}
 # Cambia al color de los puntos a verde
@@ -522,32 +564,19 @@ ggplot(mtcars, aes(x=mpg,y=cyl)) +
   geom_point(color= "green")
 ```
 
-### Reiniciar un ejercicio
-
-Esto se hace con la opción `exercise.startover` en el chunk de código (por defecto es TRUE). El siguiente ejercicio NO se puede reiniciar (es decir `exercise.startover = FALSE`)
-
-    '''{r ejercicio4, exercise = TRUE, exercise.startover = FALSE}
-
-    # Define un vector con los números pares del 0 al 10
-    # Ejemplo: c(0,,,,)
-
-    '''
-
-```{r ejercicio4, exercise = TRUE, exercise.startover = FALSE}
-#Define un vector con los números pares del 0 al 10
-# Ejemplo: c(0,,,,)
-```
-
-### Ayudar al usuario *(completar código y aviso de fallas)*
+### ¿Cómo puedo ayudar al usuario? *(completar código y aviso de fallas)*
 
 Por defecto, en cada ejercicio de código se tiene que`exercise.completion = TRUE` lo cual hace que mientras el usuario escribe una función de R (por ejemplo `mean)`, se muestren los parámetros que requiere esa función (por ejemplo `x = , na.rm =` ).
 
+Ejemplo: Cuando `exercise.completion = FALSE`.
+
 ```{r ejercicio5, exercise = TRUE, exercise.completion = FALSE, exercise.cap = "Sin ayuda para completar"}
-#Intenta volver a llenar los argumentos de la función seq para NO ver en marcha exercise.completion (pues pusimos exercise.completion = FALSE)
+#Intenta volver a llenar los argumentos de la función seq para NO ver en marcha
+# exercise.completion (pues pusimos exercise.completion = FALSE)
 x <- seq(0,10,2)
 ```
 
-Por otro lado `exercise.diagnostics = TRUE` para avisar al usuario cuando cometa un error en el código, por ejemplo `function(` es un error de codificación porque falta un paréntesis, si se escribe `exercise.diagnostics = FALSE` no se le dará aviso al usuario que es un error.
+Por otro lado `exercise.diagnostics = TRUE` sirve para avisar al usuario cuando cometa un error en el código, por ejemplo `function(` es un error de codificación porque falta un paréntesis, si se escribe `exercise.diagnostics = FALSE` no se le dará aviso al usuario que es un error.
 
 -   `exercise.diagnostics = TRUE`
 
@@ -556,6 +585,8 @@ Por otro lado `exercise.diagnostics = TRUE` para avisar al usuario cuando cometa
 -   `exercise.diagnostics = FALSE`
 
     ![](images/learnr4.png)
+
+Ejemplo: Cuando `exercise.diagnostics = FALSE`.
 
 ```{r ejercicio6, exercise = TRUE, exercise.diagnostics = FALSE, exercise.cap = "Sin diagnóstico"}
 # Observa que no aparece del lado izquerdo alguna advertencia de los siguientes errores:
@@ -589,12 +620,13 @@ quiz(
 
 ```
 
-
 ## Cuestionarios
+
+Si el tema de tutorial requiere reforzar conceptos o relaciones (en lugar de cómo hacer el código) puedes lograrlo incluyendo preguntas (o cuestionarios) de opción múltiple sobre el tema.
 
 ### Preguntas
 
-Además de los ejercicios de código, puedes incluir preguntas de opción múltiple con la siguiente estructura:
+Para crear una pregunta de opción múltiple usa la siguiente estructura:
 
 **Código**
 
@@ -639,6 +671,8 @@ quiz(
 
 ### Parámetros de `question`
 
+**Lo básico:**
+
 -   `text = "¿Esta es la pregunta?"` El parámeto `text` contiene una cadena de caracteres o **strings** (es decir texto dentro de "comillas").
 
 -   `answer("Esta es la respuesta correcta", correct = TRUE, message = "Aquí le dices al usuario algo bonito por haber acertado ;)")`
@@ -651,19 +685,27 @@ quiz(
 
         -   `message` parámetro de caracteres para dar un mensaje adicional al usuario sobre la opción de respuesta que eligió.
 
--   `allow_retry` parámetro boolean(o), es decri `allow_retry = FALSE` o `allow_retry = TRUE`. Por defecto (es decir, sino se especifica el valor del parámetro) `allow_retry = FALSE` lo cual implica que NO habrá posibilidad de que el usuario intente contestar de nuevo (si es que contestó incorrectamente).
+-   **¿Quieres permitir que el usuario vuelva a intentar responder?**
 
--   `correct = "Este mensaje saldrá cuando aciertes en tu respuesta"`
+    Puedes hacerlo con `allow_retry` que recibe un boleano. Por defecto (es decir, sino se especifica el valor del parámetro) `allow_retry = FALSE` lo cual implica que NO habrá posibilidad de que el usuario intente contestar de nuevo (si es que contestó incorrectamente).
 
--   `incorrect = "Este mensaje saldrá cuando NO aciertes en tu respuesta"`, **solo aparecerá si** `allow_retry = FALSE`
+-   **¿Quieres personalizar el mensaje que aparece al contestar correcta o incorrectamente?**
+
+    Usa `correct = "Este mensaje saldrá cuando aciertes en tu respuesta"` .
+
+    `incorrect = "Este mensaje saldrá cuando NO aciertes en tu respuesta"`, **solo aparecerá si** `allow_retry = FALSE`
 
     `try_again = "Este mensaje saldrá cuando NO aciertes en tu respuesta y tengas la opción de intentarlo de nuevo"`
+
+    **¿Cómo cambiar los botones?**
 
 -   `submit_button = "Mensaje que tiene el botón para confirmar tu respuesta"`, por defecto `submit_button = "Submit Answer"`
 
 -   `try_again_button = "Mensaje que tiene el botón para hacer otro intento"` (siempre y cuando te equivoques), por defecto`try_again_button = "Try Again"`
 
 -   `random_answer_order = TRUE` es un parámetro que permite cambiar el orden de las opciones de respuesta cada que vuleves a realizar el tutorial. **Es decir dar click en `Start over`**
+
+    Ejemplo:
 
 ```{r cuestionario7, echo = TRUE}
   question(
@@ -710,7 +752,7 @@ caption = "¿Aprendiste?"
 )
 ```
 
-### Símbolos matemáticos en las preguntas.
+### Para incluir símbolos matemáticos en las preguntas:
 
 Para poder hacer uso de fórmulas dentro de las preguntas, solo ponemos las fórmulas entre signos de pesos (\$) en sintáxis de $\mathbb{L_aT_ex}$ y dos backslash `\\`, por ejempo:
 
@@ -732,13 +774,15 @@ question(
 
 ## Incluir elementos externos
 
+**¿Qué otros elementos se pueden incluir para hacer más llamativo mi tutorial?**
+
 ### Imágenes
 
-Debe crearse una carpeta dentro del directorio del tutorial con el nombre **images** y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta. Por ejemplo:
+Como en cualquier tipo de archivo .Rmd puedes incluir imágenes. Sin embargo, en este caso debe crearse una carpeta dentro del directorio del tutorial con el nombre **images** y guardar en esta las imágenes a incluir y referenciarlas a dicha carpeta. Por ejemplo:
 
 `![Mi imagen](images/mi_imagen.png)`
 
-También se pueden incluir imágenes (gifs) de internet:
+También se pueden incluir imágenes (y gifs) de internet:
 
 `![Imagen](https://link-a-la-imagen)`
 
@@ -748,7 +792,7 @@ También se pueden incluir imágenes (gifs) de internet:
 
 Se usa la misma sintáxis que para incluir una imagen de internet pero ahora escribimos el link al video. Solo pueden incluirse links a videos de YouTube o vimeo.
 
-El video se reproducirá dentro del mismo archivo del tutorial (no te redirige a otra página).
+Lo atractivo de esta característica es que el video se reproducirá dentro del mismo archivo del tutorial (no te redirige a otra página).
 
 ### Links
 
@@ -770,9 +814,11 @@ question(text="¿Cuál de los siguientes comandos sirve para añadir un video de
 
 ## Diseño del tutorial
 
+**¿Cómo cambiar la apariencia de mi tutorial?**
+
 ### Temas
 
-De manera simple, podemos hacer que el tutorial se vea con estilo personal poniendo en el encabezado YAML `theme: "default"`, donde default se puede cambiar por alguno de los temas predetirminados, siguientes:
+De manera simple, podemos hacer que el tutorial se vea con diferente estilo poniendo en el encabezado YAML `theme: "default"`, donde default se puede cambiar por alguno de los temas predeterminados, siguientes:
 
 |              |              |               |
 |:------------:|:------------:|:-------------:|
@@ -798,6 +844,8 @@ question(
 ```
 
 ### Avance progresivo
+
+Es posible que algún tema del tutorial sea muy extenso y revelar todo el contenido a la vez no sea lo ideal. **¿Cómo podemos ir mostrando el contenido de un tema por partes?**
 
 Para mostrar los subtópicos del tutorial (aquellos que tienen \#\#\#) uno a la vez dando click al botón **Continue** para avanzar, tenemos dos opciones:
 
@@ -858,7 +906,9 @@ question(
 
 ### Otro formato del tutorial
 
-Es posible incluir ejercicios en otros tipos de documentos además de un tutorial (`learnr::tutorial`) como dentro de una presentación tipo `slidy`. Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML:
+**¿Es posible incluir ejercicios en otros tipos de documentos que no sean un tutorial (`learnr::tutorial`)?**
+
+¡Sí! Por ejemplo, durante la presentación de un tema en clase, usando una presentación tipo [`slidy`](https://garrettgman.github.io/rmarkdown/slidy_presentation_format.html). Para esto, se debe incluir `runtime: shiny_prerendered` en el encabezado YAML del documento de la presentación:
 
     # title: "Habits"
     # author: John Doe
@@ -882,7 +932,9 @@ question("¿Usarás `learnr` después de revisar este tutorial?",
 
 ## Algo extra: Calificar código
 
-Si deseas que los usuarios tengan retroalimentación cuando cometan algún error en los ejercicios de código (en términos del objetivo de aprendizaje en el ejercicio), puedes implementarlo con lo que veremos en esta sección.
+**¿Es posible dar retroalimentación más personal en los ejercicios de código?**
+
+¡Sí! Si deseas que los usuarios tengan retroalimentación cuando cometan algún error en los ejercicios de código (en términos del objetivo de aprendizaje en el ejercicio), puedes implementarlo con lo que veremos en esta sección.
 
 ### Instalar `gradethis`
 
@@ -1251,7 +1303,7 @@ Intenta sustituir la respuesta anterior por:
 
 ### CSS
 
-Si quieres un diseño distinto (y propio) a los temas predeterminados (de la sección anterior) puedes crear un archivo o sección CSS para el tutorial.
+Si quieres un diseño distinto (y propio) a los temas predeterminados puedes crear un archivo o sección CSS para el tutorial.
 
 Para ello considera el siguiente esquema que ayudará a entender la sintáxis que veremos más adelante:
 
