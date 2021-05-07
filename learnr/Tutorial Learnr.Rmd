@@ -384,33 +384,41 @@ Una forma permitir que dichos objetos estén disponibles fuera del ejercicio en 
 
 **Ejemplo.**
 
-    {r respuesta}
-    grafica_pinguinos <- ggplot(data = penguins) +
-           aes(x = flipper_length_mm) +
-      geom_histogram(aes(fill = species),
-                     alpha = 0.5,
-                     position = "identity") 
-                     
+    Código de chunk que contiene el objeto a usar:
+
+        '''{r respuesta}
+        grafica_pinguinos <- ggplot(data = penguins) +
+               aes(x = flipper_length_mm) +
+          geom_histogram(aes(fill = species),
+                         alpha = 0.5,
+                         position = "identity") 
+        '''             
                     
-    1.
+    Código de chunk del ejercicio que el usuario completa:
 
-    {r ejercicio7, exercise=TRUE, message=FALSE,warning=FALSE}
-    grafica_pinguinos <- ggplot(data = ______) +
-           aes(x = flipper_length_mm) +
-      geom_histogram(aes(fill = species),
-                     alpha = 0.5,
-                     position = "identity") +
-      labs(x = "Flipper length (mm)",
-           y = "Frequency",
-           title = "Penguin flipper lengths") + 
-      scale_fill_manual(values = c("darkorange","purple","cyan4"))
-      
-      grafica_pinguinos
-      
-    2. 
+        1. Completa el siguiente código para generar una gráfica con los datos del data.frame penguins
+        
+        '''{r ejercicio7, exercise=TRUE, message=FALSE,warning=FALSE}
+        grafica_pinguinos_usuario <- ggplot(data = ______) +
+               aes(x = flipper_length_mm) +
+          geom_histogram(aes(fill = species),
+                         alpha = 0.5,
+                         position = "identity") +
+          labs(x = "Flipper length (mm)",
+               y = "Frequency",
+               title = "Penguin flipper lengths") + 
+          scale_fill_manual(values = c("darkorange","purple","cyan4"))
+          
+          grafica_pinguinos
+        ''' 
 
-    {r ejercicio7_2, exercise=TRUE, exercise.setup="respuesta"}
-    grafica_pinguinos + _____
+    Código del chunk del ejercicio donde el usuario utiliza el objeto creado en el chunk "respuesta".
+
+        2. Agrega el tema minimal al gráfico anterior.
+
+        '''{r ejercicio7_2, exercise=TRUE, exercise.setup="respuesta"}
+        grafica_pinguinos + _____
+        '''
 
 1.  Completa el siguiente código para generar una gráfica con los datos del data.frame `penguins`
 
@@ -421,7 +429,7 @@ grafica_pinguinos <- ggplot(data = penguins) +
 ```
 
 ```{r ejercicio7, exercise=TRUE, message=FALSE,warning=FALSE}
-grafica_pinguinos <- ggplot(data = ____) +
+grafica_pinguinos_usuario <- ggplot(data = ____) +
     aes(x = flipper_length_mm) +
     geom_histogram(aes(fill = species),
                      alpha = 0.5,
