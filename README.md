@@ -26,4 +26,5 @@ Autores:
 4. Tutorial de learnr
   Archivos usados para crear un tutorial que tiene el objetivo de enseñar el uso del paquete `learnr`.
   En el siguiente enlace podrás acceder al repositorio que tiene el paquete creado con el objetivo de compartir el tutorial: https://github.com/CarlosA-Ar/tutoriales
+  
   El archivo __Compartir tutorial__ especifica las dos formas de compartir un tutorial hecho con learnr: en la web o a través de un paquete de R.
