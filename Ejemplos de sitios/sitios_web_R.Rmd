@@ -1,0 +1,43 @@
+---
+title: "Sitios web R"
+author:
+  - name: "Yanely L.G."
+  - name: "Carlos A.A."
+output: 
+  html_document:
+    toc: true
+    toc_float:
+        collapsed: true
+        smooth_scroll: false
+    toc_depth: 3
+    number_sections: false
+date: "Updated: `r format(Sys.Date(), '%d de %B del %Y')`"
+---
+
+[Video 1](https://rstudio.com/resources/webinars/sharing-on-short-notice-how-to-get-your-materials-online-with-r-markdown/?s=09)
+
+Requisitos:
+
+-   Tener RStudio.
+-   Tener material para compartir, el material es tipo académico y se trabajará con + archivos RMarkdown.
+-   Tener ordenado el material de clase, compartir el material y llevar un curso reproducible son algunas de las ventajas al crear un sitio online que alberga tu material de clase.
+
+## OPCIÓN 1. Un solo Rmd
+
+**Pasos:**
+
+1.   Crear un proyecto de R.
+
+2.  Abrir el archivo RMarkdown en el proyecto.
+
+3.  Usar Knit para obtener del RMarkdown un HTML. Que tenga el nombre "index"
+
+4.  Guardar el proyecto, el RMarkdown y el HTML en una carpeta.
+
+5.  Abrir [Netlify](https://app.netlify.com/drop)
+
+6.  Arrastrar la carpeta en
+
+    ![](images/sitios_web_1.PNG)
+
+La ventaja de esto es la facilidad en que se suben los archivos y se obtiene el link casi instantáneamente. El problema es que no es suficiente un link para UN archivo RMarkdown. [Resultado](http://unruffled-goldwasser-a5e326.netlify.app/)
