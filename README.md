@@ -1,16 +1,18 @@
 # Material-Didactico-SS
 
 Este repositorio contiene la evidencia del trabajo que hemos realizado a lo largo del servicio social supervisado por el profeson Eduardo Selim Martínez Mayorga.
+
 Autores:
+
 - Yaney L.G.
 - Carlos A. Ar.
 
 ## Organización del repositorio:
-1. CSS
+### 1. CSS
 
   Archivos tipo css para dar formato a nuestros documentos de HTML.
   
-2. Ejemplos de Sitios
+### 2. Ejemplos de Sitios
 
   Documentos para la elaboración de diferentes sitios web creados en R:
   
@@ -23,12 +25,12 @@ Autores:
   - Distill(blog)
   - Varios Rmd Distill
 
-3. Sitio web del SS
+### 3. Sitio web del SS
 
   Esta carpeta contienen el código necesario con el que generalmos el siguiente sitio web:
   https://tutorialesmg.netlify.app/ 
 
-4. Tutorial de learnr
+### 4. Tutorial de learnr
 
   Archivos usados para crear un tutorial que tiene el objetivo de enseñar el uso del paquete `learnr`.
   
