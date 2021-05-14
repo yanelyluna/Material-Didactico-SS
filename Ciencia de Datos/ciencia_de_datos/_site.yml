@@ -1,0 +1,15 @@
+name: "ciencia_de_datos"
+title: "Ciencia de Datos con R"
+description: |
+  Ciencia de Datos con R
+output_dir: "_site"
+navbar:
+  right:
+    - text: "Principal"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: 
+  distill::distill_article:
+    toc: true
+    css: style.css
