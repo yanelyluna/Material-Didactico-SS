@@ -1,18 +1,18 @@
 ---
-title: "Árboles de decisión"
+title: "Árboles 1"
 description: |
-  Parte 1
+  Parte 1 de árboles
 author:
   - name: Eduardo Selim M. M.
   - name: Carlos A. Ar.
-date: 05-12-2021
+date: 05-09-2021
 output:
   distill::distill_article:
     self_contained: false
     toc: true
     toc_float: true
 categories:
-  - árboles
+  - arboles
 ---
 
 ## ¿Qué es un árbol de decisión?
