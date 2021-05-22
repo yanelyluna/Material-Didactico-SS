@@ -86,635 +86,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Ciencia de Datos con R</title>
+  <title>Regresión ordinal</title>
+
+  <meta property="description" itemprop="description" content="Definición y resultados"/>
 
 
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-05-22"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-05-22"/>
+  <meta name="article:author" content="Eduardo Selim M. M."/>
+  <meta name="article:author" content="Carlos A. Ar."/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Ciencia de Datos con R"/>
+  <meta property="og:title" content="Regresión ordinal"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Definición y resultados"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Ciencia de Datos con R"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Ciencia de Datos con R"/>
+  <meta property="twitter:title" content="Regresión ordinal"/>
+  <meta property="twitter:description" content="Definición y resultados"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Ciencia de Datos con R"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Regresión ordinal"]},{"type":"character","attributes":{},"value":["Definición y resultados\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Eduardo Selim M. M."]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Carlos A. Ar."]}]}]},{"type":"character","attributes":{},"value":["05-22-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["regresion"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"NULL"}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2030,572 +1435,200 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="regresin-ordinal_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="regresin-ordinal_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="regresin-ordinal_files/popper-2.6.0/popper.min.js"></script>
+  <link href="regresin-ordinal_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="regresin-ordinal_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="regresin-ordinal_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="regresin-ordinal_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="regresin-ordinal_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="regresin-ordinal_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="regresin-ordinal_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <style type="text/css">
-  @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:300, 300i&display=swap');
-
-  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
-
-  @import url('https://fonts.googleapis.com/css?family=DM+Mono&display=swap');
-
-  body {
-    font-family: "Work Sans";
-    /*color: #1f1f1f;*/
-    color: #405359;
-    font-size: 16px;
-  }
-
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Libre Baskerville";
-    letter-spacing: 2px;
-    line-height: 2rem; /* increases, so wrapping headers don't overlap */ 
-    color: #096B72;
-    font-weight: 300;
-  }
-
-  d-title {
-    padding-top: 13rem; /*so that navbar doesn't overlap fixed title */
-  }
-
-  d-title h1,
-  d-article h2 {
-  	font-weight: 300;
-  }
-
-  d-article div.sourceCode code, 
-  d-article pre code {
-  	font-family: "DM Mono", monospace;
-  	font-size: 1rem;
-  }
-
-  /* --------------Navbar-------------------- */
-
-
-  /* background-image for fade-to-white color of navbar */
-  .distill-site-header{ 
-    padding: 30px 0px;
-    background-image: linear-gradient(to bottom, rgba(255,255,255, 1), rgba(255,255,255,0.5));   
-    background-color: transparent;
-    font-size: 15px;
-    font-family: "Libre Baskerville";
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  .distill-site-header .logo img{
-    max-height: 40px; /* Makes logo bigger, default was 20px */
-  }
-
-  /* dropdown navbar color on mobile */
-
-  @media screen and (max-width: 768px){
-    .distill-site-header.responsive {
-        background: rgba(255,255,255,0.99);
-    }
-  }
-
-
-  /* Navbar Links with Animated Hover */ 
-
-
-  .distill-site-header a { /* A normal link in navbar */
-    color: #1f1f1f;
-    display: inline-block; /* This line and line below is so pseudo-element will work later */
-    position: relative; 
-    text-decoration: none;
-    padding-left: 0px; /* overrides default so animation looks Ok */
-    padding-right: 0px; /* overrides default so animation looks Ok */
-    margin: 10px 14px; /* replaces default padding values for margin values */
-  }
-
-
-  .distill-site-header a:hover { /* (unanimated) hover behavior for navbar links */
-    color: #787878;
-    padding-left: 0px; /* overrides default so animation looks Ok */
-    padding-right: 0px; /* overrides default so animation looks Ok */
-    margin: 10px 14px; /* replaces default padding values for margin values */
-  }
-
-  .distill-site-header a:before { /*Creates pseudoelement line under link */
-    background-color: #787878;
-    content: '';
-    height: 1px; 
-    position: absolute;
-    bottom: -1px;
-    transition: width 0.3s ease-in-out; /* animate the width */
-    width: 100%;
-  }
-
-  .distill-site-header a:hover:before {
-    width: 0; /* Shrinks width of pseudoelement to 0 when hovered */
-  }
-
-  /* Makes sure animation does NOT apply to Title or Logo links (or toggle on mobile) */
-
-  .distill-site-header a.title:before, .distill-site-nav a.logo:before, a.nav-toggle:before {
-    display: none;
-  }
-
-  .distill-site-header a.title, .distill-site-nav a.logo {
-    padding: 10px 0px;
-    margin: 10px 14px;
-  }
-
-
-  /* No navbar links on mobile except title and nav-toggle */
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown {
-      display: none;
-    }
-    
-    .distill-site-header a.title, .distill-site-header a.nav-toggle {
-      display: inline-block;
-      padding: 10px 0px;
-      margin: 10px 14px; 
-    }
-  }
-
-  /* -------------Appendix---------------- */
-
-  d-appendix {
-    background-color: #e6f3fc;
-    border-top: none !important;
-  }
-
-  /* -------------Footer------------------*/
-
-  .distill-site-footer {
-    color: #f7f7f7b0;
-    background-color: #1f1f1f;
-    margin-top: 0px;
-    padding: 50px 20px;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    line-height: 12px;
-    
-  }
-
-  d-byline div.byline.grid div p,
-  d-byline,
-  d-byline p,
-  p.author,
-  p.affiliation,
-  d-byline h3,
-  .d-toc,
-  .d-toc-header,
-  .d-toc ul,
-  d-appendix p {
-  	font-size: 0.9rem;
-  }
-
-  d-appendix h3 + * {
-  	margin-top: 1.5em !important;
-  }
-
-
-  /*----- COLORED LIST BULLET----*/
-
-  d-article ul {
-    list-style: none; /* Remove default bullets */
-  }
-
-  d-article ul li::before {
-    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-    color: #79beee; /* Change the color */
-    font-weight: normal; /* If you want it to be bold */
-    display: inline-block; /* Needed to add space between the bullet and the text */
-    width: 1.5em; /* Also needed for space (tweak if needed) */
-    margin-left: -1.5em; /* Also needed for space (tweak if needed) */
-  }
-
-  d-article ul > li > p {
-    display: inline; /* to have content show up next to bullet */
-    line-height: 1.6em;
-  }
-
-  d-article ul > li { /*to add back in space between bullet items that I took away by making p display inline */
-    margin-top: 1em;
-    margin-bottom: 1em;
-  }
-
-  .d-toc ul li::before {
-    content: " ";  /* Remove toc bullets */
-  }
-  </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="style.css" type="text/css"/>
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Ciencia de Datos con R","authors":[]}
+{"title":"Regresión ordinal","description":"Definición y resultados","authors":[{"author":"Eduardo Selim M. M.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Carlos A. Ar.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-05-22T00:00:00.000-05:00","citationText":"M. & Ar., 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Ciencia de Datos con R</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Principal</a>
-<a href="about.html">About</a>
-<a href="https://github.com/yanelyluna/Material-Didactico-SS/tree/main/Ciencia%20de%20Datos/ciencia_de_datos">
-<i class="fa fa-github" aria-hidden="true"></i>
-</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Ciencia de Datos con R">Ciencia de Datos con R</h1>
-<a href="posts/2021-05-21-regresin-ordinal/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["regresion"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 22, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Eduardo Selim M. M.</div>
-<div class="dt-author">Carlos A. Ar.</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Regresión ordinal</h2>
-<div class="dt-tags">
-<div class="dt-tag">regresion</div>
-</div>
-<p>Definición y resultados</p>
-</div>
-</a>
-<a href="posts/2021-05-20-diagnstico-de-modelos/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["regresion","diagnostico"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 20, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Eduardo Selim M. M.</div>
-<div class="dt-author">Carlos A. Ar.</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-05-20-diagnstico-de-modelos/images/d_m_1.png"/>
-</div>
-<div class="description">
-<h2>Diagnóstico del modelo</h2>
-<div class="dt-tags">
-<div class="dt-tag">regresion</div>
-<div class="dt-tag">diagnostico</div>
-</div>
-<p>¿Qué tan viable es el uso de los modelos?</p>
-</div>
-</a>
-<a href="posts/2021-05-15-construccin-del-modelo-de-regresin/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["regresion"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 12, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Eduardo Selim M. M.</div>
-<div class="dt-author">Carlos A. Ar.</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Construcción del modelo de regresión</h2>
-<div class="dt-tags">
-<div class="dt-tag">regresion</div>
-</div>
-<p>Veremos el modelo de regresión</p>
-</div>
-</a>
-<a href="posts/2021-05-14-clustering/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["clustering"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 11, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Eduardo Selim M. M.</div>
-<div class="dt-author">Carlos A. Ar.</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Clustering</h2>
-<div class="dt-tags">
-<div class="dt-tag">clustering</div>
-</div>
-<p>.</p>
-</div>
-</a>
-<a href="posts/2021-05-14-rboles-2/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["arboles","bootstrap","bagging"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 10, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Eduardo Selim M. M.</div>
-<div class="dt-author">Carlos A. Ar.</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Árboles 2</h2>
-<div class="dt-tags">
-<div class="dt-tag">arboles</div>
-<div class="dt-tag">bootstrap</div>
-<div class="dt-tag">bagging</div>
-</div>
-<p>Parte 2 de árboles.</p>
-</div>
-</a>
-<a href="posts/2021-05-12-rboles-de-decisin/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["arboles"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 9, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Eduardo Selim M. M.</div>
-<div class="dt-author">Carlos A. Ar.</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2021-05-12-rboles-de-decisin/images/arboles1_3.png"/>
-</div>
-<div class="description">
-<h2>Árboles 1</h2>
-<div class="dt-tags">
-<div class="dt-tag">arboles</div>
-</div>
-<p>Parte 1 de árboles</p>
-</div>
-</a>
-<a href="posts/welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 8, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Eduardo Selim M. M.</div>
-<div class="dt-author">Carlos A. Ar.</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>¿De qué trata el blog?</h2>
-<div class="dt-tags"></div>
-<p>¡La información aquí presentada es para consultar teoría de Ciencia de Datos que además se implementa con el programa R!</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:articles">articles</a>
-<span class="category-count">(7)</span>
-</li>
-<li>
-<a href="#category:arboles">arboles</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:bagging">bagging</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:bootstrap">bootstrap</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:clustering">clustering</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:diagnostico">diagnostico</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:regresion">regresion</a>
-<span class="category-count">(3)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Ciencia de Datos con R</h1>
+<h1>Regresión ordinal</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">regresion</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>Definición y resultados</p></p>
 </div>
 
+<div class="d-byline">
+  Eduardo Selim M. M.  
+  
+,   Carlos A. Ar.  
+  
+<br/>05-22-2021
+</div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#modelo-logit-acumulado">Modelo logit acumulado</a></li>
+<li><a href="#modelo-de-odds-proporcionales">Modelo de odds proporcionales</a></li>
+<li><a href="#respuesta-de-conteo">Respuesta de conteo</a>
+<ul>
+<li><a href="#modelo-de-regresión-poisson">Modelo de regresión Poisson</a></li>
+</ul></li>
+<li><a href="#estimación-máximo-verosímil">Estimación máximo verosímil</a></li>
+</ul>
+</nav>
+</div>
+<ul>
+<li><p>La variable respuesta es categórica ordinal.</p></li>
+<li><p>Como antes <span class="math inline">\(\pi_j = \mathbb{P}(y = j), j = 1,2,...,c\)</span></p></li>
+<li><p>Solo <span class="math inline">\(c-1\)</span> de estas probabilidades son libres pues <span class="math inline">\(\pi_1 + \pi_2 +...+\pi_c = 1\)</span> y estas probabilidades se requieren modelar en términos de variables explicativas.</p></li>
+<li><p>Se estudiarán 2 propuestas para este tipo de variables</p>
+<ul>
+<li><ol type="i">
+<li>Modelos logit acumulado</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li>Modelo de odds proporcionales</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="modelo-logit-acumulado">Modelo logit acumulado</h2>
+<ul>
+<li><p>Usa el link logit para explicar las probabilidades acumuladas:</p>
+<p><span class="math display">\[
+\tau_j := \pi_1 + ... + \pi_j, j = 1, ..., c-1
+\]</span></p></li>
+<li><p>Es decir,</p>
+<p><span class="math display">\[
+\log\bigg(\frac{\tau_j}{1-\tau_j}\bigg) = \underline{x}^T\beta_j = \beta_{0j} + \beta_{1j}x_1 + ... + \beta_{kj}x_k 
+\]</span></p>
+<ul>
+<li>De nuevo, hay <span class="math inline">\(c-1\)</span> regresiones</li>
+</ul></li>
+<li><p><span class="math inline">\(\log\bigg(\frac{\tau_j}{1-\tau_j}\bigg) = \underline{x}^T\beta_j\)</span> se puede escribir como</p>
+<p><span class="math display">\[
+\log\bigg(\frac{\pi_1+...+\pi_j}{\pi_{j+1} + ... + \pi_c}\bigg) = \underline{x}^T\beta_j, j = 1,2,...,c-1
+\]</span></p></li>
+<li><p>Por ejemplo, si <span class="math inline">\(c = 3\)</span> y hay 4 variables explicativas <span class="math inline">\(x_1, x_2,x_3,x_4\)</span>, se tienen 2 ecuaciones:</p>
+<p><span class="math display">\[
+\log\bigg(\frac{\pi_1}{\pi_2+\pi_3}\bigg) = \beta_{01} +\beta_{11}x_1 + \beta_{21}x_2 + \beta_{31}x_3 + \beta_{41}x_4\\
+\log\bigg(\frac{\pi_1+\pi_2}{\pi_3}\bigg) = \beta_{02} +\beta_{12}x_1 + \beta_{22}x_2 + \beta_{32}x_3 + \beta_{42}x_4
+\]</span></p></li>
+<li><p>Como antes, se puede escribir <span class="math inline">\(\tau_j\)</span> como:</p>
+<p><span class="math display">\[
+\tau_j = \frac{1}{1+\exp\{-\underline{x}\beta_j\}}
+\]</span></p></li>
+</ul>
+<h2 id="modelo-de-odds-proporcionales">Modelo de odds proporcionales</h2>
+<ul>
+<li><p>Es un caso particular del modelo logit acumulativo en el que <span class="math inline">\(\beta_{0j}\)</span> (el intercepto) varía para cada <span class="math inline">\(j\)</span> pero los otros coeficientes de regresión <u>no</u> dependen de <span class="math inline">\(j\)</span>.</p></li>
+<li><p>Las ecuaciones del modelo son:</p>
+<p><span class="math display">\[
+\log\bigg(\frac{\tau_j}{1-\tau_j}\bigg) = \underbrace{\beta_{0j}}_{\text{cambia para cada } j } + \beta_1x_1 + ... + \beta_kx_k, j = 1,...,c-1
+\]</span></p></li>
+<li><p>De nuevo, hay <span class="math inline">\(c-1\)</span> regresores.</p></li>
+<li><p>Estas <span class="math inline">\(c-1\)</span> ecuaciones tienen diferentes interceptos pero la misma pendiente con respecto a cada variable explicativa.</p></li>
+</ul>
+<h2 id="respuesta-de-conteo">Respuesta de conteo</h2>
+<ul>
+<li>Se considerarán variables respuesta que representan conteos de cierto evento de referencia.</li>
+</ul>
+<h3 id="modelo-de-regresión-poisson">Modelo de regresión Poisson</h3>
+<ul>
+<li><p>Para variables de conteo, una elección popular es la distribución Poisson</p>
+<p><span class="math display">\[
+y \backsim Poisson(\mu) \text{ con } g(\mu) = \underline{x}^T\beta
+\]</span></p></li>
+<li><p>Para la distribución Poisson, la función link canónica es la función <span class="math inline">\(g(\mu) = \log(\mu)\)</span></p></li>
+<li><p>De aquí que <span class="math inline">\(\mu = \exp\{\underline{x}^T\beta\}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Regresión:</th>
+<th style="text-align: center;">Respuesta</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Poisson:</td>
+<td style="text-align: center;">Poisson</td>
+<td style="text-align: center;">&amp;</td>
+<td style="text-align: center;">Log</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><u><strong>Offset:</strong></u> En estudios de datos de conteo, los conteos observados <span class="math inline">\(y_1,...,y_n\)</span> pueden <u>no</u> ser directamente comparables entre sí, debido a sus exposures. Por ejemplo,</p>
+<ul>
+<li><p>El número de accidentes en un seguro de automóviles depende del número de vehículos asegurados y el plazo de la cobertura.</p></li>
+<li><p>El número de muertes en un estudio de mortalidad se incrementa con el número de sujetos y la duración del estudio.</p></li>
+</ul></li>
+<li><p><span class="math inline">\(\log(\mu_i) = \underbrace{\log(E_i)}_{\text{offset}} + \beta_0 + \beta_1x_1 + ... + \beta_kx_k\)</span> es decir, se agrega un término de “exposición”, es decir <span class="math inline">\(\mu_i = E_i \cdot exp\{\underline{x}^T_i \beta\}\)</span></p></li>
+<li><p><span class="math inline">\(\log(E_i)\)</span> se puede pensar como un intercepto observation-specific conocido.</p></li>
+</ul>
+<h2 id="estimación-máximo-verosímil">Estimación máximo verosímil</h2>
+<p><span class="math display">\[
+L(\beta) = \prod_{i=1}^n \frac{e^{-\mu_i} \mu_i^{y_i}}{y_i !} \propto  \prod_{i=1}^n e^{-\mu_i} \mu_i^{y_i} = \prod_{i=1}^n e^{-\exp\{-\underline{x}_i^T\beta\}} (\exp\{-\underline{x}_i^T\beta\})^{y_i} 
+\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[ 
+l(\beta) = \sum_{i=1}^n\bigg(-e^{-\underline{x}_i^T\beta} + y_i (\underline{x}_i^T\beta)\bigg) + cte
+\]</span></p>
+<p>De aquí que</p>
+<p><span class="math display">\[
+\frac{d}{d\beta}l(\beta) = \sum_{i=1}^n\bigg(-e^{-\underline{x}_i^T\beta} + y_i \underline{x_i}\bigg) = \sum_{i=1}^n(y_i -\mu_i)\underline{x_i}\\
+\frac{d}{d\beta}l(\beta) = 0 \iff \underbrace{\sum_{i=1}^n(y_i -\mu_i)\underline{x_i} = \underline{0}}_{\text{Se resuelve con respecto de }\beta \\ \text{que aparece en las }\mu_i&#39;^s\text{ pues} \\ \mu_i = \exp\{\underline{x}_i^T\beta\}}\]</span></p>
+<p>La solución <span class="math inline">\(\hat{\beta}\)</span> genera las medias ajustadas</p>
+<p><span class="math display">\[\hat{ \mu}_i = \exp\{\underline{x}_i^T\beta\}\]</span></p>
+<p>Que satisface</p>
+<p><span class="math display">\[
+\sum_{i=1}^n(y_i -\hat{\mu}_i)\underline{x_i} = \underline{0}\\
+\text{Esto implica que } \sum_{i=1}^ny_i = \sum_{i=1}^n \hat{\mu}_i\\
+\text{Entonces } \sum_{i=1}^ne_i = \sum_{i=1}^n (y_i -\hat{\mu}_i) = 0\\
+\text{i.e. la suma de los residuales es } 0
+\]</span></p>
+<p>La correspondiente matriz de información</p>
+<p><span class="math display">\[
+I(\beta) = -E\bigg(\frac{d^2}{d\beta d\beta^T} l(\beta)\bigg) = \sum_{i=1}^{n} \mu_i \underbrace{(\underline{x}_i\underline{x}_i^T)}_{\text{una matríz}}
+\]</span></p>
+<p>depende de <span class="math inline">\(\beta\)</span> a través de las <span class="math inline">\(\mu_i´^s\)</span></p>
+<p>Por ejemplo, cuando hay una sola variable explicativa.</p>
+<p><span class="math display">\[
+\log(\mu_i) = \beta_0+\beta_1x_i, i = 1,2,...,n = (1\space \space\space\space x_i)  \binom{\beta_0}{\beta_1}
+\]</span></p>
+<p>A partir de la ecuación de máxima verosimilitud</p>
+<p><span class="math display">\[
+\sum_{i=1}^n (y_i - \hat{\mu_i})\underline{x}_i = \underline{0} \iff \binom{\sum_{i=1}^n (y_i - \hat{\mu_i})}{\sum_{i=1}^n x_i(y_i - \hat{\mu_i})} = \binom{0}{0}
+\]</span></p>
+<p>Es decir,</p>
+<p><span class="math display">\[
+\begin{cases}
+\displaystyle \sum_{i=1}^n y_i = \sum_{i=1}^n \hat{\mu}_i\\
+\\
+\displaystyle \sum_{i=1}^n x_i e_i = 0
+\end{cases}
+\]</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2604,6 +1637,15 @@ function init_posts_list() {
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
