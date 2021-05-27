@@ -86,39 +86,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>Ciencia de Datos con R: Clustering</title>
+<title>Ciencia de Datos con R: Regresión lineal múltiple</title>
 
-<meta property="description" itemprop="description" content="."/>
+<meta property="description" itemprop="description" content="Repaso de regresión lineal con múltiples variables explicativas."/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-05-11"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-05-11"/>
+<meta property="article:published" itemprop="datePublished" content="2021-05-26"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-05-26"/>
 <meta name="article:author" content="Eduardo Selim M. M."/>
 <meta name="article:author" content="Carlos A. Ar."/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Ciencia de Datos con R: Clustering"/>
+<meta property="og:title" content="Ciencia de Datos con R: Regresión lineal múltiple"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="."/>
+<meta property="og:description" content="Repaso de regresión lineal con múltiples variables explicativas."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Ciencia de Datos con R"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Ciencia de Datos con R: Clustering"/>
-<meta property="twitter:description" content="."/>
+<meta property="twitter:title" content="Ciencia de Datos con R: Regresión lineal múltiple"/>
+<meta property="twitter:description" content="Repaso de regresión lineal con múltiples variables explicativas."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Clustering"]},{"type":"character","attributes":{},"value":["."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Eduardo Selim M. M."]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Carlos A. Ar."]}]}]},{"type":"character","attributes":{},"value":["05-11-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["clustering"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Regresión lineal múltiple"]},{"type":"character","attributes":{},"value":["Repaso de regresión lineal con múltiples variables explicativas."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Eduardo Selim M. M."]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Carlos A. Ar."]}]}]},{"type":"character","attributes":{},"value":["05-26-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["regresion"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["clustering_files/anchor-4.2.2/anchor.min.js","clustering_files/bowser-1.9.3/bowser.min.js","clustering_files/distill-2.2.21/template.v2.js","clustering_files/header-attrs-2.7/header-attrs.js","clustering_files/jquery-1.11.3/jquery.min.js","clustering_files/popper-2.6.0/popper.min.js","clustering_files/tippy-6.2.7/tippy-bundle.umd.min.js","clustering_files/tippy-6.2.7/tippy-light-border.css","clustering_files/tippy-6.2.7/tippy.css","clustering_files/tippy-6.2.7/tippy.umd.min.js","clustering_files/webcomponents-2.0.0/webcomponents.js","images/clustering_1.png","images/clustering_2.png"]}
+  {"type":"character","attributes":{},"value":["regresin-lineal-mltiple_files/anchor-4.2.2/anchor.min.js","regresin-lineal-mltiple_files/bowser-1.9.3/bowser.min.js","regresin-lineal-mltiple_files/distill-2.2.21/template.v2.js","regresin-lineal-mltiple_files/header-attrs-2.7/header-attrs.js","regresin-lineal-mltiple_files/jquery-1.11.3/jquery.min.js","regresin-lineal-mltiple_files/popper-2.6.0/popper.min.js","regresin-lineal-mltiple_files/tippy-6.2.7/tippy-bundle.umd.min.js","regresin-lineal-mltiple_files/tippy-6.2.7/tippy-light-border.css","regresin-lineal-mltiple_files/tippy-6.2.7/tippy.css","regresin-lineal-mltiple_files/tippy-6.2.7/tippy.umd.min.js","regresin-lineal-mltiple_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2257,7 +2257,7 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Clustering","description":".","authors":[{"author":"Eduardo Selim M. M.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Carlos A. Ar.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-05-11T00:00:00.000-05:00","citationText":"M. & Ar., 2021"}
+{"title":"Regresión lineal múltiple","description":"Repaso de regresión lineal con múltiples variables explicativas.","authors":[{"author":"Eduardo Selim M. M.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Carlos A. Ar.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-05-26T00:00:00.000-05:00","citationText":"M. & Ar., 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2283,13 +2283,13 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Clustering</h1>
+<h1>Regresión lineal múltiple</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-  <a href="../../index.html#category:clustering" class="dt-tag">clustering</a>
+  <a href="../../index.html#category:regresion" class="dt-tag">regresion</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>.</p></p>
+<p><p>Repaso de regresión lineal con múltiples variables explicativas.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2297,7 +2297,7 @@ d-article ul > li { /*to add back in space between bullet items that I took away
   
 ,   Carlos A. Ar.  
   
-<br/>05-11-2021
+<br/>05-26-2021
 </div>
 
 <div class="d-article">
@@ -2305,183 +2305,125 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#definiciones-generales">Definiciones generales</a></li>
-<li><a href="#clustering-por-k-medias">Clustering por k medias</a>
+<li><a href="#estimador-de-beta">Estimador de <span class="math inline">\(\beta\)</span></a>
 <ul>
-<li><a href="#algorítmo-clústering-por-k-medias">Algorítmo: clústering por k-medias</a></li>
+<li><a href="#intervalo-de-confianza-para-hatbeta">Intervalo de confianza para <span class="math inline">\(\hat{\beta}\)</span></a></li>
 </ul></li>
-<li><a href="#clústering-jerárquico">Clústering jerárquico</a></li>
 </ul>
 </nav>
 </div>
-<h2 id="definiciones-generales">Definiciones generales</h2>
-<ul>
-<li><p>Un método de clustering se utiliza para agrupar un data-set heterogéneo en <u>subgrupos homogéneos</u> que se conocen como <u>clusters</u>. Estrategia <u>no</u> supervisada, es decir, no hay variable respuesta <span class="math inline">\(y\)</span>.</p></li>
-<li><p><strong>Revisaremos</strong></p>
-<ul>
-<li><p>Clustering por <u>k-medias</u></p></li>
-<li><p>Cluestering <u>jerárquico</u></p></li>
-</ul></li>
-<li><p>Se considera</p>
-<ul>
-<li><p>Si se conoce a priori el npumero de sibgrupos, se usa k-medias.</p></li>
-<li><p>Si no se conoce a priori el número de subgrupos, se usa clustering jerárquico.</p></li>
-</ul></li>
-<li><p>Un <u>cluster</u> es un grupo de observaciones que son <u>“muy similares”</u> y tienen varias características en común.</p>
-<ul>
-<li>Entonces se quiere <u>cuantificar</u> la noción de <u>“muy similar”</u></li>
-</ul></li>
-<li><p>La cercanía de las observaciones está determinada por una <u>distancia.</u></p>
-<ul>
-<li><p>En principio, la distancia Euclidiana</p></li>
-<li><p>Pero pueden haber otras metricas</p></li>
-</ul></li>
-</ul>
-<h1 id="clustering-por-k-medias">Clustering por k medias</h1>
-<ul>
-<li><p>Se quiere agrupar al data-set como <span class="math inline">\(\textbf{k}\)</span> clústers disjuntos.</p></li>
-<li><p>Los datos iniciales son <span class="math inline">\(n\)</span> y están <strong>enumerados</strong> de 1 a <span class="math inline">\(n\)</span>.</p>
-<ul>
-<li>Las etiquetas de las observaciones se guardan en <span class="math inline">\(C = \{1,2,...,n\}\)</span></li>
-</ul></li>
-<li><p>Con clustering por k-medias se quiere determinar clústers <span class="math inline">\(C_1, C_2, ..., C_k\)</span></p></li>
-<li><p>Las etiquetas en <span class="math inline">\(C_i\)</span> son observaciones que pertenecen al clúster <span class="math inline">\(i\)</span>.</p></li>
-<li><p>Cada observación será asignada <u>a un y sólo un</u> clúster.</p>
-<ul>
-<li><p><span class="math inline">\(C = C_1 \cup C_2 \cup ... \cup C_k\)</span></p></li>
-<li><p>Si <span class="math inline">\(i \neq j\)</span>, entonces <span class="math inline">\(C_i \cap C_j = \emptyset\)</span></p></li>
-</ul></li>
-<li><p>Con clustering por k-medias, se quiere encontrar clústers <span class="math inline">\(C_1,C_2,...,C_k\)</span> talqes que la <u>variación dentro de cada clúster</u> será lo <u>más pequeña posible.</u></p></li>
-<li><p>Mientras más <u>pequeña</u> sea la <u>variación</u> within-cluster, mejor serpa el método de clustering. 😊</p></li>
-<li><p>La variación dentro de un clúster se mide usando una fucnión <span class="math inline">\(W(\cdot)\)</span></p>
-<ul>
-<li><span class="math inline">\(W(C_j)\)</span>: Variación entre las observaciones en el clúster <span class="math inline">\(j\)</span>.</li>
-</ul></li>
-<li><p>La variación total está dada por</p>
 <p><span class="math display">\[
-\text{Variación total } = \sum_{j = 1}^{k} W(C_j)
-\]</span></p></li>
-<li><p>El clustering por k-medias determinan qué clústers <span class="math inline">\(C_1, ..., C_k\)</span> minimizan la variación total</p>
-<p><span class="math display">\[
-\min_{C_1, ..., C_k}\sum_{j=1}^{k}W(C_j)
-\]</span></p></li>
-<li><p>Una forma común de definir <span class="math inline">\(W(\cdot)\)</span> es como la distancia Euclidiana entre las observaciones.</p></li>
-<li><p>Supóngase que las observaciones <span class="math inline">\(\underline{x}_i, \underline{x}_{i&#39;}\)</span> están en el k-ésimo clúster</p>
-<ul>
-<li><p>Esto significa que <span class="math inline">\(i, i&#39; \in C_k\)</span></p>
-<p><span class="math display">\[
-\text{Distancia al cuadrado entre } i \text{ y } i&#39; \\
-=\sum_{j=1}^{p}(x_{ij} - x_{i&#39;j})^2
-\]</span></p></li>
-</ul></li>
-<li><p><span class="math inline">\(W(C_k)\)</span>: Distancia al cuadrado promedio entre las observaciones en el clúster <span class="math inline">\(k\)</span></p>
-<p><span class="math display">\[
-W(C_k) = \frac{1}{|C_k|}\sum_{i,i&#39; \in C_k} \sum_{j=1}^{p}(x_{ij} - x_{i&#39;j})^2
-\]</span></p></li>
-<li><p>Los clústers <span class="math inline">\(C_1, ..., C_k\)</span> se obtienen de tal forma que</p>
-<p><span class="math display">\[
-\min_{C_1, ..., C_k}\bigg\{ \sum_{k=1}^K \frac{1}{|C_k|}\sum_{i,i&#39; \in C_k} \sum_{j=1}^{p}(x_{ij} - x_{i&#39;j})^2 \bigg\}
-\]</span></p></li>
-</ul>
-<h2 id="algorítmo-clústering-por-k-medias">Algorítmo: clústering por k-medias</h2>
-<ol type="1">
-<li><p>Paso preliminar, asignar aleatoriamente cada observación a un clúster.</p></li>
-<li><p><u>Iteración.</u> Repetir los siguientes pasos hasta que la asignación del clúster no cambie entre 2 pasos consecutivos:</p>
-<ol type="a">
-<li>Determinar el centroide <span class="math inline">\(\bar{x}_k\)</span> para cada clúster <span class="math inline">\(C_k\)</span> para cada <span class="math inline">\(k = 1, 2, ..., K\)</span></li>
-</ol>
-<p><span class="math display">\[
-\bar{x}_k := (\bar{x}_{k1}, \bar{x}_{k2},...,\bar{x}_{kp})
+y = \underbrace{\beta_0 + \beta_1x_1 + \beta_2x_2 +...+ \beta_kx_k+\epsilon}_{\text{función de regresión}}
 \]</span></p>
-<p>(el promedio en el clúster por cada variable), donde:</p>
+<p>Muestralmente</p>
 <p><span class="math display">\[
-\bar{x}_{kj} = \frac{1}{|C_k|}\sum_{i \in C_k} x_{ij}, \space \space j =1,2, ...,p
+(y_i, \underbrace{x_{i1},x_{i1},...,x_{ik}}_{\text{Covariables, } \\ \text{variables predictoras,} \\ \text{features, } \\ \text{variables explicativas}}), \space \space \space \space i = 1,2,...,n \\ \text{Donde } n \text{ es el número de observaciones.} 
 \]</span></p>
-<ol start="2" type="a">
-<li>Asignar a cada observación al clúster del centroide más cercano. De hecho, una observación <span class="math inline">\(\underline{x}_i\)</span> pertenece al clúster <span class="math inline">\(k\)</span>.</li>
-</ol>
+<p>Entonces <span class="math inline">\(y_i = \beta_0 + \beta_1 x_{i1} + ... + \beta_k x_{ik} + \epsilon_i\)</span> donde <span class="math inline">\(\epsilon_i \sim N(0 , 1)\)</span> además de ser i.i.d.</p>
+<p>Como antes</p>
 <p><span class="math display">\[
-\sum_{j=1}^p(x_{ij}-\bar{x}_{k&#39;j})^2 \leq \sum_{j=1}^p(x_{ij}-\bar{x}_{k&#39;j}) \text{  para cada clúster } k&#39;
-\]</span></p></li>
-</ol>
+\mathbb{E}(y_i)= \beta_0 + \beta_1 x_{i1} + ... + \beta_k x_{ik}
+\]</span></p>
+<p>Interpretación muy popular es que <span class="math inline">\(\beta_j\)</span> es el cambio esperado en <span class="math inline">\(y\)</span>, por unidad de cambio en <span class="math inline">\(x_j\)</span> <em>(ceteris paribus)</em> puesto que</p>
+<p><span class="math display">\[
+\frac{\partial \mathbb{E}(y_i)}{\partial x_j} = \beta_j
+\]</span></p>
+<p>En términos matriciales</p>
+<p><span class="math display">\[
+\begin{equation}
+ \underbrace{\begin{pmatrix}
+   y_1 \\
+   y_2 \\
+   \vdots \\
+   y_n
+ \end{pmatrix}}_{y_{n \times 1}}
+ = 
+\underbrace{\begin{pmatrix}
+   1     &amp; x_{11} &amp; x_{12} &amp; \dotso &amp; x_{1k}\\
+   1     &amp; x_{21} &amp; x_{22} &amp; \dotso &amp; x_{2k}\\
+  \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+   1     &amp; x_{n1} &amp; x_{n2} &amp; \dotso &amp; x_{nk}
+ \end{pmatrix}}_{\mathbb{X}_{n \times (k+1)} \\ \text{Matríz de covariables} \\ \text{Matriz de diseño}}
+\underbrace{\begin{pmatrix}
+   \beta_0 \\
+   \beta_1 \\
+   \vdots \\
+   \beta_k
+ \end{pmatrix}}_{\beta_{(k+1) \times 1}}
++
+\underbrace{\begin{pmatrix}
+   \epsilon_1 \\
+   \epsilon_2 \\
+   \vdots \\
+   \epsilon_n
+ \end{pmatrix}}_{\epsilon_{n \times 1}}
+\end{equation}
+\]</span></p>
+<p>Nos hacemos las mismas preguntas de siempre</p>
+<p><span class="math display">\[
+\rightarrow ¿\hat{\beta}? \text{ ¿Cómo obtengo los estimadores?}\\
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow y_i \sim \hat{y}_i, \space \space \space \space \space  \space \space \space \space \space \space \space \Rightarrow \space \space \space \space  \space\space \space \space \space  \space \space \space  e_i = y_i - \hat{y}_i\\
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow \text{La certidumbre tanto de } \hat{\beta} \text{ como de } \hat{y}\\ \text{(i.e. intervalos de confianza)} \\
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow \text{Predicción: ¿Cómo se comporta el modelo ante variables explicativas no observadas?}\\
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow \text{Future Engineering, selección de variables} \\
+ \text{¿Qué variables aportan a explicar } y \text{?}
+\]</span></p>
+<h2 id="estimador-de-beta">Estimador de <span class="math inline">\(\beta\)</span></h2>
+<p>Se obtiene por mínimos cuadrados</p>
 <ul>
-<li><p>El algorítmo minimiza la distancia de las observaciones a los centroides. Sin embargo, el problema de optimización establece minimizar la distancia entre las observaciones que pertenecen al mismo clúster. La siguiente expresión relaciona ambos problemas</p>
+<li><p>Se obtienen lo que se conoce como las ecuaciones normales.</p>
 <p><span class="math display">\[
-\frac{1}{|C_k|}\sum_{i,i&#39;\in C_k} \sum_{j=1}^{p}(x_{ij}-x_{i´j})^2 = 2\sum_{i \in C_k} \sum_{j=1}^{p}(x_{ij}-x_{i´j})^2
+y = \mathbb{X} \beta \underbrace{\Rightarrow }_{\text{Multiplicamos por }  \mathbb{X}^T} \mathbb{X}^T y = \mathbb{X}^T \mathbb{X} \beta \\
+\underbrace{\Rightarrow }_{\text{Estamos suponiendo que }\\ \text{esta matríz es invertible}} \hat{\beta} = (\mathbb{X}^T \mathbb{X})^{-1} \mathbb{X}^T y
 \]</span></p></li>
 </ul>
-<h1 id="clústering-jerárquico">Clústering jerárquico</h1>
-<ul>
-<li><p>El método de clustering jerárquico <u>no</u> requiere que se especifíque el número de clústers al inicio.</p></li>
-<li><p>El clústering jerárquico utiliza un dendograma</p>
-<p><img src="https://i.stack.imgur.com/UudJF.png" width="520" /></p></li>
-<li><p>La construcción del dendograma es la siguiente:</p>
-<ul>
-<li><p>Se tiene un conjunto de observaciones <span class="math inline">\(\underline{x}_1,\underline{x}_2,...,\underline{x}_n\)</span> cada una de dimensión p.</p></li>
-<li><p>El dendograma se construye de abajo hacia arriba. Hasta abajo se ponen todas las observaciones de manera separada; esto indica que cada observación es su propio clúster, i.e. se tienen <span class="math inline">\(n\)</span> clústers.</p>
-<ul>
-<li><p>Después se “fusionan” dos clústers en uno. Así, en el segundo nivel del dendograma se tienen <span class="math inline">\(n-1\)</span> clústers: <span class="math inline">\(n-2\)</span> con un elemento y 1 con dos observaciones.</p></li>
-<li><p>El siguiente paso es crear un tercer nivel fusionando de nuevo 2 clústers.</p></li>
-<li><p>Se continúa con este proceso hasta el nivel superior en el que todas las observaciones perteneces a un clúster.</p></li>
-</ul></li>
-<li><p>Hay muchas formas de hacer estas “fusiones” de dos clústers en uno en cada nivel.</p></li>
-<li><p>En cada paso de la construcción del dendograma se debe determinar la disimilaridad (dissimilarity)</p></li>
-<li><p>Existen diferentes medidas de disimilaridad.</p></li>
-<li><p><u>Linkage:</u> Disimilaridad entre 2 grupos de observaciones.</p></li>
-<li><p>Hay 4 tipos de linkage populares:</p>
-<ul>
-<li><p>Completo</p></li>
-<li><p>Individual (single)</p></li>
-<li><p>Promedio (average)</p></li>
-<li><p>Centroide</p></li>
-</ul></li>
-<li><p><strong>Linkage completo.</strong> Calcula la disimilaridad entre cada punto del clúster <span class="math inline">\(A\)</span> y cada punto del clúster <span class="math inline">\(B\)</span>. El linkage completo entre <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es la distancia <u>máxima</u>. <em>Para calcular este, se hacen</em> <span class="math inline">\(|A|\cdot|B|\)</span> distancias y se toma la máxima.</p></li>
-<li><p><strong>Linkage individual.</strong> Calcula la disimilaridad entre cada punto del clúster <span class="math inline">\(A\)</span> y cada punto del clúster <span class="math inline">\(B\)</span>. El linkage individual entre <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es la distancia <u>mínima</u>.</p>
-<ul>
-<li><p><u>Observación.</u> Este linkage lleva a clústers “colgantes” (trailing clústers), clústers en los que un punto a la vez se fusionan con un single clúster.</p>
-<p><img src="images/clustering_2.png" /></p></li>
-</ul></li>
-<li><p><strong>Linkage promedio.</strong> Calcula la disimilaridad entre cada punto del clúster <span class="math inline">\(A\)</span> y cada punto del clúster <span class="math inline">\(B\)</span>. El linage promedio entre <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es el <u>promedio de estas distancias.</u></p></li>
-<li><p><strong>Linkage centroide.</strong> Calcula el centroide de cada clúster y usa la disimilaridad entre los centroides.</p>
-<ul>
-<li><u>Observación.</u> Bajo este método se tiene la desventaja de que pueden ocurrir “inversores” (la disimilaridad de la fusión “futura” es menor que la disimilaridad de una fusión “pasada”, involucrando los mismos puntos).</li>
-</ul></li>
-<li><p>Una vez que se contruyó un dendograma, se puede determinar los clústers dibujando una recta horizontal en el dendograma.</p>
-<ul>
-<li><p>recta arriba <span class="math inline">\(\rightarrow\)</span> pocos clústers.</p></li>
-<li><p>recta abajo <span class="math inline">\(\rightarrow\)</span> muchos clústers.</p></li>
-</ul></li>
-</ul></li>
-<li><p><u>Within-cluster-variation</u></p>
+<p>Como antes</p>
 <p><span class="math display">\[
-W(C_k):=\sum_{i \in C_k} \sum_{j=1}^{p}(x_{ij}- \bar{x}_{kj})^2\\
-W_k := \sum_{k=1}^KW(C_k)
+RSS = \displaystyle \sum_{i=1}^n (y_i - \hat{y})^2  \\
+RegSS = \displaystyle \sum_{i=1}^n(\hat{y}_i - \bar{y})^2 \\
+ \text{ Estamos comparando el modelo de regresión}\\
+\displaystyle TSS = \sum_{i=1}^n (y_i - \bar{y})^2 = (n-1) S_y^2\\
+\text{Versus el modelo naiive}\\
+\text{Valor } F := \frac{RegSS/k}{Rss/(n-(k+1))}\\
+\text{Se utiliza para evaluar si las } k \text{ variables explicativas}\\
+\text{son colectivamente útiles para explicar.}
 \]</span></p>
 <ul>
-<li><p><span class="math inline">\(W_k\)</span> debe ser pequeña</p></li>
-<li><p><span class="math inline">\(k \mapsto W_k\)</span> es decreciente</p></li>
-<li><p>¿Incrementa el número de clústers? 😢</p></li>
-</ul></li>
-<li><p>Between-cluster-variation</p>
+<li><p>Con la hipótesis de normalidad se demuestra que:</p>
 <p><span class="math display">\[
-b_k = \sum_{k=1}^K|C_k|\sum_{j=1}^{p}(\bar{x}_{kj}-\bar{x}_{j})^2\\
-\text{&quot;La suma de las distancias entre los centroides&quot;}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(b_k\)</span> debe ser grande</p></li>
-<li><p><span class="math inline">\(k \mapsto b_k\)</span> es creciente</p></li>
-<li><p>¿Incrementa el número de clústers? 😢</p></li>
-</ul></li>
-<li><p>Índice CH</p>
+\hat{\beta} \sim N_{k+1} \bigg(\beta, \sigma^2(\mathbb{X}^T\mathbb{X})^{-1}\bigg)
+\]</span></p></li>
+<li><p><strong>Definición.</strong> (Coeficiente de determinación <span class="math inline">\(R^2\)</span>)</p>
 <p><span class="math display">\[
-CH_k:=\frac{\frac{b_k}{k-1}}{\frac{W_k}{n-k}}
+R^2 = \frac{RegSS}{TSS} = \frac{\displaystyle \sum_{i=1}^n(\hat{y}_i - \bar{y})^2}{\displaystyle \sum_{i=1}^n(y_i - \bar{y})^2}
 \]</span></p>
-<ul>
-<li><p>Donde <span class="math inline">\(n\)</span> es el número total de observaciones en el data-set.</p></li>
-<li><p>El valor óptimo para <span class="math inline">\(k\)</span> es aquel que maximiza <span class="math inline">\(CH_k\)</span></p></li>
+<p>Tristemente 😢en MLR (Multiple Linear Regression)<strong>ya no se cumple que</strong></p>
+<p><span class="math display">\[
+R^2 = r^2
+\]</span></p>
+<p>Sin embargo, sí se cumple que</p>
+<p><span class="math display">\[
+R^2 = \bigg[\frac{\displaystyle \sum_{i=1}^n(y_i - \bar{y})(\hat{y}_i - \bar{y})}{\underbrace{\sqrt{\displaystyle \sum_{i=1}^n(y_i - \bar{y})^2\sum_{i=1}^n(\hat{y}_i - \bar{y})^2}}_{\text{Es el cuadrado de la correlación} \\ \text{muestral entre }y \text{ y } \hat{y}}}\bigg]^2
+\]</span></p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
-</ul>
+<p><span class="math display">\[
+F = \frac{n-k-1}{k} \cdot \frac{R^2}{1-R^2}
+\]</span></p>
+<p>Ahora sí a construir el intervalo de confianza.</p>
+<h3 id="intervalo-de-confianza-para-hatbeta">Intervalo de confianza para <span class="math inline">\(\hat{\beta}\)</span></h3>
+<p>Está dado por</p>
+<p><span class="math display">\[
+\hat{\beta}_j \pm t_{n-(k+1), \frac{\alpha}{2}} \sqrt{S^2 \bigg(\mathbb{X}^T\mathbb{X}\bigg)^{-1}_{j-1, j+1}}
+\]</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

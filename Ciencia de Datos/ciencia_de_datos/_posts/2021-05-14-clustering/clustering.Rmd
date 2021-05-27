@@ -138,7 +138,7 @@ categories:
 
 -   El clústering jerárquico utiliza un dendograma
 
-    ![](images/clustering_1.png)
+    ![](https://i.stack.imgur.com/UudJF.png){width="520"}
 
 -   La construcción del dendograma es la siguiente:
 

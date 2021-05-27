@@ -101,7 +101,7 @@ $$ $\hat{f}_1$ es el árbol ajustado
 
 $\hat{y}_1$ es la predicción basándose en $\hat{f}_1$
 
-Obtenemos una segunda muestra bootstrap y NO ENTIENDO ESTA PALABRA un árbol:
+Obtenemos una segunda muestra bootstrap y ajustamos un árbol:
 
 $$
 \hat{y}_2 = \hat{f}_2(\underline{x})
