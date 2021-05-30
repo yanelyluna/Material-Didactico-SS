@@ -87,7 +87,7 @@ Bajo estos supuestos se tiene que
 
 -   $\mathbb{E}(y_i) = \beta_0 + \beta_1x_i$
 
--   $Var(y_i) = Var(\beta_0 + \beta_1x_i + \epsilon_i) = Var(\epsilon_i)  = \sigma^2$
+-   $Var(y_i) = Var(\beta_0 + \beta_1x_i + \epsilon_i) = Var(\epsilon_i) = \sigma^2$
 
 Cosas que ya deberíamos saber:
 

@@ -1,0 +1,88 @@
+---
+title: "Redes neuronales 4"
+description: |
+  Redes neuronales 4
+author:
+  - name: Eduardo Selim M. M.
+  - name: Carlos A. Ar.
+date: 05-29-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_float: true
+categories:
+  - redes neuronales 
+---
+
+# Redes convolucionales
+
+-   Las redes convolucionales son un tipo de red que utiliza ciertos supuestos acerca de las ponderaciones, a diferencia de las redes totalmente conexas donde las ponderaciones pueden tomar cualquier valor.
+
+-   Estas adecuaciones sirven para explotar la estructura de señales, muy útil para ciertas aplicaciones de **sonido, imágenes y texto.**
+
+-   En estos casos, se trata de entradas que tienen una estuctura adicional de proximidad (pixeles cercanos o lejanos, tiempos cercanos o lejanos, etc.)
+
+-   Las redes convolucionales son la arquitectura más exitosa para trabajar problemas con estructura espacial o temporal.
+
+## Propiedades
+
+Hay 3 propiedades básicas que se quieren rescatar con el uso de redes convolucionales:
+
+### Conexiones ra'as
+
+Existen unidades que sólo están conectadas a una fracción relativamente pequeña de la capa anterior (a diferencia de las redes totalmente conexas). Por ejemplo, una unidad que quiere detectar una forma en una esquina de una imagen no necesita estar conectada a pixeles de otras partes de la imagen.
+
+### Parámetros compartidos
+
+Diferentes unidades tienen ponderaciones compartidas. Por ejemplo, una unidad que busca detectar cierto sonido en diferentes partes de una grabación pueden utilizar las mismas ponderaciones. Se puede "mover" el derector (con las mismas ponderaciones) alo largo de la grabación para ver dónde detecta el sonido de interés.
+
+### Equivarianza
+
+Una traslación de ina entrada (es tiempo o espacio) genera una translación equivalente en la salida. Por ejemplo, si una unidad asociada a la esquina superior derecha de una imagen detecta un patrón, entonces habrá otra unidad que puede detectar el patrón en la esquina inferior.
+
+Todas estas propiedades inducen estructura en comparación con una red totalmente conexa.
+
+Cuando esta estructura es la adecuada, no genera sesgo adicional y reduce considerablemtne la varianza y el tamaño de los modelos.
+
+-   El éxito en este tipo de redes está en encontrar la estructura apropiada para el problema que se entá trabajando.
+
+# Filtros convolucionales
+
+## Filtros en una dimensión
+
+El caso que quizá ya conocen es el de filtros en series de tiempo.
+
+-   Un filtro es una transformación de una señal que pretende extraer ciertas características y suprimir otras.
+
+Por ejemplo, para una serie y sus correspondientes promedios móviles centrados de longitud $5$. Los promedios móviles filtran las componentes de frecuencia alta (variaciones en tiempos cortos).
+
+Se puede escribir este filtro de la siguiente manera
+
+$$
+y_t : = \frac{1}{5}(x_{t-2} + x_{t-1} + x_{t} + x_{t+1} + x_{t+2})
+$$
+
+donde $\{x_t\}$ es la serie original y $\{y_t\}$ es la serie filtrada.
+
+Se puede escribir esta operación de la siguiente forma:
+\begin{align*}
+f &= \frac{1}{5} (..., 0,0,1,1,1,1,1,0,0,...)\\
+\text{donde } f_s &= 
+\begin{cases}
+\frac{1}{5}, \text{ si } s = -2, -1, 0, 1, 2 \\
+0, \text{ c.o.c.}
+\end{cases} \\
+\text{Entonces}\\
+y_t &= x_{t-2}f_2 + x_{t-1}f_1 + x_{t}f_0+ x_{t+1}f_1 + x_{t}f_2 \\
+&=\sum_{s = -\infty}^{\infty} x_sf_{s-t}
+ 
+\end{align*}
+
+-   Este es un ejemplo de filtro convolucional del tipo que se usa en redes neuronales: Es un vector $f$ que se aplica a la serie $\{x_t\}$ como en la ecuación anterior para obtener una serie transformada (filtrada) $\{y_t\}$. El vector se desplaza a lo largo de la serie para obtener distintos valores filtrados.
+
+Otro ejemplo son las diferencias de orden 1: la diferencia entre el valor actual menos el valor anterior.
+
+-   Este filtro toma valores altos cuando la serie y el valores bajos cuando la serie decrece.
+
+![](images/rn4_1.png)
