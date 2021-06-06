@@ -1559,16 +1559,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><p>Para épocas <span class="math inline">\(e \in \{ 1, 2, ..., n_{\rho}\}\)</span></p>
 <ul>
 <li><p>Calcular el gradiente sobhre el minlote, y hacer la actualización sucesivamente para cada uno de los minilotes <span class="math inline">\(k = 1,2,...,n\)</span></p>
-<p><span class="math display">\[\begin{align*}
+<span class="math display">\[\begin{align*}
 \beta_{i+1} &amp; \leftarrow \beta_i+ \nu \\
 \nu &amp;\leftarrow \alpha \nu -\eta \frac{1}{m} \sum_{j=1}^m\bar{\nu}D_j^{(k)}(\beta_i)
-\end{align*}\]</span></p>
+\end{align*}\]</span>
 <p>donde <span class="math inline">\(D_j^{(k)}(\beta_i)\)</span> es la función objetivo (devianza, suma de cuadrados, etc.) para el <span class="math inline">\(j\)</span>-ésimo caso del minilote <span class="math inline">\(k\)</span>. <span class="math inline">\(\nu\)</span> se le conoce como velocidad</p></li>
 </ul></li>
-<li><p>Repetir para la siguiente época.</p>
-<p><img src="images/rn3_2.png" /></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+<li><p>Repetir para la siguiente época.</p></li>
 </ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -6,14 +6,14 @@
       "description": "El blog se creó con Distill de R en RStudio",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-05-29T22:18:23-05:00"
+      "last_modified": "2021-06-05T21:58:33-05:00"
     },
     {
       "path": "index.html",
       "title": "Ciencia de Datos con R",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-05-29T22:18:24-05:00"
+      "last_modified": "2021-06-05T21:58:34-05:00"
     }
   ],
   "collections": ["posts/posts.json"]

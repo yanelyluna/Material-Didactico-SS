@@ -272,6 +272,30 @@ $$
 
 -   Las medidas comunes son la devianza y la pseudo $R^2$
 
+#### Modelo Saturado
+
+-   El modelo saturado es uno con la misma distribución que la respuesta y función link que el GLM ajustado [pero]{.ul} con tantos parámetros como observaciones.
+
+    -   Esto permite maximizar la función de verosimilitud sobre una base observación por observación.
+
+**¿Qué significa esto?**
+
+-   El modelo saturado es tal que los valores ajustados son exactamente iguales a los valores observados, i.e.
+
+    $$
+    \underbrace{\hat{\mu}_i = y_i}_{\text{bajo el modelo saturado}} \text{ para todo } i = 1,...,n
+    $$
+
+-   ¿Y la justificación matemática?
+
+    $$
+    \frac{\partial}{\partial \theta_i} \log(f(y_i;\theta_i,\phi_i)) = \frac{y_i - \overbrace{b'(\theta_i)}^{\hat{\mu_i}}}{\phi_i} = 0
+    $$
+
+    por lo tanto, la media ajustada $\hat{\mu}_i = b'(\hat{\theta_i})$ es igual al valor de la respuesta observada $y_i$, i.e. el modelo saturado genera un ajuste perfecto.
+
+-   El modelo más elaborado proporciona el mejor ajuste, por lo tanto debe tener la log-verosimilitud más alta (que cualquier otro GLM ajustado)
+
 ### Devianza
 
 -   La devianza es una medida de bondad de ajuste que se basa en la verosimilitud.
@@ -288,6 +312,55 @@ $$
 
 -   Una devianza pequeña es indicativo de buen ajuste.
 
+### ¿Cómo se obtiene la devianza?
+
+-   **Paso 1:** Escribir una expresión genérica para la función de verosimilitud, en términos de las medias desconocidas $\mu_1, ..., \mu_n$ (Recuérdese que se está inclinado a tratar a la media como un parámetro GLM).
+
+-   **Paso 2:** Hacer las sustituciones
+
+    -   $\mu_i \mapsto y_i$ para el modelo saturado. Con esto tenemos $l_{\text{SAT}}$
+
+    -   $\mu_i \mapsto \hat{\mu}_i$ para el modelo saturado. Con esto tenemos $l$
+
+-   **Paso 3:** Hacer el cálculo $D = 2(l_{SAT} - l)$ en términos de $y_i'^s$ y $\hat{\mu}_i'^s$
+
+**Ejemplo (Regresión Poisson)**
+
+Para el caso de que $y_1, ... , y_n$ tenga distribución Poisson con medias $\mu_1, ..., \mu_n$ respectivamente:
+
+-   **Paso 1:** Expresión genérica:
+    \begin{align*}
+    l(\mu_1, ..., \mu_n) 
+    &= \log\bigg(\prod_{i=1} ^n f(y_i)\bigg) \\
+    & = \log\bigg(\prod_{i=1} ^n \frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!}\bigg) \\
+    &= \sum_{i=1}^n \bigg(-\mu_i +y_i\log(\mu_i) - \log(y_i!)\bigg)
+    \end{align*}
+
+-   **Paso 2:** Hacer las sustituciones
+
+    -   $\mu_i \mapsto y_i$ para el modelo saturado.
+
+        $$
+        l_{SAT} = \sum_{i=1}^n \bigg(-y_i +y_i\log(y_i) - \log(y_i!)\bigg)
+        $$
+
+    -   $\mu_i \mapsto \hat{\mu}_i$ para el modelo saturado.
+
+        $$
+        l = \sum_{i=1}^n \bigg(-\hat{\mu}_i +y_i\log(\hat{\mu}_i) - \log(y_i!)\bigg)
+        $$
+
+-   **Paso 3:**
+
+    $$
+    \begin{align*}
+    D &= 2(l_{SAT} -l) = 2\sum_{i=1}^n \bigg( \hat{\mu}_i - y_i + y_i(\log(y_i) - \log(\hat{\mu}_i)) \bigg) \\
+    &= 2\sum_{i=1}^n \bigg( y_i\log(\frac{y_i}{\hat{\mu}_i})  - (y_i -  \hat{\mu}_i) \bigg) 
+    \end{align*}
+    $$
+
+-   $D$ debe ser pequeño. Intuitivamente "Si tengo 2 modelos, me quedo con el de devianza menor"
+
 ### pseudo$R^2$
 
 **Definición.**
@@ -299,3 +372,19 @@ $$
 pseudo$R^2 \in (0,1)$
 
 pseudo$R^2$ grande es indicativo de mejor ajuste del modelo.
+
+Donde:
+
+-   $l_{\text{SAT}}$: log-verosimilitud del modelo saturado.
+
+-   $l$: log-verosimilitud del GLM en consideración.
+
+-   $l_{\text{IID}}$: log-verosimilitud clásica que se aprende en Inferencia Estadística.
+
+### AIC y BIC
+
+Se tiene interés en pruebas de hipótesis y 2 criteriors de selección de modelos
+
+AIC = $-2l + 2p$
+
+BIC = $-2l + p\log(n)$

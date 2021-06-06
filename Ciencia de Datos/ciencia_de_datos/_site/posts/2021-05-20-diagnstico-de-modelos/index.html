@@ -2432,8 +2432,8 @@ e^{stud}_{i} \backsim t_{n-(k+1)} \text{ (exacto)}
 <ul>
 <li><p>Mientras más grande es <span class="math inline">\(h_{ii}\)</span>, mayor es la influencia que <span class="math inline">\(y_i\)</span> ejerce sobre <span class="math inline">\(\hat{y}_i\)</span>.</p></li>
 <li><p><span class="math inline">\(Var(e_i) = \sigma^2(1-h_{ii})\)</span>. Mientras más grande sea <span class="math inline">\(h_{ii}\)</span>, m{as pequeño será el valor de <span class="math inline">\(Var(e_i)\)</span> y <span class="math inline">\(\hat{y}_i\)</span> tenderá a ser <span class="math inline">\(y_i\)</span></p></li>
-</ul>
-<pre><code>-   Si $h_{ii} = 1$, $\hat{y}_i$ estará forzado a ser $y_i$</code></pre></li>
+<li><p>Si <span class="math inline">\(h_{ii} = 1\)</span>, <span class="math inline">\(\hat{y}_i\)</span> estará forzado a ser <span class="math inline">\(y_i\)</span></p></li>
+</ul></li>
 <li><p><span class="math inline">\(h_{ii}\)</span> se obtiene de <span class="math inline">\(\mathbb{H} = \mathbb{X}(\mathbb{X}^T\mathbb{X})^{-1}\mathbb{X}^T\)</span> i.e. sólo usa a las variables explicativas, <u>no</u> a las variables respuesta.</p>
 <ul>
 <li>El leverage es una medida de la influencia de una observación sobre el modelo solamente en términos de sus variables explicativas.</li>
@@ -2495,7 +2495,7 @@ D_i = \frac{1}{k+1}(e_i^{st})^2\frac{h_{ii}}{1-h_{ii}}
 <li><p>En esta expresión es evidente el impacto de la respuesta <span class="math inline">\(y_i\)</span> (a través de <span class="math inline">\(e_{i}^{st}\)</span>) y de las covariables <span class="math inline">\(x\)</span> (a través de <span class="math inline">\(h_{ii}\)</span>).</p></li>
 <li><p>Para que la distancia de Cook sea grande tiene que ocurrir tanto que <span class="math inline">\(e_{i}^{st}\)</span> sea grande, así como <span class="math inline">\(h_{ii}\)</span>, i.e. la observación es outstanding con respecto a los valores de <span class="math inline">\(x\)</span> y los valores de <span class="math inline">\(y\)</span>.</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

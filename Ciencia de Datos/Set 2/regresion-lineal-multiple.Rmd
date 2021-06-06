@@ -1,0 +1,158 @@
+---
+title: "Regresión Lineal Múltiple"
+author: 
+    - name: "Eduardo Selim"
+    - name: "Carlos A. Ar."
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+        smooth_scroll: false
+     toc_depth: 2
+     number_sections: false
+     theme: flatly
+     highlight: tango
+---
+
+$$
+y = \underbrace{\beta_0 + \beta_1x_1 + \beta_2x_2 +...+ \beta_kx_k+\epsilon}_{\text{funciÃ³n de regresiÃ³n}}
+$$
+
+Muestralmente
+
+$$
+(y_i, \underbrace{x_{i1},x_{i1},...,x_{ik}}_{\text{Covariables, } \\ \text{variables predictoras,} \\ \text{features, } \\ \text{variables explicativas}}), \space \space \space \space i = 1,2,...,n \\ \text{Donde } n \text{ es el nÃºmero de observaciones.} 
+$$
+
+Entonces $y_i = \beta_0 + \beta_1 x_{i1} + ... + \beta_k x_{ik} + \epsilon_i$ donde $\epsilon_i \sim N(0 , 1)$ ademÃ¡s de ser i.i.d.
+
+Como antes
+
+$$
+\mathbb{E}(y_i)= \beta_0 + \beta_1 x_{i1} + ... + \beta_k x_{ik}
+$$
+
+InterpretaciÃ³n muy popular es que $\beta_j$ es el cambio esperado en $y$, por unidad de cambio en $x_j$ *(ceteris paribus)* puesto que
+
+$$
+\frac{\partial \mathbb{E}(y_i)}{\partial x_j} = \beta_j
+$$
+
+En tÃ©rminos matriciales
+
+$$
+\begin{equation}
+ \underbrace{\begin{pmatrix}
+   y_1 \\
+   y_2 \\
+   \vdots \\
+   y_n
+ \end{pmatrix}}_{y_{n \times 1}}
+ = 
+\underbrace{\begin{pmatrix}
+   1     & x_{11} & x_{12} & \dotso & x_{1k}\\
+   1     & x_{21} & x_{22} & \dotso & x_{2k}\\
+  \vdots & \vdots & \vdots & \ddots & \vdots\\
+   1     & x_{n1} & x_{n2} & \dotso & x_{nk}
+ \end{pmatrix}}_{\mathbb{X}_{n \times (k+1)} \\ \text{MatrÃ­z de covariables} \\ \text{Matriz de diseÃ±o}}
+\underbrace{\begin{pmatrix}
+   \beta_0 \\
+   \beta_1 \\
+   \vdots \\
+   \beta_k
+ \end{pmatrix}}_{\beta_{(k+1) \times 1}}
++
+\underbrace{\begin{pmatrix}
+   \epsilon_1 \\
+   \epsilon_2 \\
+   \vdots \\
+   \epsilon_n
+ \end{pmatrix}}_{\epsilon_{n \times 1}}
+\end{equation}
+$$
+
+Nos hacemos las mismas preguntas de siempre
+
+$$
+\rightarrow Â¿\hat{\beta}? \text{ Â¿CÃ³mo obtengo los estimadores?}\\
+$$
+
+$$
+\rightarrow y_i \sim \hat{y}_i, \space \space \space \space \space  \space \space \space \space \space \space \space \Rightarrow \space \space \space \space  \space\space \space \space \space  \space \space \space  e_i = y_i - \hat{y}_i\\
+$$
+
+$$
+\rightarrow \text{La certidumbre tanto de } \hat{\beta} \text{ como de } \hat{y}\\ \text{(i.e. intervalos de confianza)} \\
+$$
+
+$$
+\rightarrow \text{PredicciÃ³n: Â¿CÃ³mo se comporta el modelo ante variables explicativas no observadas?}\\
+$$
+
+$$
+\rightarrow \text{Future Engineering, selecciÃ³n de variables} \\
+ \text{Â¿QuÃ© variables aportan a explicar } y \text{?}
+$$
+
+## Estimador de $\beta$
+
+Se obtiene por mÃ­nimos cuadrados
+
+-   Se obtienen lo que se conoce como las ecuaciones normales.
+
+    $$
+    y = \mathbb{X} \beta \underbrace{\Rightarrow }_{\text{Multiplicamos por }  \mathbb{X}^T} \mathbb{X}^T y = \mathbb{X}^T \mathbb{X} \beta \\
+    \underbrace{\Rightarrow }_{\text{Estamos suponiendo que }\\ \text{esta matrÃ­z es invertible}} \hat{\beta} = (\mathbb{X}^T \mathbb{X})^{-1} \mathbb{X}^T y
+    $$
+
+Como antes
+
+$$
+RSS = \displaystyle \sum_{i=1}^n (y_i - \hat{y})^2  \\
+RegSS = \displaystyle \sum_{i=1}^n(\hat{y}_i - \bar{y})^2 \\
+ \text{ Estamos comparando el modelo de regresiÃ³n}\\
+\displaystyle TSS = \sum_{i=1}^n (y_i - \bar{y})^2 = (n-1) S_y^2\\
+\text{Versus el modelo naiive}\\
+\text{Valor } F := \frac{RegSS/k}{Rss/(n-(k+1))}\\
+\text{Se utiliza para evaluar si las } k \text{ variables explicativas}\\
+\text{son colectivamente Ãºtiles para explicar.}
+$$
+
+-   Con la hipÃ³tesis de normalidad se demuestra que:
+
+    $$
+    \hat{\beta} \sim N_{k+1} \bigg(\beta, \sigma^2(\mathbb{X}^T\mathbb{X})^{-1}\bigg)
+    $$
+
+-   **DefiniciÃ³n.** (Coeficiente de determinaciÃ³n $R^2$)
+
+    $$
+    R^2 = \frac{RegSS}{TSS} = \frac{\displaystyle \sum_{i=1}^n(\hat{y}_i - \bar{y})^2}{\displaystyle \sum_{i=1}^n(y_i - \bar{y})^2}
+    $$
+
+    Tristemente ð¢en MLR (Multiple Linear Regression)**ya no se cumple que**
+
+    $$
+    R^2 = r^2
+    $$
+
+    Sin embargo, sÃ­ se cumple que
+
+    $$
+    R^2 = \bigg[\frac{\displaystyle \sum_{i=1}^n(y_i - \bar{y})(\hat{y}_i - \bar{y})}{\underbrace{\sqrt{\displaystyle \sum_{i=1}^n(y_i - \bar{y})^2\sum_{i=1}^n(\hat{y}_i - \bar{y})^2}}_{\text{Es el cuadrado de la correlaciÃ³n} \\ \text{muestral entre }y \text{ y } \hat{y}}}\bigg]^2
+    $$
+
+$$
+F = \frac{n-k-1}{k} \cdot \frac{R^2}{1-R^2}
+$$
+
+Ahora sÃ­ a construir el intervalo de confianza.
+
+### Intervalo de confianza para $\hat{\beta}$
+
+EstÃ¡ dado por
+
+$$
+\hat{\beta}_j \pm t_{n-(k+1), \frac{\alpha}{2}} \sqrt{S^2 \bigg(\mathbb{X}^T\mathbb{X}\bigg)^{-1}_{j-1, j+1}}
+$$

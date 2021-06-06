@@ -65,8 +65,7 @@ $$
 
 donde $\{x_t\}$ es la serie original y $\{y_t\}$ es la serie filtrada.
 
-Se puede escribir esta operación de la siguiente forma:
-\begin{align*}
+Se puede escribir esta operación de la siguiente forma: \begin{align*}
 f &= \frac{1}{5} (..., 0,0,1,1,1,1,1,0,0,...)\\
 \text{donde } f_s &= 
 \begin{cases}
@@ -84,5 +83,3 @@ y_t &= x_{t-2}f_2 + x_{t-1}f_1 + x_{t}f_0+ x_{t+1}f_1 + x_{t}f_2 \\
 Otro ejemplo son las diferencias de orden 1: la diferencia entre el valor actual menos el valor anterior.
 
 -   Este filtro toma valores altos cuando la serie y el valores bajos cuando la serie decrece.
-
-![](images/rn4_1.png)

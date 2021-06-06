@@ -100,11 +100,17 @@ categories:
 
 -   ¿Qué hacer con outliers?
 
-    -   (i) Borrarlo
+    -   
 
-    -   (ii) Conservarlo pero comentarlo
+        (i) Borrarlo
 
-    -   (iii) Hacer el modelo con y sin el outlier
+    -   
+
+        (ii) Conservarlo pero comentarlo
+
+    -   
+
+        (iii) Hacer el modelo con y sin el outlier
 
 ## Detección de relaciones no-lineales omitidas
 
@@ -128,9 +134,13 @@ categories:
 
 -   Se estudiarán 2 métodos para evaluar la influencia de cada observación sobre los resultados del modelo global.
 
-    -   (i) Leverage
+    -   
 
-    -   (ii) Distancia de Cook
+        (i) Leverage
+
+    -   
+
+        (ii) Distancia de Cook
 
 -   El vector de LSE's es $\hat{\beta} = (\mathbb{X}^T\mathbb{X})^{-1} \mathbb{X}\mathbb{Y}$
 
@@ -148,9 +158,9 @@ categories:
 
     -   Mientras más grande es $h_{ii}$, mayor es la influencia que $y_i$ ejerce sobre $\hat{y}_i$.
 
-    -    $Var(e_i) = \sigma^2(1-h_{ii})$. Mientras más grande sea $h_{ii}$, m{as pequeño será el valor de $Var(e_i)$ y $\hat{y}_i$ tenderá a ser $y_i$
+    -   $Var(e_i) = \sigma^2(1-h_{ii})$. Mientras más grande sea $h_{ii}$, m{as pequeño será el valor de $Var(e_i)$ y $\hat{y}_i$ tenderá a ser $y_i$
 
-        -   Si $h_{ii} = 1$, $\hat{y}_i$ estará forzado a ser $y_i$
+    -   Si $h_{ii} = 1$, $\hat{y}_i$ estará forzado a ser $y_i$
 
 -   $h_{ii}$ se obtiene de $\mathbb{H} = \mathbb{X}(\mathbb{X}^T\mathbb{X})^{-1}\mathbb{X}^T$ i.e. sólo usa a las variables explicativas, [no]{.ul} a las variables respuesta.
 

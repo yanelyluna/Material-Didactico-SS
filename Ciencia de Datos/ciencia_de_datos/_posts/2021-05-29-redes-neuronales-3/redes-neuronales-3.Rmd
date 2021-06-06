@@ -35,8 +35,7 @@ Se separa al azar los datos de entrenamiento en $n$ minilotes cada uno de tamañ
 
 -   Para época $e \in \{1,2,...,n_l\}$
 
-    -   Calcular el gradiente sobre el minilote y hacer actualización, sucesivamente para cada uno de los minilotes $k = 1,2,...,n$
-        \begin{align*}
+    -   Calcular el gradiente sobre el minilote y hacer actualización, sucesivamente para cada uno de los minilotes $k = 1,2,...,n$ \begin{align*}
         \beta_{i+1} \leftarrow \beta_i - \eta \frac{1}{m} \sum_{j = 1}^m \nabla D_j^{(m)} (\beta_i)
         \end{align*}
 
@@ -92,13 +91,12 @@ Se separa al azar los datos de entrenamiento en $n$ minlotes de tamaño $m$.
 
     -   Calcular el gradiente sobhre el minlote, y hacer la actualización sucesivamente para cada uno de los minilotes $k = 1,2,...,n$
 
+        ```{=tex}
         \begin{align*}
         \beta_{i+1} & \leftarrow \beta_i+ \nu \\
         \nu &\leftarrow \alpha \nu -\eta \frac{1}{m} \sum_{j=1}^m\bar{\nu}D_j^{(k)}(\beta_i)
         \end{align*}
-
+        ```
         donde $D_j^{(k)}(\beta_i)$ es la función objetivo (devianza, suma de cuadrados, etc.) para el $j$-ésimo caso del minilote $k$. $\nu$ se le conoce como velocidad
 
 -   Repetir para la siguiente época.
-
-    ![](images/rn3_2.png)

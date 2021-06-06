@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Series de tiempo</title>
+
+  <meta property="description" itemprop="description" content="Series de tiempo"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-06-01"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-06-01"/>
+  <meta name="article:author" content="Eduardo Selim M. M."/>
+  <meta name="article:author" content="Carlos A. Ar."/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Series de tiempo"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Series de tiempo"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Series de tiempo"/>
+  <meta property="twitter:description" content="Series de tiempo"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Series de tiempo"]},{"type":"character","attributes":{},"value":["Series de tiempo\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Eduardo Selim M. M."]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Carlos A. Ar."]}]}]},{"type":"character","attributes":{},"value":["06-01-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["series de tiempo"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["images/st_1.png","images/st_2.png","images/st_3.png","series-de-tiempo_files/anchor-4.2.2/anchor.min.js","series-de-tiempo_files/bowser-1.9.3/bowser.min.js","series-de-tiempo_files/distill-2.2.21/template.v2.js","series-de-tiempo_files/header-attrs-2.7/header-attrs.js","series-de-tiempo_files/jquery-1.11.3/jquery.min.js","series-de-tiempo_files/popper-2.6.0/popper.min.js","series-de-tiempo_files/tippy-6.2.7/tippy-bundle.umd.min.js","series-de-tiempo_files/tippy-6.2.7/tippy-light-border.css","series-de-tiempo_files/tippy-6.2.7/tippy.css","series-de-tiempo_files/tippy-6.2.7/tippy.umd.min.js","series-de-tiempo_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="series-de-tiempo_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="series-de-tiempo_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="series-de-tiempo_files/popper-2.6.0/popper.min.js"></script>
+  <link href="series-de-tiempo_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="series-de-tiempo_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="series-de-tiempo_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="series-de-tiempo_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="series-de-tiempo_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="series-de-tiempo_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="series-de-tiempo_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Series de tiempo","description":"Series de tiempo","authors":[{"author":"Eduardo Selim M. M.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Carlos A. Ar.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-01T00:00:00.000-05:00","citationText":"M. & Ar., 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Series de tiempo</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">series de tiempo</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Series de tiempo</p></p>
+</div>
+
+<div class="d-byline">
+  Eduardo Selim M. M.  
+  
+,   Carlos A. Ar.  
+  
+<br/>06-01-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#algunas-definiciones">Algunas definiciones</a></li>
+<li><a href="#ruido-blanco">Ruido blanco</a>
+<ul>
+<li><a href="#estacionariedad-débil">Estacionariedad débil</a></li>
+<li><a href="#autocorrelación-con-lag-k">Autocorrelación con lag <span class="math inline">\(k\)</span></a></li>
+<li><a href="#autocorrelación-muestral-con-lag-k">Autocorrelación muestral con lag <span class="math inline">\(k\)</span></a></li>
+<li><a href="#pronóstico-en-ruido-blanco-gaussiano">Pronóstico en ruido blanco (Gaussiano)</a></li>
+</ul></li>
+<li><a href="#caminata-aleatoria">Caminata aleatoria</a>
+<ul>
+<li><a href="#pronóstico-en-caminata-aleatoria">Pronóstico en caminata aleatoria</a></li>
+<li><a href="#identificación-de-una-caminata-aleatoria">Identificación de una caminata aleatoria</a></li>
+</ul></li>
+<li><a href="#filtros">Filtros</a></li>
+<li><a href="#transformación-logarítmica">Transformación logarítmica</a></li>
+<li><a href="#tendencia-lineal-v.s.-caminata-aleatoria">Tendencia lineal v.s. caminata aleatoria</a></li>
+<li><a href="#prueba-de-dickey-fuller">Prueba de Dickey-Fuller</a>
+<ul>
+<li><a href="#versión-aumentada-de-dickey-fuller">Versión aumentada de Dickey-Fuller</a></li>
+</ul></li>
+<li><a href="#modelos-estacionales">Modelos estacionales</a>
+<ul>
+<li><a href="#modelos-de-efectos-estacionales-fijos">Modelos de efectos estacionales fijos</a></li>
+</ul></li>
+<li><a href="#suavizamiento-smoothing">Suavizamiento (smoothing)</a>
+<ul>
+<li><a href="#promedios-móviles-moving-average">Promedios móviles (moving average)</a></li>
+<li><a href="#suavizamiento-exponencial-simple">Suavizamiento exponencial simple</a></li>
+</ul></li>
+<li><a href="#modelo-ar-de-primer-orden-ar1">Modelo AR de primer orden (AR(1))</a>
+<ul>
+<li><a href="#propiedades-del-modelo-ar1-estacionario">Propiedades del modelo AR(1) estacionario</a></li>
+<li><a href="#estimación-de-parámetros-en-ar1">Estimación de parámetros en AR(1)</a></li>
+<li><a href="#residuales">Residuales</a></li>
+<li><a href="#predicción-en-el-modelo-ar1">Predicción en el modelo AR(1)</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h2 id="algunas-definiciones">Algunas definiciones</h2>
+<ul>
+<li><p>Las expresiones de “datos en series de tiempo” ó “series de tiempo” se refieren a conjuntos de observaciones tomadas en forma secuencial a través del tiempo.</p>
+<p><img src="images/st_1.png" width="552" /></p>
+<p>En este caso de puntos que observamos de manera secuencial, usaremos la notación <span class="math inline">\(\{x_t\}_{t\in\mathbb{N}^+}\)</span> si las observaciones están equiespaciadas a lo largo del tiempo.</p>
+<p><strong>Ejemplo:</strong></p>
+<p><span class="math display">\[
+x_1:\text{ observación de hoy} \\
+x_2:\text{ observación de mañana}\\
+x_3:\text{ observación de pasado mañana}
+\]</span></p></li>
+</ul>
+<p>no siempre las series las observaciones de manera equiespaciadas</p>
+<p><strong>Ejemplo:</strong></p>
+<p><span class="math inline">\(\{x_{t_j}\}_{j \in \mathbb{N}}\)</span> si las observaciones <u>no</u> están igualmente espaciadas. Observaciones de:</p>
+<p><span class="math display">\[
+x_{t_1}: 16 \text{ abril } 2021 \\ 
+x_{t_2}: 19 \text{ abril } 2021 \\
+x_{t_3}: 10 \text{ mayo } 2021 \\
+x_{t_4}: 15 \text{ mayo } 2021
+\]</span></p>
+<p>El caso más popular es el <u>equiespaciado</u></p>
+<ul>
+<li>Uno de los objetivos del análisis de series de tiempo es estudiar la estructura de dependencia de la serie de tiempo.</li>
+</ul>
+<p>De manera más formal</p>
+<ul>
+<li><p>Estructura distribucional, i.e. la función de distribución conjunta de la serie <span class="math inline">\(F_{x_{t_1}, x_{t_2}, ..., x_{t_n}}\)</span> decimos que el análisis es de primer orden,</p></li>
+<li><p><strong>Estructura observacional</strong>, i.e. la asociación de correlación entre las observaciones de la serie, decimos que el análisis es de 2° orden.</p></li>
+</ul>
+<p><strong>Definición.</strong> Un proceso de serie de tiempo, es un proceso estocástico, i.e. es una colección de variables aleatorias <span class="math inline">\(\{x_t\}_{t\in T}\)</span> en el mismo espacio de probabilidad <span class="math inline">\((\Omega, \mathcal{F}, \mathbb{P})\)</span>.</p>
+<p>Se dice que la serie es <strong>a tiempo discreto</strong> si <span class="math inline">\(T \subset \mathbb{Z}\)</span></p>
+<p>Se dice que la serie es a <strong>tiempo continuo</strong> si <span class="math inline">\(T \sim \mathbb{R}, T = [0, \infty), T = [a, b]\)</span></p>
+<ul>
+<li>Para <span class="math inline">\(\omega \in \Omega\)</span> fijo, la aplicación <span class="math inline">\(t \mapsto X_t(\omega)\)</span> es ima trayectoria ó una realización del proceso.</li>
+</ul>
+<p><strong>Definición.</strong> Se dice que un proceso estocástico <span class="math inline">\(\{x_t\}_{t\in T}\)</span> es completamente estacionario o fuertemente estacionario si <span class="math inline">\(\forall t_1, ..., t_n \in T, \forall t \in \mathbb{R}\)</span> tal que <span class="math inline">\(t_1 +t,t_2 +t, ..., t_n +t \in T\)</span>.</p>
+<p><span class="math display">\[
+F_{X_{t_1}, X_{t_2}, ..., X_{t_n}} (a_1, a_2, ..., a_n) = F_{X_{t_1 + t}, X_{t_2+ t}, ..., X_{t_n+ t}} (a_1, a_2, ..., a_n)  
+\]</span></p>
+<p>i.e. el vector <span class="math inline">\((X_{t_1}, X_{t_2}, ..., X_{t_n})\)</span> tiene la misma función de distribución que el vector <span class="math inline">\((X_{t_1 + t}, X_{t_2+ t}, ..., X_{t_n+ t})\)</span></p>
+<ul>
+<li>En general, pedir que un proceso sea fuertemente estacionario es bastante ambicioso y en la práctica resulta bastante complicado de verifican. Dada esta condición excesiva, surge el concepto de estacionariedad débil.</li>
+</ul>
+<p><strong>Definición.</strong> Se dice que un proceso <span class="math inline">\(\{X_t\}_{t \in T}\)</span> es débilmente estacionario (ó estacionario de segundo orden) si <span class="math inline">\(\forall n \in \mathbb{N_+}, \forall t_1, t_2, ..., t_n \in T, \forall t \in \mathbb{R}\)</span> tal que <span class="math inline">\(t_1+t, t_2+t, ..., t_n+t \in T\)</span>. Todos los momentos de orden 1 y 2 del vector <span class="math inline">\((X_{t_1}, X_{t_2}, ..., X_{t_n})\)</span> son iguales a los correspondientes momentos de orden 1 y 2 del vector <span class="math inline">\((X_{t_1 + t}, X_{t_2+ t}, ..., X_{t_n+ t})\)</span> es decir</p>
+<p><span class="math display">\[
+\mathbb{E}\bigg[ X_{t_1}^{r_1} X_{t_2}^{r_2} ... X_{t_n}^{r_n}\bigg] = \mathbb{E}\bigg[ X_{t_1+t}^{r_1} X_{t_2+t}^{r_2} ... X_{t_n+t}^{r_n}\bigg] 
+\]</span></p>
+<p>con <span class="math inline">\(r_1, ..., r_n \in \mathbb{N}\)</span> tal que <span class="math inline">\(r_1+r_2 +...+ r_n \leq 2\)</span>.</p>
+<p>Condiciones a verificar para estacionariedad débil</p>
+<p><span class="math display">\[
+r_j = 1, r_i = 0 \\
+r_i = 1, r_j = 1 \\
+r_i = 2, r_j = 0 
+\]</span></p>
+<p>Esto se reduce a</p>
+<p><span class="math display">\[
+\mathbb{E}(X_{t_j}) = \mathbb{E}(X_{t_j + t}) \\
+\mathbb{E}(X_{t_i} X_{t_j}) = \mathbb{E}(X_{t_i + t} X_{t_j + t}) \\
+\mathbb{E}(X_{t_j} ^2) = \mathbb{E}(X_{t_j + t}^2) 
+\]</span></p>
+<p>Es se reduce a verificar</p>
+<p><span class="math display">\[
+Cov(X_\tau, X_s) = Cov(X_{\tau+t}, X_{s+t})
+\]</span></p>
+<ul>
+<li><p>Todo ruido blanco es débilmente estacionario.</p></li>
+<li><p>Pero no todo proceso débilmente estacionario es ruido blanco.</p></li>
+</ul>
+<p>El análisis tradicional de series de tiempo descompone a la serie observada de la siguiente manera.</p>
+<p><span class="math display">\[
+X_t = \underbrace{m_t}_{\text{componente}\\\text{de tendencia}} + \underbrace{S_t}_{\text{componente}\\ \text{estacional} \\ \text{(seasonality)}} + \underbrace{Y_t}_{\text{componente}\\\text{aleatoria}}
+\]</span></p>
+<p><img src="images/st_2.png" width="581" /></p>
+<p>Los objetivos al hacer análisis de series de tiempo son</p>
+<ol type="1">
+<li><p>Estimar <span class="math inline">\(m_t, S_t\)</span></p></li>
+<li><p>Estimar <span class="math inline">\(Y_t\)</span></p>
+<ul>
+<li><p>Encontrar un modelo adecuado para este de entre un catálogo de modelos.</p>
+<ul>
+<li>Estimar parámetros.</li>
+</ul></li>
+</ul></li>
+<li><p>Hacer predicciones.</p></li>
+</ol>
+<h2 id="ruido-blanco">Ruido blanco</h2>
+<p><span class="math inline">\(y_t \rightarrow\)</span> Las <span class="math inline">\(Y_t&#39;^s\)</span> son independientes e identicamente distribuidas (generalmente Gaussianas)</p>
+<h3 id="estacionariedad-débil">Estacionariedad débil</h3>
+<p>Se dice que una serie de tiempo <span class="math inline">\(\{y_t\}\)</span> es débilmente estacionaria ó estacionaria de segundo orden si:</p>
+<ul>
+<li><p><span class="math inline">\(\mathbb{E}(y_t)\)</span> no depende de <span class="math inline">\(t\)</span></p></li>
+<li><p><span class="math inline">\(Cov(y_t, y_s)\)</span> depende de <span class="math inline">\(s\)</span> y <span class="math inline">\(t\)</span> sólo a través del lapso de tiempo <span class="math inline">\(|t-s|\)</span></p>
+<ul>
+<li>Como consecuencia, <span class="math inline">\(Var(y_t)\)</span> <u>no</u> depende de <span class="math inline">\(t\)</span></li>
+</ul></li>
+</ul>
+<h3 id="autocorrelación-con-lag-k">Autocorrelación con lag <span class="math inline">\(k\)</span></h3>
+<p><span class="math display">\[
+\rho_k = Corr(y_t, y_{t-k}) = \frac{Cov(y_t, y_{t-k})}{\sqrt{Var(y_t)Var(y_{t-k})}} = \frac{Cov(y_t, y_{t-k})}{\sigma_y^2}
+\]</span></p>
+<p><strong>Libros</strong></p>
+<ul>
+<li><p>Brockwell &amp; Davis. Intro to time series</p></li>
+<li><p>Tibshiarani et. al. Intro to Statistical Learning.</p></li>
+<li><p>Frees. Regression Techniques for actuarial applications.</p></li>
+</ul>
+<h3 id="autocorrelación-muestral-con-lag-k">Autocorrelación muestral con lag <span class="math inline">\(k\)</span></h3>
+<p><span class="math display">\[
+r_k := \frac{\displaystyle\sum_{t = k+1}^\tau (y_{t} - \bar{y})(y_{t-k} - \bar{y})}{\displaystyle\sum_{t =1}^\tau(y_{t} - \bar{y})^2}
+\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[
+\bar{y} = \frac{1}{\tau}\sum_{t = 1}^\tau y_t\\
+\\
+\\
+y_1 \space \space \space \space \space y_2 \space \space \space \space \space ... \space \space \space \space \space y_{\tau-k} \\
+\updownarrow \space \space \space \space \space \space \space \updownarrow \space \space \space \space \space ... \space \space \space \space \space \space \space \updownarrow \\
+y_{k+1} \space \space \space \space \space y_{k+2} \space \space \space \space \space ... \space \space \space \space \space y_{\tau} 
+\]</span></p>
+<h3 id="pronóstico-en-ruido-blanco-gaussiano">Pronóstico en ruido blanco (Gaussiano)</h3>
+<p>Sean <span class="math inline">\(y_1, ..., y_T\)</span> observaciones</p>
+<ul>
+<li><p><span class="math inline">\(\hat{y}_{T+l} = \bar{y} =\displaystyle \frac{1}{T} \sum_{t = 1}^T y_t\)</span></p></li>
+<li><p>Error de pronóstico</p>
+<p><span class="math display">\[
+y_{T+l} - \underbrace{\bar{y}}_{\hat{y}_{T+l}} \sim N(0 , \sigma^2(1+\frac{1}{T}))
+\]</span></p>
+<p>Intervalo forecast ó intervalos de predicción</p>
+<p><span class="math display">\[
+\bar{y} \pm \underbrace{t_{T-1, \frac{\alpha}{2}}}_{\text{upper-cuantile}} \sqrt{S_y ^2 \bigg(1+ \frac{1}{T}\bigg)}
+\]</span></p>
+<p>Si T es grande, al <span class="math inline">\(95\%\)</span></p>
+<p><span class="math display">\[
+\bar{y} \pm 1.96\sqrt{S_y^2} = \bar{y} \pm 1.96S_y
+\]</span></p></li>
+</ul>
+<h2 id="caminata-aleatoria">Caminata aleatoria</h2>
+<p><span class="math display">\[
+y_t = y_0 + \sum_{i=1} ^t c_i, \{c_i\} \text{ es un ruido blanco}
+\]</span></p>
+<p><strong>Afirmaciones</strong></p>
+<ul>
+<li><p><span class="math inline">\(\mathbb{E}(y_t) = y_0 + t\cdot \mu_c\)</span></p></li>
+<li><p><span class="math inline">\(Var(y_t) = t\cdot \sigma^2_c\)</span></p></li>
+<li><p><span class="math inline">\(Cov(y_t, y_s) = min\{s, t\}\cdot\sigma^2\)</span></p></li>
+<li><p>La caminata aleatoria <u>no</u> es estacionaria.</p></li>
+</ul>
+<p><em>Demostración: tú puedes</em> 👏🏻</p>
+<h3 id="pronóstico-en-caminata-aleatoria">Pronóstico en caminata aleatoria</h3>
+<ul>
+<li><p><span class="math inline">\(y_{T+l} = y_T + \displaystyle\sum_{t = T+1}^{T+l} c_k\)</span></p></li>
+<li><p><span class="math inline">\(\hat{y}_{T+l} = y_T + l\bar{c}\)</span> (el pronóstico crece linealmente)</p>
+<p><span class="math display">\[
+y_{T+l} -  \hat{y}_{T+l} = \sum_{t = T+1}^{T+l} c_t - l\bar{c}
+\]</span></p>
+<ul>
+<li><p>Error estándar del error pronóstico</p>
+<p><span class="math display">\[
+\sqrt{\hat{Var}(y_{T+l} - \hat{y}_{T+l})} \approx \sqrt{\hat{Var}\bigg(  \sum_{t = T+1}^{T+l}c_t \bigg)} = \sqrt{S_c^2 \cdot l}
+\]</span></p></li>
+<li><p>Error estándar exacto del error de pronóstico</p>
+<p><span class="math display">\[
+\sqrt{Var(y_{T+l} - \hat{y}_{T+l})} = S_c \sqrt{l\bigg(1+\frac{l}{T}\bigg)}
+\]</span></p></li>
+<li><p>Intervalo de predicción al <span class="math inline">\(95\%\)</span></p>
+<p><span class="math display">\[
+\hat{y}_{T+l} \pm 1.96 \sqrt{\hat{Var}(y_{T+l} - \hat{y}_{T+l})} \\
+\text{i.e. } y_T + l\bar{c} \pm 1.96 \sqrt{S_c^2 \cdot l}
+\]</span></p></li>
+<li><p>Un pqueño aspecto computacional</p>
+<ul>
+<li><p>Si se da el ruido aleatorio (no la caminata aleatoria)</p>
+<ul>
+<li><p><span class="math inline">\(\hat{y}_{T+l} = y_t + l\bar{c}\)</span></p></li>
+<li><p><span class="math inline">\(y_T + l\bar{c} \pm 1.96\sqrt{S_c^2 \cdot l}\)</span> i.e. se calcula <span class="math inline">\(\bar{c}\)</span> y <span class="math inline">\(S_c^2\)</span> muestrales (del ruido blanco)</p></li>
+</ul></li>
+<li><p>Si se dan los puntos de la caminata aleatoria</p>
+<ul>
+<li><p><span class="math inline">\(c_t = y_t - y_{t-1}\)</span> de aquí se parte</p></li>
+<li><p><span class="math inline">\(\bar{c} = \frac{1}{T}(c_1 + c_2 + ... + C_T) = \frac{y_T - y_0}{T}\)</span></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="identificación-de-una-caminata-aleatoria">Identificación de una caminata aleatoria</h3>
+<ol type="1">
+<li><p><span class="math inline">\(\mathbb{E}(y_t) = y_0 + t\cdot\mu_c\)</span> esto implica una tendencia una lineal en el tiempo.</p>
+<p><span class="math inline">\(Var(y_t) = t \cdot \sigma_c ^2\)</span> la varianza es creciente con respecto al tiempo.</p></li>
+<li><p>Si <span class="math inline">\(\{y_t\}\)</span> es caminata aleatoria</p>
+<p><span class="math display">\[
+c_t = y_t - y_{t-1}
+\]</span> debiese ser un ruido blanco y entonces debería tener correlaciones cercanas a 0 (no significativamente distintas de 0).</p></li>
+<li><p>La desviación estándar de la serie original <span class="math inline">\(\{y_t\}\)</span> debiése ser sustiancialmente <strong>mayor</strong> que la serie de diferencias <span class="math inline">\(c_t = y_t - y_{t-1}\)</span></p>
+<p><span class="math display">\[
+Var(y_t) = t \cdot \sigma_c^2 \\
+Var(c_t) = \sigma_c^2
+\]</span></p></li>
+</ol>
+<h2 id="filtros">Filtros</h2>
+<ul>
+<li><p>Un filtro es un procedimiento para reducir un proceso de serie de tiempo a un ruido blanco.</p>
+<ul>
+<li>serie de tiempo <span class="math inline">\(\rightsquigarrow\)</span> ruido blanco</li>
+</ul></li>
+<li><p>Diferenciar, <span class="math inline">\(y_t-y_{t-1}\)</span> es un ejemplo de filtro en caminatas aleatorias.</p></li>
+</ul>
+<h2 id="transformación-logarítmica">Transformación logarítmica</h2>
+<p>Sea <span class="math inline">\(\{y_t\}\)</span> tal que <span class="math inline">\(\boxed{\mathbb{E}(y_t) = \mu_t}\)</span> y <span class="math inline">\(\boxed{\sqrt{Var(y_t)} = \mu_t \cdot \sigma}\)</span>, donde <span class="math inline">\(\mu_t\)</span> es uina función determinista de <span class="math inline">\(t\)</span> (generalmente creciente).</p>
+<ul>
+<li><p><span class="math inline">\(\log(y_t) = \log(\mu_t) + \log\bigg(1+ \frac{y_t - \mu_t}{\mu_t}\bigg)\)</span></p></li>
+<li><p><span class="math inline">\(\log(y_t) \approx \log(\mu_t) + \frac{y_t - \mu_t}{\mu_t}\)</span></p>
+<p><span class="math display">\[
+\log(1+x) \approx x
+\]</span></p></li>
+<li><p><span class="math inline">\(\mathbb{E}[\log(y_t)] \approx \log(\mu_t)\)</span></p></li>
+<li><p><span class="math inline">\(Var[\log(y_t)] \approx \sigma^2\)</span> i.e. <span class="math inline">\(\log(y_t)\)</span> tiene varianza aproximadamente constante.</p></li>
+</ul>
+<p>Se puede diferenciar postriormente para remover el nivel de variación media (i.e. ver qué onda con <span class="math inline">\(\log(\mu_t)\)</span>)</p>
+<h2 id="tendencia-lineal-v.s.-caminata-aleatoria">Tendencia lineal v.s. caminata aleatoria</h2>
+<ul>
+<li><p>Ambos manejan no-estacionariedad modelo de tendencia lineal</p>
+<p><span class="math display">\[
+y_t = \underbrace{\beta_0 + \beta_1 t}_{\text{determinista}} + \underbrace{\epsilon_t}_{\text{aleatorio}}
+\]</span></p>
+<p><img src="images/st_3.png" /></p>
+<p>Modelo de caminata aleatoria</p>
+<p><span class="math display">\[
+y_t = \underbrace{y_0 + \mu_c t}_{\text{determinista}} + \underbrace{u_t}_{\text{aleatorio}} \\
+\{\epsilon_t\} \rightarrow \text{ ruido blanco con media } 0\\
+u_t = \sum_{j=1}^t \epsilon_j \\
+c_t = \mu_c + \epsilon_t
+\]</span></p></li>
+</ul>
+<h2 id="prueba-de-dickey-fuller">Prueba de Dickey-Fuller</h2>
+<p><span class="math display">\[
+\underbrace{y_t - y_{t-1}}_{y} = \underbrace{\overbrace{(\phi - 1)}^{x_1} y_{t-1} }_{\text{caminata} \\ \text{aleatoria}} + \underbrace{\beta_0 + \beta_1 \overbrace{t}^{x_2}}_{\text{tendencia} \\ \text{lineal}} + \epsilon_t
+\]</span></p>
+<ul>
+<li><p>Si <span class="math inline">\(\phi = 1\)</span> y <span class="math inline">\(\beta_1 = 0\)</span> entonces</p>
+<p><span class="math display">\[
+y_t = \underbrace{y_{t-1} + \beta_0 + \epsilon_t}_{\text{caminata aleatoria}}
+\]</span></p></li>
+<li><p>Si <span class="math inline">\(\phi &lt; 1\)</span> y <span class="math inline">\(\beta_1 = 0\)</span> entonces</p>
+<p><span class="math display">\[
+y_t = \underbrace{\phi y_{t-1} + \beta_0 + \epsilon_t}_{\text{modelo } AR(1)}
+\]</span></p></li>
+<li><p>Si <span class="math inline">\(\phi = 0\)</span> entonces</p>
+<p><span class="math display">\[
+y_t = \underbrace{\beta_0 + \beta_1 t + \epsilon_t}_{\text{modelo de tendencia lineal}}
+\]</span></p></li>
+</ul>
+<p>Se contrastan las hipótesis</p>
+<p><span class="math display">\[
+\underbrace{ \underbrace{H_0: \phi = 1}_{\text{caminata} \\ \text{aleatoria}} \space \space \space \space \space \space\space \space \space \text{v.s.} \space \space \space \space \space \space \space \space \space \underbrace{H_a : \phi &lt; 1}_{\text{tendencia} \\ \text{lineal}}}_{\text{Prueba de raíz unitaria}}
+\]</span></p>
+<p>Dickey-Fuller supone que los errores <span class="math inline">\(\epsilon_t&#39;^s\)</span> están serialmente no-correlacionados.</p>
+<h3 id="versión-aumentada-de-dickey-fuller">Versión aumentada de Dickey-Fuller</h3>
+<ul>
+<li>Funciona aún cuando la condición de no-correlación serial está dada, se tiene que</li>
+</ul>
+<p><span class="math display">\[
+\underbrace{y_t - y_{t-1}}_{y} = (\phi-1)\underbrace{y_{t-1}}_{y} + \beta_0 + \beta_1\underbrace{t}_{x_2} + \sum_{j=1}^p\phi_j\underbrace{(y_{t-j} - y_{t-j-1})}_{x_j+\epsilon_t}
+\]</span></p>
+<h2 id="modelos-estacionales">Modelos estacionales</h2>
+<ul>
+<li>Muestran comportamiento periódico visible (determinista ó estocástica).</li>
+</ul>
+<h3 id="modelos-de-efectos-estacionales-fijos">Modelos de efectos estacionales fijos</h3>
+<ul>
+<li><p>La componente estacional <span class="math inline">\(S_t\)</span> es determinista.</p>
+<ul>
+<li><p>Funciones estacionales binarias</p>
+<p><span class="math display">\[
+z = 
+\begin{cases}
+1, \text{ si el evento estacional ocurre}\\
+0, \text{ c.o.c.} 
+\end{cases} \\
+y_t = \underbrace{\beta_0 + \beta_1t + \beta_2t^2}_{\text{tendencia} \\ \text{cuadrática}} + \underbrace{\beta_3z_t}_{\text{estado} \\\text{estacional}} + \underbrace{\epsilon_t}_{\text{error} \\ \text{aleatorio}}
+\]</span></p>
+<p>que es un modelo de regresión lineal múltiple con variables explicativas <span class="math inline">\(t, t^2, z\)</span>.</p></li>
+<li><p>Funciones <span class="math inline">\(\boxed{\text{trigonométricas}}\)</span></p>
+<p><span class="math display">\[
+g(t) = a \cdot \sin(2\pi ft + b )
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(a\)</span>: amplitud</p></li>
+<li><p><span class="math inline">\(b\)</span>: phase-shift</p></li>
+<li><p><span class="math inline">\(f\)</span>: frecuencia</p></li>
+<li><p><span class="math inline">\(\frac{1}{f}\)</span>: periodo</p></li>
+<li><p>Los ánulos se miden en radianes.</p></li>
+</ul></li>
+<li><p>En general, para una base estacional, SB, la función</p>
+<p><span class="math display">\[
+g(t) = a \cdot \sin(2\pi ft + b ), \underbrace{f = \frac{1}{SB}}_{\text{conocido}}
+\]</span></p>
+<p>proporciona una función trigonométrica que se repite a sí misma cada SB unidades de tiempo.</p></li>
+<li><p>Prefiere escribirse <span class="math inline">\(g(\cdot)\)</span> como</p>
+<p><span class="math display">\[
+\boxed{g(t) = \beta_1 \sin(2\pi ft) + \beta_2 \cos(2\pi f t)}
+\]</span></p>
+<p>donde <span class="math inline">\(\beta_1 = a \cdot \cos(b), \beta_2 = a \sin(b)\)</span> y se estiman <span class="math inline">\(\beta_1, \beta_2\)</span> por mínimos cuadrados, tratando a <span class="math inline">\(\sin(2\pi ft)\)</span> y <span class="math inline">\(\cos(2 \pi ft)\)</span> como variables explicativas.</p>
+<p><span class="math display">\[
+\boxed{ 
+\begin{align*} 
+y_t &amp;= \beta_0 + S_t + \epsilon_t \\
+&amp;= \beta_0 + \sum_{j=1}^m \bigg[ \beta_{1j} \sin(2\pi fjt) + \beta_{2j} \cos(2\pi f j t) \bigg] + \epsilon_t
+\end{align*}} \\
+\text{donde } fj = \frac{j}{SB}
+\]</span></p>
+<p>Este modelo tiene <span class="math inline">\(2m\)</span> variables explicativas:</p>
+<p><span class="math display">\[
+\sin(2\pi f j t) \text{ y } \cos(2 \pi f j t), j = 1, ..., m
+\]</span></p></li>
+<li></li>
+</ul></li>
+</ul>
+<h2 id="suavizamiento-smoothing">Suavizamiento (smoothing)</h2>
+<ul>
+<li><p>Consiste en crear una serie de tiempo que sea más suave que la serie de tiempo observada en el sentido de que es menos vulnerable a cambios abruptos en los valores de la serie.</p></li>
+<li><p>Se estudiará</p>
+<ol type="1">
+<li>Promedios móviles</li>
+<li>Suavizamiento exponencial</li>
+</ol></li>
+</ul>
+<h3 id="promedios-móviles-moving-average">Promedios móviles (moving average)</h3>
+<ul>
+<li><p>Promedio móvil de <u>longitud k</u> al tiempo <span class="math inline">\(t\)</span></p>
+<p><span class="math display">\[
+\hat{S}_t = \frac{1}{k} \underbrace{(y_t + y_{t-1} + ... + y_{t-k+1})}_{k \text{ sumandos}}
+\]</span></p>
+<ul>
+<li><p>Mientras más grande sea el valor de <span class="math inline">\(k\)</span>, más suaves serán los promedios. (<em>Mientras más chivas</em> 🐐 <em>estás promediando, más se van a acercar a una constante)</em></p></li>
+<li><p>Los promedios móviles sirven como los valores ajustados para la serie original.</p></li>
+</ul></li>
+<li><p>Pronóstico: <span class="math inline">\(\hat{y}_{T+1} = \hat{S}_T\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\hat{y}_{T+2} = \hat{S}_{T+1} \space \rightarrow\)</span> pero <span class="math inline">\(y_{T+1}\)</span> se reemplaza por <span class="math inline">\(\hat{S}_T\)</span></p></li>
+<li><p>Se aplica esta idea inductivamente.</p></li>
+</ul></li>
+</ul>
+<p><strong><em>¿Cómo sabemos que</em></strong> <span class="math inline">\(k\)</span> <strong><em>utilizar?</em></strong></p>
+<h3 id="suavizamiento-exponencial-simple">Suavizamiento exponencial simple</h3>
+<p><span class="math display">\[
+\hat{S}_t = \frac{1}{(1-\omega)^{-1}} \bigg[ y_t + \omega y_{t-1} + \omega^2 y_{t-2} + ... + \omega^{t-1} y_1 + \omega^ty_0\bigg]
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(t\in \{0,1,...\}\)</span></p></li>
+<li><p><span class="math inline">\(\omega \in (0,1)\)</span> se tiene que seleccionar</p></li>
+</ul>
+<p>El peso asignado a <span class="math inline">\(y_{t-i}\)</span> es <span class="math inline">\((1-\omega)\omega^i\)</span></p>
+<p><strong>¿Por qué escogiste los ponderadores así?</strong> <span class="math inline">\((1-\omega)\omega^i\)</span></p>
+<p><span class="math display">\[
+\sum_{i=0}^\infty (1-\omega)\omega^i = (1-\omega)\sum_{i=0}^\infty \omega^i = (1-\omega) \bigg[\frac{1}{1-\omega} \bigg] = 1
+\]</span></p>
+<p>Tú puedes demostrar que <span class="math inline">\(\hat{S}_t = \hat{S}_{t-1} + (1-\omega)(y_t - \hat{S}_{t-1})=(1-\omega)y_t + \omega \hat{S}_{t-1}\)</span></p>
+<ul>
+<li><p>Mientras más alto sea <span class="math inline">\(\omega\)</span>, menor será el efecto de <span class="math inline">\(y_t\)</span> en <span class="math inline">\(\hat{S}_t\)</span> y más pronunciada será la cantidad de suavizamiento.</p></li>
+<li><p><span class="math inline">\(\omega\)</span> bajo <span class="math inline">\(\rightarrow\)</span> mayor efecto de <span class="math inline">\(y_t\)</span></p></li>
+<li><p><span class="math inline">\(\omega\)</span>: parámetro de suavizamiento</p>
+<p><span class="math display">\[
+\boxed{SS(\:=\sum_{t=1}^T (y_t - \hat{S}_{t-1})^2omega)}
+\]</span></p>
+<p>depende de <span class="math inline">\(\omega\)</span> a partir de los estimados exponencialmente suavizados.</p></li>
+<li><p>Se elige <span class="math inline">\(\omega^*\)</span> se tal forma que <span class="math inline">\(SS(\omega^*)\)</span> sea mínimo.</p></li>
+<li><p><u>Pronóstico</u>: <span class="math inline">\(\hat{y}_{T+1} = \hat{S}_T\)</span></p>
+<p>$$ <em>{T+2} = </em>{T+1} = (1-)y_{T+1} + _T = (1-) _T + _T = _T \</p>
+<p>$$</p></li>
+</ul>
+<h2 id="modelo-ar-de-primer-orden-ar1">Modelo AR de primer orden (AR(1))</h2>
+<p>Conocido como modelo Auto regresivo de orden 1.</p>
+<ul>
+<li><p><span class="math inline">\(\underbrace{y_t}_{\text{respuesta}} = \underbrace{\beta_0 + \beta_1 y_{t-1}}_{\text{explicativas}} + \underbrace{\epsilon_t}_{\text{error}}\)</span></p>
+<p><span class="math inline">\(\beta_0, \beta_1\)</span> son parámetros desconocidos y <span class="math inline">\(\{\epsilon_t\}\)</span> es un proceso de ruido blanco con media 0.</p></li>
+<li><p>Típicamente se supone que <span class="math inline">\(\epsilon_{t+k}\)</span> y <span class="math inline">\(y_t\)</span> son <u>independientes</u> para cualesquiera <span class="math inline">\(t, k &gt; 0\)</span>.</p></li>
+<li><p>El modelo <span class="math inline">\(AR(1)\)</span> es una <u>generalización</u> de un proceso de <u>ruido blanco</u> haciendo <span class="math inline">\(\beta_1 = 0\)</span></p>
+<p><span class="math display">\[
+y_t = \beta_0 + \epsilon_t
+\]</span></p></li>
+<li><p>El modelo <span class="math inline">\(AR(1)\)</span> es una generalización de una <u>caminata aleatoria</u> haciendo <span class="math inline">\(\beta_1 = 1\)</span></p>
+<p><span class="math display">\[
+y_t - y_{t-1} = \beta_0 + \epsilon_t
+\]</span></p></li>
+<li><p>Para que el modelo <span class="math inline">\(AR(1)\)</span> sea estacionario, una condición suficiente es que <span class="math inline">\(\boxed{|\beta_1|&lt;1}\)</span>, pero <span class="math inline">\(\beta_0\)</span> puede ser cualquier real.</p></li>
+<li><p>Una parametrización más popular del modelo <span class="math inline">\(AR(1)\)</span> (que no se usa en Frees) es</p>
+<p><span class="math display">\[
+y_t = \mu + \phi(y_{t-1} - \mu) + \epsilon_t
+\]</span></p></li>
+</ul>
+<h3 id="propiedades-del-modelo-ar1-estacionario">Propiedades del modelo AR(1) estacionario</h3>
+<p>Para un modelo AR(1), <span class="math inline">\(y_t = \beta_0 + \beta_1y_{t-1} + \epsilon_t\)</span></p>
+<p><strong>Demuestra que:</strong></p>
+<ul>
+<li><p><span class="math inline">\(\mathbb{E}(y_t) = \beta_0 + \beta_1 \mathbb{E}(y_{t-1}) + \mathbb{E}(\epsilon_{t}) = \frac{\beta_0}{1-\beta_1}\)</span></p></li>
+<li><p><span class="math inline">\(Var(y_t) = \beta_1^2Var(y_{t-1}) + Var(\epsilon_{t}) = \frac{\sigma^2_{\epsilon}}{1-\beta^2_1}\)</span></p></li>
+</ul>
+<h4 id="función-de-autocorrelación">Función de autocorrelación</h4>
+<p>Para <span class="math inline">\(k = 1, 2, ...\)</span></p>
+<ul>
+<li><p><span class="math inline">\(Cov(y_t, y_{t-k}) = \beta_1^kVar(y_t)\)</span></p>
+<p><span class="math display">\[
+\boxed{Corr(y_t, y_{t-k}) = \beta_1^k =: \rho_k}
+\]</span></p></li>
+<li><p>Como se está suponiendo que <span class="math inline">\(|\beta_1|&lt;1\)</span>, la magnitud de las autocorrelaciones decrece exponencialmente con el lag <span class="math inline">\(k\)</span>, i.e.</p>
+<p><span class="math display">\[
+\boxed{
+\text{La aplicación}\\
+k\mapsto \rho_k =\beta_1^k \\
+\text{decrece exponencialmente}
+}
+\]</span></p></li>
+<li><p>Si <span class="math inline">\(\beta_1 &gt; 0\)</span>, las autocorrelaciones son positivas pero se encogen con el lag. Para <span class="math inline">\(\beta \approx 1\)</span>, la curva de autocorrelación parece relativamente suave.</p></li>
+<li><p>Si <span class="math inline">\(\beta_1 &lt; 0\)</span>, las autocorrelaciones alternan de positivo a negativo con magnitudes que decrecen exponencialmente.</p></li>
+</ul>
+<h3 id="estimación-de-parámetros-en-ar1">Estimación de parámetros en AR(1)</h3>
+<ul>
+<li><p>Se estudiará el método de <u>mínimos cuadrados condicionales</u> para estimar los 2 parámetros <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> del modelo AR(1), basándose en la serie de tiempo observada <span class="math inline">\(\{y_1, y_2, ..., y_T\}\)</span>.</p></li>
+<li><p>Para el modelo AR(1), <span class="math inline">\(y_t = \beta_0 + \beta_1 y_{t-1} + \epsilon_t\)</span>, se minimiza la suma de cuadrados condicional</p>
+<p><span class="math display">\[
+\sum_{t=2}^T(y_t - \mathbb{E}(y_t | y_{t-1}))^2 = \sum_{t = 2}^T\bigg[y_t - (\beta_0 + \beta_1y_{t-1})\bigg]^2
+\]</span></p>
+<p>como sólo se observa <span class="math inline">\(y_1, ..., y_T\)</span>, la suma empieza en <span class="math inline">\(t=2\)</span>, no en <span class="math inline">\(t-1\)</span>.</p></li>
+<li><p>Se puede ver al modelo AR(1) como un modelo SLR</p>
+<p><span class="math display">\[
+\begin{equation}
+\left(
+\begin{matrix}
+y_2 \\
+y_3 \\
+\vdots \\
+y_T 
+\end{matrix}
+\right)
+=
+\left(
+\begin{matrix}
+1 &amp; y_1 \\
+1 &amp; y_2 \\
+\vdots &amp; \vdots \\
+1 &amp; y_{T-1}
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+\beta_0  \\
+\beta_1
+\end{matrix}
+\right)
++
+\left(
+\begin{matrix}
+\epsilon_2 \\
+\epsilon_3 \\
+\vdots \\
+\epsilon_T
+\end{matrix}
+\right)
+\end{equation} \\
+\\
+\mathbb{Y} = \mathbb{X} \beta + \epsilon
+\]</span></p></li>
+</ul>
+<p>Aplicando la fórmula para <span class="math inline">\(\beta_1\)</span> en el modelo SLR</p>
+<p><span class="math display">\[
+\boxed{
+\hat{\beta}_1 = \frac{\displaystyle \sum_{t=2}^T (y_{t-1} - \bar{y}_{1,T-1})(y_t - \bar{y}_{2,T})}{\displaystyle \sum_{t=2}^T (y_{t-1} - \bar{y}_{1,T-1})^2}
+}
+\]</span></p>
+<p>donde <span class="math inline">\(\bar{y}_{1, T-1} = \frac{1}{T-1} \displaystyle \sum_{t=1}^{T-1} y_{t}, \bar{y}_{2, T-1} = \frac{1}{T-1} \displaystyle \sum_{t=2}^{T} y_{t}\)</span> y también <span class="math inline">\(\boxed{\hat{\beta}_0 = \bar{y}_{2, T} - \hat{\beta}_1 \bar{y}_{1, T-1}}\)</span></p>
+<ul>
+<li><p>La expresión para <span class="math inline">\(\hat{\beta}_1\)</span> es muy parecida a la autocorrelación de lag 1.</p></li>
+<li><p>De hecho, para <span class="math inline">\(T\)</span> grande</p>
+<p>$$ {y}<em>{1, T-1} {y}</em>{2, T} {y} =  _{t =1}^Ty_t\</p>
+<p>= r_1 $$</p></li>
+</ul>
+<p>Entonces se tienen las siguientes aproximaciones</p>
+<p><span class="math display">\[
+\hat{\beta}_1 \approx r_1 \space \space \space \text{ y } \space \space \space \hat{\beta}_0 = \bar{y}(1-r_1)
+\]</span></p>
+<p>Si se pide que se calule el LSE (estimador por mínimos cuadrados) de <span class="math inline">\(\beta_1\)</span> se usa</p>
+<p><span class="math display">\[
+\hat{\beta}_1 = \frac{\displaystyle \sum_{t=2}^T(y_{t-1} -\bar{y})(y_{t} -\bar{y})}{\displaystyle \sum_{t=2}^T(y_{t-1} -\bar{y})^2}
+\]</span></p>
+<p>no usar <span class="math inline">\(\hat{\beta}_1 = r_1\)</span>, a menos que se pida directamente.</p>
+<h3 id="residuales">Residuales</h3>
+<p><span class="math display">\[
+\boxed{
+e_t := y_t - (\hat{\beta}_0 + \hat{\beta}_1 y_{t-1})
+}
+\]</span></p>
+<ol type="1">
+<li><p><strong>Verificación de diagnóstico.</strong> Si el modelo AR(1) ajustado es adecuado, los residuales se deben parecer a un verdadero ruido blanco <span class="math inline">\(\{ \epsilon_k\}\)</span> que son i.i.d. y por lo tanto sin estructura de correlación.</p>
+<p><strong>OJO:</strong> El residual <span class="math inline">\(e_1\)</span> <u>no</u> está disponible, sólo se tienen <span class="math inline">\(T-1\)</span> observaciones de los residuales.</p></li>
+<li><p><strong>Estimación de la varianza del ruido blanco.</strong> Los residuales se usan para estimar la varianza del ruido blanco <span class="math inline">\(\sigma_{\epsilon}^2\)</span></p>
+<ol type="i">
+<li><p>A diferencia del marco de regresión lineal, el promedio de los residuales <u>no</u> es 0.</p></li>
+<li><p>El MSE para la varianza del ruido blanco es</p>
+<p><span class="math display">\[
+\boxed{
+S^2 = \frac{1}{T-3} \sum_{t = 2}^T (e_t - \bar{e})^2
+}
+\]</span></p></li>
+</ol></li>
+</ol>
+<h3 id="predicción-en-el-modelo-ar1">Predicción en el modelo AR(1)</h3>
+<ul>
+<li><p>Se hará pronóstico en el modelo AR(1)</p>
+<p><span class="math display">\[
+y_t = \beta_0 + \beta_1 y_{t-1} + \epsilon_t
+\]</span></p>
+<p>donde los parámetros <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> se suponen conocidos ó eficientemente estimados y por lo tanto con errores despreciables, y la historia de la serie es <span class="math inline">\(\{y_1, ..., y_T\}\)</span></p></li>
+<li><p>Para predicción puntual se estudian dos formas</p>
+<ul>
+<li><p>Recursiva.</p></li>
+<li><p>Explícita.</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

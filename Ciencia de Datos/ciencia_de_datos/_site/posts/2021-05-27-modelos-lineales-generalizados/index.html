@@ -2322,7 +2322,9 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <li><a href="#evaluación-de-la-bondad-de-ajuste">Evaluación de la bondad de ajuste</a>
 <ul>
 <li><a href="#devianza">Devianza</a></li>
+<li><a href="#cómo-se-obtiene-la-devianza">¿Cómo se obtiene la devianza?</a></li>
 <li><a href="#pseudor2">pseudo<span class="math inline">\(R^2\)</span></a></li>
+<li><a href="#aic-y-bic">AIC y BIC</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2558,6 +2560,26 @@ TSS = RSS + RegSS
 <p>😢 Por lo tanto no está definido el coeficiente de determinación <span class="math display">\[R^2\]</span> 😢</p></li>
 <li><p>Las medidas comunes son la devianza y la pseudo <span class="math inline">\(R^2\)</span></p></li>
 </ul>
+<h4 id="modelo-saturado">Modelo Saturado</h4>
+<ul>
+<li><p>El modelo saturado es uno con la misma distribución que la respuesta y función link que el GLM ajustado <u>pero</u> con tantos parámetros como observaciones.</p>
+<ul>
+<li>Esto permite maximizar la función de verosimilitud sobre una base observación por observación.</li>
+</ul></li>
+</ul>
+<p><strong>¿Qué significa esto?</strong></p>
+<ul>
+<li><p>El modelo saturado es tal que los valores ajustados son exactamente iguales a los valores observados, i.e.</p>
+<p><span class="math display">\[
+\underbrace{\hat{\mu}_i = y_i}_{\text{bajo el modelo saturado}} \text{ para todo } i = 1,...,n
+\]</span></p></li>
+<li><p>¿Y la justificación matemática?</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial \theta_i} \log(f(y_i;\theta_i,\phi_i)) = \frac{y_i - \overbrace{b&#39;(\theta_i)}^{\hat{\mu_i}}}{\phi_i} = 0
+\]</span></p>
+<p>por lo tanto, la media ajustada <span class="math inline">\(\hat{\mu}_i = b&#39;(\hat{\theta_i})\)</span> es igual al valor de la respuesta observada <span class="math inline">\(y_i\)</span>, i.e. el modelo saturado genera un ajuste perfecto.</p></li>
+<li><p>El modelo más elaborado proporciona el mejor ajuste, por lo tanto debe tener la log-verosimilitud más alta (que cualquier otro GLM ajustado)</p></li>
+</ul>
 <h3 id="devianza">Devianza</h3>
 <ul>
 <li><p>La devianza es una medida de bondad de ajuste que se basa en la verosimilitud.</p>
@@ -2570,8 +2592,47 @@ TSS = RSS + RegSS
 D = 2(l_{\text{SAT}} - \underbrace{l}_{\text{modelo que} \\ \text{estoy evaluando}})
 \]</span></p>
 <ul>
-<li><p>Una devianza grande es indicativ de un ajuste pobre.</p></li>
+<li><p>Una devianza grande es indicativo de un ajuste pobre.</p></li>
 <li><p>Una devianza pequeña es indicativo de buen ajuste.</p></li>
+</ul>
+<h3 id="cómo-se-obtiene-la-devianza">¿Cómo se obtiene la devianza?</h3>
+<ul>
+<li><p><strong>Paso 1:</strong> Escribir una expresión genérica para la función de verosimilitud, en términos de las medias desconocidas <span class="math inline">\(\mu_1, ..., \mu_n\)</span> (Recuérdese que se está inclinado a tratar a la media como un parámetro GLM).</p></li>
+<li><p><strong>Paso 2:</strong> Hacer las sustituciones</p>
+<ul>
+<li><p><span class="math inline">\(\mu_i \mapsto y_i\)</span> para el modelo saturado. Con esto tenemos <span class="math inline">\(l_{\text{SAT}}\)</span></p></li>
+<li><p><span class="math inline">\(\mu_i \mapsto \hat{\mu}_i\)</span> para el modelo saturado. Con esto tenemos <span class="math inline">\(l\)</span></p></li>
+</ul></li>
+<li><p><strong>Paso 3:</strong> Hacer el cálculo <span class="math inline">\(D = 2(l_{SAT} - l)\)</span> en términos de <span class="math inline">\(y_i&#39;^s\)</span> y <span class="math inline">\(\hat{\mu}_i&#39;^s\)</span></p></li>
+</ul>
+<p><strong>Ejemplo (Regresión Poisson)</strong></p>
+<p>Para el caso de que <span class="math inline">\(y_1, ... , y_n\)</span> tenga distribución Poisson con medias <span class="math inline">\(\mu_1, ..., \mu_n\)</span> respectivamente:</p>
+<ul>
+<li><p><strong>Paso 1:</strong> Expresión genérica: <span class="math display">\[\begin{align*}
+l(\mu_1, ..., \mu_n) 
+&amp;= \log\bigg(\prod_{i=1} ^n f(y_i)\bigg) \\
+&amp; = \log\bigg(\prod_{i=1} ^n \frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!}\bigg) \\
+&amp;= \sum_{i=1}^n \bigg(-\mu_i +y_i\log(\mu_i) - \log(y_i!)\bigg)
+\end{align*}\]</span></p></li>
+<li><p><strong>Paso 2:</strong> Hacer las sustituciones</p>
+<ul>
+<li><p><span class="math inline">\(\mu_i \mapsto y_i\)</span> para el modelo saturado.</p>
+<p><span class="math display">\[
+l_{SAT} = \sum_{i=1}^n \bigg(-y_i +y_i\log(y_i) - \log(y_i!)\bigg)
+\]</span></p></li>
+<li><p><span class="math inline">\(\mu_i \mapsto \hat{\mu}_i\)</span> para el modelo saturado.</p>
+<p><span class="math display">\[
+l = \sum_{i=1}^n \bigg(-\hat{\mu}_i +y_i\log(\hat{\mu}_i) - \log(y_i!)\bigg)
+\]</span></p></li>
+</ul></li>
+<li><p><strong>Paso 3:</strong></p>
+<p><span class="math display">\[
+\begin{align*}
+D &amp;= 2(l_{SAT} -l) = 2\sum_{i=1}^n \bigg( \hat{\mu}_i - y_i + y_i(\log(y_i) - \log(\hat{\mu}_i)) \bigg) \\
+&amp;= 2\sum_{i=1}^n \bigg( y_i\log(\frac{y_i}{\hat{\mu}_i})  - (y_i -  \hat{\mu}_i) \bigg) 
+\end{align*}
+\]</span></p></li>
+<li><p><span class="math inline">\(D\)</span> debe ser pequeño. Intuitivamente “Si tengo 2 modelos, me quedo con el de devianza menor”</p></li>
 </ul>
 <h3 id="pseudor2">pseudo<span class="math inline">\(R^2\)</span></h3>
 <p><strong>Definición.</strong></p>
@@ -2580,6 +2641,16 @@ pseudoR^2 = \frac{l - l_{IID}}{l_{SAT} - l_{IID}}
 \]</span></p>
 <p>pseudo<span class="math inline">\(R^2 \in (0,1)\)</span></p>
 <p>pseudo<span class="math inline">\(R^2\)</span> grande es indicativo de mejor ajuste del modelo.</p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(l_{\text{SAT}}\)</span>: log-verosimilitud del modelo saturado.</p></li>
+<li><p><span class="math inline">\(l\)</span>: log-verosimilitud del GLM en consideración.</p></li>
+<li><p><span class="math inline">\(l_{\text{IID}}\)</span>: log-verosimilitud clásica que se aprende en Inferencia Estadística.</p></li>
+</ul>
+<h3 id="aic-y-bic">AIC y BIC</h3>
+<p>Se tiene interés en pruebas de hipótesis y 2 criteriors de selección de modelos</p>
+<p>AIC = <span class="math inline">\(-2l + 2p\)</span></p>
+<p>BIC = <span class="math inline">\(-2l + p\log(n)\)</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
