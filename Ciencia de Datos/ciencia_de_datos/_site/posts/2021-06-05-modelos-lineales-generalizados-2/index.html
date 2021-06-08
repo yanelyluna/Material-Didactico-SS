@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"NULL"}
+  {"type":"character","attributes":{},"value":["images/mlg2_1.png","images/mlg2_2.png","modelos-lineales-generalizados-2_files/anchor-4.2.2/anchor.min.js","modelos-lineales-generalizados-2_files/bowser-1.9.3/bowser.min.js","modelos-lineales-generalizados-2_files/distill-2.2.21/template.v2.js","modelos-lineales-generalizados-2_files/header-attrs-2.7/header-attrs.js","modelos-lineales-generalizados-2_files/jquery-1.11.3/jquery.min.js","modelos-lineales-generalizados-2_files/popper-2.6.0/popper.min.js","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy-light-border.css","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy.css","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy.umd.min.js","modelos-lineales-generalizados-2_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2301,6 +2301,106 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#gamma-e-inversa-gaussiana">Gamma e Inversa Gaussiana</a></li>
+<li><a href="#prueba-de-devianza">Prueba de devianza</a></li>
+</ul>
+</nav>
+</div>
+<p>¿Por qué escoger la función link de esta forma? ¿Cómo la encontramos en general?</p>
+<p><span class="math display">\[
+\boxed{g(\mu) = \underline{x}^T\beta}
+\]</span></p>
+<p><strong>Hipótesis de la función link canónica</strong></p>
+<p><span class="math inline">\(g(\mu) = \theta\)</span> donde <span class="math inline">\(\theta\)</span> proviene de la parametrización como miembro de la familia exponencial. Lo anterior implica:</p>
+<p><span class="math display">\[
+g(\mu) = \theta \underbrace{\Rightarrow}_{\mu = b&#39;(\theta) \\ \text{en familia} \\ \text{LED}} g(b&#39;(\theta)) = \theta\\
+\Rightarrow b&#39;(\theta) = g^{-1}(\theta) \Rightarrow g(\theta) = (b&#39;(\theta))^{-1}, \text{ donde -1 es de la función inversa.}
+\]</span></p>
+<p>Para obtener la función link canónica vemos, se debe cumplir que</p>
+<p><span class="math display">\[
+\boxed{g(\theta) = \bigg(b&#39;(\theta)\bigg)^{-1}}
+\]</span></p>
+<p><strong>Ejemplos:</strong></p>
+<ol type="1">
+<li>Si <span class="math inline">\(Y \sim Poisson(\lambda)\)</span>, es decir, <span class="math inline">\(f_Y(y) = \frac{e^{-\lambda}\lambda^y}{y!} 1_{\{0, 1, ...\}}^{(y)}\)</span> ¿Y pertenece a la familia exponencial lineal? Sí</li>
+</ol>
+<p><span class="math display">\[
+\begin{align*}
+\frac{e^{-\lambda}\lambda^y}{y!}  &amp;= \exp\{-\lambda + y\log(\lambda) - \log(y!)\} = \exp\{y\theta - e^{\theta} - \log(y!)\} \\
+&amp;\text{Donde } \\
+&amp;\theta = \log(\lambda) \\
+&amp;b(\theta) = e^\theta\\
+&amp;\phi = 1 \\
+&amp;S(y, \phi) = -\log(y!) \\
+\mathbb{E}(Y) &amp;= b&#39;(\theta) = e^\theta = e^{\log(\lambda)} = \lambda \text{ (como ya esperábamos}) \\
+Var(Y) &amp;= \phi\cdot b&#39;(\theta)
+\end{align*}
+\]</span></p>
+<p>En este caso, la función link canónica es</p>
+<p><span class="math display">\[
+b(\theta)  = e^\theta, b&#39;(\theta) = e^\theta \\
+\Rightarrow g(\theta) = \bigg(b&#39;(\theta)\bigg)^{-1} = \log(\theta)
+\]</span></p>
+<ol start="2" type="1">
+<li><p>Si <span class="math inline">\(Y \sim Bnlli(p)\)</span>, es ddecir <span class="math inline">\(f(y) = p^y(1-p)^{1-y}\)</span> ¿Pertenece a la familia exponencial lineal? Sí</p>
+<p><span class="math display">\[
+\begin{align*}
+f(y) &amp;= p^y(1-p)^{1-y} = e^{y\log(p) + (1-y)\log(1-p)}\\
+&amp;= \exp\bigg\{ y\big[\log(p) - \log(1-p)\big] + \log(1-p)\bigg\} \\
+&amp;= \exp\bigg\{  y\log\bigg( \frac{p}{1-p}\bigg) + \log(1-p) \bigg\} \\
+&amp;= \exp\bigg\{  \frac{y\theta-\log(1+ e^\theta)}{1} + 0 \bigg\} \\
+\text{De donde } \\
+\theta &amp;= \log(\frac{p}{1-p}) \iff p = \frac{e^\theta}{ 1 + e^\theta} \\
+\Rightarrow \log(1-p) &amp;= \log\bigg( 1- \frac{e^\theta}{ 1 + e^\theta} \bigg) = \log\bigg(\frac{1}{ 1 + e^\theta} \bigg) = -\log(1+e^\theta) \\
+b(\theta) &amp;= \log(1+ e^\theta) \rightarrow b&#39;(\theta) = \frac{e^\theta}{1+e^\theta}\\
+\therefore g(\theta) &amp;= \bigg(b&#39;(\theta)\bigg)^{-1} = \log\bigg(\frac{\theta}{1-\theta}\bigg)
+\end{align*}
+\]</span></p></li>
+</ol>
+<h3 id="gamma-e-inversa-gaussiana">Gamma e Inversa Gaussiana</h3>
+<p>Cuando <span class="math inline">\(Y\)</span> se distribuye Gamma o Inversa Gaussiana, es decir, que su resultado es positivo “continuo” con un sesgo (ó ligero sesgo) hacia la derecha, tenemos lo siguiente:</p>
+<h4 id="gamma">Gamma</h4>
+<p><span class="math display">\[
+b(\theta) = -\log(\theta) \\
+b&#39;(\theta) = -\frac{1}{\theta} \\
+g(\mu) = -\frac{1}{\mu}
+\]</span></p>
+<h4 id="inversa-gaussiana">Inversa Gaussiana</h4>
+<p><span class="math display">\[
+b&#39;(\theta) = (-2\theta)^{\frac{-1}{2}} \\
+g(\mu) = \frac{-1}{2 \mu^2} \propto \frac{1}{\mu^2}
+\]</span></p>
+<p><img src="images/mlg2_1.png" width="543" /></p>
+<h3 id="prueba-de-devianza">Prueba de devianza</h3>
+<p>La prueba de hipótesis más popular para este caso es:</p>
+<p><span class="math display">\[
+H_0: \underbrace{\beta_1 = \beta_2 = ...= \beta_r = 0}_{\text{un subconjunto de variables}\\ \text{&quot;explicativas&quot; no tiene uso}} \space \space \space \space \space \space \space \space \space v.s. \space \space \space \space \space \space \space \space \space H_a: \text{No hay restricciones sobre los }\beta&#39;^s 
+\]</span></p>
+<h4 id="la-estadística-de-prueba-es">La estadística de prueba es:</h4>
+<p><span class="math display">\[
+LST := 2(l_1 - l_0)
+\]</span></p>
+<p>Donde <span class="math inline">\(l_1, l_0\)</span> son las verosimilitudes bajo la hipótesis alternativa y nula, respectivamente.</p>
+<ul>
+<li><p>Mientras más grande sea LRT (Likehood Ratio Test), más evidencia se tendrá en contra de <span class="math inline">\(H_0\)</span> (en favor de <span class="math inline">\(H_a\)</span>)</p></li>
+<li><p>Nótese que</p>
+<p><span class="math display">\[
+\begin{align*}
+LRT &amp;= 2 (l_1- l_0) = 2(l_1 - l_{SAT} - l_0 + l_{SAT}) \\
+&amp;= \underbrace{2(l_{SAT} - l_0)}_{\text{Devianza del} \\ \text{modelo en la} \\ \text{hipótesis nula}} - \underbrace{2(l_{SAT} - l_1)}_{\text{Devianza del} \\ \text{modelo en la} \\ \text{hipótesis alternativa}} \\
+&amp;= D_0 - D_1
+\end{align*}
+\]</span></p>
+<p>A esta prueba se le conoce como <strong>Prueba de diferencias de devianza</strong> ó <strong>Prueba de devianza.</strong></p></li>
+</ul>
+<h4 id="región-de-rechazo">Región de rechazo</h4>
+<p>Bajo <span class="math inline">\(H_0, LRT \sim \chi^2_{(r)}\)</span>. Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(LRT_{obs} &gt; \underbrace{\chi^2_{r, \alpha}}_{\text{upper cuantil} \\ \text{al nivel } \alpha}\)</span></p>
+<p><img src="images/mlg2_2.png" width="589" /></p>
+<p>Debe ser <span class="math inline">\(D_0\)</span> mayor a <span class="math inline">\(D_1\)</span> pues la estadística de prueba debe ser positiva, pues el modelo bajo <span class="math inline">\(H_0\)</span> es más restringido, por lo tanto, se aleja más del modelo saturado que bajo <span class="math inline">\(H_a\)</span>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2309,6 +2409,15 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
