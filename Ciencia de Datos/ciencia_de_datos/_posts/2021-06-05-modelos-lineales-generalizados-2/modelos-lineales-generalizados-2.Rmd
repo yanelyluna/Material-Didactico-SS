@@ -1,7 +1,7 @@
 ---
-title: "Modelos lineales generalizados 2"
+title: "Selección de variables"
 description: |
-  Sobre los MLG.
+  Si tenemos muchas variables explicativas, hay que saber con cuáles quedarnos.
 author:
   - name: Eduardo Selim M. M.
   - name: Carlos A. Ar.
@@ -15,122 +15,197 @@ categories:
   - regresion
 ---
 
-¿Por qué escoger la función link de esta forma? ¿Cómo la encontramos en general?
+## Selección de variables
+
+Para seleccionar un modelo de otro, las métricas siguientes nos ayudan a comparar entre modelos:
+
+-   BIC
+
+-   AIC
+
+-   $R^2$
+
+-   $R^2_a: R^2$ ajustada
+
+-   pseudo-$R^2$
+
+-   Estadística $C_p$ de Mallow
+
+Estas métricas sirven para "comparar" dos modelos. Uso "comparar" entre comillas porque a veces la comparación [no]{.ul} es justa. El caso de $R^2$ es un ejemplo claro porque:
+
+-   Más variables explicativa $\rightarrow R^2$ más grande.
+
+-   Si nos vamos con la trampa de que $R^2$ grande es "mejor" modelo, siempre tendremos modelos con **muchas** variables explicativas y eso no necesariamente significa mejor modelo.
+
+    -   Poca parsimonia (muy complicado).
+
+    -   Unas variables le estorban a otras.
+
+### $R^2_a: R^2$ ajustada
+
+Definimos esta métrica que **sí considera** el efecto de agregar variables explicativas, como sigue:
 
 $$
-\boxed{g(\mu) = \underline{x}^T\beta}
+R_a^2 := 1-\frac{\frac{RSS}{n-k-1}}{\frac{TSS}{n-1}} \\
+n: \text{ número de observaciones} \\
+k: \text{ número de variables explicativas en el modelo}
 $$
 
-**Hipótesis de la función link canónica**
+**Observaciones**
 
-$g(\mu) = \theta$ donde $\theta$ proviene de la parametrización como miembro de la familia exponencial. Lo anterior implica:
+-   $R_a^2 = 1- \frac{S^2}{S^2_y}$ donde $S^2$ es el error cuadrático medio (MSE) del modelo de regresión en cuestión.
+
+-   $R_a^2 \neq \frac{\frac{RegSS}{k}}{\frac{TSS}{n-1}}$
+
+-   Se puede demostrar que $R_a^2 = 1- \frac{n-1}{n-k-1} (1-R^2)$ lo cual implica
+
+    -   $R_a^2 \leq R^2 \leq 1$
+
+    -   $R_a^2$ puede ser negativa. Esto puede ocurrir cuando $R^2$ es muy bajo (por ejemplo $R^2 \approx 0$)
+
+        $$
+        R_a^2 \approx 1-\frac{n-1}{n-k-1} = \frac{-k}{n-k-1} < 0
+        $$
+
+-   Como criterio para releccionar modelo nos sigue interesando $R_a^2$ grande.
+
+-   Se dice que $R_a^2$ penaliza la inclusión de predicciones extrañas al modelo.
+
+-   $R_a^2$ más alta es equivalmente a MSE chico (i.e. $S^2$ chico)
+
+### Estadística $C_p$ de Mallow
 
 $$
-g(\mu) = \theta \underbrace{\Rightarrow}_{\mu = b'(\theta) \\ \text{en familia} \\ \text{LED}} g(b'(\theta)) = \theta\\
-\Rightarrow b'(\theta) = g^{-1}(\theta) \Rightarrow g(\theta) = (b'(\theta))^{-1}, \text{ donde -1 es de la función inversa.}
+C_p := 
+\begin{cases}
+\frac{(RSS)_p + 2p\cdot S^2_{full}}{n}, \text{ James, Tibihrani, et al} \\
+\frac{(RSS)_p}{S^2_{full}} - n + 2p, \text{ Frees.}
+\end{cases}
 $$
 
-Para obtener la función link canónica vemos, se debe cumplir que
+donde
+
+-   $S^2_{full}$ es el MSE que tiene [**todas**]{.ul} las variables explicativas, no necesariamente el modelo en consideración.
+
+-   $(RSS)_p$: Es el $RSS$ de el modelo bajo consideración, con $p$ variables explicativas.
+
+Se puede demostrar (de forma algebráica)
 
 $$
-\boxed{g(\theta) = \bigg(b'(\theta)\bigg)^{-1}}
+C_p^{\text{James}} = \frac{S^2_{full}}{n} (C_p^{\text{Frees}} + n)
 $$
 
-**Ejemplos:**
+-   Es deseable un valor pequeño de $C_p$
 
-1.  Si $Y \sim Poisson(\lambda)$, es decir, $f_Y(y) = \frac{e^{-\lambda}\lambda^y}{y!} 1_{\{0, 1, ...\}}^{(y)}$ ¿Y pertenece a la familia exponencial lineal? Sí
+-   Mientras más variables tenga el modelo, más grande será la penalización sobre $C_p$
 
-$$
+### AIC & BIC (para modelos lineales)
+
+```{=tex}
 \begin{align*}
-\frac{e^{-\lambda}\lambda^y}{y!}  &= \exp\{-\lambda + y\log(\lambda) - \log(y!)\} = \exp\{y\theta - e^{\theta} - \log(y!)\} \\
-&\text{Donde } \\
-&\theta = \log(\lambda) \\
-&b(\theta) = e^\theta\\
-&\phi = 1 \\
-&S(y, \phi) = -\log(y!) \\
-\mathbb{E}(Y) &= b'(\theta) = e^\theta = e^{\log(\lambda)} = \lambda \text{ (como ya esperábamos}) \\
-Var(Y) &= \phi\cdot b'(\theta)
+\text{AIC} &= \frac{(RSS)_p + 2p \cdot S^2_{full}}{n \cdot S^2_{full}} \\
+\text{BIC} &= \frac{(RSS)_p + \log(n) \cdot p \cdot S^2_{full}}{n \cdot S^2_{full}} 
 \end{align*}
+```
+¿Cuándo $\log(n)$ es mayor que 2?
+
+$$
+\log(n) > 2 \iff n> e^2 = 7.38 \approx 8
 $$
 
-En este caso, la función link canónica es
+Para un modelo fijo podemos saber que BIC$>$AIC cuando $n>8$, lo cual es muy común.
 
-$$
-b(\theta)  = e^\theta, b'(\theta) = e^\theta \\
-\Rightarrow g(\theta) = \bigg(b'(\theta)\bigg)^{-1} = \log(\theta)
-$$
+-   Nótese que $\text{AIC} = \frac{C_p^{\text{James}}}{S_{full}^2}$
 
-2.  Si $Y \sim Bnlli(p)$, es ddecir $f(y) = p^y(1-p)^{1-y}$ ¿Pertenece a la familia exponencial lineal? Sí
+-   Queremos AIC y BIC chicos.
+
+## Mejor selección de subconjunto
+
+-   Dadas $k$ variables explicativas potenciales, nos gustaría encontrar el "mejor" subconjunto de éstas para considerarlas en el modelo de regresión. El "mejor" es en el sentido de que tengan $\underbrace{AIC\text{ ó }BIC\text{ ó }C_p}_{\text{chicos}}$ ó $\underbrace{R_a^2}_{\text{grande}}$
+
+-   ¿Cuántos posibles subconjuntos tenemos?
 
     $$
+    2^k \text{ Con intercepto}
+    $$
+
+    Aunque es conceptualmente sencillo de entender qué es la selección de variables, es [computacionalmente más costoso]{.ul}.
+
+-   **Ejemplo**
+
+    $$
+    y \sim x_1 + x_2 + x_3
+    $$
+
+    ¿Cuántos posibles modelos tenemos? $8 = 2^3$
+
+    1.  $y = \beta_0$
+
+    2.  $y = \beta_0 + \beta_1x_1$
+
+    3.  $y = \beta_0 + \beta_2x_2$
+
+    4.  $y = \beta_0 + \beta_3x_3$
+
+    5.  $y = \beta_0 + \beta_1x_1 + \beta_2x_2$
+
+    6.  $y = \beta_0 + \beta_1x_1 + \beta_3x_3$
+
+    7.  $y = \beta_0 + \beta_2x_2 + \beta_3x_3$
+
+    8.  $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3$
+
+    -   Si ocupamos el $C_p$ como métrica, comparamos $C^{[1]}, C^{[2]}, ..., C^{[8]}$ y nos quedamos con el modelo que tenga el $C_p$ más pequeño.
+
+-   Si tenemos 10 variables explicativas, tendríamos $2^{10} = 1024$ modelos a comparar, es costoso computacionalmente.
+
+-   Dada esta complejidad, tenemos 3 alternativas que buscan eficiencia computacional pero no encuentran necesariamente el mejor modelo.
+
+    -   [Selección forward]
+
+        -   [Con regla de paro]
+
+        -   Sin regla de paro
+
+    -   Selección backward
+
+    -   Selección stepwise
+
+### Selección forward
+
+-   Se empieza con el modelo más simple, i.e. el iid, i.e. $\underbrace{y = \beta_0}_{\text{se conoce como} \\ \text{el modelo nulo}}$
+
+-   Se van agregando variables explicativas si es que está "justificado". ¿Qué significa que esté "justificado"?
+
+    -   Si agregar la variable (en el modelo) mejora la métrica de evaluación ($AIC, BIC, C_p, R_a^2, pseudoR^2$)
+
+#### Con regla de paro
+
+Empezamos con $y = \beta_0 + \epsilon$
+
+-   **Paso F1:** De entre $x_1, x_2, ..., x_k$, agregas la variable más significativa al modelo nulo. i.e. se ajustan $k$ modelos:
+
     \begin{align*}
-    f(y) &= p^y(1-p)^{1-y} = e^{y\log(p) + (1-y)\log(1-p)}\\
-    &= \exp\bigg\{ y\big[\log(p) - \log(1-p)\big] + \log(1-p)\bigg\} \\
-    &= \exp\bigg\{  y\log\bigg( \frac{p}{1-p}\bigg) + \log(1-p) \bigg\} \\
-    &= \exp\bigg\{  \frac{y\theta-\log(1+ e^\theta)}{1} + 0 \bigg\} \\
-    \text{De donde } \\
-    \theta &= \log(\frac{p}{1-p}) \iff p = \frac{e^\theta}{ 1 + e^\theta} \\
-    \Rightarrow \log(1-p) &= \log\bigg( 1- \frac{e^\theta}{ 1 + e^\theta} \bigg) = \log\bigg(\frac{1}{ 1 + e^\theta} \bigg) = -\log(1+e^\theta) \\
-    b(\theta) &= \log(1+ e^\theta) \rightarrow b'(\theta) = \frac{e^\theta}{1+e^\theta}\\
-    \therefore g(\theta) &= \bigg(b'(\theta)\bigg)^{-1} = \log\bigg(\frac{\theta}{1-\theta}\bigg)
+    &\text{V1: }y = \beta_0 + \beta_1 x_1 + \epsilon \\
+    &\text{V2: }y = \beta_0 + \beta_2 x_2 + \epsilon \\
+    & \space \space \space \space \space \vdots \\
+    & \text{Vk: }y = \beta_0 + \beta_k x_k + \epsilon
     \end{align*}
-    $$
 
-### Gamma e Inversa Gaussiana
+    Y se selecciona la variable explicativa que mejora alguna métrica seleccionada.
 
-Cuando $Y$ se distribuye Gamma o Inversa Gaussiana, es decir, que su resultado es positivo "continuo" con un sesgo (ó ligero sesgo) hacia la derecha, tenemos lo siguiente:
+    Acá podría ocupar como métrica incluso la $R^2$ pues todos los modelos tiene el mismo número de variables explicativas.
 
-#### Gamma
+-   **Paso F2:** Fijar las variables explicativas identificada en el paso anterior y buscar de entre las variables seleccionadas, aquella que sea la más estadísticamente significativa (i.e. la que tenga un $t-ratio$ mejor, $R^2$ más grande, ó un mejor $BIC/AIC/C_p/ R_a^2$)
 
-$$
-b(\theta) = -\log(\theta) \\
-b'(\theta) = -\frac{1}{\theta} \\
-g(\mu) = -\frac{1}{\mu}
-$$
+-   **Paso F3:** Se repiten los pasos **F1** y **F2** para las variables explicativas restantes hasta que agregar más variables no sea suficientemente significativo, de acuerdo a alguna regla de paro pre-especificada (por ejemplo $t-ratio$ sea menor que $2$ (en valor absoluto) ó $R^2>85\%$, ó alguna otra arbitraria).
 
-#### Inversa Gaussiana
+Si llegamos hasta agregar las $k$ variables ¿Cuántos modelos ajustamos?
 
 $$
-b'(\theta) = (-2\theta)^{\frac{-1}{2}} \\
-g(\mu) = \frac{-1}{2 \mu^2} \propto \frac{1}{\mu^2}
+\underbrace{1}_{\text{modelo nulo}} + [\underbrace{k}_{\text{ajustes con }\\ 1\text{ variable}} + (k-1) + ... + \underbrace{1}_{\text{ajuste con}\\ \text{las }k \text{ variables}}] = 1+ \frac{k(k+1)}{2} \leq 2^k
 $$
 
-![](images/mlg2_1.png){width="543"}
+Lo cual implica que con este algoritmo, reducimos el número de comparaciones. El problema es que no logramos hacer todas las comparaciones, solo decimos: encontramos el mejor modelo, suponiendo que debemos dejar una variable (correspondiente al paso F2 del algoritmo).
 
-### Prueba de devianza
-
-La prueba de hipótesis más popular para este caso es:
-
-$$
-H_0: \underbrace{\beta_1 = \beta_2 = ...= \beta_r = 0}_{\text{un subconjunto de variables}\\ \text{"explicativas" no tiene uso}} \space \space \space \space \space \space \space \space \space v.s. \space \space \space \space \space \space \space \space \space H_a: \text{No hay restricciones sobre los }\beta'^s 
-$$
-
-#### La estadística de prueba es:
-
-$$
-LST := 2(l_1 - l_0)
-$$
-
-Donde $l_1, l_0$ son las verosimilitudes bajo la hipótesis alternativa y nula, respectivamente.
-
--   Mientras más grande sea LRT (Likehood Ratio Test), más evidencia se tendrá en contra de $H_0$ (en favor de $H_a$)
-
--   Nótese que
-
-    $$
-    \begin{align*}
-    LRT &= 2 (l_1- l_0) = 2(l_1 - l_{SAT} - l_0 + l_{SAT}) \\
-    &= \underbrace{2(l_{SAT} - l_0)}_{\text{Devianza del} \\ \text{modelo en la} \\ \text{hipótesis nula}} - \underbrace{2(l_{SAT} - l_1)}_{\text{Devianza del} \\ \text{modelo en la} \\ \text{hipótesis alternativa}} \\
-    &= D_0 - D_1
-    \end{align*}
-    $$
-
-    A esta prueba se le conoce como **Prueba de diferencias de devianza** ó **Prueba de devianza.**
-
-#### Región de rechazo
-
-Bajo $H_0, LRT \sim \chi^2_{(r)}$. Se rechaza $H_0$ si $LRT_{obs} > \underbrace{\chi^2_{r, \alpha}}_{\text{upper cuantil} \\ \text{al nivel } \alpha}$
-
-![](images/mlg2_2.png){width="589"}
-
-Debe ser $D_0$ mayor a $D_1$ pues la estadística de prueba debe ser positiva, pues el modelo bajo $H_0$ es más restringido, por lo tanto, se aleja más del modelo saturado que bajo $H_a$.
+En resumen la ventaja es mayor eficiencia pero la desventaja es que no encontramos el "mejor modelo global" (lo descrito al inicio de esta nota).

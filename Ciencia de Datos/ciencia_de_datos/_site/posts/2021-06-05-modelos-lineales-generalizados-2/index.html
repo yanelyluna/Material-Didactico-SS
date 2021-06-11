@@ -86,9 +86,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>Ciencia de Datos con R: Modelos lineales generalizados 2</title>
+<title>Ciencia de Datos con R: Selección de variables</title>
 
-<meta property="description" itemprop="description" content="Sobre los MLG."/>
+<meta property="description" itemprop="description" content="Si tenemos muchas variables explicativas, hay que saber con cuáles quedarnos."/>
 
 
 <!--  https://schema.org/Article -->
@@ -98,27 +98,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Carlos A. Ar."/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Ciencia de Datos con R: Modelos lineales generalizados 2"/>
+<meta property="og:title" content="Ciencia de Datos con R: Selección de variables"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Sobre los MLG."/>
+<meta property="og:description" content="Si tenemos muchas variables explicativas, hay que saber con cuáles quedarnos."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Ciencia de Datos con R"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Ciencia de Datos con R: Modelos lineales generalizados 2"/>
-<meta property="twitter:description" content="Sobre los MLG."/>
+<meta property="twitter:title" content="Ciencia de Datos con R: Selección de variables"/>
+<meta property="twitter:description" content="Si tenemos muchas variables explicativas, hay que saber con cuáles quedarnos."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Modelos lineales generalizados 2"]},{"type":"character","attributes":{},"value":["Sobre los MLG."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Eduardo Selim M. M."]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Carlos A. Ar."]}]}]},{"type":"character","attributes":{},"value":["06-06-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["regresion"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Selección de variables"]},{"type":"character","attributes":{},"value":["Si tenemos muchas variables explicativas, hay que saber con cuáles quedarnos."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Eduardo Selim M. M."]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Carlos A. Ar."]}]}]},{"type":"character","attributes":{},"value":["06-06-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["regresion"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["images/mlg2_1.png","images/mlg2_2.png","modelos-lineales-generalizados-2_files/anchor-4.2.2/anchor.min.js","modelos-lineales-generalizados-2_files/bowser-1.9.3/bowser.min.js","modelos-lineales-generalizados-2_files/distill-2.2.21/template.v2.js","modelos-lineales-generalizados-2_files/header-attrs-2.7/header-attrs.js","modelos-lineales-generalizados-2_files/jquery-1.11.3/jquery.min.js","modelos-lineales-generalizados-2_files/popper-2.6.0/popper.min.js","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy-light-border.css","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy.css","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy.umd.min.js","modelos-lineales-generalizados-2_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["modelos-lineales-generalizados-2_files/anchor-4.2.2/anchor.min.js","modelos-lineales-generalizados-2_files/bowser-1.9.3/bowser.min.js","modelos-lineales-generalizados-2_files/distill-2.2.21/template.v2.js","modelos-lineales-generalizados-2_files/header-attrs-2.7/header-attrs.js","modelos-lineales-generalizados-2_files/jquery-1.11.3/jquery.min.js","modelos-lineales-generalizados-2_files/popper-2.6.0/popper.min.js","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy-light-border.css","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy.css","modelos-lineales-generalizados-2_files/tippy-6.2.7/tippy.umd.min.js","modelos-lineales-generalizados-2_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2257,7 +2257,7 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Modelos lineales generalizados 2","description":"Sobre los MLG.","authors":[{"author":"Eduardo Selim M. M.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Carlos A. Ar.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-06T00:00:00.000-05:00","citationText":"M. & Ar., 2021"}
+{"title":"Selección de variables","description":"Si tenemos muchas variables explicativas, hay que saber con cuáles quedarnos.","authors":[{"author":"Eduardo Selim M. M.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Carlos A. Ar.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-06T00:00:00.000-05:00","citationText":"M. & Ar., 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2283,13 +2283,13 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Modelos lineales generalizados 2</h1>
+<h1>Selección de variables</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
   <a href="../../index.html#category:regresion" class="dt-tag">regresion</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>Sobre los MLG.</p></p>
+<p><p>Si tenemos muchas variables explicativas, hay que saber con cuáles quedarnos.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2305,102 +2305,163 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#gamma-e-inversa-gaussiana">Gamma e Inversa Gaussiana</a></li>
-<li><a href="#prueba-de-devianza">Prueba de devianza</a></li>
+<li><a href="#selección-de-variables">Selección de variables</a>
+<ul>
+<li><a href="#r2_a-r2-ajustada"><span class="math inline">\(R^2_a: R^2\)</span> ajustada</a></li>
+<li><a href="#estadística-c_p-de-mallow">Estadística <span class="math inline">\(C_p\)</span> de Mallow</a></li>
+<li><a href="#aic-bic-para-modelos-lineales">AIC &amp; BIC (para modelos lineales)</a></li>
+</ul></li>
+<li><a href="#mejor-selección-de-subconjunto">Mejor selección de subconjunto</a>
+<ul>
+<li><a href="#selección-forward">Selección forward</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
-<p>¿Por qué escoger la función link de esta forma? ¿Cómo la encontramos en general?</p>
-<p><span class="math display">\[
-\boxed{g(\mu) = \underline{x}^T\beta}
-\]</span></p>
-<p><strong>Hipótesis de la función link canónica</strong></p>
-<p><span class="math inline">\(g(\mu) = \theta\)</span> donde <span class="math inline">\(\theta\)</span> proviene de la parametrización como miembro de la familia exponencial. Lo anterior implica:</p>
-<p><span class="math display">\[
-g(\mu) = \theta \underbrace{\Rightarrow}_{\mu = b&#39;(\theta) \\ \text{en familia} \\ \text{LED}} g(b&#39;(\theta)) = \theta\\
-\Rightarrow b&#39;(\theta) = g^{-1}(\theta) \Rightarrow g(\theta) = (b&#39;(\theta))^{-1}, \text{ donde -1 es de la función inversa.}
-\]</span></p>
-<p>Para obtener la función link canónica vemos, se debe cumplir que</p>
-<p><span class="math display">\[
-\boxed{g(\theta) = \bigg(b&#39;(\theta)\bigg)^{-1}}
-\]</span></p>
-<p><strong>Ejemplos:</strong></p>
-<ol type="1">
-<li>Si <span class="math inline">\(Y \sim Poisson(\lambda)\)</span>, es decir, <span class="math inline">\(f_Y(y) = \frac{e^{-\lambda}\lambda^y}{y!} 1_{\{0, 1, ...\}}^{(y)}\)</span> ¿Y pertenece a la familia exponencial lineal? Sí</li>
-</ol>
-<p><span class="math display">\[
-\begin{align*}
-\frac{e^{-\lambda}\lambda^y}{y!}  &amp;= \exp\{-\lambda + y\log(\lambda) - \log(y!)\} = \exp\{y\theta - e^{\theta} - \log(y!)\} \\
-&amp;\text{Donde } \\
-&amp;\theta = \log(\lambda) \\
-&amp;b(\theta) = e^\theta\\
-&amp;\phi = 1 \\
-&amp;S(y, \phi) = -\log(y!) \\
-\mathbb{E}(Y) &amp;= b&#39;(\theta) = e^\theta = e^{\log(\lambda)} = \lambda \text{ (como ya esperábamos}) \\
-Var(Y) &amp;= \phi\cdot b&#39;(\theta)
-\end{align*}
-\]</span></p>
-<p>En este caso, la función link canónica es</p>
-<p><span class="math display">\[
-b(\theta)  = e^\theta, b&#39;(\theta) = e^\theta \\
-\Rightarrow g(\theta) = \bigg(b&#39;(\theta)\bigg)^{-1} = \log(\theta)
-\]</span></p>
-<ol start="2" type="1">
-<li><p>Si <span class="math inline">\(Y \sim Bnlli(p)\)</span>, es ddecir <span class="math inline">\(f(y) = p^y(1-p)^{1-y}\)</span> ¿Pertenece a la familia exponencial lineal? Sí</p>
-<p><span class="math display">\[
-\begin{align*}
-f(y) &amp;= p^y(1-p)^{1-y} = e^{y\log(p) + (1-y)\log(1-p)}\\
-&amp;= \exp\bigg\{ y\big[\log(p) - \log(1-p)\big] + \log(1-p)\bigg\} \\
-&amp;= \exp\bigg\{  y\log\bigg( \frac{p}{1-p}\bigg) + \log(1-p) \bigg\} \\
-&amp;= \exp\bigg\{  \frac{y\theta-\log(1+ e^\theta)}{1} + 0 \bigg\} \\
-\text{De donde } \\
-\theta &amp;= \log(\frac{p}{1-p}) \iff p = \frac{e^\theta}{ 1 + e^\theta} \\
-\Rightarrow \log(1-p) &amp;= \log\bigg( 1- \frac{e^\theta}{ 1 + e^\theta} \bigg) = \log\bigg(\frac{1}{ 1 + e^\theta} \bigg) = -\log(1+e^\theta) \\
-b(\theta) &amp;= \log(1+ e^\theta) \rightarrow b&#39;(\theta) = \frac{e^\theta}{1+e^\theta}\\
-\therefore g(\theta) &amp;= \bigg(b&#39;(\theta)\bigg)^{-1} = \log\bigg(\frac{\theta}{1-\theta}\bigg)
-\end{align*}
-\]</span></p></li>
-</ol>
-<h3 id="gamma-e-inversa-gaussiana">Gamma e Inversa Gaussiana</h3>
-<p>Cuando <span class="math inline">\(Y\)</span> se distribuye Gamma o Inversa Gaussiana, es decir, que su resultado es positivo “continuo” con un sesgo (ó ligero sesgo) hacia la derecha, tenemos lo siguiente:</p>
-<h4 id="gamma">Gamma</h4>
-<p><span class="math display">\[
-b(\theta) = -\log(\theta) \\
-b&#39;(\theta) = -\frac{1}{\theta} \\
-g(\mu) = -\frac{1}{\mu}
-\]</span></p>
-<h4 id="inversa-gaussiana">Inversa Gaussiana</h4>
-<p><span class="math display">\[
-b&#39;(\theta) = (-2\theta)^{\frac{-1}{2}} \\
-g(\mu) = \frac{-1}{2 \mu^2} \propto \frac{1}{\mu^2}
-\]</span></p>
-<p><img src="images/mlg2_1.png" width="543" /></p>
-<h3 id="prueba-de-devianza">Prueba de devianza</h3>
-<p>La prueba de hipótesis más popular para este caso es:</p>
-<p><span class="math display">\[
-H_0: \underbrace{\beta_1 = \beta_2 = ...= \beta_r = 0}_{\text{un subconjunto de variables}\\ \text{&quot;explicativas&quot; no tiene uso}} \space \space \space \space \space \space \space \space \space v.s. \space \space \space \space \space \space \space \space \space H_a: \text{No hay restricciones sobre los }\beta&#39;^s 
-\]</span></p>
-<h4 id="la-estadística-de-prueba-es">La estadística de prueba es:</h4>
-<p><span class="math display">\[
-LST := 2(l_1 - l_0)
-\]</span></p>
-<p>Donde <span class="math inline">\(l_1, l_0\)</span> son las verosimilitudes bajo la hipótesis alternativa y nula, respectivamente.</p>
+<h2 id="selección-de-variables">Selección de variables</h2>
+<p>Para seleccionar un modelo de otro, las métricas siguientes nos ayudan a comparar entre modelos:</p>
 <ul>
-<li><p>Mientras más grande sea LRT (Likehood Ratio Test), más evidencia se tendrá en contra de <span class="math inline">\(H_0\)</span> (en favor de <span class="math inline">\(H_a\)</span>)</p></li>
-<li><p>Nótese que</p>
-<p><span class="math display">\[
-\begin{align*}
-LRT &amp;= 2 (l_1- l_0) = 2(l_1 - l_{SAT} - l_0 + l_{SAT}) \\
-&amp;= \underbrace{2(l_{SAT} - l_0)}_{\text{Devianza del} \\ \text{modelo en la} \\ \text{hipótesis nula}} - \underbrace{2(l_{SAT} - l_1)}_{\text{Devianza del} \\ \text{modelo en la} \\ \text{hipótesis alternativa}} \\
-&amp;= D_0 - D_1
-\end{align*}
-\]</span></p>
-<p>A esta prueba se le conoce como <strong>Prueba de diferencias de devianza</strong> ó <strong>Prueba de devianza.</strong></p></li>
+<li><p>BIC</p></li>
+<li><p>AIC</p></li>
+<li><p><span class="math inline">\(R^2\)</span></p></li>
+<li><p><span class="math inline">\(R^2_a: R^2\)</span> ajustada</p></li>
+<li><p>pseudo-<span class="math inline">\(R^2\)</span></p></li>
+<li><p>Estadística <span class="math inline">\(C_p\)</span> de Mallow</p></li>
 </ul>
-<h4 id="región-de-rechazo">Región de rechazo</h4>
-<p>Bajo <span class="math inline">\(H_0, LRT \sim \chi^2_{(r)}\)</span>. Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(LRT_{obs} &gt; \underbrace{\chi^2_{r, \alpha}}_{\text{upper cuantil} \\ \text{al nivel } \alpha}\)</span></p>
-<p><img src="images/mlg2_2.png" width="589" /></p>
-<p>Debe ser <span class="math inline">\(D_0\)</span> mayor a <span class="math inline">\(D_1\)</span> pues la estadística de prueba debe ser positiva, pues el modelo bajo <span class="math inline">\(H_0\)</span> es más restringido, por lo tanto, se aleja más del modelo saturado que bajo <span class="math inline">\(H_a\)</span>.</p>
+<p>Estas métricas sirven para “comparar” dos modelos. Uso “comparar” entre comillas porque a veces la comparación <u>no</u> es justa. El caso de <span class="math inline">\(R^2\)</span> es un ejemplo claro porque:</p>
+<ul>
+<li><p>Más variables explicativa <span class="math inline">\(\rightarrow R^2\)</span> más grande.</p></li>
+<li><p>Si nos vamos con la trampa de que <span class="math inline">\(R^2\)</span> grande es “mejor” modelo, siempre tendremos modelos con <strong>muchas</strong> variables explicativas y eso no necesariamente significa mejor modelo.</p>
+<ul>
+<li><p>Poca parsimonia (muy complicado).</p></li>
+<li><p>Unas variables le estorban a otras.</p></li>
+</ul></li>
+</ul>
+<h3 id="r2_a-r2-ajustada"><span class="math inline">\(R^2_a: R^2\)</span> ajustada</h3>
+<p>Definimos esta métrica que <strong>sí considera</strong> el efecto de agregar variables explicativas, como sigue:</p>
+<p><span class="math display">\[
+R_a^2 := 1-\frac{\frac{RSS}{n-k-1}}{\frac{TSS}{n-1}} \\
+n: \text{ número de observaciones} \\
+k: \text{ número de variables explicativas en el modelo}
+\]</span></p>
+<p><strong>Observaciones</strong></p>
+<ul>
+<li><p><span class="math inline">\(R_a^2 = 1- \frac{S^2}{S^2_y}\)</span> donde <span class="math inline">\(S^2\)</span> es el error cuadrático medio (MSE) del modelo de regresión en cuestión.</p></li>
+<li><p><span class="math inline">\(R_a^2 \neq \frac{\frac{RegSS}{k}}{\frac{TSS}{n-1}}\)</span></p></li>
+<li><p>Se puede demostrar que <span class="math inline">\(R_a^2 = 1- \frac{n-1}{n-k-1} (1-R^2)\)</span> lo cual implica</p>
+<ul>
+<li><p><span class="math inline">\(R_a^2 \leq R^2 \leq 1\)</span></p></li>
+<li><p><span class="math inline">\(R_a^2\)</span> puede ser negativa. Esto puede ocurrir cuando <span class="math inline">\(R^2\)</span> es muy bajo (por ejemplo <span class="math inline">\(R^2 \approx 0\)</span>)</p>
+<p><span class="math display">\[
+R_a^2 \approx 1-\frac{n-1}{n-k-1} = \frac{-k}{n-k-1} &lt; 0
+\]</span></p></li>
+</ul></li>
+<li><p>Como criterio para releccionar modelo nos sigue interesando <span class="math inline">\(R_a^2\)</span> grande.</p></li>
+<li><p>Se dice que <span class="math inline">\(R_a^2\)</span> penaliza la inclusión de predicciones extrañas al modelo.</p></li>
+<li><p><span class="math inline">\(R_a^2\)</span> más alta es equivalmente a MSE chico (i.e. <span class="math inline">\(S^2\)</span> chico)</p></li>
+</ul>
+<h3 id="estadística-c_p-de-mallow">Estadística <span class="math inline">\(C_p\)</span> de Mallow</h3>
+<p><span class="math display">\[
+C_p := 
+\begin{cases}
+\frac{(RSS)_p + 2p\cdot S^2_{full}}{n}, \text{ James, Tibihrani, et al} \\
+\frac{(RSS)_p}{S^2_{full}} - n + 2p, \text{ Frees.}
+\end{cases}
+\]</span></p>
+<p>donde</p>
+<ul>
+<li><p><span class="math inline">\(S^2_{full}\)</span> es el MSE que tiene <u><strong>todas</strong></u> las variables explicativas, no necesariamente el modelo en consideración.</p></li>
+<li><p><span class="math inline">\((RSS)_p\)</span>: Es el <span class="math inline">\(RSS\)</span> de el modelo bajo consideración, con <span class="math inline">\(p\)</span> variables explicativas.</p></li>
+</ul>
+<p>Se puede demostrar (de forma algebráica)</p>
+<p><span class="math display">\[
+C_p^{\text{James}} = \frac{S^2_{full}}{n} (C_p^{\text{Frees}} + n)
+\]</span></p>
+<ul>
+<li><p>Es deseable un valor pequeño de <span class="math inline">\(C_p\)</span></p></li>
+<li><p>Mientras más variables tenga el modelo, más grande será la penalización sobre <span class="math inline">\(C_p\)</span></p></li>
+</ul>
+<h3 id="aic-bic-para-modelos-lineales">AIC &amp; BIC (para modelos lineales)</h3>
+<span class="math display">\[\begin{align*}
+\text{AIC} &amp;= \frac{(RSS)_p + 2p \cdot S^2_{full}}{n \cdot S^2_{full}} \\
+\text{BIC} &amp;= \frac{(RSS)_p + \log(n) \cdot p \cdot S^2_{full}}{n \cdot S^2_{full}} 
+\end{align*}\]</span>
+<p>¿Cuándo <span class="math inline">\(\log(n)\)</span> es mayor que 2?</p>
+<p><span class="math display">\[
+\log(n) &gt; 2 \iff n&gt; e^2 = 7.38 \approx 8
+\]</span></p>
+<p>Para un modelo fijo podemos saber que BIC<span class="math inline">\(&gt;\)</span>AIC cuando <span class="math inline">\(n&gt;8\)</span>, lo cual es muy común.</p>
+<ul>
+<li><p>Nótese que <span class="math inline">\(\text{AIC} = \frac{C_p^{\text{James}}}{S_{full}^2}\)</span></p></li>
+<li><p>Queremos AIC y BIC chicos.</p></li>
+</ul>
+<h2 id="mejor-selección-de-subconjunto">Mejor selección de subconjunto</h2>
+<ul>
+<li><p>Dadas <span class="math inline">\(k\)</span> variables explicativas potenciales, nos gustaría encontrar el “mejor” subconjunto de éstas para considerarlas en el modelo de regresión. El “mejor” es en el sentido de que tengan <span class="math inline">\(\underbrace{AIC\text{ ó }BIC\text{ ó }C_p}_{\text{chicos}}\)</span> ó <span class="math inline">\(\underbrace{R_a^2}_{\text{grande}}\)</span></p></li>
+<li><p>¿Cuántos posibles subconjuntos tenemos?</p>
+<p><span class="math display">\[
+2^k \text{ Con intercepto}
+\]</span></p>
+<p>Aunque es conceptualmente sencillo de entender qué es la selección de variables, es <u>computacionalmente más costoso</u>.</p></li>
+<li><p><strong>Ejemplo</strong></p>
+<p><span class="math display">\[
+y \sim x_1 + x_2 + x_3
+\]</span></p>
+<p>¿Cuántos posibles modelos tenemos? <span class="math inline">\(8 = 2^3\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(y = \beta_0\)</span></p></li>
+<li><p><span class="math inline">\(y = \beta_0 + \beta_1x_1\)</span></p></li>
+<li><p><span class="math inline">\(y = \beta_0 + \beta_2x_2\)</span></p></li>
+<li><p><span class="math inline">\(y = \beta_0 + \beta_3x_3\)</span></p></li>
+<li><p><span class="math inline">\(y = \beta_0 + \beta_1x_1 + \beta_2x_2\)</span></p></li>
+<li><p><span class="math inline">\(y = \beta_0 + \beta_1x_1 + \beta_3x_3\)</span></p></li>
+<li><p><span class="math inline">\(y = \beta_0 + \beta_2x_2 + \beta_3x_3\)</span></p></li>
+<li><p><span class="math inline">\(y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3\)</span></p></li>
+</ol>
+<ul>
+<li>Si ocupamos el <span class="math inline">\(C_p\)</span> como métrica, comparamos <span class="math inline">\(C^{[1]}, C^{[2]}, ..., C^{[8]}\)</span> y nos quedamos con el modelo que tenga el <span class="math inline">\(C_p\)</span> más pequeño.</li>
+</ul></li>
+<li><p>Si tenemos 10 variables explicativas, tendríamos <span class="math inline">\(2^{10} = 1024\)</span> modelos a comparar, es costoso computacionalmente.</p></li>
+<li><p>Dada esta complejidad, tenemos 3 alternativas que buscan eficiencia computacional pero no encuentran necesariamente el mejor modelo.</p>
+<ul>
+<li><p><a href="#selección-forward">Selección forward</a></p>
+<ul>
+<li><p><a href="#con-regla-de-paro">Con regla de paro</a></p></li>
+<li><p>Sin regla de paro</p></li>
+</ul></li>
+<li><p>Selección backward</p></li>
+<li><p>Selección stepwise</p></li>
+</ul></li>
+</ul>
+<h3 id="selección-forward">Selección forward</h3>
+<ul>
+<li><p>Se empieza con el modelo más simple, i.e. el iid, i.e. <span class="math inline">\(\underbrace{y = \beta_0}_{\text{se conoce como} \\ \text{el modelo nulo}}\)</span></p></li>
+<li><p>Se van agregando variables explicativas si es que está “justificado”. ¿Qué significa que esté “justificado”?</p>
+<ul>
+<li>Si agregar la variable (en el modelo) mejora la métrica de evaluación (<span class="math inline">\(AIC, BIC, C_p, R_a^2, pseudoR^2\)</span>)</li>
+</ul></li>
+</ul>
+<h4 id="con-regla-de-paro">Con regla de paro</h4>
+<p>Empezamos con <span class="math inline">\(y = \beta_0 + \epsilon\)</span></p>
+<ul>
+<li><p><strong>Paso F1:</strong> De entre <span class="math inline">\(x_1, x_2, ..., x_k\)</span>, agregas la variable más significativa al modelo nulo. i.e. se ajustan <span class="math inline">\(k\)</span> modelos:</p>
+<p><span class="math display">\[\begin{align*}
+&amp;\text{V1: }y = \beta_0 + \beta_1 x_1 + \epsilon \\
+&amp;\text{V2: }y = \beta_0 + \beta_2 x_2 + \epsilon \\
+&amp; \space \space \space \space \space \vdots \\
+&amp; \text{Vk: }y = \beta_0 + \beta_k x_k + \epsilon
+\end{align*}\]</span></p>
+<p>Y se selecciona la variable explicativa que mejora alguna métrica seleccionada.</p>
+<p>Acá podría ocupar como métrica incluso la <span class="math inline">\(R^2\)</span> pues todos los modelos tiene el mismo número de variables explicativas.</p></li>
+<li><p><strong>Paso F2:</strong> Fijar las variables explicativas identificada en el paso anterior y buscar de entre las variables seleccionadas, aquella que sea la más estadísticamente significativa (i.e. la que tenga un <span class="math inline">\(t-ratio\)</span> mejor, <span class="math inline">\(R^2\)</span> más grande, ó un mejor <span class="math inline">\(BIC/AIC/C_p/ R_a^2\)</span>)</p></li>
+<li><p><strong>Paso F3:</strong> Se repiten los pasos <strong>F1</strong> y <strong>F2</strong> para las variables explicativas restantes hasta que agregar más variables no sea suficientemente significativo, de acuerdo a alguna regla de paro pre-especificada (por ejemplo <span class="math inline">\(t-ratio\)</span> sea menor que <span class="math inline">\(2\)</span> (en valor absoluto) ó <span class="math inline">\(R^2&gt;85\%\)</span>, ó alguna otra arbitraria).</p></li>
+</ul>
+<p>Si llegamos hasta agregar las <span class="math inline">\(k\)</span> variables ¿Cuántos modelos ajustamos?</p>
+<p><span class="math display">\[
+\underbrace{1}_{\text{modelo nulo}} + [\underbrace{k}_{\text{ajustes con }\\ 1\text{ variable}} + (k-1) + ... + \underbrace{1}_{\text{ajuste con}\\ \text{las }k \text{ variables}}] = 1+ \frac{k(k+1)}{2} \leq 2^k
+\]</span></p>
+<p>Lo cual implica que con este algoritmo, reducimos el número de comparaciones. El problema es que no logramos hacer todas las comparaciones, solo decimos: encontramos el mejor modelo, suponiendo que debemos dejar una variable (correspondiente al paso F2 del algoritmo).</p>
+<p>En resumen la ventaja es mayor eficiencia pero la desventaja es que no encontramos el “mejor modelo global” (lo descrito al inicio de esta nota).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
