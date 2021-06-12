@@ -12,7 +12,7 @@
 <meta name="author" content="Carlos A. Ar." />
 
 
-<title>¿Cómo uso tanta información?</title>
+<title>GitLab y GitKraken</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -395,62 +395,64 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">¿Cómo uso tanta información?</h1>
+<h1 class="title toc-ignore">GitLab y GitKraken</h1>
 <h4 class="author">Carlos A. Ar.</h4>
+<h4 class="date">Última edición 11 de junio del 2021</h4>
 
 </div>
 
 
-<div id="qué-hago-aquí" class="section level1">
-<h1>¿Qué hago aquí?</h1>
-<p>Probablemente viste el link de la página en <a href="https://m.facebook.com/">Facebook</a>, o te la han mandado como material de consulta.</p>
-<p>A lo mejor ninguna de las opciones anteriores son reales y eres amigo, conocido, o alguien interesado en el curriculum de quienes la creamos.</p>
-<p>Independientemente de la razón por la cual estás aquí, te damos la bienvenida y deseamos que este material sea útil y agradable para tu desarrollo personal, profesional o académico.</p>
-<div id="quién-soy-yo" class="section level3">
-<h3>¿Quién soy yo?</h3>
-<p>La página contiene material didáctico útil para conocer herramientas de código en el lenguaje de programación R y su plataforma de uso <a href="https://www.rstudio.com/">RStudio</a>.</p>
-</div>
-</div>
-<div id="cómo-debo-empezar-a-usar-el-sitio" class="section level1">
-<h1>¿Cómo debo empezar a usar el sitio?</h1>
-<p>Mi recomendación como creador es que primero des click en cada cosa para que generes una idea del contenido.</p>
-<p>La recomendación como alumno es que leas tutoriales con alguno de los temas:</p>
+<div id="gitlab" class="section level1">
+<h1>GitLab</h1>
+<div id="qué-es" class="section level2">
+<h2>¿Qué es?</h2>
+<p>Es una plataforma de internet que tiene la finalidad de trabajar junto con Git para tener el control de archivos (preferentemente de código) con el objetivo de modificar y regresar a alguna versión previa del código.</p>
+<p>Es útil porque con esta plataforma es más sencillo trabajar en equipo a partir de los llamados “merge request” que son el análogo a “pull request” de GitHub. Recordemos que este tipo de peticiones se hacen solo para fusionar ramas secundarias temporales con la rama principal en la línea de trabajo de Git.</p>
+<p>Diferencias entre GitLab y GitHub:</p>
 <ul>
-<li><p><a href="https://tutorialesmg.netlify.app/r-markdown">RMarkdown</a>: para hacer documentos (tipo “Word”) replicables y con código. <em>Entre muchas otras cosas</em>.</p></li>
-<li><p><a href="https://tutorialesmg.netlify.app/xaringan-y-flipbookr">Xaringan y Flipbookr</a>: para hacer presentaciones que contengan videos (de Youtube), fotos, tutoriales… y <strong>código</strong>. La utilidad es que se puede enseñar de forma muy didáctica el uso de código y sus respectivos resultados.</p></li>
-<li><p><a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github">Git y GitHub</a>: son plataformas (programas) que permiten tener control sobre los archivos de código (Java, Python, R, entre otros) y además <em>evitan mandar por correo o whats app</em> muchas versiones de un mismo código.</p></li>
-<li><p><a href="https://tutorialesmg.netlify.app/intro-shiny">Shiny App</a>: shiny es una biblioteca de R que te permite hacer aplicaciones. Pueden enfocarse en código de R para análisis de datos o interacción con los mismos.</p></li>
-<li><p><a href="https://tutorialesmg.netlify.app/shiny-dashboards">Shiny Dashboard</a>: una manera para hacer una aplicación un poco más amplia de información es shiny dashboard.</p></li>
-<li><p><a href="https://tutorialesmg.netlify.app/Flexdashboards.html">Flexdashboard</a>: una herramienta muy útil que entre Shiny y RMarkdown, pueden lograr que compartas en una página web información interactiva y replicable.</p></li>
-<li><p><a href="https://yanelyluna.shinyapps.io/Tutorial/">Learnr</a>: una librería de R para generar tutoriales interactivos donde el usuario pueda ingresar código de R, ver vídeos, esquemas, etc.</p></li>
+<li><p>GitLab permite trabajar a más de tres personas en un proyecto privado de forma gratuita, mientras que GitHub no.</p></li>
+<li><p>Opción de exportación de elementos como archivo CSV por correo electrónico.</p></li>
 </ul>
-<p>Los <strong>Ejemplos</strong> son archivos que muestran un poco de lo que se puede lograr con los conocimientos anteriores listados.</p>
+<p><img src="gl_gk_1.png" /></p>
 </div>
-<div id="qué-requiero-para-entender-la-página" class="section level1">
-<h1>¿Qué requiero para entender la página?</h1>
+<div id="cómo-se-usa" class="section level2">
+<h2>¿Cómo se usa?</h2>
 <ol style="list-style-type: decimal">
-<li><p>Gusto por compartir tus proyectos de forma profesional.</p></li>
-<li><p>Para que te sea más útil, saber R y RStudio es fundametal ya que la elaboración de todos los gráficos, tablas y análisis de datos se hace con este programa.</p></li>
+<li><p><a href="https://gitlab.com/users/sign_in?__cf_chl_jschl_tk__=597a77c313c397163136f33290763db3c9a6416c-1623445163-0-Aas0XwUWR2E-vcoW7sqobio1ppaiBj_YuLcTCtvKd0l-JPUrFxHgF4TJQfyeMYl3miC2rWcC7p03__FNwdmqxkoQI8s4EjvR6ZgJL_IKo56LqSiDs0O0g2VoI4QbH5Wx9WmqSc4GaiKMvKxgEW0pwkjUFI6k_tciWmDVWO82iozNl0UiNvAFsU2qoBPkJEPl0t70mvnptuByZPVzVKBzL_J4cPSXV0xCJWMBLj0izG890Aam67Lio_3ZLg1l_yiWncZV7oazkk-9v4yGJpc13y9CJOE8IaBvjMd0k43z8uz203uSXNm0pJJNKnUlrxHXW-kFLucdCmmfyRWvR-67ax9JrrcE44cD18d80Wl3gK8qoy5X3lFjm05SL3HcXeTqTpwN41DzOO7QgqDxQWl85sbX4NBdz10iieZC4DJtDJLn_sSgQ08lKtTtaTSjUs0zdT9B9iSdlakFJcD-43jbX5NuSKhBOzN-8cVrKtCa9hz7">Crea una cuenta</a> en GitLab.</p></li>
+<li><p>Crear un proyecto.</p>
+<p><img src="gl_gk_2.png" width="438" /></p>
+<p><img src="gl_gk_3.png" width="465" /></p></li>
+<li><p>Así como en las secciones <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#De_GitHub_a_Git">De Git a GitHub o de GitHub a Git</a>, se pueden subir archivos de la máquina local al proyecto creado de GitLab o se puede clonar un proyecto de GitLab en la máquina local, para esto usamos la terminal de GitBash y los <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#Comandos_principales">comandos “de siempre”</a>.</p>
+<p>En cualquier caso, al crear un nuevo proyecto en GitLab, aparece por defecto una “guía” de comandos necesarios para hacer lo anteriormente mencionado:</p>
+<p><img src="gl_gk_4.png" width="567" /></p></li>
 </ol>
+<p>Existe la posibilidad de invitar a colaborar en tus proyectos o otros usuarios de GitLab para un trabajo asincrónico y a distancia (que es lo que la mayoría queremos hacer en tiempos de pandemia 😅).</p>
+<p><img src="gl_gk_5.png" /></p>
+<p>Una de las diferencias entre GitLab y GitHub es el nombre de la rama principal. Para GitLab, la rama principal de llama <code>master</code> y para GitHub se llama <code>main</code>. La forma de cambiar el nombre de esta rama es en la terminal de gitBash con el comando <code>git branch -M nombre_de_la_rama</code> donde “nombre_de_la_rama” puede ser main ó master.</p>
 </div>
-<div id="cómo-inicio" class="section level1">
-<h1>¿Cómo inicio?</h1>
-<p>Recomiendo revisar los documentos en el siguiente orden:</p>
+</div>
+<div id="gitkraken" class="section level1">
+<h1>GitKraken</h1>
+<div id="qué-es-1" class="section level2">
+<h2>¿Qué es?</h2>
+<p>GitKraken es una herramienta que permite gestionar algún repositorio de git, ya sea de GitHub, Git Lab o Git de tu PC. Gestionar, entre otras cosas, se refiere a resolver conflictos del merge y las funciones usuales de git (crear ramas secundarias, add, commit, …). Un plus con respecto a GitHub y GitLab es la linea del tiempo como un gráfico que permite entender las modificaciones que se han hecho sobre un mismo código (controlado con Git).</p>
+</div>
+<div id="cómo-se-usa-1" class="section level2">
+<h2>¿Cómo se usa?</h2>
 <ol style="list-style-type: decimal">
-<li>Git y GitHub (opcional)</li>
+<li><p>Instalar el programa. En la siguiente liga <a href="https://www.gitkraken.com/" class="uri">https://www.gitkraken.com/</a>, presionar el botón amarillo.</p>
+<p><img src="gl_gk_6.png" width="620" /></p></li>
+<li><p>Una vez que se descargue, hay que apretar en el botón del archivo que se ve descargado. Aparecerá una ventana que te pide crear una cuenta o iniciar con alguna cuenta de GitHub, GitLab o Google. En mi caso puse GitHub.</p></li>
+<li><p>Aparecerá la siguiente pantalla. Para poder tener control desde GitKraken de algún repositorio, solo damos click en <code>Clone a Repo</code></p>
+<p><img src="gl_gk_7.png" width="606" /></p></li>
+<li><p>La ventana que aparecerá será la siguiente y se buscará la <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#Inicializar_un_repositorio">carpeta ya inicializada con Git</a> en browser, o se podrán pegar los enlaces del repositorio/proyecto de GitHub/GitLab.</p>
+<p><img src="gl_gk_8.png" width="598" /></p></li>
 </ol>
-<p>Para hacer material no interactivo</p>
-<ol start="2" style="list-style-type: decimal">
-<li>RMarkdown <em>y su ejemplo</em></li>
-<li>Xaringan y flipbookr <em>y su ejemplo “Flipbookr”</em></li>
-</ol>
-<p>Para hacer material interactivo</p>
-<ol start="4" style="list-style-type: decimal">
-<li>Shiny app.</li>
-<li>Shiny dashboard.</li>
-<li>Flexdashboard. <em>Y su ejemplo.</em></li>
-<li>Tutorial Learnr</li>
-</ol>
+<p>Yo lo hice con <a href="https://github.com/yanelyluna/Material-Didactico-SS">un repositorio de GitHub</a> que puedes consultar. En GitKraken se pueden hacer los comandos principales de Git pero de forma mucho más amigable, con botones o no con la terminal.</p>
+<p>Muestro el resultado de la linea de tiempo donde se puede notar todos los commits hechos, las ramas secundarias creadas, entre otras cosas.</p>
+<p>Esta herramienta en particular tiene la capacidad de ver claramente el avance de los archivos en el tiempo, si hay más ramas, si hay problemas con el merge, entre otras cosas.</p>
+<p><img src="gl_gk_9.png" width="633" /></p>
+</div>
 </div>
 
 
@@ -499,7 +501,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1",
+      selectors: "h1,h2",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
