@@ -45,6 +45,8 @@ La recomendación como alumno es que leas tutoriales con alguno de los temas:
 
 Los **Ejemplos** son archivos que muestran un poco de lo que se puede lograr con los conocimientos anteriores listados.
 
+La pestaña de **Material académico** contiene páginas de internet que [Yanely Luna](https://github.com/yanelyluna) y [yo](https://github.com/CarlosA-Ar) hemos realizado para cursos que imparte el profesor [Eduardo](https://github.com/EduardoSelimMM). Si te interesa consultar cómo se realizan las páginas de internet, puedes revisar nuestro [repositorio de GitHub](https://github.com/yanelyluna/Material-Didactico-SS/blob/main/Ejemplos%20de%20sitios/sitios_web_R.Rmd).
+
 # ¿Qué requiero para entender la página?
 
 1.  Gusto por compartir tus proyectos de forma profesional.

@@ -41,8 +41,13 @@ navbar:
         href: primer_flipbookr.html
       - text: Flexdashboard
         href: primer_flexdashboard.html
-      - text: Presentación de Datos
-        href: yane_presentation.html
+    - text: "Material académico"
+      href: about.html
+      menu:
+      - text: Ciencia de Datos
+        href: https://ciencia-de-datos.netlify.app/
+      - text: Teoría del riesgo
+        href: https://teoria-del-riesgo.netlify.app/
 output:
   html_document:
     theme: flatly
