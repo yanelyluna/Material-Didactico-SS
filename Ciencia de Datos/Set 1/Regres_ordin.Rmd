@@ -1,0 +1,168 @@
+---
+title: "Regresión ordinal"
+author: 
+    - name: "Eduardo Selim"
+    - name: "Carlos A. Ar."
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+        smooth_scroll: false
+     toc_depth: 2
+     number_sections: false
+     theme: flatly
+     highlight: tango
+---
+
+-   La variable respuesta es categórica ordinal.
+
+-   Como antes $\pi_j = \mathbb{P}(y = j), j = 1,2,...,c$
+
+-   Solo $c-1$ de estas probabilidades son libres pues $\pi_1 + \pi_2 +...+\pi_c = 1$ y estas probabilidades se requieren modelar en términos de variables explicativas.
+
+-   Se estudiarán 2 propuestas para este tipo de variables
+
+    -   (i) Modelos logit acumulado
+
+    -   (ii) Modelo de odds proporcionales
+
+## Modelo logit acumulado
+
+-   Usa el link logit para explicar las probabilidades acumuladas:
+
+    $$
+    \tau_j := \pi_1 + ... + \pi_j, j = 1, ..., c-1
+    $$
+
+-   Es decir,
+
+    $$
+    \log\bigg(\frac{\tau_j}{1-\tau_j}\bigg) = \underline{x}^T\beta_j = \beta_{0j} + \beta_{1j}x_1 + ... + \beta_{kj}x_k 
+    $$
+
+    -   De nuevo, hay $c-1$ regresiones
+
+-   $\log\bigg(\frac{\tau_j}{1-\tau_j}\bigg) = \underline{x}^T\beta_j$ se puede escribir como
+
+    $$
+    \log\bigg(\frac{\pi_1+...+\pi_j}{\pi_{j+1} + ... + \pi_c}\bigg) = \underline{x}^T\beta_j, j = 1,2,...,c-1
+    $$
+
+-   Por ejemplo, si $c = 3$ y hay 4 variables explicativas $x_1, x_2,x_3,x_4$, se tienen 2 ecuaciones:
+
+    $$
+    \log\bigg(\frac{\pi_1}{\pi_2+\pi_3}\bigg) = \beta_{01} +\beta_{11}x_1 + \beta_{21}x_2 + \beta_{31}x_3 + \beta_{41}x_4\\
+    \log\bigg(\frac{\pi_1+\pi_2}{\pi_3}\bigg) = \beta_{02} +\beta_{12}x_1 + \beta_{22}x_2 + \beta_{32}x_3 + \beta_{42}x_4
+    $$
+
+-   Como antes, se puede escribir $\tau_j$ como:
+
+    $$
+    \tau_j = \frac{1}{1+\exp\{-\underline{x}\beta_j\}}
+    $$
+
+## Modelo de odds proporcionales
+
+-   Es un caso particular del modelo logit acumulativo en el que $\beta_{0j}$ (el intercepto) varía para cada $j$ pero los otros coeficientes de regresión [no]{.ul} dependen de $j$.
+
+-   Las ecuaciones del modelo son:
+
+    $$
+    \log\bigg(\frac{\tau_j}{1-\tau_j}\bigg) = \underbrace{\beta_{0j}}_{\text{cambia para cada } j } + \beta_1x_1 + ... + \beta_kx_k, j = 1,...,c-1
+    $$
+
+-   De nuevo, hay $c-1$ regresores.
+
+-   Estas $c-1$ ecuaciones tienen diferentes interceptos pero la misma pendiente con respecto a cada variable explicativa.
+
+## Respuesta de conteo
+
+-   Se considerarán variables respuesta que representan conteos de cierto evento de referencia.
+
+### Modelo de regresión Poisson
+
+-   Para variables de conteo, una elección popular es la distribución Poisson
+
+    $$
+    y \backsim Poisson(\mu) \text{ con } g(\mu) = \underline{x}^T\beta
+    $$
+
+-   Para la distribución Poisson, la función link canónica es la función $g(\mu) = \log(\mu)$
+
+-   De aquí que $\mu  = \exp\{\underline{x}^T\beta\}$
+
+    | Regresión: | Respuesta |     | Link |
+    |:----------:|:---------:|:---:|:----:|
+    |  Poisson:  |  Poisson  |  &  | Log  |
+
+-   [**Offset:**]{.ul} En estudios de datos de conteo, los conteos observados $y_1,...,y_n$ pueden [no]{.ul} ser directamente comparables entre sí, debido a sus exposures. Por ejemplo,
+
+    -   El número de accidentes en un seguro de automóviles depende del número de vehículos asegurados y el plazo de la cobertura.
+
+    -   El número de muertes en un estudio de mortalidad se incrementa con el número de sujetos y la duración del estudio.
+
+-   $\log(\mu_i) = \underbrace{\log(E_i)}_{\text{offset}} + \beta_0 + \beta_1x_1 + ... + \beta_kx_k$ es decir, se agrega un término de "exposición", es decir $\mu_i = E_i \cdot exp\{\underline{x}^T_i \beta\}$
+
+-   $\log(E_i)$ se puede pensar como un intercepto observation-specific conocido.
+
+## Estimación máximo verosímil
+
+$$
+L(\beta) = \prod_{i=1}^n \frac{e^{-\mu_i} \mu_i^{y_i}}{y_i !} \propto  \prod_{i=1}^n e^{-\mu_i} \mu_i^{y_i} = \prod_{i=1}^n e^{-\exp\{-\underline{x}_i^T\beta\}} (\exp\{-\underline{x}_i^T\beta\})^{y_i} 
+$$
+
+Entonces
+
+$$ 
+l(\beta) = \sum_{i=1}^n\bigg(-e^{-\underline{x}_i^T\beta} + y_i (\underline{x}_i^T\beta)\bigg) + cte
+$$
+
+De aquí que
+
+$$
+\frac{d}{d\beta}l(\beta) = \sum_{i=1}^n\bigg(-e^{-\underline{x}_i^T\beta} + y_i \underline{x_i}\bigg) = \sum_{i=1}^n(y_i -\mu_i)\underline{x_i}\\
+\frac{d}{d\beta}l(\beta) = 0 \iff \underbrace{\sum_{i=1}^n(y_i -\mu_i)\underline{x_i} = \underline{0}}_{\text{Se resuelve con respecto de }\beta \\ \text{que aparece en las }\mu_i'^s\text{ pues} \\ \mu_i = \exp\{\underline{x}_i^T\beta\}}$$
+
+La solución $\hat{\beta}$ genera las medias ajustadas
+
+$$\hat{ \mu}_i = \exp\{\underline{x}_i^T\beta\}$$
+
+Que satisface
+
+$$
+\sum_{i=1}^n(y_i -\hat{\mu}_i)\underline{x_i} = \underline{0}\\
+\text{Esto implica que } \sum_{i=1}^ny_i = \sum_{i=1}^n \hat{\mu}_i\\
+\text{Entonces } \sum_{i=1}^ne_i = \sum_{i=1}^n (y_i -\hat{\mu}_i) = 0\\
+\text{i.e. la suma de los residuales es } 0
+$$
+
+La correspondiente matriz de información
+
+$$
+I(\beta) = -E\bigg(\frac{d^2}{d\beta d\beta^T} l(\beta)\bigg) = \sum_{i=1}^{n} \mu_i \underbrace{(\underline{x}_i\underline{x}_i^T)}_{\text{una matríz}}
+$$
+
+depende de $\beta$ a través de las $\mu_i´^s$
+
+Por ejemplo, cuando hay una sola variable explicativa.
+
+$$
+\log(\mu_i) = \beta_0+\beta_1x_i, i = 1,2,...,n = (1\space \space\space\space x_i)  \binom{\beta_0}{\beta_1}
+$$
+
+A partir de la ecuación de máxima verosimilitud
+
+$$
+\sum_{i=1}^n (y_i - \hat{\mu_i})\underline{x}_i = \underline{0} \iff \binom{\sum_{i=1}^n (y_i - \hat{\mu_i})}{\sum_{i=1}^n x_i(y_i - \hat{\mu_i})} = \binom{0}{0}
+$$
+
+Es decir,
+
+$$
+\begin{cases}
+\displaystyle \sum_{i=1}^n y_i = \sum_{i=1}^n \hat{\mu}_i\\
+\\
+\displaystyle \sum_{i=1}^n x_i e_i = 0
+\end{cases}
+$$

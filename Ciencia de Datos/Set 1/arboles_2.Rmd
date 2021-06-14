@@ -1,0 +1,126 @@
+---
+title: "Árboles 2"
+author: 
+    - name: "Eduardo Selim"
+    - name: "Carlos A. Ar."
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+        smooth_scroll: false
+     toc_depth: 2
+     number_sections: false
+     theme: flatly
+     highlight: tango
+---
+
+## Bootstrap, bagging y random forests
+
+# Bootstrap
+
+-   Considérese un data set $D$ con $n$ observaciones, i.e. $D$ será el conjunto de todas las observaciones en el data-set de entrenamiento.
+
+$$
+D = \{(x_1,y_1), ..., (x_n,y_n)\}
+$$
+
+-   La variable respuesta es $y$.
+
+-   En la mayoría de los modelos clásicos, se obtiene un estimador puntual $\hat{y}$, **basándose en el data-set.**
+
+-   El data set $D$ es un conjunto de realizaciones independientes de una distribución de probabilidad. Si se repite el análisis con otro data-set (que es también una relización de dicha distribución de probabilidad) el estimado puntual será diferente.
+
+-   Para estudiar el tipo de variabilidad de la predicción $\hat{y}$, se evalúa la sensitividad de la predicción respecto al data-set subyacente.
+
+-   Bootstrapping es una herramineta para generar nuevos data-sets artificiales basándose en el data-set original.
+
+## Muestras bootstrap
+
+-   **Ejemplo.** Se tienen 5 observaciones $(x_1,y_1), (x_1,y_1), ... (x_5,y_5)$ cada observación se etiqueta con un número del 1 al 5. El número de cada observación se guarda en el conjunto $A$.
+
+-   Cuando se empieza aquí con el data-set original, cada número aparece exactamente una vez en el conjunto $A: A=\{1,2,3,4,5\}$
+
+-   Ahora se creará un nuevo conjunto de datos con 5 observaciones, seleccionando aleatoriamente 5 obs. del conjunto de datos inicial $A$. **Se permitirá que la misma observación sea incluida varias vices en el nuevo data set**, i.e. se seleccionarán aleatoriamente números del conjunto $A$ **con reemplazo.**
+
+-   Los números en el nuevo data-set se guardarán en el conjunto $A_1$. Por ejemplo, si $A_1 = \{1, 4, 3, 5, 5\}$ entonces el nuevo data-set será $D_1 = \{(x_1, y_1),(x_4, y_4),(x_3, y_3),(x_5, y_5),(x_5, y_5)\}$
+
+-   Se repetirá esta construcción aleatoria de data-sets $B$ veces, obteniendo data-sets $D_1, D_2, ..., D_B$
+
+-   A $D_1, D_2, ..., D_B$ se les conoce como muestras bootstrap.
+
+-   Hay a lo más $n^n$ muestras bootstrap
+
+-   Las muestras bootstrap son data-sets artificiales: estos dara-sets pudieron ocurrir pero nunca se observaron.
+
+-   Considérese un data-set $D$ con $n$ observaciones $D = \{(x_i,y_i):i=1,...n\}$
+
+-   Se determinan $m$ muestras bootstrap del data-set original. Sean $D_1, ..., D_m$ dichas muestras bootstrap.
+
+    -   ¿Cuál es la probabilidad de que la primera observación no aparezca en ninguna de las muestras bootstrap?
+
+    -   Obsérvese que para cualquier $j \in \{1, ..., m\}$
+
+        $$
+        \mathbb{P}((x_1,y_1)\notin D_j) = \bigg(1-\frac{1}{n}\bigg)^n = \bigg(\frac{n-1}{n}\bigg)^n 
+        $$
+
+        Entonces
+
+        $$
+        \mathbb{P}\bigg((x_1,y_1)\notin D_1 \cup D_2 \cup ... \cup D_m\bigg)\\
+        =\mathbb{P}\bigg((x_1,y_1)\notin D_1, (x_2,y_2)\notin D_2, ..., (x_m,y_m)\notin D_m\bigg) \\
+        = \prod_{j=1}^m \mathbb{P}\bigg((x_1,y_1)\notin D_j\bigg)= \bigg(\mathbb{P}((x_1,y_1)\notin D_j)\bigg)^m\\
+         = \bigg(\bigg(1-\frac{1}{n}\bigg)^n\bigg)^m = \bigg(1-\frac{1}{n}\bigg)^{nm}\\
+        \rightarrow_{n \rightarrow \infty} (e^{-1})^m = e^{-m} = (0.3678)^m
+        $$
+
+**Conclusión.** Si se determina una muestra boostrap de un data set grande, aprox $\frac{2}{3}$ de las observaciones originales estarán en la muestra bootstrap y $\frac{1}{3}$ no aparecerá en la muestra bootstrap.
+
+# Bagging
+
+-   Un árbol de decisión induce una varianza alta con diferentes data sets es probable que se encuentren árboles diferentes.
+
+    -   Como se está utilizando un único árbol, no se obtiene un algorítmo suficientemente estable.
+
+-   Se utiliza el concepto de bagging: se ajustan $B$ árboles diferentes y se predice la respuesta utilizando cada árbol por separado. Una predicción final se obtiene "promediando" las B diferentes predicciones.
+
+-   **Recordatorio:** $\mathbb{E}(\bar{Y}) = \mathbb{E}(Y), \space Var(\bar{Y}) = \frac{Var(Y)}{n}$ es decir $Var(\bar{Y}) < Var(Y)$
+
+-   La técnica de bootstrap lleva a una **reducción de varianza.**
+
+Con el data-set original, se hará un muestreo bootstrap y se obtendrá un nuevo data-set $D_1$
+
+Con este data ser $D_1$, se ajustará un árbol
+
+$$
+\hat{y}_1 = \hat{f}_1(\underline{x})
+$$ $\hat{f}_1$ es el árbol ajustado
+
+$\hat{y}_1$ es la predicción basándose en $\hat{f}_1$
+
+Obtenemos una segunda muestra bootstrap y NO ENTIENDO ESTA PALABRA un árbol:
+
+$$
+\hat{y}_2 = \hat{f}_2(\underline{x})
+$$
+
+Continuando con este procedimiento, se obtendrán $B$ arboles $\hat{f}_1, \hat{f}_2, ..., \hat{f}_B$ y $B$ predicciones $\hat{y}_1, \hat{y}_2, ..., \hat{y}_B$
+
+-   En caso de un árbol de regresión, los vamos a combinar de la siguiente manera
+
+    $$
+    \hat{f}^{bag}(\underline{x}):= \frac{1}{B}\sum_{j=1}^{B}\hat{f}_{j}(\underline{x})
+    $$
+
+-   En un árbol de clasificación, se combina de la siguiente manera
+
+    $$
+    \hat{f}^{bag}(\underline{x})=argmax\{\hat{f}_{j}(\underline{x})\}
+    $$
+
+**Obs:** Un árbol individual, en muestra bagged puede tener un MSE menor que el árbol bagged.
+
+Se incrementa el número de árboles individuales para avergiuar si el modelo mejora.
+
+En caso de que se construya un árbol bagged incorporando un gran número de árboles individuales el MSE (de prueba) será más estable que usa un número pequeño de árboles individuales.

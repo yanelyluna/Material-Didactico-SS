@@ -1,0 +1,102 @@
+---
+title: "Redes neuronales 3"
+description: |
+  Redes neuronales 3
+author:
+  - name: Eduardo Selim M. M.
+  - name: Carlos A. Ar.
+date: 05-29-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_float: true
+categories:
+  - redes neuronales 
+---
+
+# Descenso estocástico
+
+-   Una de las alternativas más comunes para hacer el ajuste en [redes grandes]{.ul} es descanso estocástico y algunas de sus cariantes.
+
+-   **Descanso estocástico por minilotes**. En éste, el cálculo del gradiente se hace sobre una submuestra relativamente pequeña de la muestra de entrenamiento.
+
+    -   A esta submuetra se le conoce como **minilote.**
+
+    -   En cada iteración, se mueve hacia la dirección de descanso de ese minilote.
+
+    -   La muestra de entrenamiento se divide al azar en minilotes haciendo una actualización de los parámetros en cada minilote.
+
+    -   Un recorrido sobre todos los minilotes se conoce como **época.**
+
+## Algorítmo de descenso estocástico
+
+Se separa al azar los datos de entrenamiento en $n$ minilotes cada uno de tamaño $m$, i.e. **la muestra de entrenamiento es de tamaño** $n\cdot m$
+
+-   Para época $e \in \{1,2,...,n_l\}$
+
+    -   Calcular el gradiente sobre el minilote y hacer actualización, sucesivamente para cada uno de los minilotes $k = 1,2,...,n$ \begin{align*}
+        \beta_{i+1} \leftarrow \beta_i - \eta \frac{1}{m} \sum_{j = 1}^m \nabla D_j^{(m)} (\beta_i)
+        \end{align*}
+
+        donde $D_j^{k}(\beta_j)$ esta función objetivo (devfianza, suma de cuadrados, etc.) para el $j$-ésimo caso del minilote $k$.
+
+    -   Repetir para la siguiente época.
+
+        -   Se puede reordenar al azar los minilotes para evitar ciclos.
+
+    -   **Nota:** A $\eta$ se le conocce como la [tasa de aprendizaje.]{.ul}
+
+### Razones de uso del descenso estocástico
+
+-   Muchas veces no es necesario usar todos los datos para encontrar una buena dirección de descenso.
+
+    -   Se puede ver a la dirección de descenso en gradiente como un valor esperado sobre la muestra de entrenamiento (ya que se "resta" un promedio sobre el conjunto de entrenamiento).
+
+    -   Una submuestra (minilote) puede ser suficiente para estimar este valor esperado (con menor costo de cómputo).
+
+    -   Además, puede no ser tan buena idea intentar estimar el gradiente con la mejor precisión, pues solamente es una dirección de descenso local así que puede que no se proporcione la mejor decisión de a dónde moverse en cada punto. **Es mejor hacer iteraciones más rápidas con direcciones estimadas.**
+
+-   Calcular el gradiente completo para descenso en gradiente es computacionalmente ineficiente. Si el **conjunto de entrenamiento es muy grande**, el descenso en gradiente no es factible.
+
+-   COn respecto al tamaño del minilote, minilotes más grandes dan mejores eficiencias en paralelización (pues hay multiplicación de minilotes). Sin embargo, con mililotes más grandes puede que se haga trabajos de más (por lo que se dijo eternamente). El mejor punto está en minilotes pequeños (no se aprovecha paralelismo) ó grandes (se hace demasiado trabajo por iteración).
+
+-   La **propiedad más importante** de descenso estocástico es minilotes es que su convergencia no depende del tamaño del conjunto de entrenamiento, i.e. el tiempo de iteración para descenso estocástico no crece con el número de casos totales.
+
+    -   Se puede obtener buenos ajustes incluso con tamaños muy grandes de conjuntos de entrenamiento.
+
+    -   En este sentido, descenso estocástico estacala bien, el factor limitante es el tamaño del minilote y el número de iteraciones.
+
+-   Es importante permutar al azar los datos antes de hacer los minibatches, pues órdenes naturales en los datos pueden afectar la convergencia. Permutar los minibatches en cada iteración puede acelerar la convergencia.
+
+### Tasa de aprendizaje
+
+Para seleccionar la tasa de aprendizaje, se ibservan las curvas número de iteraciones $\mapsto$ función objetivo tanto para las muestras de entrenamiento como el de validación.
+
+-   Si la tasa es muy grande, habrá oscilaciones grandes e incrementos grandes en la función objetivo (llevando a errores de entrenamiento grandes).
+
+-   Algunas oscilaciones suaves no tienen problemas, son endémicos de la naturaleza estocástica del algorítmo.
+
+-   Si la tasa es muy baja, el aprendizaje es alto y puede que se quede en un valor muy alto de la función objetivo.
+
+-   Es importante explorar distintas tasas de aprendizaje cún cuando no parezca haber oscilaciones grandes o convergencia muy lenta. En algunos casos, si la tasa es demasiado grande, puede que el algorítmo llegue a zonas con gradientes cercanos a 0 y tenga dificultas para moverse.
+
+La tasa de aprendizaje es uno de los parámetros más importantes a tunear.
+
+# Descenso estocástico con momento
+
+Se separa al azar los datos de entrenamiento en $n$ minlotes de tamaño $m$.
+
+-   Para épocas $e \in \{ 1, 2, ..., n_{\rho}\}$
+
+    -   Calcular el gradiente sobhre el minlote, y hacer la actualización sucesivamente para cada uno de los minilotes $k = 1,2,...,n$
+
+        ```{=tex}
+        \begin{align*}
+        \beta_{i+1} & \leftarrow \beta_i+ \nu \\
+        \nu &\leftarrow \alpha \nu -\eta \frac{1}{m} \sum_{j=1}^m\bar{\nu}D_j^{(k)}(\beta_i)
+        \end{align*}
+        ```
+        donde $D_j^{(k)}(\beta_i)$ es la función objetivo (devianza, suma de cuadrados, etc.) para el $j$-ésimo caso del minilote $k$. $\nu$ se le conoce como velocidad
+
+-   Repetir para la siguiente época.

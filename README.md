@@ -37,3 +37,9 @@ Autores:
   En el siguiente enlace podrás acceder al repositorio que tiene el paquete creado con el objetivo de compartir el tutorial: https://github.com/CarlosA-Ar/tutoriales
   
   El archivo __Compartir tutorial__ especifica las dos formas de compartir un tutorial hecho con learnr: en la web o a través de un paquete de R.
+
+### 4. Ciencia de Datos
+
+  La carpeta tiene otra carpeta llamada __ciencia_de_datos__  que contiene los archivos necesarios para generar el sitio web que contiene algunos post o notas de la materia Ciencia de Datos con R. Puede recisar el sitio en el enlace: https://ciencia-de-datos.netlify.app/
+  
+  Además se consideran las notas de manera separada de tal manera que se puedan compartir de manera individual (no todas en el mismo sitio).

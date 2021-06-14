@@ -1,0 +1,390 @@
+---
+title: "Modelos Lineales Generalizados"
+author: 
+    - name: "Eduardo Selim"
+    - name: "Carlos A. Ar."
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+        smooth_scroll: false
+     toc_depth: 2
+     number_sections: false
+     theme: flatly
+     highlight: tango
+---
+
+
+$$
+\underbrace{g(y)}_{\text{Función } \\ \text{de la respuesta.}} = \beta_0 + \beta_1x_1 + ... + \beta_k x_k + \epsilon
+$$
+
+## Formulación del modelo
+
+Hay dos componentes
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Componente 1                                                                                                                                                                  | Componente 2                                                                                                                                             |
++===============================================================================================================================================================================+==========================================================================================================================================================+
+| Familia de **distribuciones lineal exponencial**. La elección de una distribución particular generalmente se ayuda de la naturaleza de la variable respuesta en un escenario. | **Función link.** Ya que se especificó una distribución de la familia lineal exponencial, se necesita relacionar a la media de la componente sistemática |
+|                                                                                                                                                                               |                                                                                                                                                          |
+|                                                                                                                                                                               | $$                                                                                                                                                       |
+|                                                                                                                                                                               | \beta_0 + \beta_1x_1 + ... + \beta_k x_k + \epsilon                                                                                                      |
+|                                                                                                                                                                               | $$                                                                                                                                                       |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Definición (familia lineal exponencial)
+
+Se dice que una distribución pertenece a la [familia lineal exponencial]{.ul} si su función de densidad se puede escribir como:
+
+$$
+f(y; \theta, \phi) = \exp\bigg\{ \frac{y\theta - b(\theta)}{\phi} + S(y,\theta)\bigg\}
+$$
+
+donde
+
+-   $\theta$: Es el parámetro de interés (generalmente de la media).
+
+-   $\phi$: Parámetro de escala.
+
+-   $b(\theta)$: Función de $\theta$ (conocido)
+
+-   $S(y, \phi)$: Es una función de $\phi$ (conocido)
+
+Afortunadamente, muchos de los distribudores que ya conocen pertenecen a la familia exponencial lineal
+
+|           |                   |                     |
+|-----------|-------------------|---------------------|
+| Bernoulli | Gamma             | Beta                |
+| Poisson   | Normal            | Gamma Inversa       |
+| Binomial  | Geométrica        | Gaussiana Invertida |
+|           | Binomial Negativa |                     |
+
+Si la distribución de $Y$ pertenece a la LED (Linear Exponencial Distribution) entonces
+
+$$
+\mu := \mathbb{E}(Y) = b'(\theta)\\
+Var(Y) = \phi b''(\theta)
+$$
+
+Es útil explicar a la $Var(Y)$ en términos de $\mathbb{E}(Y)$ i.e. $Var(Y) = \phi \nu(\mu)$ a $\nu(\mu)$ se le conoce como **función varianza.**
+
+Una propiedad bonita en LED es que $\nu(\mu) = b''(\theta)$
+
+### Ejemplo:
+
+Si $Y\sim Poisson(\lambda)$, es decir, $f_Y(y) = \frac{e^{-\lambda}\lambda^y}{y!} \bigg|^y_{\{0,1,...\}}$ ¿Y pertenece a la familia exponencial lineal? Sí
+
+*Demostración.*
+
+$$
+f_Y(y) = \frac{e^{-\lambda}\lambda^y}{y!} = \exp\{ -\lambda + y\log(y) - \log(y!)\} = \exp\{  y\theta - e^\theta - \log(y!)\}, \\ \text{ donde } \theta = \log(\lambda)\\
+\\
+\therefore f_{Y} \in LED_{\Box}
+$$
+
+En el caso poisson se tiene que
+
++--------------------------+-------------+:-----------------------------------------------------:+
+| $$                       | $$          | $$                                                    |
+| \theta = \log(\lambda)\\ | \Rightarrow | \mathbb{E}(Y) = b'(\theta) = e^\theta = \lambda \\    |
+| b(\theta) = e^\theta\\   | $$          | Var(Y) =\phi b''(\theta) = 1 \cdot e^\theta = \lambda |
+| \phi = 1\\               |             | $$                                                    |
+| S(y, \phi) = -\log(y!)   |             |                                                       |
+| $$                       |             | Que es algo ya esperado                               |
++--------------------------+-------------+-------------------------------------------------------+
+
+## Funciones link
+
+Esta relaciona a la media de la respuesta con la combinación lineal de las variables explicativas i.e.
+
+$$
+g(\mu) = \mathbb{x}^T \beta = \beta_0 + \beta_1x_1 + ... + \beta_k x_k 
+$$
+
+Donde $(\beta_0,.... \beta_k) = \beta$ es un vector de parámetros a estimar donde $g(\cdot)$ es monótona (creciente o decreciente).
+
+-   La elección de $g(\cdot)$ está motivada por la forma funcional entre la respuesta, y las variables explicativas.
+
+**GML:** Una LED para la respuesta & Una función link
+
+Hay una función link especial, que reconoce como la [función link canónica]{.ul} que satisface la siguiente:
+
+$$
+g(\mu) = \theta
+$$ donde es el parámetro de la LED.
+
+### Ejemplos
+
+-   Normal: $g(\mu) = \mu$
+
+-   Bernoulli: $g(\pi) = \log(\frac{\pi}{1-\pi})=: logit(\pi)$
+
+-   Poisson: $g(\mu) = \log(\mu)$
+
+-   Gamma: $g(\mu) = \frac{1}{\mu}$
+
+-   Inversa Gaussiana: $g(\mu) = \frac{1}{\mu^2}$
+
+**Recordatorio:** Para el caso Bernoulli
+
+$$
+\log\bigg(\frac{\pi}{1-\pi}\bigg) = \beta_0 + \beta_1x_1 +... + \beta_kx_k 
+\iff
+\pi = \frac{e^{\beta_0 + \beta_1x_1 + ... + \beta_k x_k }}{1+e^{\beta_0 + \beta_1x_1 + ... + \beta_k x_k }}
+$$
+
+Si $\pi \geq 0.5 \rightarrow \hat{y} = 1$
+
+Si $\pi < 0.5 \rightarrow \hat{y} = 0$
+
+**Recordatorio:** Poisson
+
+$$
+\log(\lambda) = \beta_0 + \beta_1x_1 +... + \beta_kx_k \\
+\rightarrow \lambda = \exp\{\beta_0 + \beta_1x_1 +... + \beta_kx_k \}\\
+\rightarrow \hat{\lambda} = \exp\{\hat{\beta_0} + \hat{\beta_1}x_1 +... + \hat{\beta_k}x_k \}
+$$
+
+Como siempre hay que saber **¿Qué nos interesa?**
+
+1.  Estimar $\beta'^s$
+2.  La variabilidad de los $\beta'^s$
+3.  Bondad de ajuste: Devianza
+4.  Poder de predicción
+5.  Construcción del modelo (selección de variables explicativas).
+
+## Estimación y predicción
+
+-   Se observan $y_1, ..., y_n$ independientes entre sí todas de la familia exponencial lineal pero posiblemente con diferentes valores de $\theta$ y $\phi$ i.e. $\theta_1, ..., \theta_n$ y $\phi_1, ..., \phi_n$ y por lo tanto diferentes medias.
+
+### Estimación máximo verosímil
+
+Sea $L$ la función de verosimilitud. Como $f_{Y_i} \in LED$ Entonces:
+
+$$
+L(\beta) = \prod_{i=1}^n f_{Y_i}(y_i) = \prod_{i=1}^n \exp\bigg\{\frac{y_i\theta_i - b(\theta_i)}{\phi_i} + S(y_i, \phi_i)\bigg\}
+$$
+
+Además vemos que se está utilizando el link canónico y esto nos permitirá escribir:
+
+$$
+L(\beta) = \prod_{i=1}^n \exp\bigg\{\frac{y_i (\mathbb{x}_i^{_T}\beta) - b(\mathbb{x}_i^{_T}\beta)}{\phi_i} + S(y_i, \phi_i)\bigg\}
+$$
+
+Como antes, preferimos obtener la log-verosimilitud.
+
+$$
+l(\beta) = \log(L(\beta)) = \sum_{i=1}^n \bigg(\frac{y_i (\mathbb{x}_i^{_T}\beta) - b(\mathbb{x}_i^{_T}\beta)}{\phi_i} + S(y_i, \phi_i)\bigg)
+$$
+
+Para encontrar el estimador máximo verosímil,
+
+$$
+\text{Ecuación score:}\\
+\boxed{\frac{\partial}{\partial \beta} l(\beta) = \underline{0}}
+$$
+
+En este caso
+
+$$
+\frac{\partial}{\partial \beta} l(\beta) = \sum_{i=1}^n \bigg(\frac{y_i \mathbb{x}_i - b'(\mathbb{x}_i^{_T}\beta)\mathbb{x}_i}{\phi_i}\bigg) = \sum_{i=1}^n \bigg(\frac{y_i \mathbb{x}_i - \mu_i\mathbb{x}_i}{\phi_i}\bigg) = \sum_{i=1}^n \bigg(\frac{y_i  - \mu_i}{\phi_i}\bigg)\mathbb{x}_i
+$$
+
+Se tiene que resolver
+
+$$
+\sum_{i=1}^n \bigg(\frac{y_i  - \mu_i}{\phi_i}\bigg)\mathbb{x}_i = \underline{0} = \begin{pmatrix}
+0 \\
+   \vdots \\
+ 0
+ \end{pmatrix}
+$$
+
+**"Mala" noticias.** Esto se resuelve numéricamente
+
+Afortunadamente lo hace R o Python.
+
+[Resumiendo]{.ul}
+
+Supóngase que se desea estimar
+
+$$
+\beta = (\beta_0, ..., \beta_k) \rightarrow \hat{\beta} = (\hat{\beta}_0, ..., \hat{\beta}_k)
+$$
+
+-   **Paso 1**: Calcular el valor estimado de la "linked mean"
+
+    $$
+    g(\hat{\mu}) = \mathbb{x}^T \hat{\beta} = \hat{\beta_0} + \hat{\beta_1}x_1 + ... + \hat{\beta_k} x_k 
+    $$
+
+-   **Paso 2**: Invertir $g$, para obtener **la media** ajustada/estimada, i.e.
+
+    $$
+    \hat{\mu} = g^{-1} (\mathbb{x}^{_T}\hat{\beta})
+    $$
+
+-   **Notación.** Sea la notación $\mu$ ó $\hat{y}$ para denotar a la media ajustada.
+
+### Algunas propiedades
+
+\
+$\mu$ es el estimador máximo verosímil de $\mu = g^{-1}(\underline{x}^{_T}\beta)$
+
+Este es:
+
+-   Consistente
+
+-   Asintóticamente insesgado
+
+-   Asintóticamente gaussiano
+
+La propiedad que hace especial a la función link canónica es que el estimado es insesgado.
+
+**Ejemplo**
+
+En el caso Bernoulli $g(\pi) = \log(\frac{\pi}{1-\pi})$ ¿Quién es $g^{-1}(t)$?
+
+Sea $z = \log(\frac{\pi}{1-\pi})$, despejemos a $\pi$
+
+$$
+e^{z} = \frac{\pi}{1-\pi} \iff e^z-\pi e^z = \pi \iff e^z = \pi(1+e^z) \iff \pi = \frac{e^z}{1+e^z} \\
+\therefore g^{-1}(t) = \frac{e^t}{1+e^t} 
+$$
+
+Entonces nos recuerda a un viejo conocido 👴🏻
+
+$$
+\hat{\pi} = \frac{e^{\mathbb{x}^{_T} \hat{\beta}}}{1+e^{\mathbb{x}^{_T} \hat{\beta}}} \\
+ \text{Probabilidades estimadas en el modelo de regresión logística}
+$$
+
+## Evaluación de la bondad de ajuste
+
+-   El GLM ya [no]{.ul} se tiene la descomposición
+
+    $$
+    TSS = RSS + RegSS
+    $$
+
+    😢 Por lo tanto no está definido el coeficiente de determinación $$R^2$$ 😢
+
+-   Las medidas comunes son la devianza y la pseudo $R^2$
+
+#### Modelo Saturado
+
+-   El modelo saturado es uno con la misma distribución que la respuesta y función link que el GLM ajustado [pero]{.ul} con tantos parámetros como observaciones.
+
+    -   Esto permite maximizar la función de verosimilitud sobre una base observación por observación.
+
+**¿Qué significa esto?**
+
+-   El modelo saturado es tal que los valores ajustados son exactamente iguales a los valores observados, i.e.
+
+    $$
+    \underbrace{\hat{\mu}_i = y_i}_{\text{bajo el modelo saturado}} \text{ para todo } i = 1,...,n
+    $$
+
+-   ¿Y la justificación matemática?
+
+    $$
+    \frac{\partial}{\partial \theta_i} \log(f(y_i;\theta_i,\phi_i)) = \frac{y_i - \overbrace{b'(\theta_i)}^{\hat{\mu_i}}}{\phi_i} = 0
+    $$
+
+    por lo tanto, la media ajustada $\hat{\mu}_i = b'(\hat{\theta_i})$ es igual al valor de la respuesta observada $y_i$, i.e. el modelo saturado genera un ajuste perfecto.
+
+-   El modelo más elaborado proporciona el mejor ajuste, por lo tanto debe tener la log-verosimilitud más alta (que cualquier otro GLM ajustado)
+
+### Devianza
+
+-   La devianza es una medida de bondad de ajuste que se basa en la verosimilitud.
+
+    -   Mide cuánto se desvía el GLM ajustado, en términos de la log-verosimilitud, del GLM "más elaborado", que se conoce como el [modelo saturado]{.ul}.
+
+**Definición.**
+
+$$
+D = 2(l_{\text{SAT}} - \underbrace{l}_{\text{modelo que} \\ \text{estoy evaluando}})
+$$
+
+-   Una devianza grande es indicativo de un ajuste pobre.
+
+-   Una devianza pequeña es indicativo de buen ajuste.
+
+### ¿Cómo se obtiene la devianza?
+
+-   **Paso 1:** Escribir una expresión genérica para la función de verosimilitud, en términos de las medias desconocidas $\mu_1, ..., \mu_n$ (Recuérdese que se está inclinado a tratar a la media como un parámetro GLM).
+
+-   **Paso 2:** Hacer las sustituciones
+
+    -   $\mu_i \mapsto y_i$ para el modelo saturado. Con esto tenemos $l_{\text{SAT}}$
+
+    -   $\mu_i \mapsto \hat{\mu}_i$ para el modelo saturado. Con esto tenemos $l$
+
+-   **Paso 3:** Hacer el cálculo $D = 2(l_{SAT} - l)$ en términos de $y_i'^s$ y $\hat{\mu}_i'^s$
+
+**Ejemplo (Regresión Poisson)**
+
+Para el caso de que $y_1, ... , y_n$ tenga distribución Poisson con medias $\mu_1, ..., \mu_n$ respectivamente:
+
+-   **Paso 1:** Expresión genérica: \begin{align*}
+    l(\mu_1, ..., \mu_n) 
+    &= \log\bigg(\prod_{i=1} ^n f(y_i)\bigg) \\
+    & = \log\bigg(\prod_{i=1} ^n \frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!}\bigg) \\
+    &= \sum_{i=1}^n \bigg(-\mu_i +y_i\log(\mu_i) - \log(y_i!)\bigg)
+    \end{align*}
+
+-   **Paso 2:** Hacer las sustituciones
+
+    -   $\mu_i \mapsto y_i$ para el modelo saturado.
+
+        $$
+        l_{SAT} = \sum_{i=1}^n \bigg(-y_i +y_i\log(y_i) - \log(y_i!)\bigg)
+        $$
+
+    -   $\mu_i \mapsto \hat{\mu}_i$ para el modelo saturado.
+
+        $$
+        l = \sum_{i=1}^n \bigg(-\hat{\mu}_i +y_i\log(\hat{\mu}_i) - \log(y_i!)\bigg)
+        $$
+
+-   **Paso 3:**
+
+    $$
+    \begin{align*}
+    D &= 2(l_{SAT} -l) = 2\sum_{i=1}^n \bigg( \hat{\mu}_i - y_i + y_i(\log(y_i) - \log(\hat{\mu}_i)) \bigg) \\
+    &= 2\sum_{i=1}^n \bigg( y_i\log(\frac{y_i}{\hat{\mu}_i})  - (y_i -  \hat{\mu}_i) \bigg) 
+    \end{align*}
+    $$
+
+-   $D$ debe ser pequeño. Intuitivamente "Si tengo 2 modelos, me quedo con el de devianza menor"
+
+### pseudo$R^2$
+
+**Definición.**
+
+$$
+pseudoR^2 = \frac{l - l_{IID}}{l_{SAT} - l_{IID}}
+$$
+
+pseudo$R^2 \in (0,1)$
+
+pseudo$R^2$ grande es indicativo de mejor ajuste del modelo.
+
+Donde:
+
+-   $l_{\text{SAT}}$: log-verosimilitud del modelo saturado.
+
+-   $l$: log-verosimilitud del GLM en consideración.
+
+-   $l_{\text{IID}}$: log-verosimilitud clásica que se aprende en Inferencia Estadística.
+
+### AIC y BIC
+
+Se tiene interés en pruebas de hipótesis y 2 criteriors de selección de modelos
+
+AIC = $-2l + 2p$
+
+BIC = $-2l + p\log(n)$
