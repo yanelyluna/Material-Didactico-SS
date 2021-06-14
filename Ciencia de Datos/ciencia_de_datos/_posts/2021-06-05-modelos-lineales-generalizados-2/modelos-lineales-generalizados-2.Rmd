@@ -185,13 +185,14 @@ Empezamos con $y = \beta_0 + \epsilon$
 
 -   **Paso F1:** De entre $x_1, x_2, ..., x_k$, agregas la variable más significativa al modelo nulo. i.e. se ajustan $k$ modelos:
 
+    ```{=tex}
     \begin{align*}
     &\text{V1: }y = \beta_0 + \beta_1 x_1 + \epsilon \\
     &\text{V2: }y = \beta_0 + \beta_2 x_2 + \epsilon \\
     & \space \space \space \space \space \vdots \\
     & \text{Vk: }y = \beta_0 + \beta_k x_k + \epsilon
     \end{align*}
-
+    ```
     Y se selecciona la variable explicativa que mejora alguna métrica seleccionada.
 
     Acá podría ocupar como métrica incluso la $R^2$ pues todos los modelos tiene el mismo número de variables explicativas.
@@ -209,3 +210,87 @@ $$
 Lo cual implica que con este algoritmo, reducimos el número de comparaciones. El problema es que no logramos hacer todas las comparaciones, solo decimos: encontramos el mejor modelo, suponiendo que debemos dejar una variable (correspondiente al paso F2 del algoritmo).
 
 En resumen la ventaja es mayor eficiencia pero la desventaja es que no encontramos el "mejor modelo global" (lo descrito al inicio de esta nota).
+
+### Hacia atrás (selección backward)
+
+Dadas $x_1, x_2, .., x_k$ variables explactivas potenciales, $x_k$.
+
+Se empieza con el modelo más "completo" i.e. el de $k$ variables.
+
+$$
+\mu_k: y = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k + \epsilon 
+$$
+
+Y se eliminan las variables estadísticamente menos significativas en cada paso.
+
+¿Qué significa una vairbale "menos significativa"?
+
+Una variable es la **más insignificante** si satisface alguna de estas condiciones (que son equivalentes):
+
+1.  Si $t-rato$ asociado es el **más pequeño** (en valor absoluto), de entre todas las variables explicativas presentes.
+
+2.  El RSS del modelo resultante es el más pequeño, i.e. borrar la variable del mismo modelo con el menor incremento en el RSS y la menor cantidad de importancia sobre el modelo.
+
+    -   ¿Por qué se vale? Como se están eliminando predictores, el RSS debe incrementarse ($y_i$ se aleja de $\hat{y}_i$ que "trae" menos info), [pero]{.ul} se busca la variable con el menor incremento.
+
+    -   El $R^2$ resultante sea el más alto.
+
+-   Como en el caso de la selección forward, debe haber una regla de paro; por ejemplo, una muy común es
+
+    -   Detener el proceso de eliminación cuando todos los predictores conjuntamente en el modelo son suficientemente significativo (por ejemplo vía la **prueba F**).
+
+    -   Otra alternativa, es terminar hasta el modelo nulo ($\mu_0$) y seleccionar el "mejor" modelo de entre $\mu_0, \mu_1, ..., \mu_k$ basándose en $AIC/BIC/C_p$, i.e. se compraron $k+1$ modelos con algún criterio $AIC/BIC/C_p$.
+
+**Tarea:** hacer una presentación sobre la forma que se implementa la selección de variables en las librerías `Broom`, `Recipies` y `Tidymodels`.
+
+**Importante:**
+
+-   Si $n\leq k$, selección backward [no]{.ul} se puede implementar, ya que el modelo completo no se puede ajustar y el proceso no puede empezar.
+
+-   La selección forward, en [principio]{.ul} no tiene problema, pues
+
+    -   Si $n\geq k$, siempre jala.
+
+    -   Si $n<k$
+
+        \begin{align*}
+        y &\sim \beta_0 \space \checkmark \\
+        y &\sim \beta_0 + \beta_1 \space \checkmark \\
+        & \vdots \\
+        y &\sim \beta_0 + \beta_1 + ... + \beta_n \space \checkmark \\
+        y &\sim \beta_0 + \beta_1 + ... + \beta_n + \beta_{n+1} \space \times 
+        \end{align*}
+
+### Selección stepwise
+
+Es un híbrido entre backward y forward. Funciona como en selección forward pero con una regla de paro, pues se re-evalúa la significancia estadística de todas las variables en el modelo en cuestión.
+
+-   Aquellos que no aporten aporten suficiente poder explicativo, se eliminan.
+
+Bajo este procedimiento una variable explicativa puede entrar ó salir del modelo durante la ejecución del algoritmo de selección.
+
+#### Ejemplo:
+
+$$
+\begin{align*}
+&x_1, x_2, ..., x_{10}\\
+1. &y \sim 1+ x_1 \\
+ &\boxed{y \sim 1+ x_2} \\
+ &\vdots \\
+& y\sim 1+ x_{10} \\
+
+2.  &\underline{y \sim 1+ x_2} \\
+&\downarrow \\
+3. & y \sim 1+ x_2 + x_1 \\
+& y \sim 1+x_2 + x_3 \\
+& y\sim 1+ x_2 + x_3 \\
+&\vdots \\
+&y \sim 1+ x_2 + x_{10} 
+\end{align*}
+$$
+
+[Con forward]{.ul} se hacen una pregunta adicional ¿$x_2$ y $x_4$ son significativas?
+
+-   Si sí $\rightarrow$ continúan agregando.
+
+-   Si no $rightarrow$ sacan las que no son significativas y continuan agregando.

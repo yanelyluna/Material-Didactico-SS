@@ -2042,7 +2042,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.7/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.8/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2314,6 +2314,8 @@ d-article ul > li { /*to add back in space between bullet items that I took away
 <li><a href="#mejor-selección-de-subconjunto">Mejor selección de subconjunto</a>
 <ul>
 <li><a href="#selección-forward">Selección forward</a></li>
+<li><a href="#hacia-atrás-selección-backward">Hacia atrás (selección backward)</a></li>
+<li><a href="#selección-stepwise">Selección stepwise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2445,12 +2447,12 @@ y \sim x_1 + x_2 + x_3
 <p>Empezamos con <span class="math inline">\(y = \beta_0 + \epsilon\)</span></p>
 <ul>
 <li><p><strong>Paso F1:</strong> De entre <span class="math inline">\(x_1, x_2, ..., x_k\)</span>, agregas la variable más significativa al modelo nulo. i.e. se ajustan <span class="math inline">\(k\)</span> modelos:</p>
-<p><span class="math display">\[\begin{align*}
+<span class="math display">\[\begin{align*}
 &amp;\text{V1: }y = \beta_0 + \beta_1 x_1 + \epsilon \\
 &amp;\text{V2: }y = \beta_0 + \beta_2 x_2 + \epsilon \\
 &amp; \space \space \space \space \space \vdots \\
 &amp; \text{Vk: }y = \beta_0 + \beta_k x_k + \epsilon
-\end{align*}\]</span></p>
+\end{align*}\]</span>
 <p>Y se selecciona la variable explicativa que mejora alguna métrica seleccionada.</p>
 <p>Acá podría ocupar como métrica incluso la <span class="math inline">\(R^2\)</span> pues todos los modelos tiene el mismo número de variables explicativas.</p></li>
 <li><p><strong>Paso F2:</strong> Fijar las variables explicativas identificada en el paso anterior y buscar de entre las variables seleccionadas, aquella que sea la más estadísticamente significativa (i.e. la que tenga un <span class="math inline">\(t-ratio\)</span> mejor, <span class="math inline">\(R^2\)</span> más grande, ó un mejor <span class="math inline">\(BIC/AIC/C_p/ R_a^2\)</span>)</p></li>
@@ -2462,6 +2464,74 @@ y \sim x_1 + x_2 + x_3
 \]</span></p>
 <p>Lo cual implica que con este algoritmo, reducimos el número de comparaciones. El problema es que no logramos hacer todas las comparaciones, solo decimos: encontramos el mejor modelo, suponiendo que debemos dejar una variable (correspondiente al paso F2 del algoritmo).</p>
 <p>En resumen la ventaja es mayor eficiencia pero la desventaja es que no encontramos el “mejor modelo global” (lo descrito al inicio de esta nota).</p>
+<h3 id="hacia-atrás-selección-backward">Hacia atrás (selección backward)</h3>
+<p>Dadas <span class="math inline">\(x_1, x_2, .., x_k\)</span> variables explactivas potenciales, <span class="math inline">\(x_k\)</span>.</p>
+<p>Se empieza con el modelo más “completo” i.e. el de <span class="math inline">\(k\)</span> variables.</p>
+<p><span class="math display">\[
+\mu_k: y = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k + \epsilon 
+\]</span></p>
+<p>Y se eliminan las variables estadísticamente menos significativas en cada paso.</p>
+<p>¿Qué significa una vairbale “menos significativa”?</p>
+<p>Una variable es la <strong>más insignificante</strong> si satisface alguna de estas condiciones (que son equivalentes):</p>
+<ol type="1">
+<li><p>Si <span class="math inline">\(t-rato\)</span> asociado es el <strong>más pequeño</strong> (en valor absoluto), de entre todas las variables explicativas presentes.</p></li>
+<li><p>El RSS del modelo resultante es el más pequeño, i.e. borrar la variable del mismo modelo con el menor incremento en el RSS y la menor cantidad de importancia sobre el modelo.</p>
+<ul>
+<li><p>¿Por qué se vale? Como se están eliminando predictores, el RSS debe incrementarse (<span class="math inline">\(y_i\)</span> se aleja de <span class="math inline">\(\hat{y}_i\)</span> que “trae” menos info), <u>pero</u> se busca la variable con el menor incremento.</p></li>
+<li><p>El <span class="math inline">\(R^2\)</span> resultante sea el más alto.</p></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>Como en el caso de la selección forward, debe haber una regla de paro; por ejemplo, una muy común es</p>
+<ul>
+<li><p>Detener el proceso de eliminación cuando todos los predictores conjuntamente en el modelo son suficientemente significativo (por ejemplo vía la <strong>prueba F</strong>).</p></li>
+<li><p>Otra alternativa, es terminar hasta el modelo nulo (<span class="math inline">\(\mu_0\)</span>) y seleccionar el “mejor” modelo de entre <span class="math inline">\(\mu_0, \mu_1, ..., \mu_k\)</span> basándose en <span class="math inline">\(AIC/BIC/C_p\)</span>, i.e. se compraron <span class="math inline">\(k+1\)</span> modelos con algún criterio <span class="math inline">\(AIC/BIC/C_p\)</span>.</p></li>
+</ul></li>
+</ul>
+<p><strong>Tarea:</strong> hacer una presentación sobre la forma que se implementa la selección de variables en las librerías <code>Broom</code>, <code>Recipies</code> y <code>Tidymodels</code>.</p>
+<p><strong>Importante:</strong></p>
+<ul>
+<li><p>Si <span class="math inline">\(n\leq k\)</span>, selección backward <u>no</u> se puede implementar, ya que el modelo completo no se puede ajustar y el proceso no puede empezar.</p></li>
+<li><p>La selección forward, en <u>principio</u> no tiene problema, pues</p>
+<ul>
+<li><p>Si <span class="math inline">\(n\geq k\)</span>, siempre jala.</p></li>
+<li><p>Si <span class="math inline">\(n&lt;k\)</span></p>
+<p><span class="math display">\[\begin{align*}
+y &amp;\sim \beta_0 \space \checkmark \\
+y &amp;\sim \beta_0 + \beta_1 \space \checkmark \\
+&amp; \vdots \\
+y &amp;\sim \beta_0 + \beta_1 + ... + \beta_n \space \checkmark \\
+y &amp;\sim \beta_0 + \beta_1 + ... + \beta_n + \beta_{n+1} \space \times 
+\end{align*}\]</span></p></li>
+</ul></li>
+</ul>
+<h3 id="selección-stepwise">Selección stepwise</h3>
+<p>Es un híbrido entre backward y forward. Funciona como en selección forward pero con una regla de paro, pues se re-evalúa la significancia estadística de todas las variables en el modelo en cuestión.</p>
+<ul>
+<li>Aquellos que no aporten aporten suficiente poder explicativo, se eliminan.</li>
+</ul>
+<p>Bajo este procedimiento una variable explicativa puede entrar ó salir del modelo durante la ejecución del algoritmo de selección.</p>
+<h4 id="ejemplo">Ejemplo:</h4>
+<p>$$ <span class="math display">\[\begin{align*}
+&amp;x_1, x_2, ..., x_{10}\\
+1. &amp;y \sim 1+ x_1 \\
+ &amp;\boxed{y \sim 1+ x_2} \\
+ &amp;\vdots \\
+&amp; y\sim 1+ x_{10} \\
+
+2.  &amp;\underline{y \sim 1+ x_2} \\
+&amp;\downarrow \\
+3. &amp; y \sim 1+ x_2 + x_1 \\
+&amp; y \sim 1+x_2 + x_3 \\
+&amp; y\sim 1+ x_2 + x_3 \\
+&amp;\vdots \\
+&amp;y \sim 1+ x_2 + x_{10} 
+\end{align*}\]</span> $$</p>
+<p><u>Con forward</u> se hacen una pregunta adicional ¿<span class="math inline">\(x_2\)</span> y <span class="math inline">\(x_4\)</span> son significativas?</p>
+<ul>
+<li><p>Si sí <span class="math inline">\(\rightarrow\)</span> continúan agregando.</p></li>
+<li><p>Si no <span class="math inline">\(rightarrow\)</span> sacan las que no son significativas y continuan agregando.</p></li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
