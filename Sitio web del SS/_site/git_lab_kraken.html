@@ -14,7 +14,7 @@
 
 <title>GitLab y GitKraken</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -284,12 +284,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -409,7 +409,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">GitLab y GitKraken</h1>
 <h4 class="author">Carlos A. Ar.</h4>
-<h4 class="date">Última edición 11 de junio del 2021</h4>
+<h4 class="date">Última edición 15 de junio del 2021</h4>
 
 </div>
 
@@ -418,14 +418,36 @@ div.tocify {
 <h1>GitLab</h1>
 <div id="qué-es" class="section level2">
 <h2>¿Qué es?</h2>
-<p>Es una plataforma de internet que tiene la finalidad de trabajar junto con Git para tener el control de archivos (preferentemente de código) con el objetivo de modificar y regresar a alguna versión previa del código.</p>
-<p>Es útil porque con esta plataforma es más sencillo trabajar en equipo a partir de los llamados “merge request” que son el análogo a “pull request” de GitHub. Recordemos que este tipo de peticiones se hacen solo para fusionar ramas secundarias temporales con la rama principal en la línea de trabajo de Git.</p>
-<p>Diferencias entre GitLab y GitHub:</p>
-<ul>
-<li><p>GitLab permite trabajar a más de tres personas en un proyecto privado de forma gratuita, mientras que GitHub no.</p></li>
-<li><p>Opción de exportación de elementos como archivo CSV por correo electrónico.</p></li>
-</ul>
-<p><img src="gl_gk_1.png" /></p>
+<p>Es una plataforma de internet que tiene la finalidad de trabajar junto con <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#%C2%BFQu%C3%A9_es_Git_y_para_qu%C3%A9_aprenderlo">Git</a> para tener el control de archivos (preferentemente de código) con el objetivo de modificarlos y regresar a alguna versión previa de dicho código.</p>
+<p>La ventaja de esta plataforma sobre Drive, por ejemplo, es que además de almacenar archivos de forma remota, tiene el “historial de cambio” de los mismos.</p>
+<p>Otra ventaja es que pueden varias personas tener acceso a los archivos y modificar el código. Lo anterior permite que muchas personas puedan, de forma remota y asincrónica, trabajar en un código.</p>
+<p>La forma en que se trabaja lo anterior se entiende mejor con lo siguiente:</p>
+<ol style="list-style-type: decimal">
+<li>Creas un proyecto en GitLab.</li>
+<li>Invitas a personas a colaborar o trabajar en el proyecto previamente creado.</li>
+<li>Subes archivos de código al proyecto. (De tu computadora local <em>(que no necesita de internet)</em> a la red/internet).</li>
+<li>Las personas descargan el proyecto en su computadora. (De la red, bajan la carpeta de los archivos <em>(el proyecto)</em> en su máquina local).</li>
+<li>Los miembros del equipo de trabajo hacen cambios en la carpeta (crear archivos, modificar archivos, borrar archivos) desde su computadora.</li>
+<li>Los miembros suben los cambios al proyecto en la red (actualizan el proyecto que se encuentra en GitLab).</li>
+<li>Los miembros del equipo actualizan su carpeta local (la que no necesita de internet), “bajando” las actualizaciones del proyecto en GitLab.</li>
+</ol>
+<p>Los pasos 5, 6 y 7 son los que más se repetirán dado que en un proyecto se tiene que trabajar paulatinamiente y que todos los menbros estén “lo más actualizados posibles” en términos de los cambios en un mismo archivo.</p>
+<p>Si lo has notado, es como GoogleDrive porque aquí, varias personas pueden subir y bajar archivos. No es igual porque tiene el control de Git, es decir, no solo se suben archivos, sino que se actualizan los archivos que ya están en GitLab y viceversa. Además no se actualizan inmediatamente. Para que haya control y no se actualice en desorden, hay que solicitar permisos para ver si se añade o no una actualización.</p>
+<p>La lista anterior sobre el funcionamiento y utilidad general en GitLab, se puede ver en comandos. Es decir que los pasos mencionados en la lista, se logran con los siguientes comandos en la <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#Conceptos_b%C3%A1sicos">terminal de GitBash</a>:</p>
+<ol style="list-style-type: decimal">
+<li><p>(Visto más adelante)</p></li>
+<li><p>(Visto más adelante)</p></li>
+<li><p>(Vsito más adelante)</p></li>
+<li><p><code>git clone link-del-proyecto</code></p></li>
+<li><p>Para que esos cambios sean considerados en el control de Git, se usan los comandos</p>
+<ol style="list-style-type: lower-roman">
+<li><p><code>git add .</code> : permite decir a Git “añade los cambios de todos estos archivos”</p></li>
+<li><p><code>git commit -m"Esta leyecnda dice los cambios que hice" -m"Y esta otra solo es para darle detalle de esos cambios de ser necesario"</code> : es como decir a Git “Confirmo que quiero que este cambio lo consideres como parte de tu historial”.</p></li>
+</ol></li>
+<li><p><code>git push origin master</code> sirve para “empujar” los archivos actualizados en el proyecto que se encuentra en internet (en GitLab).</p></li>
+<li><p><code>git pull</code> sirve para “jalar” los archivos que se encuentran en el proyecto de internet (en GitLab).</p></li>
+</ol>
+<p>El párrafo concerniente a la “fusión” de las diferentes versiones de un mismo archivo, implica conocimiento de las ramas y el merge. Este tema puedes consultarlo <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#Trabajo_Colaborativo">en este link</a>, no es exclusivo de GitLab.</p>
 </div>
 <div id="cómo-se-usa" class="section level2">
 <h2>¿Cómo se usa?</h2>
@@ -434,13 +456,10 @@ div.tocify {
 <li><p>Crear un proyecto.</p>
 <p><img src="gl_gk_2.png" width="438" /></p>
 <p><img src="gl_gk_3.png" width="465" /></p></li>
-<li><p>Así como en las secciones <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#De_GitHub_a_Git">De Git a GitHub o de GitHub a Git</a>, se pueden subir archivos de la máquina local al proyecto creado de GitLab o se puede clonar un proyecto de GitLab en la máquina local, para esto usamos la terminal de GitBash y los <a href="https://tutorialesmg.netlify.app/tutorial-de-git-y-github#Comandos_principales">comandos “de siempre”</a>.</p>
-<p>En cualquier caso, al crear un nuevo proyecto en GitLab, aparece por defecto una “guía” de comandos necesarios para hacer lo anteriormente mencionado:</p>
-<p><img src="gl_gk_4.png" width="567" /></p></li>
+<li><p>Existe la posibilidad de invitar a colaborar en tus proyectos o otros usuarios de GitLab para un trabajo asincrónico y a distancia (que es lo que la mayoría queremos hacer en tiempos de pandemia 😅).</p></li>
 </ol>
-<p>Existe la posibilidad de invitar a colaborar en tus proyectos o otros usuarios de GitLab para un trabajo asincrónico y a distancia (que es lo que la mayoría queremos hacer en tiempos de pandemia 😅).</p>
 <p><img src="gl_gk_5.png" /></p>
-<p>Una de las diferencias entre GitLab y GitHub es el nombre de la rama principal. Para GitLab, la rama principal de llama <code>master</code> y para GitHub se llama <code>main</code>. La forma de cambiar el nombre de esta rama es en la terminal de gitBash con el comando <code>git branch -M nombre_de_la_rama</code> donde “nombre_de_la_rama” puede ser main ó master.</p>
+<p>La forma de cambiar el nombre de esta rama es en la terminal de gitBash con el comando <code>git branch -M nombre_de_la_rama</code> donde “nombre_de_la_rama” puede ser main ó master. En el caso de GitLab, usar master.</p>
 </div>
 </div>
 <div id="gitkraken" class="section level1">
@@ -448,6 +467,7 @@ div.tocify {
 <div id="qué-es-1" class="section level2">
 <h2>¿Qué es?</h2>
 <p>GitKraken es una herramienta que permite gestionar algún repositorio de git, ya sea de GitHub, Git Lab o Git de tu PC. Gestionar, entre otras cosas, se refiere a resolver conflictos del merge y las funciones usuales de git (crear ramas secundarias, add, commit, …). Un plus con respecto a GitHub y GitLab es la linea del tiempo como un gráfico que permite entender las modificaciones que se han hecho sobre un mismo código (controlado con Git).</p>
+<p>GitLab, GitKraken y GitHub son tres programas diferentes que básicamente sirven para lo mismo: controlar archivos y sus versiones a lo largo del tiempo <strong>en internet.</strong> Cada uno con una interfaz de usuario distinta, pero en escencia sirven para lo mismo.</p>
 </div>
 <div id="cómo-se-usa-1" class="section level2">
 <h2>¿Cómo se usa?</h2>

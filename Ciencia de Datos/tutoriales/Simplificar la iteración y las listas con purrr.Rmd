@@ -1,0 +1,10 @@
+---
+title: "Tutorial"
+author: "Carlos A. Ar."
+output: 
+  learnr::tutorial:
+    theme: flatly
+    highlight: tango
+runtime: shiny_prerendered
+description: "La iteración es una forma poderosa de hacer que la computadora haga el trabajo por usted. También puede ser un área de codificación en la que es fácil cometer muchos errores tipográficos y simples. El paquete purrr ayuda a simplificar la iteración para que pueda concentrarse en el siguiente paso, en lugar de encontrar errores tipográficos"
+---
