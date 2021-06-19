@@ -1,0 +1,265 @@
+---
+title: "Simplificar la iteracion y listas con purrr"
+author: 
+  - name: "Carlos A. Ar."
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: "La iteracion es una forma poderosa de hacer que la computadora haga el trabajo por usted. Tambien puede ser un area de codificacion en la que es facil cometer muchos errores tipograficos y simples. El paquete purrr ayuda a simplificar la iteracion para que pueda concentrarse en el siguiente paso, en lugar de encontrar errores tipograficos."
+---
+
+<style>
+div {
+  text-align: justify;
+}
+/***********************/
+/*Titulos ## y autoria F6EACD*/
+/***********************/
+h1, h2 {
+  color: #6D4101;
+  padding: .4em; /*es decir el 60 por ciento del tamano de la letra*/
+  font-family: "Courier New", monospace;
+  font-size: 35px;
+  font-weight: bold;
+  opacity: 0.95;
+}
+em {
+  color: #8A6C0C;
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  padding: .2em;
+  opacity: 0.97;
+  font-weight: bold;
+}
+/***********************/
+/* Cuerpo */
+/***********************/
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 16;
+  background-color: #EEF5F9;
+  color: #000000;
+}
+/***********************/
+/* Titulos con ###     */
+/***********************/
+h3, h4, h5{
+  color: #06116C;
+  font-family: Verdana, Helvetica, sans-serif;
+}
+/*******************************************/
+/* Referencias a paginas o a otro documento*/
+/*******************************************/
+a {
+    color: #B8870F;
+    text-decoration: none;
+}
+/**********************/
+/* Chunks de exercises*/
+/**********************/
+.ace-tm {
+    background-color: #FFFEF7;
+    color: #010730;
+}
+/***********************/
+/* tabla de contenidos */
+/***********************/
+.topicsList {
+  padding: .5em;
+}
+.topicsHeader {
+  color: #06116C;
+  padding: .5em;
+}
+.topicsList #doc-metadata {
+  color: #06116C;
+  padding: .5em;
+}
+.topicsList .topic.current {
+  background-color: #8A6C0C;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.topicsList .topic:hover, .topicsList .topic:active {
+  background-color: #E0CD4E;
+  color: #01053D;
+}
+/***********/
+/* Botones */
+/***********/
+.btn {
+  background-color: #000857;
+  color: #EBEDFF;
+}
+/* cambiar de pagina */
+.btn-default {
+    color: #EBEDFF;
+    background-color: #000857;
+    border: none;
+}
+/* cambiar de pagina */
+.btn-light {
+  background-color: #000857;
+  color: #EBEDFF;
+}
+/* run code */
+.btn-primary , .btn-success, .btn-info{
+  background-color: #786300;
+  color: #EBEDFF;
+}
+/* mientras esta desabilitados */
+.btn:hover, .btn:active, .btn:disabled {
+  background-color: #786300;
+  color: #EBEDFF;
+}
+/**********/
+/* Codigo */
+/**********/
+code {
+    color: #6D4101;
+    background-color:  #F7FBF9;
+    font-size: 15px;
+    font-weight: bold;
+}
+/**************************/
+/* Recuadro para ejemplos */
+/**************************/
+.boxed {
+    background: #F7FBF9;
+    color: black;
+    border: 3px solid #C83737;
+    margin: 0px auto;
+    width: 456px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+    min-height: 120px;
+    color: black;
+    background-color: lightgrey;
+    border: solid 5px #C83737;
+    background-image: url("manzana.png");
+  }
+.note_white {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+    min-height: 120px;
+    color: black;
+    background-color: #F7FBF9;
+    border: solid 5px #C83737;
+    background-image: url("manzana.png");
+  }
+</style>
+
+```{r setup, include=FALSE}
+library(learnr)
+library(readr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduccion a la iteracion
+
+Imagine que necesita leer cientos de archivos con una estructura similar y realizar una accion sobre ellos. No desea escribir cientos de lineas repetitivas de codigo para leer en todos los archivos o realizar la accion. En su lugar, desea iterar sobre ellos. La iteracion es el proceso de realizar el mismo proceso en mltiples entradas. Ser capaz de iterar es importante para que su codigo sea eficiente y es poderoso cuando se trabaja con listas.
+
+Para este ejercicio, los nombres de 16 archivos CSV se han cargado en una lista denominada `files` En su propio trabajo, puede utilizar la funcion `list.files()` para crear esta lista. La biblioteca de `readr` tambien esta cargada.
+
+### Ejercicio
+
+-   Cree un bucle for, que itera sobre la lista `files` de archivos y proporciona cada elemento como entrada para `readr::read_csv()`, que es otra forma de decir la funcion `read_csv()` del paquete `readr`.
+
+-   Luego use esa entrada, por lo que el resultado es una lista donde cada archivo CSV se ha leido en un elemento separado de la lista `all_files` recien creada.
+
+-   Muestra el tamano de la lista `all_files`.
+
+```{r crear_lista, exercise=TRUE, exercise.setup="base"}
+# Inicializar lista
+all_files <- list()
+
+# Bucle for para leer archivos en una lista
+for(i in seq_along(files)){
+  ___[[___]] <- read_csv(file = ___[[___]])
+}
+
+# Tamano de salida del objeto de lista
+length(___)
+```
+
+```{r crear_lista-solution}
+# Inicializar lista
+all_files <- list()
+
+# Bucle for para leer archivos en una lista
+for(i in seq_along(files)){
+  all_files[[i]] <- read_csv(file = files[[i]])
+}
+
+# Tamano de salida del objeto de lista
+length(all_files)
+```
+
+```{r base}
+files <- read.csv("data_from_1990.csv") 
+```
+
+### Exercise with Code
+
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
+
+## Topic 2
+
+### Exercise with Hint
+
+*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+
+Modify the following code to limit the number of rows printed to 5:
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+mtcars
+```
+
+```{r print-limit-hint}
+head(mtcars)
+```
+
+### Quiz
+
+*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+
+Some questions to verify that you understand the purposes of various base and recommended R packages:
+
+```{r quiz}
+quiz(
+  question("Which package contains functions for installing other R packages?",
+    answer("base"),
+    answer("tools"),
+    answer("utils", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which of the R packages listed below are used to create plots?",
+    answer("lattice", correct = TRUE),
+    answer("tools"),
+    answer("stats"),
+    answer("grid", correct = TRUE)
+  )
+)
+```
