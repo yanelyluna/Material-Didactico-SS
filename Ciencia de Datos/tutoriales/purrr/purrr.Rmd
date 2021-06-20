@@ -4,164 +4,12 @@ author:
   - name: "Carlos A. Ar."
 output:
   learnr::tutorial:
+    theme: flatly
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
 description: "La iteracion es una forma poderosa de hacer que la computadora haga el trabajo por usted. Tambien puede ser un area de codificacion en la que es facil cometer muchos errores tipograficos y simples. El paquete purrr ayuda a simplificar la iteracion para que pueda concentrarse en el siguiente paso, en lugar de encontrar errores tipograficos."
 ---
-
-<style>
-div {
-  text-align: justify;
-}
-/***********************/
-/*Titulos ## y autoria F6EACD*/
-/***********************/
-h1, h2 {
-  color: #6D4101;
-  padding: .4em; /*es decir el 60 por ciento del tamano de la letra*/
-  font-family: "Courier New", monospace;
-  font-size: 35px;
-  font-weight: bold;
-  opacity: 0.95;
-}
-em {
-  color: #8A6C0C;
-  font-family: "Courier New", monospace;
-  font-size: 18px;
-  padding: .2em;
-  opacity: 0.97;
-  font-weight: bold;
-}
-/***********************/
-/* Cuerpo */
-/***********************/
-body {
-  font-family: Verdana, Helvetica, sans-serif;
-  font-size: 16;
-  background-color: #EEF5F9;
-  color: #000000;
-}
-/***********************/
-/* Titulos con ###     */
-/***********************/
-h3, h4, h5{
-  color: #06116C;
-  font-family: Verdana, Helvetica, sans-serif;
-}
-/*******************************************/
-/* Referencias a paginas o a otro documento*/
-/*******************************************/
-a {
-    color: #B8870F;
-    text-decoration: none;
-}
-/**********************/
-/* Chunks de exercises*/
-/**********************/
-.ace-tm {
-    background-color: #FFFEF7;
-    color: #010730;
-}
-/***********************/
-/* tabla de contenidos */
-/***********************/
-.topicsList {
-  padding: .5em;
-}
-.topicsHeader {
-  color: #06116C;
-  padding: .5em;
-}
-.topicsList #doc-metadata {
-  color: #06116C;
-  padding: .5em;
-}
-.topicsList .topic.current {
-  background-color: #8A6C0C;
-  color: #FFFFFF;
-  font-weight: bold;
-}
-.topicsList .topic:hover, .topicsList .topic:active {
-  background-color: #E0CD4E;
-  color: #01053D;
-}
-/***********/
-/* Botones */
-/***********/
-.btn {
-  background-color: #000857;
-  color: #EBEDFF;
-}
-/* cambiar de pagina */
-.btn-default {
-    color: #EBEDFF;
-    background-color: #000857;
-    border: none;
-}
-/* cambiar de pagina */
-.btn-light {
-  background-color: #000857;
-  color: #EBEDFF;
-}
-/* run code */
-.btn-primary , .btn-success, .btn-info{
-  background-color: #786300;
-  color: #EBEDFF;
-}
-/* mientras esta desabilitados */
-.btn:hover, .btn:active, .btn:disabled {
-  background-color: #786300;
-  color: #EBEDFF;
-}
-/**********/
-/* Codigo */
-/**********/
-code {
-    color: #6D4101;
-    background-color:  #F7FBF9;
-    font-size: 15px;
-    font-weight: bold;
-}
-/**************************/
-/* Recuadro para ejemplos */
-/**************************/
-.boxed {
-    background: #F7FBF9;
-    color: black;
-    border: 3px solid #C83737;
-    margin: 0px auto;
-    width: 456px;
-    padding: 10px;
-    border-radius: 10px;
-  }
-.note {
-    padding: 1em;
-    margin: 1em 0;
-    padding-left: 100px;
-    background-size: 70px;
-    background-repeat: no-repeat;
-    background-position: 15px 15px;
-    min-height: 120px;
-    color: black;
-    background-color: lightgrey;
-    border: solid 5px #C83737;
-    background-image: url("manzana.png");
-  }
-.note_white {
-    padding: 1em;
-    margin: 1em 0;
-    padding-left: 100px;
-    background-size: 70px;
-    background-repeat: no-repeat;
-    background-position: 15px 15px;
-    min-height: 120px;
-    color: black;
-    background-color: #F7FBF9;
-    border: solid 5px #C83737;
-    background-image: url("manzana.png");
-  }
-</style>
 
 ```{r setup, include=FALSE}
 library(learnr)
@@ -213,53 +61,310 @@ length(all_files)
 files <- read.csv("data_from_1990.csv") 
 ```
 
-### Exercise with Code
+## Iteracion con purrr
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+Ha creado un excelente bucle for, pero usa mucho codigo para hacer algo tan simple como ingresar una serie de archivos en una lista. Aqui es donde entra `purrr`. Podemos hacer lo mismo que un bucle for en una linea de codigo con `purrr::map()`. La funcion `map()` itera sobre una lista y usa otra funcion que se puede especificar con el argumento `.f`.
 
-Now write a function that adds any two numbers and then call it:
+`map()` toma dos argumentos:
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
+- La primera es la lista sobre la que se repetira.
+
+- La segunda es una funcion que actuara sobre cada elemento de la lista.
+
+La biblioteca `readr` ya esta cargada.
+
+### Ejercicio
+
+- Cargue la biblioteca `purrr` (tenga en cuenta las 3 R's).
+
+- Replica el bucle for del ultimo ejercicio usando `map()` en su lugar. Utilice los mismos archivos de lista `files` y la misma funcion `readr::read_csv()`.
+
+- Compruebe la longitud de `all_files_purrr`.
+
+
+```{r usar_purrr, exercise=TRUE}
+# Cargar biblioteca purrr
+library(___)
+
+# Usar mapa para iterar
+all_files_purrr <- map(___, ___) 
+
+# Tamaño de salida del objeto de lista
+length(___)
+```
+
+```{r usar_purrr-solution}
+# Cargar biblioteca purrr
+library(purrr)
+
+# Usar mapa para iterar
+all_files_purrr <- map(files, read_csv) 
+
+# Tamaño de salida del objeto de lista
+length(all_files_purrr)
+```
+
+
+## Mas iteracion con bucles for
+
+Sin embargo, la iteracion no es solo para leer archivos; la iteracion se puede utilizar para realizar otras acciones en objetos. Primero, intentara iterar con un bucle `for`.
+
+Va a cambiar cada elemento de una lista a un tipo de datos numericos y luego volver a colocarlo en el mismo elemento en la misma lista.
+
+Para este ejercicio, iterara usando un bucle `for` que toma `list_of_df`, que es una lista de vectores de caracteres, ¡pero los caracteres son en realidad numeros! Necesita cambiar los vectores de caracteres a numericos para poder realizar operaciones matematicas en ellos; puede usar la funcion base R, `as.numeric()` para hacer eso.
+
+### Ejercicio
+
+- Compruebe el tipo de clase del primer elemento de `list_of_df.`
+
+- Cree un bucle for que tome cada elemento de list_of_df, lo cambie a datos numericos con `as.numeric()` y lo vuelva a agregar al mismo elemento de `list_of_df.`
+
+- Compruebe el tipo de clase del primer elemento de `list_of_df.`
+
+- Imprimir `list_of_df.`
+
+```{r tipo_elemento, exercise=TRUE}
+# Verifique el tipo de clase del primer elemento
+class(___[[___]])
+
+# Cambiar cada elemento de un caracter a un numero
+for(i in seq_along(list_of_df)){
+    ___[[___]] <- as.numeric(___[[___]])
 }
+
+# Verifique el tipo de clase del primer elemento
+class(___[[___]])
+
+# Imprime la lista
+___
 ```
 
-## Topic 2
+```{r tipo_elemento-solution}
+# Verifique el tipo de clase del primer elemento
+class(list_of_df[[1]])
 
-### Exercise with Hint
+# Cambiar cada elemento de un caracter a un numero
+for(i in seq_along(list_of_df)){
+    list_of_df[[i]] <- as.numeric(list_of_df[[i]])
+}
 
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+# Verifique el tipo de clase del primer elemento
+class(list_of_df[[1]])
 
-Modify the following code to limit the number of rows printed to 5:
-
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
+# Imprime la lista
+list_of_df
 ```
 
-```{r print-limit-hint}
-head(mtcars)
+
+## Mas iteracion con purrr
+
+Ahora cambiara cada elemento de una lista en un tipo de datos numerico y luego lo pondra de nuevo en el mismo elemento en la misma lista, pero en lugar de usar un bucle for, usara `map()`.
+
+Puede usar la funcion `purrr::map()` para recorrer mas facilmente una lista y convertir los caracteres en numeros. En lugar de tener que construir un bucle for completo, puede usar una linea de codigo.
+
+### Ejercicio
+
+- Compruebe la clase del primer elemento de `list_of_df.`
+
+- Use `map()` para iterar sobre `list_of_df` y cambie cada elemento de la lista en datos numericos.
+
+- Compruebe la clase del primer elemento de `list_of_df.`
+
+- Imprima `list_of_df`.
+
+```{r tipo_elemento_purrr, exercise=TRUE}
+# Verifique el tipo de clase del primer elemento
+class(___[[___]])  
+
+# Cambiar cada elemento de caracter a un numero
+list_of_df <- map(___, ___)
+
+# Verifique el tipo de clase del primer elemento nuevamente
+class(___[[___]])
+
+# Imprime la lista
+
 ```
 
-### Quiz
+```{r tipo_elemento_purrr-solution}
+# Verifique el tipo de clase del primer elemento
+class(list_of_df[[1]]) 
 
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+# Cambiar cada elemento de caracter a un numero
+list_of_df <- map(list_of_df, as.numeric)i
 
-Some questions to verify that you understand the purposes of various base and recommended R packages:
+# Verifique el tipo de clase del primer elemento nuevamente
+class(list_of_df[[1]])
 
-```{r quiz}
-quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
-  )
-)
+# Imprime la lista
+list_of_df
 ```
+
+## Subconjuntos de listas
+
+A menudo, cuando trabaje en R, utilizara marcos de datos o vectores. Otro tipo de objeto R es una lista. Si bien las listas pueden ser complicadas, las listas tambien son increiblemente poderosas. Las listas son como la bolsa de Hermione Granger (de Harry Potter); pueden contener una amplia variedad de cosas. No es necesario que el contenido de una lista sea del mismo tipo de datos y, siempre que sepa como esta organizado, puede obtener lo que necesita mediante subconjuntos.
+
+Tanto las listas con nombre como las sin nombre pueden ser subconjuntos usando corchetes dobles `[[]]` lista esto: `listname[[indice]]`
+
+Si se nombra una lista, tambien puede usar \$ para crear subconjuntos. La lista de sintaxis `list$elementname` extrae el elemento nombrado de la lista. Como cualquier otro tipo de objeto en R, puede usar `str()` para determinar la estructura de la lista.
+
+### Ejercicio
+
+- Cargue el paquete `repurrrsive`.
+
+- Cargue el conjunto de datos de `wesanderson`.
+
+- Examinar la estructura del primer elemento en `wesanderson`.
+
+- Examinar la estructura del elemento `GrandBudapest` en `wesanderson`.
+
+```{r subjconjuntos_listas, exercise=TRUE}
+# Cargue el paquete repurrrsive para obtener acceso al conjunto de datos de wesanderson
+library(___)
+
+# Cargar el conjunto de datos de wesanderson
+data(___)
+
+# Obtener la estructura del primer elemento en wesanderson
+str(___)
+
+# Obtener la estructura del elemento GrandBudapest en wesanderson
+str(___$___)
+```
+
+```{r subjconjuntos_listas-solution}
+# Cargue el paquete repurrrsive para obtener acceso al conjunto de datos de wesanderson
+library(repurrrsive)
+
+# Cargar el conjunto de datos de wesanderson
+data(wesanderson)
+
+# Obtener la estructura del primer elemento en wesanderson
+str(wesanderson[[1]])
+
+# Obtener la estructura del elemento GrandBudapest en wesanderson
+str(wesanderson$GrandBudapest)
+```
+
+## Subconjuntos de elementos de lista
+
+Tambien puede crear subconjuntos dentro de los elementos de la lista usando una notacion entre corchetes como esta: `ListName\$ElementName[VectorNumber]`. Si un elemento de lista es un marco de datos, puede extraer una columna como esta: `ListName\$ElementName\$ColumnName` o `ListName[[1]][, 1]`.
+
+En este ejercicio, examinara los conjuntos de datos `wesanderson` y `sw_films` del paquete `repurrrsive`. `wesanderson` contiene paletas de colores para cada una de las peliculas de Wes Anderson. Estos colores se registran en hexadecimal, es decir, un # seguido de seis digitos que indican un color en particular. Aqui, utilizara dos formas de extraer un color hexadecimal en particular.
+
+`sw_films` contiene informacion sobre las peliculas de la franquicia de Star Wars, como el titulo, el director, el productor, etc. Utilizara subconjuntos para explorar este conjunto de datos.
+
+### Ejercicio 1
+
+- Subconjunta el tercer color del primer elemento de `wesanderson`. A continuacion, realice un subconjunto del cuarto color de `GrandBudapest`.
+
+```{r star_wars, exercise=TRUE}
+# Tercer elemento del primer vector wesanderson
+___[[___]][___]
+
+# Cuarto elemento del vector wesanderson de GrandBudapest
+
+____$___[___]
+```
+
+```{r star_wars-solution}
+# Tercer elemento del primer vector wesanderson
+wesanderson[[1]][3]
+
+# Cuarto elemento del vector wesanderson de GrandBudapest
+wesanderson$GrandBudapest[4]
+
+```
+
+### Ejercicio 2
+
+Crea un subconjunto del primer elemento de `sw_films`. Luego, crea un subconjunto del elemento de titulo del primer elemento.
+
+```{r star_wars2, exercise=TRUE}
+# Subconjunto del primer elemento de los datos de sw_films
+sw_films[[___]]
+
+# Subconjunto del primer elemento de los datos de sw_films, columna title 
+sw_films[[___]]$___
+```
+
+```{r star_wars2-solution}
+# Subconjunto del primer elemento de los datos de sw_films
+sw_films[[1]]
+
+# Subconjunto del primer elemento de los datos de sw_films, columna title
+sw_films[[1]]$title
+```
+
+## Alternativas de argumento de `map()`
+
+También puede usar la iteracion para responder una pregunta, como cuanto mide cada elemento en el conjunto de datos de wesanderson. Puede hacer esto alimentando `map()` con una funcion como `length()`. Puede hacer esto usando la sintaxis del `map(lista, funcion)` y funciona bien. Sin embargo, los ejercicios futuros se vuelven mas complejos, necesitara aprender a hacer esta segunda forma, usando:
+
+`map(lista, ~ funcion (.x))`
+
+Esta segunda forma da el mismo resultado que `map(lista, funcion)`. Para especificar como se usa la lista en la funcion, use el argumento `.x` para indicar donde va el elemento de la lista dentro de la funcion. Cuando desee usar `.x` para mostrar donde va el elemento en la funcion, debe poner `~` delante de la funcion en el segundo argumento de `map()`.
+
+### Ejercicio 1
+
+Utilice `map()` en `wesanderson` y determine la longitud de cada elemento de la forma "antigua".
+
+```{r otro_argumento, exercise=TRUE}
+# Mapee sobre wesanderson para obtener la longitud de cada elemento
+map( , )
+```
+
+```{r otro_argumento-solution}
+# Mapee sobre wesanderson para obtener la longitud de cada elemento
+map(wesanderson, ~length(.x))
+```
+
+### Ejercicio 2
+
+Use `map()` en `wesanderson` y determine la longitud de cada elemento nuevamente, pero esta vez usando `map(lista, ~ funcion (.x))`.
+
+```{r otro_argumento2, exercise=TRUE}
+# Mapee sobre wesanderson y determine la longitud de cada elemento
+map(___, ~___(___))
+```
+
+```{r otro_argumento2-solution}
+# Mapee sobre wesanderson y determine la longitud de cada elemento
+map(wesanderson, ~length(.x))
+```
+
+## map_*
+
+La funcion `map()` devolvera su salida como una lista. Sin embargo, hay varias funciones `map()` diferentes; puede usar las funciones `map_\*()` para decirle a `purrr` el tipo de salida que desea. El * en el `mapa_*()` representa diferentes tipos de datos R. Por ejemplo, es posible que desee que la salida sea un vector de numeros para que podamos ponerlo dentro de un marco de datos. Por lo tanto, a menos que desee que se devuelva algo como una lista, debe determinar cual desea que sea la salida antes de escribir su funcion `map()`.
+
+### Ejercicio 1
+
+Determine la longitud de cada elemento del conjunto de datos de `wesanderson` usando nuestra funcion `map()` original. Examine la salida.
+
+```{r otro_argumento3, exercise=TRUE}
+# Mapa sobre wesanderson, para determinar la longitud de cada elemento
+map( , )
+```
+
+```{r otro_argumento3-solution}
+# Mapa sobre wesanderson, para determinar la longitud de cada elemento
+map(wesanderson, length)
+```
+
+### Ejercicio 2
+
+Cree un marco de datos que tenga el numero de colores de cada pelicula, usando `map_dbl()`. El `dbl` significa un doble o un numero que puede tener un decimal.
+
+```{r otro_argumento4, exercise=TRUE}
+# Cree una columna numcolors y rellénela con la longitud 
+# de cada elemento wesanderson
+data.frame(numcolors = map_dbl(___, ~___(.___)))
+
+```
+
+```{r otro_argumento4-solution}
+# Cree una columna numcolors y rellénela con la longitud 
+# de cada elemento wesanderson
+data.frame(numcolors = map_dbl(wesanderson, ~length(.x)))
+
+```
+
