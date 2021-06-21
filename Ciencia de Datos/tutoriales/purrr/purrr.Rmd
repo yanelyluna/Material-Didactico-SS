@@ -17,6 +17,15 @@ library(readr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r datas, include=FALSE}
+files <- list()
+
+for (i in c(1:16)) {
+ files[[i]] <- read.csv(paste("Facultad de Ciencias/Servicio Social/Material-Didactico-SS/Ciencia de Datos/tutoriales/purrr/datas/data_from_", 1989 + i, ".csv", sep = ""))  
+}
+
+```
+
 ## Introduccion a la iteracion
 
 Imagine que necesita leer cientos de archivos con una estructura similar y realizar una accion sobre ellos. No desea escribir cientos de lineas repetitivas de codigo para leer en todos los archivos o realizar la accion. En su lugar, desea iterar sobre ellos. La iteracion es el proceso de realizar el mismo proceso en mltiples entradas. Ser capaz de iterar es importante para que su codigo sea eficiente y es poderoso cuando se trabaja con listas.
@@ -67,20 +76,19 @@ Ha creado un excelente bucle for, pero usa mucho codigo para hacer algo tan simp
 
 `map()` toma dos argumentos:
 
-- La primera es la lista sobre la que se repetira.
+-   La primera es la lista sobre la que se repetira.
 
-- La segunda es una funcion que actuara sobre cada elemento de la lista.
+-   La segunda es una funcion que actuara sobre cada elemento de la lista.
 
 La biblioteca `readr` ya esta cargada.
 
 ### Ejercicio
 
-- Cargue la biblioteca `purrr` (tenga en cuenta las 3 R's).
+-   Cargue la biblioteca `purrr` (tenga en cuenta las 3 R's).
 
-- Replica el bucle for del ultimo ejercicio usando `map()` en su lugar. Utilice los mismos archivos de lista `files` y la misma funcion `readr::read_csv()`.
+-   Replica el bucle for del ultimo ejercicio usando `map()` en su lugar. Utilice los mismos archivos de lista `files` y la misma funcion `readr::read_csv()`.
 
-- Compruebe la longitud de `all_files_purrr`.
-
+-   Compruebe la longitud de `all_files_purrr`.
 
 ```{r usar_purrr, exercise=TRUE}
 # Cargar biblioteca purrr
@@ -104,7 +112,6 @@ all_files_purrr <- map(files, read_csv)
 length(all_files_purrr)
 ```
 
-
 ## Mas iteracion con bucles for
 
 Sin embargo, la iteracion no es solo para leer archivos; la iteracion se puede utilizar para realizar otras acciones en objetos. Primero, intentara iterar con un bucle `for`.
@@ -115,13 +122,13 @@ Para este ejercicio, iterara usando un bucle `for` que toma `list_of_df`, que es
 
 ### Ejercicio
 
-- Compruebe el tipo de clase del primer elemento de `list_of_df.`
+-   Compruebe el tipo de clase del primer elemento de `list_of_df.`
 
-- Cree un bucle for que tome cada elemento de list_of_df, lo cambie a datos numericos con `as.numeric()` y lo vuelva a agregar al mismo elemento de `list_of_df.`
+-   Cree un bucle for que tome cada elemento de list_of_df, lo cambie a datos numericos con `as.numeric()` y lo vuelva a agregar al mismo elemento de `list_of_df.`
 
-- Compruebe el tipo de clase del primer elemento de `list_of_df.`
+-   Compruebe el tipo de clase del primer elemento de `list_of_df.`
 
-- Imprimir `list_of_df.`
+-   Imprimir `list_of_df.`
 
 ```{r tipo_elemento, exercise=TRUE}
 # Verifique el tipo de clase del primer elemento
@@ -155,7 +162,6 @@ class(list_of_df[[1]])
 list_of_df
 ```
 
-
 ## Mas iteracion con purrr
 
 Ahora cambiara cada elemento de una lista en un tipo de datos numerico y luego lo pondra de nuevo en el mismo elemento en la misma lista, pero en lugar de usar un bucle for, usara `map()`.
@@ -164,13 +170,13 @@ Puede usar la funcion `purrr::map()` para recorrer mas facilmente una lista y co
 
 ### Ejercicio
 
-- Compruebe la clase del primer elemento de `list_of_df.`
+-   Compruebe la clase del primer elemento de `list_of_df.`
 
-- Use `map()` para iterar sobre `list_of_df` y cambie cada elemento de la lista en datos numericos.
+-   Use `map()` para iterar sobre `list_of_df` y cambie cada elemento de la lista en datos numericos.
 
-- Compruebe la clase del primer elemento de `list_of_df.`
+-   Compruebe la clase del primer elemento de `list_of_df.`
 
-- Imprima `list_of_df`.
+-   Imprima `list_of_df`.
 
 ```{r tipo_elemento_purrr, exercise=TRUE}
 # Verifique el tipo de clase del primer elemento
@@ -210,13 +216,13 @@ Si se nombra una lista, tambien puede usar \$ para crear subconjuntos. La lista 
 
 ### Ejercicio
 
-- Cargue el paquete `repurrrsive`.
+-   Cargue el paquete `repurrrsive`.
 
-- Cargue el conjunto de datos de `wesanderson`.
+-   Cargue el conjunto de datos de `wesanderson`.
 
-- Examinar la estructura del primer elemento en `wesanderson`.
+-   Examinar la estructura del primer elemento en `wesanderson`.
 
-- Examinar la estructura del elemento `GrandBudapest` en `wesanderson`.
+-   Examinar la estructura del elemento `GrandBudapest` en `wesanderson`.
 
 ```{r subjconjuntos_listas, exercise=TRUE}
 # Cargue el paquete repurrrsive para obtener acceso al conjunto de datos de wesanderson
@@ -250,13 +256,13 @@ str(wesanderson$GrandBudapest)
 
 Tambien puede crear subconjuntos dentro de los elementos de la lista usando una notacion entre corchetes como esta: `ListName\$ElementName[VectorNumber]`. Si un elemento de lista es un marco de datos, puede extraer una columna como esta: `ListName\$ElementName\$ColumnName` o `ListName[[1]][, 1]`.
 
-En este ejercicio, examinara los conjuntos de datos `wesanderson` y `sw_films` del paquete `repurrrsive`. `wesanderson` contiene paletas de colores para cada una de las peliculas de Wes Anderson. Estos colores se registran en hexadecimal, es decir, un # seguido de seis digitos que indican un color en particular. Aqui, utilizara dos formas de extraer un color hexadecimal en particular.
+En este ejercicio, examinara los conjuntos de datos `wesanderson` y `sw_films` del paquete `repurrrsive`. `wesanderson` contiene paletas de colores para cada una de las peliculas de Wes Anderson. Estos colores se registran en hexadecimal, es decir, un \# seguido de seis digitos que indican un color en particular. Aqui, utilizara dos formas de extraer un color hexadecimal en particular.
 
 `sw_films` contiene informacion sobre las peliculas de la franquicia de Star Wars, como el titulo, el director, el productor, etc. Utilizara subconjuntos para explorar este conjunto de datos.
 
 ### Ejercicio 1
 
-- Subconjunta el tercer color del primer elemento de `wesanderson`. A continuacion, realice un subconjunto del cuarto color de `GrandBudapest`.
+-   Subconjunta el tercer color del primer elemento de `wesanderson`. A continuacion, realice un subconjunto del cuarto color de `GrandBudapest`.
 
 ```{r star_wars, exercise=TRUE}
 # Tercer elemento del primer vector wesanderson
@@ -332,9 +338,9 @@ map(___, ~___(___))
 map(wesanderson, ~length(.x))
 ```
 
-## map_*
+## map\_\*
 
-La funcion `map()` devolvera su salida como una lista. Sin embargo, hay varias funciones `map()` diferentes; puede usar las funciones `map_\*()` para decirle a `purrr` el tipo de salida que desea. El * en el `mapa_*()` representa diferentes tipos de datos R. Por ejemplo, es posible que desee que la salida sea un vector de numeros para que podamos ponerlo dentro de un marco de datos. Por lo tanto, a menos que desee que se devuelva algo como una lista, debe determinar cual desea que sea la salida antes de escribir su funcion `map()`.
+La funcion `map()` devolvera su salida como una lista. Sin embargo, hay varias funciones `map()` diferentes; puede usar las funciones `map_\*()` para decirle a `purrr` el tipo de salida que desea. El \* en el `mapa_*()` representa diferentes tipos de datos R. Por ejemplo, es posible que desee que la salida sea un vector de numeros para que podamos ponerlo dentro de un marco de datos. Por lo tanto, a menos que desee que se devuelva algo como una lista, debe determinar cual desea que sea la salida antes de escribir su funcion `map()`.
 
 ### Ejercicio 1
 
@@ -367,4 +373,3 @@ data.frame(numcolors = map_dbl(___, ~___(.___)))
 data.frame(numcolors = map_dbl(wesanderson, ~length(.x)))
 
 ```
-
