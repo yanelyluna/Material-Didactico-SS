@@ -138,7 +138,7 @@ for(i in seq_along(files)){
 
 # Tamano de salida del objeto de lista
 length(___)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"base","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"datas","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="crear_lista-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Inicializar lista
@@ -151,9 +151,6 @@ for(i in seq_along(files)){
 
 # Tamano de salida del objeto de lista
 length(all_files)</code></pre>
-</div>
-<div class="tutorial-exercise-support" data-label="base" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>files &lt;- read.csv(&quot;data_from_1990.csv&quot;) </code></pre>
 </div>
 </div>
 </div>
@@ -180,9 +177,9 @@ library(___)
 # Usar mapa para iterar
 all_files_purrr &lt;- map(___, ___) 
 
-# Tamaño de salida del objeto de lista
+# TamaÃ±o de salida del objeto de lista
 length(___)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"datas","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="usar_purrr-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Cargar biblioteca purrr
@@ -191,7 +188,7 @@ library(purrr)
 # Usar mapa para iterar
 all_files_purrr &lt;- map(files, read_csv) 
 
-# Tamaño de salida del objeto de lista
+# TamaÃ±o de salida del objeto de lista
 length(all_files_purrr)</code></pre>
 </div>
 </div>
@@ -209,6 +206,21 @@ length(all_files_purrr)</code></pre>
 <li><p>Compruebe el tipo de clase del primer elemento de <code>list_of_df.</code></p></li>
 <li><p>Imprimir <code>list_of_df.</code></p></li>
 </ul>
+<div class="tutorial-exercise-support" data-label="tipejo_elemento" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>set.seed(123)
+list_of_df &lt;- list(
+     as.character(sample(1:1000, 15)), 
+     as.character(sample(1:500, 15)), 
+     as.character(sample(1:250, 15)),
+     as.character(sample(1:125, 15)),
+     as.character(sample(1:75, 15)),
+     as.character(sample(1:30, 15)),
+     as.character(sample(750:1000, 15)),
+     as.character(sample(875:1000, 15)),
+     as.character(sample(950:1000, 15)),
+     as.character(sample(925:1000, 15))
+)</code></pre>
+</div>
 <div class="tutorial-exercise" data-label="tipo_elemento" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Verifique el tipo de clase del primer elemento
 class(___[[___]])
@@ -223,7 +235,7 @@ class(___[[___]])
 
 # Imprime la lista
 ___</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"tipejo_elemento","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="tipo_elemento-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Verifique el tipo de clase del primer elemento
@@ -265,7 +277,7 @@ list_of_df &lt;- map(___, ___)
 class(___[[___]])
 
 # Imprime la lista</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"tipejo_elemento","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="tipo_elemento_purrr-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Verifique el tipo de clase del primer elemento
@@ -373,7 +385,7 @@ sw_films[[1]]$title</code></pre>
 </div>
 <div id="section-alternativas-de-argumento-de-map" class="section level2">
 <h2>Alternativas de argumento de <code>map()</code></h2>
-<p>También puede usar la iteracion para responder una pregunta, como cuanto mide cada elemento en el conjunto de datos de wesanderson. Puede hacer esto alimentando <code>map()</code> con una funcion como <code>length()</code>. Puede hacer esto usando la sintaxis del <code>map(lista, funcion)</code> y funciona bien. Sin embargo, los ejercicios futuros se vuelven mas complejos, necesitara aprender a hacer esta segunda forma, usando:</p>
+<p>TambiÃ©n puede usar la iteracion para responder una pregunta, como cuanto mide cada elemento en el conjunto de datos de wesanderson. Puede hacer esto alimentando <code>map()</code> con una funcion como <code>length()</code>. Puede hacer esto usando la sintaxis del <code>map(lista, funcion)</code> y funciona bien. Sin embargo, los ejercicios futuros se vuelven mas complejos, necesitara aprender a hacer esta segunda forma, usando:</p>
 <p><code>map(lista, ~ funcion (.x))</code></p>
 <p>Esta segunda forma da el mismo resultado que <code>map(lista, funcion)</code>. Para especificar como se usa la lista en la funcion, use el argumento <code>.x</code> para indicar donde va el elemento de la lista dentro de la funcion. Cuando desee usar <code>.x</code> para mostrar donde va el elemento en la funcion, debe poner <code>~</code> delante de la funcion en el segundo argumento de <code>map()</code>.</p>
 <div id="section-ejercicio-1-2" class="section level3">
@@ -423,13 +435,13 @@ map(wesanderson, length)</code></pre>
 <h3>Ejercicio 2</h3>
 <p>Cree un marco de datos que tenga el numero de colores de cada pelicula, usando <code>map_dbl()</code>. El <code>dbl</code> significa un doble o un numero que puede tener un decimal.</p>
 <div class="tutorial-exercise" data-label="otro_argumento4" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># Cree una columna numcolors y rellénela con la longitud 
+<pre class="text"><code># Cree una columna numcolors y rellÃ©nela con la longitud 
 # de cada elemento wesanderson
 data.frame(numcolors = map_dbl(___, ~___(.___)))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="otro_argumento4-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># Cree una columna numcolors y rellénela con la longitud 
+<pre class="text"><code># Cree una columna numcolors y rellÃ©nela con la longitud 
 # de cada elemento wesanderson
 data.frame(numcolors = map_dbl(wesanderson, ~length(.x)))</code></pre>
 </div>
@@ -438,6 +450,13 @@ data.frame(numcolors = map_dbl(wesanderson, ~length(.x)))</code></pre>
 library(learnr)
 library(readr)
 knitr::opts_chunk$set(echo = FALSE)
+
+files <- list()
+
+for (i in c(1:16)) {
+ files[[i]] <- read.csv(paste("https://raw.githubusercontent.com/yanelyluna/Material-Didactico-SS/main/Ciencia%20de%20Datos/tutoriales/purrr/datas/data_from_", 1989 + i, ".csv", sep = ""))
+}
+
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">

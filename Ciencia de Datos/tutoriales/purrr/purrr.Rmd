@@ -15,13 +15,11 @@ description: "La iteracion es una forma poderosa de hacer que la computadora hag
 library(learnr)
 library(readr)
 knitr::opts_chunk$set(echo = FALSE)
-```
 
-```{r datas, include=FALSE}
 files <- list()
 
 for (i in c(1:16)) {
- files[[i]] <- read.csv(paste("Facultad de Ciencias/Servicio Social/Material-Didactico-SS/Ciencia de Datos/tutoriales/purrr/datas/data_from_", 1989 + i, ".csv", sep = ""))  
+ files[[i]] <- read.csv(paste("https://raw.githubusercontent.com/yanelyluna/Material-Didactico-SS/main/Ciencia%20de%20Datos/tutoriales/purrr/datas/data_from_", 1989 + i, ".csv", sep = ""))
 }
 
 ```
@@ -40,7 +38,7 @@ Para este ejercicio, los nombres de 16 archivos CSV se han cargado en una lista 
 
 -   Muestra el tamano de la lista `all_files`.
 
-```{r crear_lista, exercise=TRUE, exercise.setup="base"}
+```{r crear_lista, exercise=TRUE, exercise.setup="datas"}
 # Inicializar lista
 all_files <- list()
 
@@ -66,10 +64,6 @@ for(i in seq_along(files)){
 length(all_files)
 ```
 
-```{r base}
-files <- read.csv("data_from_1990.csv") 
-```
-
 ## Iteracion con purrr
 
 Ha creado un excelente bucle for, pero usa mucho codigo para hacer algo tan simple como ingresar una serie de archivos en una lista. Aqui es donde entra `purrr`. Podemos hacer lo mismo que un bucle for en una linea de codigo con `purrr::map()`. La funcion `map()` itera sobre una lista y usa otra funcion que se puede especificar con el argumento `.f`.
@@ -90,14 +84,14 @@ La biblioteca `readr` ya esta cargada.
 
 -   Compruebe la longitud de `all_files_purrr`.
 
-```{r usar_purrr, exercise=TRUE}
+```{r usar_purrr, exercise=TRUE, exercise.setup="datas"}
 # Cargar biblioteca purrr
 library(___)
 
 # Usar mapa para iterar
 all_files_purrr <- map(___, ___) 
 
-# Tamaño de salida del objeto de lista
+# TamaÃ±o de salida del objeto de lista
 length(___)
 ```
 
@@ -108,7 +102,7 @@ library(purrr)
 # Usar mapa para iterar
 all_files_purrr <- map(files, read_csv) 
 
-# Tamaño de salida del objeto de lista
+# TamaÃ±o de salida del objeto de lista
 length(all_files_purrr)
 ```
 
@@ -130,7 +124,23 @@ Para este ejercicio, iterara usando un bucle `for` que toma `list_of_df`, que es
 
 -   Imprimir `list_of_df.`
 
-```{r tipo_elemento, exercise=TRUE}
+```{r tipejo_elemento}
+set.seed(123)
+list_of_df <- list(
+     as.character(sample(1:1000, 15)), 
+     as.character(sample(1:500, 15)), 
+     as.character(sample(1:250, 15)),
+     as.character(sample(1:125, 15)),
+     as.character(sample(1:75, 15)),
+     as.character(sample(1:30, 15)),
+     as.character(sample(750:1000, 15)),
+     as.character(sample(875:1000, 15)),
+     as.character(sample(950:1000, 15)),
+     as.character(sample(925:1000, 15))
+)
+```
+
+```{r tipo_elemento, exercise=TRUE, exercise.setup="tipejo_elemento"}
 # Verifique el tipo de clase del primer elemento
 class(___[[___]])
 
@@ -178,7 +188,7 @@ Puede usar la funcion `purrr::map()` para recorrer mas facilmente una lista y co
 
 -   Imprima `list_of_df`.
 
-```{r tipo_elemento_purrr, exercise=TRUE}
+```{r tipo_elemento_purrr, exercise=TRUE, exercise.setup="tipejo_elemento"}
 # Verifique el tipo de clase del primer elemento
 class(___[[___]])  
 
@@ -304,7 +314,7 @@ sw_films[[1]]$title
 
 ## Alternativas de argumento de `map()`
 
-También puede usar la iteracion para responder una pregunta, como cuanto mide cada elemento en el conjunto de datos de wesanderson. Puede hacer esto alimentando `map()` con una funcion como `length()`. Puede hacer esto usando la sintaxis del `map(lista, funcion)` y funciona bien. Sin embargo, los ejercicios futuros se vuelven mas complejos, necesitara aprender a hacer esta segunda forma, usando:
+TambiÃ©n puede usar la iteracion para responder una pregunta, como cuanto mide cada elemento en el conjunto de datos de wesanderson. Puede hacer esto alimentando `map()` con una funcion como `length()`. Puede hacer esto usando la sintaxis del `map(lista, funcion)` y funciona bien. Sin embargo, los ejercicios futuros se vuelven mas complejos, necesitara aprender a hacer esta segunda forma, usando:
 
 `map(lista, ~ funcion (.x))`
 
@@ -361,14 +371,14 @@ map(wesanderson, length)
 Cree un marco de datos que tenga el numero de colores de cada pelicula, usando `map_dbl()`. El `dbl` significa un doble o un numero que puede tener un decimal.
 
 ```{r otro_argumento4, exercise=TRUE}
-# Cree una columna numcolors y rellénela con la longitud 
+# Cree una columna numcolors y rellÃ©nela con la longitud 
 # de cada elemento wesanderson
 data.frame(numcolors = map_dbl(___, ~___(.___)))
 
 ```
 
 ```{r otro_argumento4-solution}
-# Cree una columna numcolors y rellénela con la longitud 
+# Cree una columna numcolors y rellÃ©nela con la longitud 
 # de cada elemento wesanderson
 data.frame(numcolors = map_dbl(wesanderson, ~length(.x)))
 
