@@ -14,10 +14,10 @@
 
 <title>Investment Report for Projects in Brazil</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -330,10 +330,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Principal</a>
+  <a href="index.html"></a>
 </li>
 <li>
-  <a href="como_funciona.html">Cómo usar este sitio</a>
+  <a href="como_funciona.html">Uso del sitio</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -351,13 +351,13 @@ div.tocify {
       <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
     </li>
     <li>
-      <a href="https://yanelyluna.shinyapps.io/Tutorial/">Tutorial Learnr</a>
+      <a href="https://carlos-arguello.shinyapps.io/Tutorial_Learnr/">Tutorial Learnr</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Trabajo en equipo
+    Git y más
      
     <span class="caret"></span>
   </a>
@@ -372,7 +372,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Shiny y Rmd
+    Shiny
      
     <span class="caret"></span>
   </a>
@@ -439,7 +439,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Investment Report for Projects in Brazil</h1>
 <h4 class="author">Data Camp</h4>
-<h4 class="date">15 junio 2021</h4>
+<h4 class="date">16 julio 2021</h4>
 
 </div>
 
@@ -538,6 +538,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

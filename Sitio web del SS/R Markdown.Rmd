@@ -1,16 +1,6 @@
 ---
 title: "R Markdown"
 author: "Carlos A. Ar. & DataCamp"
-output:
-   html_document:
-     toc: true
-     toc_float:
-        collapsed: false
-        smooth_scroll: false
-     toc_depth: 2
-     number_sections: false
-     theme: flatly
-     highlight: tango
 date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 params:
   country: Indonesia

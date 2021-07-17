@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 files <- list()
 
 for (i in c(1:16)) {
- files[[i]] <- read.csv(paste("https://raw.githubusercontent.com/yanelyluna/Material-Didactico-SS/main/Ciencia%20de%20Datos/tutoriales/purrr/datas/data_from_", 1989 + i, ".csv", sep = ""))
+ files[[i]] <- read.csv(paste("", 1989 + i, ".csv", sep = ""))
 }
 
 ```

@@ -2,14 +2,6 @@
 title: "GitLab y GitKraken"
 author: "Carlos A. Ar."
 date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
-output:
-   html_document:
-     toc: true
-     toc_float: true
-     toc_depth: 2
-     number_sections: false
-     highlight: tango
-     theme: flatly
 ---
 
 # GitLab

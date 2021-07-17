@@ -1,0 +1,14 @@
+name: Tutorial_Learnr
+title: Tutorial_Learnr
+username:
+account: carlos-arguello
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4394329
+bundleId: 4828132
+url: https://carlos-arguello.shinyapps.io/Tutorial_Learnr/
+when: 1626490639.66473
+lastSyncTime: 1626490639.66473
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Compartir_tutorial.html|Compartir_tutorial.Rmd|Ejemplo.html|estil.css|slidy.html|slidy.Rmd|style.css|tabla_exercise.Rmd|Tutorial Learnr.Rmd|Tutorial_Learnr.html

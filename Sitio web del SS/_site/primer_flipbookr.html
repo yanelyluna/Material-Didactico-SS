@@ -4,7 +4,7 @@
     <title>¿Cómo hacer Flipbooks?</title>
     <meta charset="utf-8" />
     <meta name="author" content="Carlos A. Ar." />
-    <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+    <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
     <link href="site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="site_libs/remark-css-0.0.1/tamu.css" rel="stylesheet" />
     <link href="site_libs/remark-css-0.0.1/tamu-fonts.css" rel="stylesheet" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # ¿Cómo hacer Flipbooks?
 ## Con flipbookr y xaringan
 ### Carlos A. Ar.
-### Última edición 15 de junio del 2021
+### Última edición 16 de julio del 2021
 
 ---
 
@@ -4653,11 +4653,11 @@ __Nota:__ el número de entradas entre los vectores `md` y `md2` debe coincidir.
 count: false
  
 
-.panel1-62921-auto[
+.panel1-71528-auto[
 # Fórmula 1
 ]
  
-.panel2-62921-auto[
+.panel2-71528-auto[
 ## `$$\frac{X_1+X_2+...+X_n}{n}$$`
 ]
 
@@ -4665,11 +4665,11 @@ count: false
 count: false
  
 
-.panel1-62921-auto[
+.panel1-71528-auto[
 # Fórmula 2
 ]
  
-.panel2-62921-auto[
+.panel2-71528-auto[
 ## `$$\frac{1}{n} \sum_{i=1}^{n}X_i$$`
 ]
 
@@ -4677,16 +4677,16 @@ count: false
 count: false
  
 
-.panel1-62921-auto[
+.panel1-71528-auto[
 ### ¿Cuál crees que es mejor?
 ]
  
-.panel2-62921-auto[
+.panel2-71528-auto[
 Son lo mismo, la media muestral.
 ]
 
 &lt;style&gt;
-.panel1-62921-auto {
+.panel1-71528-auto {
   color: black;
   width: 38.6060606060606%;
   hight: 32%;
@@ -4694,7 +4694,7 @@ Son lo mismo, la media muestral.
   padding-left: 1%;
   font-size: 80%
 }
-.panel2-62921-auto {
+.panel2-71528-auto {
   color: black;
   width: 59.3939393939394%;
   hight: 32%;
@@ -4702,7 +4702,7 @@ Son lo mismo, la media muestral.
   padding-left: 1%;
   font-size: 80%
 }
-.panel3-62921-auto {
+.panel3-71528-auto {
   color: black;
   width: NA%;
   hight: 33%;
@@ -4739,7 +4739,7 @@ count: false
 ```
 function (n, mean = 0, sd = 1) 
 .Call(C_rnorm, n, mean, sd)
-&lt;bytecode: 0x000000002e2914e8&gt;
+&lt;bytecode: 0x00000000074f9960&gt;
 &lt;environment: namespace:stats&gt;
 ```
 ]
@@ -4754,15 +4754,15 @@ function (n, mean = 0, sd = 1)
 .panel3-rnorm-auto[
 
 ```
- [1]  0.01769470 -0.51663117 -0.46767294 -1.28431046  0.59415464 -0.23478147
- [7] -1.79717004  1.34431927 -0.87168669 -0.44241767 -1.08891682  0.49957793
-[13] -0.01523908 -0.68460505  1.02658457  0.04054839  0.44825985 -1.43951193
-[19] -0.74852631 -1.12068640 -0.67551998 -0.44489777  0.67270700 -1.40283632
-[25]  0.06575820 -1.81897463  1.03645149  0.06671013 -0.84824504  0.91455786
-[31] -0.45185447  0.77779483 -0.05238178  0.37870695 -1.76615245  0.58272405
-[37] -0.74784840  0.36314035  0.48691833  0.01199106  0.18248029  0.88059296
-[43] -1.71218206 -1.87175021 -1.22415242  1.13897542 -0.91168786  0.27918910
-[49] -0.11821113  1.38128028
+ [1] -1.53147884  1.75166959 -0.41882860  0.13585317 -0.49435011  1.41166016
+ [7]  0.03562314  1.92860023  1.53909251 -1.24460649  1.30823105 -0.39640682
+[13] -0.78292370 -0.52375592 -1.17286749 -0.33130001 -1.29103472 -1.44679700
+[19]  0.16170908  1.43641497  0.84370559 -0.88190602  1.10546986 -1.02006868
+[25]  0.73895122 -0.14344446 -0.29824149  0.05437185 -0.39506909  1.89324696
+[31]  0.29101814  2.04557854 -0.37894783  0.28911027 -0.85036158 -0.54221805
+[37] -0.41290449 -0.70370288  0.28916620  1.28916097  0.94076266 -0.02061201
+[43]  0.77557886 -0.66791031 -0.11697377 -0.43013544  0.75358343  0.02381247
+[49] -0.91984694  0.25370952
 ```
 ]
 
@@ -4776,7 +4776,7 @@ count: false
 function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x000000002d1672b8&gt;
+&lt;bytecode: 0x0000000005f19bd0&gt;
 &lt;environment: namespace:stats&gt;
 ```
 ]
@@ -4792,7 +4792,7 @@ rnorm(50) %&gt;%
 .panel3-rnorm-auto[
 
 ```
-[1] 1.121021
+[1] 1.066501
 ```
 ]
 

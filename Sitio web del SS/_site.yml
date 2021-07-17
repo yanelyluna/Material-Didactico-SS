@@ -2,9 +2,9 @@ name: "servicio_social"
 navbar:
   title: "Material de Consulta"
   left:
-    - text: "Principal"
+    - text: ""
       href: index.html
-    - text: "Cómo usar este sitio"
+    - text: "Uso del sitio"
       href: como_funciona.html
   right:
     - text: "Documentación"
@@ -15,15 +15,15 @@ navbar:
       - text: Xaringan y Flipbookr
         href: Xaringan-y-Flipbookr.html
       - text: Tutorial Learnr
-        href: https://yanelyluna.shinyapps.io/Tutorial/
-    - text: "Trabajo en equipo"
+        href: https://carlos-arguello.shinyapps.io/Tutorial_Learnr/
+    - text: "Git y más"
       href: about.html
       menu:
       - text: Git y GitHub
         href: Tutorial-de-Git-y-GitHub.html
       - text: GitLab y GitKraken
         href: git_lab_kraken.html
-    - text: "Shiny y Rmd"
+    - text: "Shiny"
       href: about.html
       menu:
       - text: Shiny App
@@ -49,5 +49,9 @@ navbar:
       - text: Teoría del riesgo
         href: https://teoria-del-riesgo.netlify.app/
 output:
-  html_document:
-    theme: flatly
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango

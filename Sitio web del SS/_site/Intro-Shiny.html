@@ -1,519 +1,273 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
 
-<html>
+        <meta name="author" content="Carlos A. Ar." />
+    
+    
+    <title>Intro Shiny</title>
 
-<head>
+        <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+        <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+        <script src="site_libs/navigation-1.1/tabsets.js"></script>
+        <link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+        <script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+        <link href="site_libs/downcute-0.1/downcute.css" rel="stylesheet" />
+        <link href="site_libs/downcute-0.1/downcute_fonts_embed.css" rel="stylesheet" />
+        <script src="site_libs/downcute-0.1/downcute.js"></script>
+        <script src="site_libs/prism-1.22/prism.js"></script>
+    
+    
+    
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
 
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <!-- code folding -->
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
 
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
 
-<meta name="author" content="Carlos A. Ar." />
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
 
-
-<title>Intro Shiny</title>
-
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
     </style>
-
-
-<style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
-</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  background-color: #f8f8f8; }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
-
-
-
-
-
-
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-img {
-  max-width:100%;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-pre code {
-  padding: 0;
-}
-</style>
-
-
-<style type="text/css">
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
-}
-</style>
-
-<script type="text/javascript">
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
-});
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: transparent;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<!-- code folding -->
-
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
-
+    
 </head>
 
-<body>
+<body class="preload">
 
+   	
+               <!-- downcute start -->   
+   <div id="docute" class="Root">
+     <div class="Page layout-narrow">
+      <div class="Wrap">
+        <div class="Sidebar">
+          <div class="SidebarItems" id="toc">
+            <ul>
+            <li><a href="#qué-es-una-shinnyapp">¿Qué es una ShinnyApp?</a></li>
+            <li><a href="#crear-una-shiny-app">Crear una Shiny app</a></li>
+            <li><a href="#partes-de-una-shiny">Partes de una Shiny</a>
+            <ul>
+            <li><a href="#interfás-de-usuario-ui">Interfás de Usuario (ui)</a></li>
+            <li><a href="#servidor-server">Servidor (server)</a></li>
+            <li><a href="#acomodar-la-shiny">Acomodar la Shiny</a></li>
+            <li><a href="#inputs">Inputs</a></li>
+            <li><a href="#outputs">Outputs</a></li>
+            </ul></li>
+            <li><a href="#ejemplos-de-shiny-apps">Ejemplos de shiny apps</a></li>
+            <li><a href="#personalizar-la-shiny">Personalizar la Shiny</a></li>
+            <li><a href="#reactives-de-shiny">Reactives de Shiny</a>
+            <ul>
+            <li><a href="#observes-vs-reactives">Observes vs Reactives</a></li>
+            </ul></li>
+            <li><a href="#ejemplos-de-apps-4">Ejemplos de apps (4)</a>
+            <ul>
+            <li><a href="#añadir-mensajes-de-error.">Añadir mensajes de error.</a></li>
+            </ul></li>
+            </ul>
+          </div>
+          <div data-position="sidebar:post-end" class="InjectedComponents"><div class="dark-theme-toggler"><div class="toggle"><div class="toggle-track"><div class="toggle-track-check"><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABlJJREFUWAm1V3tsFEUcntnXvXu0tBWo1ZZHihBjCEWqkHiNaMLDRKOtQSKaiCFKQtS/SbxiFCHGCIkmkBSMwZhQNTFoQZD0DFiwtCDFAkdDqBBBKFj63rvdnfH7zfVo5aFBj0l2Z/dm5vd98/0es8dYjlpr62azufnDQNZcU1PciMfjWvb9rvZSMk4Ayfb36pLH13189GC8LAtIRLLPt+pzwrCuLq4ISEv/gHmitrAwfPbEkXc/ad4dL6iujrvyX0jcitgd/yZlZqftP6995Mr5TVLa22Tn8XVX2g/XLSRjUu7Q79jonS7I7hS7/0oOb5VyqF52n98oj7esXX07EjlxwXWisRmSnm3b29TTM8iYrjmFBWExubxwY/uhNas4r/WySl1fc5cetDMd7ydl+lMJJRw5WC8ud62Xx5rfepzwxgZmbhUYNS5Stvsj4yo2GXJEFBVHWDBkfdbR9HpYBaaUajDnBLKKpl1xRKYcgGtMCqEzTaSnThk/SQT0uJqTqFNBmXMCsZE48DzRZRMBRjv1GHNdk3HBImF9ZUvTyxM40pMKVc4JZBXQOLOFoDeKSxdp6HIQcO4rjYT9fn0pjbz9GLt7BAAODmjSVReXUMFzNW5x5vfxp2mIxZjIuQKJxAmFa+is2DQJJQ0JyBVExNOYcJnPxx/6/utnijmP555ALEagKAGGnGn64QORBjARcIA/yJk7JMJBLRrNtybTvH88KGjCf2jK86bhzmMcwDKFZEQvbIhxFYhChoMWMzU2iWznlIBEVJOsP+1bdX/ALx9l7jApADeDAEcMkE90JnUmmGl4USKQ0xhoW3JB5XY0YrxYWhLwMZZypUyjDGH35AbNwgUGiFBPpuGbHCpAOV1ZGXf2f/taftAv31DyeymN2d1IhAFAwTOmnzF/kKcdh3me7CYCOVNgycju84u8DeVlwfFq9/ZlTfldYrMUjOlrkjkD+rU+WzCROkcEchIDHR011syZW9JHD7y07N6JvhWMpz3pugaTkB6lWFVCKkhck0zzeMp2utq+uHrmfxOgoCO/Z8CXPlEQ1bdH8wgvhSIkEG0ICcQeExIFGdimjvKka7btJFZuaXOammIGKUCFQ53j9EN1dYKWqHf0t2w407W2tgs6h89ZnImjB55flh81tt9XirjjDuSl+oIPRQ0iWPgNZ5GqTqbBe3vSzEl5n5PhWKwocyR2HlqYN61qV18WjYjE8JLARZPQsUSim8foIRYTlGr02Ly7piASFRtKJ4VfieYhxdS2JcDVMN6xVOKZyrCGm8b108lrLRVzvptLH7IoEFLFANes6KnDi+uxfmvFnF17oALq5u1agu3/YfHkcSFzeSggV5eXRfIB7CHNcO5SUI+Ih5Ir7f4MAV9IqdFzdZgNpZw1Gcs1mNvgGbTbqQ9/cz7ZuuhgyYRQ49ljTyWHhr2DwpNHHFf+5gnWZ3Bharo+0TD5dNMw5vv9RlVpSRDHK4TlnoukhtYApuOHejSZQuo5g/A9BysdKRCyLl6062fN37OXMDlvUJtUrtmxo0avrW3wTrYs3jJ9RvRVChrmSmanPMpX2OXMsmDGh6AiEIwBAlvkOqIdBy+8JyAz8pz7QxiDth4KDy5uAlwzrWTnwC8Vc4KVAMZ3YUZ+IqoIjP3h5KFFX1ZMy3uW+7RhEDHgTi0zC9rS7uhPCDiNrGFyqBeERtKN/B0YlyFCkw0NJ5C0Ojv7zvT1a1WV1TuvZDdL4NTgB7CASYpsen6gqvG5jmTf5qHedADgkBl3D0nkSgNhZACDyi0FUKZRr3IdRjgN4WPPoFMIIegIK3mqd38fS80mcJKelM4szNyzZtQbkchGePuBRS8Eg9pHU8ojRQpSqs+ajAIwTjjUMQ/nvTNM0kicwYxZIYMh/891DYi+fvedB+c1xsm4lDU6ya+Axtz+RiAzEVYbajQOpq17F0R9QevNcEhfcU+xvyQQUalGJBSesqOkgPQ4YNyUZL9fSvUPDjoNAwN8/dwFjaczNkc3ptaMud1EIDtGcmXTcefO2cGSvKIFfp/2JIJxlq7xEl3nVPM4fDeIbPkD16/ptNc0bDu7qxbsu0R2JGywWMIjF2ft3tjfloAyQAGXiOn8hrqwbVvMXzaO+QeHXP6nF0wvX74Hf4NGG5GPjSlYoyM3P/0FbCT6zvM/yYoAAAAASUVORK5CYII=" role="presentation" style="pointer-events: none;" width="16" height="16"></div> <div class="toggle-track-x"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABwNJREFUWAmtV1tsFFUY/s6Z2d22zLYlZakUCRVaQcqlWIiCiS1gTEB9UAO+GR9En3iQGI0xJiSiRB98MjEq8cEQTSBeHhQM0V7whtEGDWC90BYitxahtNtu25058/v/ZzvLbilawJNM5+yZ89+//1LgJhYRNLW1uDfBAvpGiIk2O5auvfFxqIH3ZJ8/u06GN6Z9+wVl5SjcD1IbZa/UPkPyYl2uR4dreoD2bnbYxTlBBRytkHXtAREphP5KuH4lddx9h70yxX05t7yYXwGb6W8nx1jibpl2rFlGBxcG9M18okOrn7Bnk/BAO/4bI0UeEE1zjBp3UmvjOxJXJdaKN/ZiIu4tOZrAb4aTdZAZArKmWeiiJZ6jt5tiagdCS9+6cgO1Ne6Mvhe+ixTIfyDVhipnK9p+P0Edqx9RW/YZtQVGmOLChRxNNlyPsTEgPQKMB3dbEHa0h1awYmQ83enTd2vmUtvKd1Glv2RkzBb+kZGRrKtjzG60Wguhd/lJZBingbcfWWe72vjT75bJDrhYtvA0hrurETDr5HyF2Knb1MM4ab//xIoOqueA0edRnkkinTyJdYvqLFDZO4zUPFCvVoDjJq4T7TE61IWh4x5KqxX5KVKkX8WZ/t2ov2cb3MHt4dhIyOxIJxJOOF6xRx/99BksXLoecWcXytILMNBDqKpnGZWPquYfPxY8iXGR9fK+SgFrgcRPXPjVqhehL+3EmZ5RGJQi1QBU8TPThQnOQzm+5UXGIcetUeEAfP13VwzpI+w1jGJWdSliNfvVhiMPiOsllJag4M/UGHiqM6dlBb2OTLKHHV6KkvogrJ4XhBWniWK/Gp1MQyf93FOeUXKmKk/FzJxbQtKLjFXYT4USupy8fQVir2ynVEBiZMG0qtOHMS/AW4Gwrk7BG3C1F0B5nqNKE0CME4MfVRLPnXkBKe+ipvoFhNQywOhdghvLi0F8ReyVXV4BKTBRbbe5f64zR/DHsdZw1hJfeWlHl/GNRJzDxrd5m192z78TMaVnKELZoINZS4BzQ7vtnZljSnha/pPCbkuxzXcupYwI5tIeCpGc0Yp9tWHZQy/rmYhRfNgg4bHJBYLzGkxsRJF4XKlE2jBOHNSv3kY7Tj6vthzPFl61BrYwqFlmEQhtSVXmLiksxLmtRgYXI1ULU61JJ4eVKmG3/5sCVgpbMT6OMJ2E08/29Xf3w6v4FnHdCjfWgXu/O8Z5mLdCkeRs2khHe1DqOtQwbHWTAnM5S2HNmhALYo5KjkPFrMMKjZl6HxhWIAb0BqE+/73GrBRQUsKYiBu4JX8ycI6wtw+i5ef3NZpsrKVSHYCP37jwGDgeE1SA0S/xtl5SU2fs1ApEp0qTLVRjgyycDSsLHMSwmFltZMStR3uLLg6BdLhDa5dC6ryU2pHBe1BVO9tUcwfitJt2CLJZUHoG6T7Op75u0IyK31TCPcwFqgPk/KCaD3dFOuZBCO7xvCT/j048b3I3c7F2+WuOW7qdgkucFYlcQ4qop3yzTX7WaKfOCccye3Ts1Etq0+a/BHCF1yPgF3tAUkR6OrtGmo6gl94qqcXKh3rDyrOkPa58URoWcov2Mo6M+0QjrqKB+b7++oMa9Sz+ZkM0mie6aAtnGUvhmxaI+TogPOSQedgWioGSHFLn3v4kLh4HRspNmOGv41k+55siLFp2z6xYeJjhljFcbmxJlr4ga06TbevSByz/glQq4BJx46/c+237PbBqEYKxX3HpmKZEnQnr65X20hqJYaNcLoFOLiJk2LuBbyg7Q0OEn+hm0P3honxFD6rdxYorKpeIoi4YSSvyQHQIbM5t4+YNxLj/OxhVOOE4585qGpjnq+wSx6Q9CtNxTjd5klB+g6Mv36r0+b9cZFi44WYkHdG2ZWb3TtOUOXyVAlKlpGvJIAJ3eBMyfYS5C0qRZGtC85j+4sOasDe9xznPYezhhO/2Q6eP2fSOvYHOjtuQ1a9Q1VKynVDaMc8E0tptdxUsTFpFIYjcZKcbnoaQTNdiqCwNlL4G7oziSqGnT1ALf34vhk4R5zU3qYV9ONp9K88RtouShE68JwaU8dFw5W617shWa9ykeaBIn2hcsvPgL00k45QdTCZuSVcTRNs+8fnyLvooQfR5iujAnR9bxfY2xOVOxFS8SK3Le0l48VyYu1M8HRe5JD8wKPTjYnifaK3Wfn/GChYQ8ZAi6WRzWgqLV5YrsVLnZaVSoXU1g9gOIDwFySiGi+Zdrnzr7J3r+SMuszlcQCRn8lNGcTuSy2jOI7o9mxjZo+vR3ej3tN+ifRSOyUTS0+VMOid93cCubeiy/6TImS0QxRSCq2vxKr45zV+FQnjWH6D2xg+E9EatLcLAdHTgtGGD80D6jM0+aOl4wJgO/f96R2aJKCQ3yvgftRhdFMOpd6oAAAAASUVORK5CYII=" role="presentation" style="pointer-events: none;" width="16" height="16"></div></div> <div class="toggle-thumb"></div></div> <input type="checkbox" aria-label="Switch between Dark and Default theme" class="toggler-screen-reader-only"></div></div>
+        </div>
+        <div class="Main">
+          <div class="Content" id="content"> 
+   
+   
+      
+      <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Material de Consulta</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>
+        <a href="index.html"></a>
+      </li>
+      <li>
+        <a href="como_funciona.html">Uso del sitio</a>
+      </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          Documentación
+           
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="R-Markdown.html">R Markdown</a>
+          </li>
+          <li>
+            <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
+          </li>
+          <li>
+            <a href="https://carlos-arguello.shinyapps.io/Tutorial_Learnr/">Tutorial Learnr</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          Git y más
+           
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="Tutorial-de-Git-y-GitHub.html">Git y GitHub</a>
+          </li>
+          <li>
+            <a href="git_lab_kraken.html">GitLab y GitKraken</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          Shiny
+           
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="Intro-Shiny.html">Shiny App</a>
+          </li>
+          <li>
+            <a href="Shiny-Dashboards.html">Shiy Dashboard</a>
+          </li>
+          <li>
+            <a href="Flexdashboards.html">Flexdashboard</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          Ejemplos
+           
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="Ejemplo-R-Markdown.html">Rmarkdown</a>
+          </li>
+          <li>
+            <a href="primer_flipbookr.html">Flipbookr</a>
+          </li>
+          <li>
+            <a href="primer_flexdashboard.html">Flexdashboard</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          Material académico
+           
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="https://ciencia-de-datos.netlify.app/">Ciencia de Datos</a>
+          </li>
+          <li>
+            <a href="https://teoria-del-riesgo.netlify.app/">Teoría del riesgo</a>
+          </li>
+        </ul>
+      </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+      </div><!--/.navbar -->
+        
+      <h1 class="title">Intro Shiny</h1>
+      
+      <p class="authors">
+           <span class="glyphicon glyphicon-user"></span> Carlos A. Ar.
+      </p>
+         <p class="date"><span class="glyphicon glyphicon-calendar"></span> Última edición 16 de julio del 2021</p>
+           
 
-<div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">Material de Consulta</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Principal</a>
-</li>
-<li>
-  <a href="como_funciona.html">Cómo usar este sitio</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Documentación
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="R-Markdown.html">R Markdown</a>
-    </li>
-    <li>
-      <a href="Xaringan-y-Flipbookr.html">Xaringan y Flipbookr</a>
-    </li>
-    <li>
-      <a href="https://yanelyluna.shinyapps.io/Tutorial/">Tutorial Learnr</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Trabajo en equipo
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Tutorial-de-Git-y-GitHub.html">Git y GitHub</a>
-    </li>
-    <li>
-      <a href="git_lab_kraken.html">GitLab y GitKraken</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Shiny y Rmd
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Intro-Shiny.html">Shiny App</a>
-    </li>
-    <li>
-      <a href="Shiny-Dashboards.html">Shiy Dashboard</a>
-    </li>
-    <li>
-      <a href="Flexdashboards.html">Flexdashboard</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Ejemplos
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Ejemplo-R-Markdown.html">Rmarkdown</a>
-    </li>
-    <li>
-      <a href="primer_flipbookr.html">Flipbookr</a>
-    </li>
-    <li>
-      <a href="primer_flexdashboard.html">Flexdashboard</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Material académico
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://ciencia-de-datos.netlify.app/">Ciencia de Datos</a>
-    </li>
-    <li>
-      <a href="https://teoria-del-riesgo.netlify.app/">Teoría del riesgo</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
-
-<div id="header">
-
-
-
-<h1 class="title toc-ignore">Intro Shiny</h1>
-<h4 class="author">Carlos A. Ar.</h4>
-<h4 class="date">Última edición 15 de junio del 2021</h4>
-
-</div>
-
-
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div class="page-content has-page-title">
 <div id="qué-es-una-shinnyapp" class="section level1">
 <h1>¿Qué es una ShinnyApp?</h1>
 <p>Es una aplicación que se genera con ayuda del paquete “Shiny” de R. Estas aplicaciones, como otras, permiten que el usuario interactúe con ella (ingresando algo <strong>inputs</strong>) y teniendo una respuesta (<strong>outputs</strong>).</p>
@@ -542,10 +296,10 @@ div.tocify {
 <!-- -->
 <pre><code>![](shiny5.png){width=&quot;542&quot;}</code></pre>
 <p>Ejemplo:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(<span class="st">&quot;Hola, mono&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){}</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>library(shiny)
+ui &lt;- fluidPage(&quot;Hola, mono&quot;)
+server &lt;- function(input, output, session){}
+shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div id="partes-de-una-shiny" class="section level1">
 <h1>Partes de una Shiny</h1>
@@ -658,137 +412,137 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Hacer una pregunta <em>sin respuesta</em></li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textInput</span>(<span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;Ingresa un nombre:&quot;</span>),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">&quot;pregunta&quot;</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>pregunta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;¿Te gustaría aprender Shiny,&quot;</span>, input<span class="sc">$</span>nombre,<span class="st">&quot;?&quot;</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage(
+  textInput(&quot;nombre&quot;, &quot;Ingresa un nombre:&quot;),
+  textOutput(&quot;pregunta&quot;)
+)
+
+server &lt;- function(input, output){
+  output$pregunta &lt;- renderText({
+    paste(&quot;¿Te gustaría aprender Shiny,&quot;, input$nombre,&quot;?&quot;)
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Poner un nombre y que me regrese un gráfico</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>( <span class="co">#Lo que le aparecerá al usuario</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;¿Qué tan famoso es tu nombre?&quot;</span>), <span class="co">#Título de la app</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(  <span class="co">#Abajo del título qué hacemos</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>( <span class="co">#Dónde se coloca el texto</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textInput</span>(<span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;Ingresa tu nombre&quot;</span>, <span class="st">&quot;David&quot;</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>( <span class="co">#Dónde se coloca el plot</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">&quot;tendencia&quot;</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>tendencia <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({ <span class="co">#Creamos un output que se llame tendencia</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    data_name <span class="ot">&lt;-</span> <span class="fu">subset</span>(babynames, name <span class="sc">==</span> input<span class="sc">$</span>nombre) <span class="co">#elegimos los datos</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                                                        <span class="co">#según el input</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(data_name)<span class="sc">+</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> prop, <span class="at">color =</span> sex))  <span class="co">#generamos el gráfico</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                                                      <span class="co">#que será el output</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage( #Lo que le aparecerá al usuario
+  
+  titlePanel(&quot;¿Qué tan famoso es tu nombre?&quot;), #Título de la app
+
+  sidebarLayout(  #Abajo del título qué hacemos
+    
+    sidebarPanel( #Dónde se coloca el texto
+      textInput(&quot;nombre&quot;, &quot;Ingresa tu nombre&quot;, &quot;David&quot;)
+    ),
+    
+    mainPanel( #Dónde se coloca el plot
+      plotOutput(&quot;tendencia&quot;)
+    )
+  )
+)
+
+server &lt;- function(input, output){
+  
+  output$tendencia &lt;- renderPlot({ #Creamos un output que se llame tendencia
+  
+    data_name &lt;- subset(babynames, name == input$nombre) #elegimos los datos
+                                                        #según el input
+    ggplot(data_name)+
+      geom_line(aes(x = year, y = prop, color = sex))  #generamos el gráfico
+                                                      #que será el output
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Dar opciones de respuesta a una pregunta.</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>( <span class="co">#Lo que le aparecerá al usuario</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textInput</span>(<span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;Escribe tu nombre&quot;</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(<span class="st">&quot;animal&quot;</span>, <span class="st">&quot;¿Perros o gatos?&quot;</span>, <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;perros&quot;</span>, <span class="st">&quot;gatos&quot;</span>)),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">&quot;idText&quot;</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">&quot;idRespuesta&quot;</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>idText <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">&quot;¿Prefieres perros o gatos,&quot;</span>, input<span class="sc">$</span>nombre, <span class="st">&quot;?&quot;</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>idRespuesta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">&quot;¡Prefiero a los,&quot;</span>, input<span class="sc">$</span>animal, <span class="st">&quot;!&quot;</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage( #Lo que le aparecerá al usuario
+  textInput(&quot;nombre&quot;, &quot;Escribe tu nombre&quot;),
+  selectInput(&quot;animal&quot;, &quot;¿Perros o gatos?&quot;, choices = c(&quot;perros&quot;, &quot;gatos&quot;)),
+  textOutput(&quot;idText&quot;),
+  textOutput(&quot;idRespuesta&quot;)
+)
+
+server &lt;- function(input, output, session){
+    output$idText &lt;- renderText({
+      paste(&quot;¿Prefieres perros o gatos,&quot;, input$nombre, &quot;?&quot;)
+    })
+    output$idRespuesta &lt;- renderText({
+      paste(&quot;¡Prefiero a los,&quot;, input$animal, &quot;!&quot;)
+    })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Top 10 de nombres</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;¿Cuál nombre es más famoso?&quot;</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(<span class="st">&#39;sexo&#39;</span>, <span class="st">&#39;Selecciona el sexo&#39;</span>, <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>)),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">&quot;ano&quot;</span>, <span class="st">&quot;Elige el año&quot;</span>,<span class="at">value =</span> <span class="dv">1900</span>, <span class="at">min =</span> <span class="dv">1900</span>, <span class="at">max =</span> <span class="dv">2010</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">&#39;plot_top_10&#39;</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">DTOutput</span>(<span class="st">&quot;table_top_10_names&quot;</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot_top_10 <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    top_10_names <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span> </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(sex <span class="sc">==</span> input<span class="sc">$</span>sexo) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">==</span> input<span class="sc">$</span>ano) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">top_n</span>(<span class="dv">10</span>, prop)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(top_10_names, <span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#263e63&quot;</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  top_10_names <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    top_10_names <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span> </span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(sex <span class="sc">==</span> input<span class="sc">$</span>sex) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">==</span> input<span class="sc">$</span>year) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">top_n</span>(<span class="dv">10</span>, prop)}</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>table_top_10_names <span class="ot">&lt;-</span> DT<span class="sc">::</span><span class="fu">renderDT</span>({<span class="fu">top_10_names</span>()})</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage(
+  titlePanel(&quot;¿Cuál nombre es más famoso?&quot;),
+  selectInput(&#39;sexo&#39;, &#39;Selecciona el sexo&#39;, choices = c(&quot;F&quot;, &quot;M&quot;)),
+  sliderInput(&quot;ano&quot;, &quot;Elige el año&quot;,value = 1900, min = 1900, max = 2010),
+  plotOutput(&#39;plot_top_10&#39;),
+  DT::DTOutput(&quot;table_top_10_names&quot;)
+)
+
+server &lt;- function(input, output, session){
+  output$plot_top_10 &lt;- renderPlot({
+    top_10_names &lt;- babynames %&gt;% 
+      filter(sex == input$sexo) %&gt;% 
+      filter(year == input$ano) %&gt;% 
+      top_n(10, prop)
+      ggplot(top_10_names, aes(x = name, y = prop)) +
+        geom_col(fill = &quot;#263e63&quot;)
+  })
+  top_10_names &lt;- function(){
+    top_10_names &lt;- babynames %&gt;% 
+      filter(sex == input$sex) %&gt;% 
+      filter(year == input$year) %&gt;% 
+      top_n(10, prop)}
+  output$table_top_10_names &lt;- DT::renderDT({top_10_names()})
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Con Tablas interactivas (<strong>DT</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">DTOutput</span>(<span class="st">&quot;babynames_table&quot;</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>babynames_table <span class="ot">&lt;-</span> DT<span class="sc">::</span><span class="fu">renderDT</span>({</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    babynames <span class="sc">%&gt;%</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">sample_frac</span>(.<span class="dv">1</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage(
+  DT::DTOutput(&quot;babynames_table&quot;)
+)
+
+server &lt;- function(input, output){
+  output$babynames_table &lt;- DT::renderDT({
+    babynames %&gt;%
+      dplyr::sample_frac(.1)
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Plot Interactivo</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;Select Name&#39;</span>, <span class="fu">head</span>(<span class="fu">unique</span>(babynames<span class="sc">$</span>name)), <span class="dv">10</span>), </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">&#39;plot_trendy_names&#39;</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  plot_trends <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>     babynames <span class="sc">%&gt;%</span> </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(name <span class="sc">==</span> input<span class="sc">$</span>name) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>()}</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot_trendy_names <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_trends</span>()</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage(
+  selectInput(&#39;name&#39;, &#39;Select Name&#39;, head(unique(babynames$name)), 10), 
+  plotly::plotlyOutput(&#39;plot_trendy_names&#39;)
+)
+
+server &lt;- function(input, output, session){
+  plot_trends &lt;- function(){
+     babynames %&gt;% 
+      filter(name == input$name) %&gt;% 
+      ggplot(aes(x = year, y = n)) +
+      geom_col()}
+  
+  output$plot_trendy_names &lt;- plotly::renderPlotly({
+    plot_trends()
+  })
+}
+
+
+
+shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div id="personalizar-la-shiny" class="section level1">
 <h1>Personalizar la Shiny</h1>
@@ -820,91 +574,91 @@ mainPanel(
 <ol style="list-style-type: decimal">
 <li>Una Shiny más bonita</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">111</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Histogramas de diversas distribuciones&quot;</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme =</span> shinythemes<span class="sc">::</span><span class="fu">shinytheme</span>(<span class="st">&quot;flatly&quot;</span>),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(<span class="fu">sliderInput</span>(<span class="st">&quot;cortes&quot;</span>, <span class="st">&quot;# Cortes&quot;</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>, <span class="at">value =</span> <span class="dv">30</span>),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">selectInput</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;Tamaño de la muestra&quot;</span>, <span class="at">choices =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="at">by =</span> <span class="dv">100</span>) )</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                 ),</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabsetPanel</span>(</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">&quot;Normal&quot;</span>, plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">&quot;h_normal&quot;</span>)),   <span class="co">#Pestaña 1</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">&quot;Exponencial&quot;</span>, plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">&quot;h_exp&quot;</span>)), <span class="co">#Pestaña 2</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">&quot;Gamma&quot;</span>, plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">&quot;h_gam&quot;</span>)),       <span class="co">#Pestaña 3</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">&quot;Poisson&quot;</span>, plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">&quot;h_pois&quot;</span>))     <span class="co">#Pestaña 4</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>h_normal <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="fu">rnorm</span>(input<span class="sc">$</span>n)), <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(input<span class="sc">$</span>n))) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>cortes, <span class="at">fill =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>h_exp <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="fu">rexp</span>(input<span class="sc">$</span>n, <span class="dv">4</span>)), <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">rexp</span>(input<span class="sc">$</span>n, <span class="dv">4</span>))) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>cortes, <span class="at">fill =</span> <span class="st">&quot;pink&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>h_gam <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="fu">rgamma</span>(input<span class="sc">$</span>n, <span class="dv">3</span>, <span class="dv">4</span>)), <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">rgamma</span>(input<span class="sc">$</span>n, <span class="dv">3</span>, <span class="dv">4</span>))) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>cortes, <span class="at">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>h_pois <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="fu">rpois</span>(input<span class="sc">$</span>n, <span class="dv">2</span>)), <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">rpois</span>(input<span class="sc">$</span>n, <span class="dv">2</span>))) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>cortes, <span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>set.seed(111)
+
+ui &lt;- fluidPage(
+  titlePanel(&quot;Histogramas de diversas distribuciones&quot;),
+  theme = shinythemes::shinytheme(&quot;flatly&quot;),
+  sidebarLayout(
+    sidebarPanel(sliderInput(&quot;cortes&quot;, &quot;# Cortes&quot;, min = 0, max = 100, value = 30),
+                 selectInput(&quot;n&quot;, &quot;Tamaño de la muestra&quot;, choices = seq(0, 1000, by = 100) )
+                 ),
+    mainPanel(
+      tabsetPanel(
+        tabPanel(&quot;Normal&quot;, plotly::plotlyOutput(&quot;h_normal&quot;)),   #Pestaña 1
+        tabPanel(&quot;Exponencial&quot;, plotly::plotlyOutput(&quot;h_exp&quot;)), #Pestaña 2
+        tabPanel(&quot;Gamma&quot;, plotly::plotlyOutput(&quot;h_gam&quot;)),       #Pestaña 3
+        tabPanel(&quot;Poisson&quot;, plotly::plotlyOutput(&quot;h_pois&quot;))     #Pestaña 4
+      )
+    )
+  )
+)
+
+server &lt;- function(input, output, session){
+  output$h_normal &lt;- plotly::renderPlotly({
+    ggplot(data.frame(rnorm(input$n)), aes(x = rnorm(input$n))) + geom_histogram(bins = input$cortes, fill = &quot;orange&quot;) + theme_minimal()
+  })
+  
+  output$h_exp &lt;- plotly::renderPlotly({
+    ggplot(data.frame(rexp(input$n, 4)), aes(x = rexp(input$n, 4))) + geom_histogram(bins = input$cortes, fill = &quot;pink&quot;) + theme_minimal()
+  })
+  
+  output$h_gam &lt;- plotly::renderPlotly({
+    ggplot(data.frame(rgamma(input$n, 3, 4)), aes(x = rgamma(input$n, 3, 4))) + geom_histogram(bins = input$cortes, fill = &quot;green&quot;) + theme_minimal()
+  })
+  
+  output$h_pois &lt;- plotly::renderPlotly({
+    ggplot(data.frame(rpois(input$n, 2)), aes(x = rpois(input$n, 2))) + geom_histogram(bins = input$cortes, fill = &quot;yellow&quot;) + theme_minimal()
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Una shiny bonita</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#El UI o interfas con el usuario es &quot;La shiny&quot; en el sentido que es lo único que ve y toca el usuario. Por eso aquí es donde debemos hacer que se vea bonito.</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>( <span class="co"># Lo que esté aquí se verá por el usuario</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Nombres más famosos de la historia&quot;</span>),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>( <span class="co"># Permite dividir la pantalla en dos lados</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(<span class="co"># Aquí irán cosas _en la izquierda_</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;Select Name&#39;</span>,<span class="fu">head</span>(<span class="fu">unique</span>(babynames<span class="sc">$</span>name)), <span class="dv">15</span>)),</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># El Input tipo select es lo que el usuario &quot;elige&quot; dentro de las opc.</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(  <span class="co"># Aquí irán las cosas de la derecha </span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tabsetPanel</span>( <span class="co">#Para hacer pestañas dentro del lado derecho</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Primer pestaña</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabPanel</span>(<span class="st">&quot;Histograma&quot;</span>,plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">&#39;plot_trendy_names&#39;</span>)),</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Segunda pestaña</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabPanel</span>(<span class="st">&quot;Información&quot;</span>,DT<span class="sc">::</span><span class="fu">DTOutput</span>(<span class="st">&#39;table_trendy_names&#39;</span>))</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>     )</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Digamos que el server es para mover lo que el usuario le pique y dar </span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#una salida según la entrada</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Función auxiliar para manejar más rápido el input</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>      plot_trends <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>         babynames <span class="sc">%&gt;%</span> </span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(name <span class="sc">==</span> input<span class="sc">$</span>name) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_col</span>()</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Siempre aparecen los outputs$NOMBRE_OUTPUT que vienen </span></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>      <span class="co">#renderizados (con algú tipo de render)</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot_trendy_names <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_trends</span>()</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Este es el otro output</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>table_trendy_names <span class="ot">&lt;-</span> DT<span class="sc">::</span><span class="fu">renderDT</span>({</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    babynames <span class="sc">%&gt;%</span> </span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(name <span class="sc">==</span> input<span class="sc">$</span>name)</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>#El UI o interfas con el usuario es &quot;La shiny&quot; en el sentido que es lo único que ve y toca el usuario. Por eso aquí es donde debemos hacer que se vea bonito.
+
+ui &lt;- fluidPage( # Lo que esté aquí se verá por el usuario
+  titlePanel(&quot;Nombres más famosos de la historia&quot;),
+  sidebarLayout( # Permite dividir la pantalla en dos lados
+    sidebarPanel(# Aquí irán cosas _en la izquierda_
+    selectInput(&#39;name&#39;, &#39;Select Name&#39;,head(unique(babynames$name)), 15)),
+    # El Input tipo select es lo que el usuario &quot;elige&quot; dentro de las opc.
+    mainPanel(  # Aquí irán las cosas de la derecha 
+     tabsetPanel( #Para hacer pestañas dentro del lado derecho
+      #Primer pestaña
+      tabPanel(&quot;Histograma&quot;,plotly::plotlyOutput(&#39;plot_trendy_names&#39;)),
+      #Segunda pestaña
+      tabPanel(&quot;Información&quot;,DT::DTOutput(&#39;table_trendy_names&#39;))
+     )
+    )
+  )
+)
+
+#Digamos que el server es para mover lo que el usuario le pique y dar 
+#una salida según la entrada
+server &lt;- function(input, output, session){
+    #Función auxiliar para manejar más rápido el input
+      plot_trends &lt;- function(){
+         babynames %&gt;% 
+          filter(name == input$name) %&gt;% 
+          ggplot(aes(x = year, y = n)) +
+          geom_col()
+      }
+  #Siempre aparecen los outputs$NOMBRE_OUTPUT que vienen 
+      #renderizados (con algú tipo de render)
+  output$plot_trendy_names &lt;- plotly::renderPlotly({
+    plot_trends()
+  })
+  
+  #Este es el otro output
+  output$table_trendy_names &lt;- DT::renderDT({
+    babynames %&gt;% 
+      filter(name == input$name)
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 </div>
 </div>
 <div id="reactives-de-shiny" class="section level1">
@@ -926,91 +680,91 @@ mainPanel(
 </ol>
 <div id="ejemplos-1" class="section level3">
 <h3>Ejemplos:</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  rval_bmi <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>weight<span class="sc">/</span>(input<span class="sc">$</span>height<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>bmi <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;Your BMI is&quot;</span>, <span class="fu">round</span>(<span class="fu">rval_bmi</span>(), <span class="dv">1</span>))</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>bmi_range <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      bmi_status <span class="ot">&lt;-</span> <span class="fu">cut</span>(<span class="fu">rval_bmi</span>(), </span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">18.5</span>, <span class="fl">24.9</span>, <span class="fl">29.9</span>, <span class="dv">40</span>),</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;underweight&#39;</span>, <span class="st">&#39;healthy&#39;</span>, <span class="st">&#39;overweight&#39;</span>, <span class="st">&#39;obese&#39;</span>)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;You are&quot;</span>, bmi_status)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&#39;BMI Calculator&#39;</span>),</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;Enter your height in meters&#39;</span>, <span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;weight&#39;</span>, <span class="st">&#39;Enter your weight in Kilograms&#39;</span>, <span class="dv">60</span>, <span class="dv">45</span>, <span class="dv">120</span>)</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;bmi&quot;</span>),</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;bmi_range&quot;</span>)</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>server &lt;- function(input, output, session) {
+  rval_bmi &lt;- reactive({
+    input$weight/(input$height^2)
+  })
+  
+  output$bmi &lt;- renderText({
+    paste(&quot;Your BMI is&quot;, round(rval_bmi(), 1))
+  })
+  output$bmi_range &lt;- renderText({
+      bmi_status &lt;- cut(rval_bmi(), 
+      breaks = c(0, 18.5, 24.9, 29.9, 40),
+      labels = c(&#39;underweight&#39;, &#39;healthy&#39;, &#39;overweight&#39;, &#39;obese&#39;)
+    )
+    paste(&quot;You are&quot;, bmi_status)
+  })
+}
+ui &lt;- fluidPage(
+  titlePanel(&#39;BMI Calculator&#39;),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput(&#39;height&#39;, &#39;Enter your height in meters&#39;, 1.5, 1, 2),
+      numericInput(&#39;weight&#39;, &#39;Enter your weight in Kilograms&#39;, 60, 45, 120)
+    ),
+    mainPanel(
+      textOutput(&quot;bmi&quot;),
+      textOutput(&quot;bmi_range&quot;)
+    )
+  )
+)
+
+shinyApp(ui = ui, server = server)</code></pre>
 <p>Podemos hacer un reactive con otro reactive:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  rval_bmi <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>weight<span class="sc">/</span>(input<span class="sc">$</span>height<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CODE BELOW: Add a reactive expression rval_bmi_status to </span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return health status as underweight etc. based on inputs</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  rval_bmi_status <span class="ot">&lt;-</span> <span class="fu">reactive</span>({<span class="fu">cut</span>(<span class="fu">rval_bmi</span>(), </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">18.5</span>, <span class="fl">24.9</span>, <span class="fl">29.9</span>, <span class="dv">40</span>),</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;underweight&#39;</span>, <span class="st">&#39;healthy&#39;</span>, <span class="st">&#39;overweight&#39;</span>, <span class="st">&#39;obese&#39;</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>bmi <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    bmi <span class="ot">&lt;-</span> <span class="fu">rval_bmi</span>()</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;Your BMI is&quot;</span>, <span class="fu">round</span>(bmi, <span class="dv">1</span>), <span class="st">&quot;You are&quot;</span>, <span class="fu">rval_bmi_status</span>())</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>bmi_status <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># MODIFY CODE BELOW: Replace right-hand-side with </span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># reactive expression rval_bmi_status</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rval_bmi_status</span>()</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&#39;BMI Calculator&#39;</span>),</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;Enter your height in meters&#39;</span>, <span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;weight&#39;</span>, <span class="st">&#39;Enter your weight in Kilograms&#39;</span>, <span class="dv">60</span>, <span class="dv">45</span>, <span class="dv">120</span>)</span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;bmi&quot;</span>),</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;bmi_status&quot;</span>)</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>server &lt;- function(input, output, session) {
+  rval_bmi &lt;- reactive({
+    input$weight/(input$height^2)
+  })
+  # CODE BELOW: Add a reactive expression rval_bmi_status to 
+  # return health status as underweight etc. based on inputs
+  rval_bmi_status &lt;- reactive({cut(rval_bmi(), 
+      breaks = c(0, 18.5, 24.9, 29.9, 40),
+      labels = c(&#39;underweight&#39;, &#39;healthy&#39;, &#39;overweight&#39;, &#39;obese&#39;)
+    )
+  })
+    
+  output$bmi &lt;- renderText({
+    bmi &lt;- rval_bmi()
+    paste(&quot;Your BMI is&quot;, round(bmi, 1), &quot;You are&quot;, rval_bmi_status())
+  })
+  output$bmi_status &lt;- renderText({
+    # MODIFY CODE BELOW: Replace right-hand-side with 
+    # reactive expression rval_bmi_status
+   rval_bmi_status()
+  })
+}
+ui &lt;- fluidPage(
+  titlePanel(&#39;BMI Calculator&#39;),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput(&#39;height&#39;, &#39;Enter your height in meters&#39;, 1.5, 1, 2),
+      numericInput(&#39;weight&#39;, &#39;Enter your weight in Kilograms&#39;, 60, 45, 120)
+    ),
+    mainPanel(
+      textOutput(&quot;bmi&quot;),
+      textOutput(&quot;bmi_status&quot;)
+    )
+  )
+)
+
+shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div id="observes-vs-reactives" class="section level2">
 <h2>Observes vs Reactives</h2>
 <p>Primero definamos que uuna observe u observación es una forma de dar a conocer algo al usuario de la app pero que no es parte del progrmaa en sí mismo. Por ejemplo se puede observar una notificación después de que el usuario ingrese su nombre:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textInput</span>(<span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;Por amor, escribe tu nombre&quot;</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observe</span>({</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">showNotification</span>(</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">&quot;Bienvenuti a la app de Shiny,&quot;</span>, input<span class="sc">$</span>nombre)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage(
+  textInput(&quot;nombre&quot;, &quot;Por amor, escribe tu nombre&quot;)
+)
+
+server &lt;- function(input, output, session){
+  observe({
+    showNotification(
+      paste(&quot;Bienvenuti a la app de Shiny,&quot;, input$nombre)
+    )
+  })
+}
+shinyApp(ui = ui, server = server)</code></pre>
 <p>Por ende ya podemos deducir las diferencias.</p>
 <table>
 <caption>Diferencias entre Observes and Reactive expressions</caption>
@@ -1085,129 +839,129 @@ mainPanel(
 <ol style="list-style-type: decimal">
 <li>Detener</li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&#39;BMI Calculator&#39;</span>),</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textInput</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;Enter your name&#39;</span>),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;Enter your height (in m)&#39;</span>, <span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="at">step =</span> <span class="fl">0.1</span>),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;weight&#39;</span>, <span class="st">&#39;Enter your weight (in Kg)&#39;</span>, <span class="dv">60</span>, <span class="dv">45</span>, <span class="dv">120</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;bmi&quot;</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  rval_bmi <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>weight<span class="sc">/</span>(input<span class="sc">$</span>height<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>bmi <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    bmi <span class="ot">&lt;-</span> <span class="fu">rval_bmi</span>()</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;Hi&quot;</span>, <span class="fu">isolate</span>({input<span class="sc">$</span>name}), <span class="st">&quot;. Your BMI is&quot;</span>, <span class="fu">round</span>(bmi, <span class="dv">1</span>))</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- fluidPage(
+  titlePanel(&#39;BMI Calculator&#39;),
+  sidebarLayout(
+    sidebarPanel(
+      textInput(&#39;name&#39;, &#39;Enter your name&#39;),
+      numericInput(&#39;height&#39;, &#39;Enter your height (in m)&#39;, 1.5, 1, 2, step = 0.1),
+      numericInput(&#39;weight&#39;, &#39;Enter your weight (in Kg)&#39;, 60, 45, 120)
+    ),
+    mainPanel(
+      textOutput(&quot;bmi&quot;)
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+  rval_bmi &lt;- reactive({
+    input$weight/(input$height^2)
+  })
+  output$bmi &lt;- renderText({
+    bmi &lt;- rval_bmi()
+    paste(&quot;Hi&quot;, isolate({input$name}), &quot;. Your BMI is&quot;, round(bmi, 1))
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Demorar: usando un botón</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  rval_bmi <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>show_bmi, { <span class="co">#EL PRIMER PARÁMETRO DE </span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#eventReactive es el input con el que se accionará algo. </span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>weight<span class="sc">/</span>(input<span class="sc">$</span>height<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>bmi <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    bmi <span class="ot">&lt;-</span> <span class="fu">rval_bmi</span>()</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;Hi&quot;</span>, input<span class="sc">$</span>name, <span class="st">&quot;. Your BMI is&quot;</span>, <span class="fu">round</span>(bmi, <span class="dv">1</span>))</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&#39;BMI Calculator&#39;</span>),</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textInput</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;Enter your name&#39;</span>),</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;Enter height (in m)&#39;</span>, <span class="fl">1.5</span>,<span class="dv">1</span>,<span class="dv">2</span>, <span class="at">step =</span> <span class="fl">0.1</span>),</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;weight&#39;</span>, <span class="st">&#39;Enter weight (in Kg)&#39;</span>, <span class="dv">60</span>, <span class="dv">45</span>, <span class="dv">120</span>),</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">&quot;show_bmi&quot;</span>, <span class="st">&quot;Show BMI&quot;</span>) <span class="co">#AQUÍ SE CREA EL BOTÓN</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;bmi&quot;</span>)</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div></li>
+<pre class="r"><code>server &lt;- function(input, output, session) {
+
+
+  rval_bmi &lt;- eventReactive(input$show_bmi, { #EL PRIMER PARÁMETRO DE 
+    #eventReactive es el input con el que se accionará algo. 
+    input$weight/(input$height^2)
+  })
+  output$bmi &lt;- renderText({
+    bmi &lt;- rval_bmi()
+    paste(&quot;Hi&quot;, input$name, &quot;. Your BMI is&quot;, round(bmi, 1))
+  })
+}
+
+ui &lt;- fluidPage(
+  titlePanel(&#39;BMI Calculator&#39;),
+  sidebarLayout(
+    sidebarPanel(
+      textInput(&#39;name&#39;, &#39;Enter your name&#39;),
+      numericInput(&#39;height&#39;, &#39;Enter height (in m)&#39;, 1.5,1,2, step = 0.1),
+      numericInput(&#39;weight&#39;, &#39;Enter weight (in Kg)&#39;, 60, 45, 120),
+
+      actionButton(&quot;show_bmi&quot;, &quot;Show BMI&quot;) #AQUÍ SE CREA EL BOTÓN
+
+    ),
+    mainPanel(
+      textOutput(&quot;bmi&quot;)
+    )
+  )
+)
+
+shinyApp(ui = ui, server = server)</code></pre></li>
 <li><p>Demorar: usando dos botones (react y observe)</p></li>
 </ol>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>bmi_help_text <span class="ot">&lt;-</span> <span class="st">&quot;Body Mass Index is a simple calculation using a person&#39;s height and weight. The formula is BMI = kg/m2 where kg is a person&#39;s weight in kilograms and m2 is their height in metres squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9.&quot;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># MODIFY CODE BELOW: Wrap in observeEvent() so the help text </span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># is displayed when a user clicks on the Help button.</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>show_help, {</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>     <span class="co"># Display a modal dialog with bmi_help_text</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>     <span class="co"># MODIFY CODE BELOW: Uncomment code</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">showModal</span>(<span class="fu">modalDialog</span>(bmi_help_text))</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  rv_bmi <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>show_bmi, {</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>weight<span class="sc">/</span>(input<span class="sc">$</span>height<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>bmi <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    bmi <span class="ot">&lt;-</span> <span class="fu">rv_bmi</span>()</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;Hi&quot;</span>, input<span class="sc">$</span>name, <span class="st">&quot;. Your BMI is&quot;</span>, <span class="fu">round</span>(bmi, <span class="dv">1</span>))</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&#39;BMI Calculator&#39;</span>),</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textInput</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;Enter your name&#39;</span>),</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;Enter your height in meters&#39;</span>, <span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&#39;weight&#39;</span>, <span class="st">&#39;Enter your weight in Kilograms&#39;</span>, <span class="dv">60</span>, <span class="dv">45</span>, <span class="dv">120</span>),</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">&quot;show_bmi&quot;</span>, <span class="st">&quot;Show BMI&quot;</span>),</span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>      <span class="co"># CODE BELOW: Add an action button named &quot;show_help&quot;</span></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">&quot;show_help&quot;</span>, <span class="st">&quot;Help&quot;</span>)</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;bmi&quot;</span>)</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  rval_height_cm <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>show_height_cm, {</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>height <span class="sc">*</span> <span class="fl">2.54</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>height_cm <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    height_cm <span class="ot">&lt;-</span> <span class="fu">rval_height_cm</span>()</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(<span class="st">&quot;Your height in centimeters is&quot;</span>, height_cm, <span class="st">&quot;cm&quot;</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Inches to Centimeters Conversion&quot;</span>),</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;Height (in)&quot;</span>, <span class="dv">60</span>),</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">&quot;show_height_cm&quot;</span>, <span class="st">&quot;Show height in cm&quot;</span>)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;height_cm&quot;</span>)</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre class="r"><code>bmi_help_text &lt;- &quot;Body Mass Index is a simple calculation using a person&#39;s height and weight. The formula is BMI = kg/m2 where kg is a person&#39;s weight in kilograms and m2 is their height in metres squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9.&quot;
+
+server &lt;- function(input, output, session) {
+  # MODIFY CODE BELOW: Wrap in observeEvent() so the help text 
+  # is displayed when a user clicks on the Help button.
+  observeEvent(input$show_help, {
+     # Display a modal dialog with bmi_help_text
+     # MODIFY CODE BELOW: Uncomment code
+     showModal(modalDialog(bmi_help_text))
+  })
+  rv_bmi &lt;- eventReactive(input$show_bmi, {
+    input$weight/(input$height^2)
+  })
+  output$bmi &lt;- renderText({
+    bmi &lt;- rv_bmi()
+    paste(&quot;Hi&quot;, input$name, &quot;. Your BMI is&quot;, round(bmi, 1))
+  })
+}
+
+ui &lt;- fluidPage(
+  titlePanel(&#39;BMI Calculator&#39;),
+  sidebarLayout(
+    sidebarPanel(
+      textInput(&#39;name&#39;, &#39;Enter your name&#39;),
+      numericInput(&#39;height&#39;, &#39;Enter your height in meters&#39;, 1.5, 1, 2),
+      numericInput(&#39;weight&#39;, &#39;Enter your weight in Kilograms&#39;, 60, 45, 120),
+      actionButton(&quot;show_bmi&quot;, &quot;Show BMI&quot;),
+      # CODE BELOW: Add an action button named &quot;show_help&quot;
+      actionButton(&quot;show_help&quot;, &quot;Help&quot;)
+    ),
+    mainPanel(
+      textOutput(&quot;bmi&quot;)
+    )
+  )
+)
+
+shinyApp(ui = ui, server = server)</code></pre>
+<pre class="r"><code>server &lt;- function(input, output, session) {
+ 
+  rval_height_cm &lt;- eventReactive(input$show_height_cm, {
+    input$height * 2.54
+  })
+  
+  output$height_cm &lt;- renderText({
+    height_cm &lt;- rval_height_cm()
+        paste(&quot;Your height in centimeters is&quot;, height_cm, &quot;cm&quot;)
+    })
+}
+
+ui &lt;- fluidPage(
+  titlePanel(&quot;Inches to Centimeters Conversion&quot;),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput(&quot;height&quot;, &quot;Height (in)&quot;, 60),
+      actionButton(&quot;show_height_cm&quot;, &quot;Show height in cm&quot;)
+    ),
+    mainPanel(
+      textOutput(&quot;height_cm&quot;)
+    )
+  )
+)
+
+shinyApp(ui = ui, server = server)</code></pre>
 </div>
 </div>
 </div>
@@ -1217,214 +971,214 @@ mainPanel(
 <h1>Ejemplos de apps (4)</h1>
 <div id="aliens" class="section level3">
 <h3>1. Aliens</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Información de los avistamientos de aliens</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#NO se cuenta con la información de usa_ufo_sightings</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Así que no se correrá esta app</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;UFO Sightings&quot;</span>),</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarPanel</span>(</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;Choose a U.S. state:&quot;</span>, <span class="at">choices =</span> <span class="fu">unique</span>(usa_ufo_sightings<span class="sc">$</span>state)),</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dateRangeInput</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;Choose a date range:&quot;</span>,</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">start =</span> <span class="st">&quot;1920-01-01&quot;</span>,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">end =</span> <span class="st">&quot;1950-01-01&quot;</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabsetPanel</span>(</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabPanel</span>(</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Plot&quot;</span>, <span class="fu">plotOutput</span>(<span class="st">&quot;shapes&quot;</span>)</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabPanel</span>(</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Table&quot;</span>, <span class="fu">tableOutput</span>(<span class="st">&quot;duration_table&quot;</span>)</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>shapes <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>    usa_ufo_sightings <span class="sc">%&gt;%</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(</span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>        state <span class="sc">==</span> input<span class="sc">$</span>state,</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>        date_sighted <span class="sc">&gt;=</span> input<span class="sc">$</span>dates[<span class="dv">1</span>],</span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>        date_sighted <span class="sc">&lt;=</span> input<span class="sc">$</span>dates[<span class="dv">2</span>]</span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span></span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(shape)) <span class="sc">+</span></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(</span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">&quot;Shape&quot;</span>,</span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">&quot;# Sighted&quot;</span></span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>duration_table <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
-<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>    usa_ufo_sightings <span class="sc">%&gt;%</span></span>
-<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(</span>
-<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>        state <span class="sc">==</span> input<span class="sc">$</span>state,</span>
-<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>        date_sighted <span class="sc">&gt;=</span> input<span class="sc">$</span>dates[<span class="dv">1</span>],</span>
-<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>        date_sighted <span class="sc">&lt;=</span> input<span class="sc">$</span>dates[<span class="dv">2</span>]</span>
-<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span></span>
-<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(shape) <span class="sc">%&gt;%</span></span>
-<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>(</span>
-<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">nb_sighted =</span> <span class="fu">n</span>(),</span>
-<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">avg_duration_min =</span> <span class="fu">mean</span>(duration_sec) <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>        <span class="at">median_duration_min =</span> <span class="fu">median</span>(duration_sec) <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">min_duration_min =</span> <span class="fu">min</span>(duration_sec) <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">max_duration_min =</span> <span class="fu">max</span>(duration_sec) <span class="sc">/</span> <span class="dv">60</span></span>
-<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<pre class="r"><code>#Información de los avistamientos de aliens
+
+#NO se cuenta con la información de usa_ufo_sightings
+
+#Así que no se correrá esta app
+
+ui &lt;- fluidPage(
+  titlePanel(&quot;UFO Sightings&quot;),
+  sidebarPanel(
+    selectInput(&quot;state&quot;, &quot;Choose a U.S. state:&quot;, choices = unique(usa_ufo_sightings$state)),
+    dateRangeInput(&quot;dates&quot;, &quot;Choose a date range:&quot;,
+      start = &quot;1920-01-01&quot;,
+      end = &quot;1950-01-01&quot;
+    )
+  ),
+  mainPanel(
+    tabsetPanel(
+      tabPanel(
+        &quot;Plot&quot;, plotOutput(&quot;shapes&quot;)
+      ),
+      tabPanel(
+        &quot;Table&quot;, tableOutput(&quot;duration_table&quot;)
+      )
+    )
+  )
+)
+
+server &lt;- function(input, output) {
+  output$shapes &lt;- renderPlot({
+    usa_ufo_sightings %&gt;%
+      filter(
+        state == input$state,
+        date_sighted &gt;= input$dates[1],
+        date_sighted &lt;= input$dates[2]
+      ) %&gt;%
+      ggplot(aes(shape)) +
+      geom_bar() +
+      labs(
+        x = &quot;Shape&quot;,
+        y = &quot;# Sighted&quot;
+      )
+  })
+
+  output$duration_table &lt;- renderTable({
+    usa_ufo_sightings %&gt;%
+      filter(
+        state == input$state,
+        date_sighted &gt;= input$dates[1],
+        date_sighted &lt;= input$dates[2]
+      ) %&gt;%
+      group_by(shape) %&gt;%
+      summarize(
+        nb_sighted = n(),
+        avg_duration_min = mean(duration_sec) / 60,
+        median_duration_min = median(duration_sec) / 60,
+        min_duration_min = min(duration_sec) / 60,
+        max_duration_min = max(duration_sec) / 60
+      )
+  })
+}
+
+shinyApp(ui, server)</code></pre>
 </div>
 <div id="encuesta-sobre-salud-mental-en-tecnología" class="section level3">
 <h3>2. Encuesta sobre salud mental en Tecnología</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># MODIFY CODE BELOW: Add validation that user selected a 3rd input</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">validate</span>(</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">need</span>(input<span class="sc">$</span>mental_vs_physical <span class="sc">!=</span> <span class="st">&quot;&quot;</span>, <span class="st">&quot;Be sure to select an response&quot;</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    )  </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>   mental_health_survey <span class="sc">%&gt;%</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        work_interfere <span class="sc">==</span> input<span class="sc">$</span>work_interfere,</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        mental_health_consequence <span class="sc">%in%</span> input<span class="sc">$</span>mental_health_consequence,</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        mental_vs_physical <span class="sc">%in%</span> input<span class="sc">$</span>mental_vs_physical</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(Age)) <span class="sc">+</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_histogram</span>()</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;2014 Mental Health in Tech Survey&quot;</span>),</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarPanel</span>(</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sliderTextInput</span>(</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">inputId =</span> <span class="st">&quot;work_interfere&quot;</span>,</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">&quot;If you have a mental health condition, do you feel that it interferes with your work?&quot;</span>, </span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">grid =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">force_edges =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Never&quot;</span>, <span class="st">&quot;Rarely&quot;</span>, <span class="st">&quot;Sometimes&quot;</span>, <span class="st">&quot;Often&quot;</span>)</span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">checkboxGroupInput</span>(</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">inputId =</span> <span class="st">&quot;mental_health_consequence&quot;</span>,</span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">&quot;Do you think that discussing a mental health issue with your employer would have negative consequences?&quot;</span>, </span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Maybe&quot;</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">selected =</span> <span class="st">&quot;Maybe&quot;</span></span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pickerInput</span>(</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">inputId =</span> <span class="st">&quot;mental_vs_physical&quot;</span>,</span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">&quot;Do you feel that your employer takes mental health as seriously as physical health?&quot;</span>, </span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Don&#39;t Know&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>),</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">multiple =</span> <span class="cn">TRUE</span></span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    )    </span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(</span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="st">&quot;age&quot;</span>)  </span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<pre class="r"><code>server &lt;- function(input, output, session) {
+  output$age &lt;- renderPlot({
+    # MODIFY CODE BELOW: Add validation that user selected a 3rd input
+    validate(
+      need(input$mental_vs_physical != &quot;&quot;, &quot;Be sure to select an response&quot;)
+    )  
+   mental_health_survey %&gt;%
+      filter(
+        work_interfere == input$work_interfere,
+        mental_health_consequence %in% input$mental_health_consequence,
+        mental_vs_physical %in% input$mental_vs_physical
+      ) %&gt;%
+      ggplot(aes(Age)) +
+      geom_histogram()
+  })
+}
+
+ui &lt;- fluidPage(
+  titlePanel(&quot;2014 Mental Health in Tech Survey&quot;),
+  sidebarPanel(
+    sliderTextInput(
+      inputId = &quot;work_interfere&quot;,
+      label = &quot;If you have a mental health condition, do you feel that it interferes with your work?&quot;, 
+      grid = TRUE,
+      force_edges = TRUE,
+      choices = c(&quot;Never&quot;, &quot;Rarely&quot;, &quot;Sometimes&quot;, &quot;Often&quot;)
+    ),
+    checkboxGroupInput(
+      inputId = &quot;mental_health_consequence&quot;,
+      label = &quot;Do you think that discussing a mental health issue with your employer would have negative consequences?&quot;, 
+      choices = c(&quot;Maybe&quot;, &quot;Yes&quot;, &quot;No&quot;),
+      selected = &quot;Maybe&quot;
+    ),
+    pickerInput(
+      inputId = &quot;mental_vs_physical&quot;,
+      label = &quot;Do you feel that your employer takes mental health as seriously as physical health?&quot;, 
+      choices = c(&quot;Don&#39;t Know&quot;, &quot;No&quot;, &quot;Yes&quot;),
+      multiple = TRUE
+    )    
+  ),
+  mainPanel(
+    plotOutput(&quot;age&quot;)  
+  )
+)
+
+shinyApp(ui, server)</code></pre>
 </div>
 <div id="cocinas-en-el-mundo-y-sus-platillos-más-comidos" class="section level3">
 <h3>3. Cocinas en el mundo y sus platillos más comidos</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>recipies</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&#39;Explore Cuisines&#39;</span>),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&#39;cuisine&#39;</span>, <span class="st">&#39;Select Cuisine&#39;</span>, <span class="fu">unique</span>(recipes<span class="sc">$</span>cuisine)),</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">&#39;nb_ingredients&#39;</span>, <span class="st">&#39;Select No. of Ingredients&#39;</span>, <span class="dv">5</span>, <span class="dv">100</span>, <span class="dv">20</span>),</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabsetPanel</span>(</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># CODE BELOW: Add `d3wordcloudOutput` named `wc_ingredients` in a `tabPanel`</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">&#39;Word Cloud&#39;</span>, d3wordcloud<span class="sc">::</span><span class="fu">d3wordcloudOutput</span>(<span class="st">&#39;wc_ingredients&#39;</span>, <span class="at">height =</span> <span class="st">&#39;400&#39;</span>)),</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">&#39;Plot&#39;</span>, plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">&#39;plot_top_ingredients&#39;</span>)),</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">&#39;Table&#39;</span>, DT<span class="sc">::</span><span class="fu">DTOutput</span>(<span class="st">&#39;dt_top_ingredients&#39;</span>))</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CODE BELOW: Render an interactive wordcloud of top distinctive ingredients </span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># and the number of recipes they get used in, using </span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `d3wordcloud::renderD3wordcloud`, and assign it to an output named</span></span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `wc_ingredients`.</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>wc_ingredients <span class="ot">&lt;-</span> d3wordcloud<span class="sc">::</span><span class="fu">renderD3wordcloud</span>({</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>     ingredients_df <span class="ot">&lt;-</span> <span class="fu">rval_top_ingredients</span>()</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>     <span class="fu">d3wordcloud</span>(ingredients_df<span class="sc">$</span>ingredient, ingredients_df<span class="sc">$</span>nb_recipes, <span class="at">tooltip =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  rval_top_ingredients <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    recipes_enriched <span class="sc">%&gt;%</span> </span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cuisine <span class="sc">==</span> input<span class="sc">$</span>cuisine) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(<span class="fu">desc</span>(tf_idf)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">head</span>(input<span class="sc">$</span>nb_ingredients) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">ingredient =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(ingredient, tf_idf))</span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot_top_ingredients <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rval_top_ingredients</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ingredient, <span class="at">y =</span> tf_idf)) <span class="sc">+</span></span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coord_flip</span>()</span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>dt_top_ingredients <span class="ot">&lt;-</span> DT<span class="sc">::</span><span class="fu">renderDT</span>({</span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>    recipes <span class="sc">%&gt;%</span> </span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cuisine <span class="sc">==</span> input<span class="sc">$</span>cuisine) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">count</span>(ingredient, <span class="at">name =</span> <span class="st">&#39;nb_recipes&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(<span class="fu">desc</span>(nb_recipes)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">head</span>(input<span class="sc">$</span>nb_ingredients)</span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server=</span> server)</span></code></pre></div>
+<pre class="r"><code>recipies
+ui &lt;- fluidPage(
+  titlePanel(&#39;Explore Cuisines&#39;),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(&#39;cuisine&#39;, &#39;Select Cuisine&#39;, unique(recipes$cuisine)),
+      sliderInput(&#39;nb_ingredients&#39;, &#39;Select No. of Ingredients&#39;, 5, 100, 20),
+    ),
+    mainPanel(
+      tabsetPanel(
+        # CODE BELOW: Add `d3wordcloudOutput` named `wc_ingredients` in a `tabPanel`
+        tabPanel(&#39;Word Cloud&#39;, d3wordcloud::d3wordcloudOutput(&#39;wc_ingredients&#39;, height = &#39;400&#39;)),
+        tabPanel(&#39;Plot&#39;, plotly::plotlyOutput(&#39;plot_top_ingredients&#39;)),
+        tabPanel(&#39;Table&#39;, DT::DTOutput(&#39;dt_top_ingredients&#39;))
+      )
+    )
+  )
+)
+server &lt;- function(input, output, session){
+  # CODE BELOW: Render an interactive wordcloud of top distinctive ingredients 
+  # and the number of recipes they get used in, using 
+  # `d3wordcloud::renderD3wordcloud`, and assign it to an output named
+  # `wc_ingredients`.
+  output$wc_ingredients &lt;- d3wordcloud::renderD3wordcloud({
+     ingredients_df &lt;- rval_top_ingredients()
+     d3wordcloud(ingredients_df$ingredient, ingredients_df$nb_recipes, tooltip = TRUE)
+  })
+  rval_top_ingredients &lt;- reactive({
+    recipes_enriched %&gt;% 
+      filter(cuisine == input$cuisine) %&gt;% 
+      arrange(desc(tf_idf)) %&gt;% 
+      head(input$nb_ingredients) %&gt;% 
+      mutate(ingredient = forcats::fct_reorder(ingredient, tf_idf))
+  })
+  output$plot_top_ingredients &lt;- plotly::renderPlotly({
+    rval_top_ingredients() %&gt;%
+      ggplot(aes(x = ingredient, y = tf_idf)) +
+      geom_col() +
+      coord_flip()
+  })
+  output$dt_top_ingredients &lt;- DT::renderDT({
+    recipes %&gt;% 
+      filter(cuisine == input$cuisine) %&gt;% 
+      count(ingredient, name = &#39;nb_recipes&#39;) %&gt;% 
+      arrange(desc(nb_recipes)) %&gt;% 
+      head(input$nb_ingredients)
+  })
+}
+shinyApp(ui = ui, server= server)</code></pre>
 </div>
 <div id="disparos-en-eu" class="section level3">
 <h3>4. Disparos en EU</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">bootstrapPage</span>(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme =</span> shinythemes<span class="sc">::</span><span class="fu">shinytheme</span>(<span class="st">&#39;simplex&#39;</span>),</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  leaflet<span class="sc">::</span><span class="fu">leafletOutput</span>(<span class="st">&#39;map&#39;</span>, <span class="at">width =</span> <span class="st">&#39;100%&#39;</span>, <span class="at">height =</span> <span class="st">&#39;100%&#39;</span>),</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">absolutePanel</span>(<span class="at">top =</span> <span class="dv">10</span>, <span class="at">right =</span> <span class="dv">10</span>, <span class="at">id =</span> <span class="st">&#39;controls&#39;</span>,</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sliderInput</span>(<span class="st">&#39;nb_fatalities&#39;</span>, <span class="st">&#39;Minimum Fatalities&#39;</span>, <span class="dv">1</span>, <span class="dv">40</span>, <span class="dv">10</span>),</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dateRangeInput</span>(</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;date_range&#39;</span>, <span class="st">&#39;Select Date&#39;</span>, <span class="st">&quot;2010-01-01&quot;</span>, <span class="st">&quot;2019-12-01&quot;</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CODE BELOW: Add an action button named show_about</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">actionButton</span>(<span class="st">&quot;show_about&quot;</span>, <span class="st">&quot;About&quot;</span>)</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  tags<span class="sc">$</span><span class="fu">style</span>(<span class="at">type =</span> <span class="st">&quot;text/css&quot;</span>, <span class="st">&quot;</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="st">    html, body {width:100%;height:100%}     </span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="st">    #controls{background-color:white;padding:20px;}</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;</span>)</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CODE BELOW: Use observeEvent to display a modal dialog</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># with the help text stored in text_about.</span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>show_about, {</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">showModal</span>(<span class="fu">modalDialog</span>(<span class="st">&quot;This data was compiled by Mother Jones, nonprofit founded in 1976. Originally covering cases from 1982-2012, this database has since been expanded numerous times to remain current.&quot;</span>, <span class="at">title =</span> <span class="st">&#39;About&#39;</span>))</span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>map <span class="ot">&lt;-</span> leaflet<span class="sc">::</span><span class="fu">renderLeaflet</span>({</span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>    mass_shootings <span class="sc">%&gt;%</span> </span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(</span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>        date <span class="sc">&gt;</span> input<span class="sc">$</span>date_range[<span class="dv">1</span>],</span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>        date <span class="sc">&lt;</span> input<span class="sc">$</span>date_range[<span class="dv">2</span>],</span>
-<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>        fatalities <span class="sc">&gt;=</span> input<span class="sc">$</span>nb_fatalities</span>
-<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setView</span>( <span class="sc">-</span><span class="fl">98.58</span>, <span class="fl">39.82</span>, <span class="at">zoom =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addCircleMarkers</span>(</span>
-<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">popup =</span> <span class="sc">~</span> summary, <span class="at">radius =</span> <span class="sc">~</span> <span class="fu">sqrt</span>(fatalities)<span class="sc">*</span><span class="dv">3</span>,</span>
-<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">fillColor =</span> <span class="st">&#39;red&#39;</span>, <span class="at">color =</span> <span class="st">&#39;red&#39;</span>, <span class="at">weight =</span> <span class="dv">1</span></span>
-<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<pre class="r"><code>ui &lt;- bootstrapPage(
+  theme = shinythemes::shinytheme(&#39;simplex&#39;),
+  leaflet::leafletOutput(&#39;map&#39;, width = &#39;100%&#39;, height = &#39;100%&#39;),
+  absolutePanel(top = 10, right = 10, id = &#39;controls&#39;,
+    sliderInput(&#39;nb_fatalities&#39;, &#39;Minimum Fatalities&#39;, 1, 40, 10),
+    dateRangeInput(
+      &#39;date_range&#39;, &#39;Select Date&#39;, &quot;2010-01-01&quot;, &quot;2019-12-01&quot;
+    ),
+    # CODE BELOW: Add an action button named show_about
+    actionButton(&quot;show_about&quot;, &quot;About&quot;)
+  ),
+  tags$style(type = &quot;text/css&quot;, &quot;
+    html, body {width:100%;height:100%}     
+    #controls{background-color:white;padding:20px;}
+  &quot;)
+)
+server &lt;- function(input, output, session) {
+  # CODE BELOW: Use observeEvent to display a modal dialog
+  # with the help text stored in text_about.
+observeEvent(input$show_about, {
+    showModal(modalDialog(&quot;This data was compiled by Mother Jones, nonprofit founded in 1976. Originally covering cases from 1982-2012, this database has since been expanded numerous times to remain current.&quot;, title = &#39;About&#39;))
+})
+  
+  
+  output$map &lt;- leaflet::renderLeaflet({
+    mass_shootings %&gt;% 
+      filter(
+        date &gt; input$date_range[1],
+        date &lt; input$date_range[2],
+        fatalities &gt;= input$nb_fatalities
+      ) %&gt;% 
+      leaflet() %&gt;% 
+      setView( -98.58, 39.82, zoom = 5) %&gt;% 
+      addTiles() %&gt;% 
+      addCircleMarkers(
+        popup = ~ summary, radius = ~ sqrt(fatalities)*3,
+        fillColor = &#39;red&#39;, color = &#39;red&#39;, weight = 1
+      )
+  })
+}
+
+shinyApp(ui, server)</code></pre>
 </div>
 <div id="añadir-mensajes-de-error." class="section level2">
 <h2>Añadir mensajes de error.</h2>
@@ -1435,79 +1189,51 @@ mainPanel(
 </div>
 </div>
 </div>
-
-
-
-</div>
 </div>
 
-</div>
+   
+   
+              </div>
+  </div>
+  </div>
+  </div>
+   
+      
 
-<script>
+  <script>
+    $(document).ready(function () {
 
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
+		// add bootstrap table styles to pandoc tables
+	$('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+		
+ 	 	$('#content img').addClass("image-thumb");
+		
+		$('#content img:not(.no-lightbox)').addClass("image-lb");
+	$('#content').magnificPopup({
+	    type:'image',
+	    closeOnContentClick: false,
+	    closeBtnInside: false,
+	    delegate: '.image-lb',
+	    gallery: {enabled: false },
+	    image: {
+	        verticalFit: true,
+		titleSrc: 'alt'
+	    }
+ 	});
+ 	    });
+  </script>
 
 
-</script>
 
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
-  });
-});
-</script>
-
-<!-- code folding -->
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = false;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
 </body>
 </html>

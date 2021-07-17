@@ -7,10 +7,19 @@ author: "CEY"
 
 <div/>
 
-Este sitio tiene la finalidad de guardar el conocimiento de las herramientas necesarias para el desarrollo de material en R en términos de documentación, presentaciones (xaringan, flexdashboard, RMarkdown, *learnr próximamente* ) así como una herramienta que permite trabajar con código en equipo de manera remota.
+Este sitio tiene la finalidad de guardar el conocimiento de las herramientas necesarias para el desarrollo de material en R en términos de documentación, presentaciones (`xaringan`, `flexdashboard`, `RMarkdown`, `learnr`, `shiny`, entre otras) así como una herramienta que permite trabajar con código en equipo de manera remota.
+
+Además se anexa una pestaña llamada **Material académico** la cual refiere a sitios web creados para cursos impartidos por el Actuario Eduardo Selim Martinez Mayorga. Tales sitios son de planes específicos de la carrera de Actuaria del plan de estudios 2015 e irán siendo perfeccionados.
 
 Se ha creado el sitio desde marzo de 2021, su fundamento está en el desarrollo del Servicio Social en la [Facultad de Ciencias](https://web.fciencias.unam.mx/) de la [UNAM](https://www.unam.mx/) con la guía de Eduardo S. M. M. y la implementación de Yanely L.G. y Carlos A. A.
 
 La información aquí vertida está referenciada para consultas de mayor alcance.
 
 **Esperamos que te agrade.**
+
+Puede contactarnos:
+
+- [Carlos A. Ar.](https://github.com/CarlosA-Ar)
+
+- [Yanely L. G.](https://github.com/yanelyluna)
+

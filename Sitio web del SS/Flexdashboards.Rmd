@@ -1,16 +1,6 @@
 ---
 title: "Flexdashboard"
 author: "Carlos A. Ar."
-output:
-   html_document:
-     toc: true
-     toc_float:
-        collapsed: false
-        smooth_scroll: false
-     toc_depth: 3
-     number_sections: false
-     highlight: tango
-     theme: flatly
 date: "Última edición `r format(Sys.Date(), '%d de %B del %Y')`"
 ---
 

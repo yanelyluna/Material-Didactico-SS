@@ -1,14 +1,6 @@
 ---
 title: "¿Cómo uso tanta información?"
 author: "Carlos A. Ar."
-output:
-   html_document:
-     toc: true
-     toc_float: true
-     toc_depth: 1
-     number_sections: false
-     highlight: tango
-     theme: flatly
 ---
 
 # ¿Qué hago aquí?
@@ -57,7 +49,7 @@ La pestaña de **Material académico** contiene páginas de internet que [Yanely
 
 Recomiendo revisar los documentos en el siguiente orden:
 
-1.  Git y GitHub (opcional)
+1.  Git (opcional)
 
 Para hacer material no interactivo
 
