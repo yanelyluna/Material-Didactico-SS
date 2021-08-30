@@ -1,0 +1,246 @@
+---
+title: "Introducción a R"
+author: 
+  - name: "Alejandra E. G."
+  - name: "Carlos A. Ar."
+  - name: "Luis P. B."
+  - name: "Facultad de Ciencias"
+  - name: "UNAM"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: "Este es un tutorial de learnr para aprender a usar learnr."
+---
+
+```{=html}
+<style>
+div {
+  text-align: justify;
+}
+/***********************/
+/*Títulos ## y autoría F6EACD*/
+/***********************/
+h1, h2 {
+  color: #6D4101;
+  padding: .4em; /*es decir el 60 por ciento del tamaño de la letra*/
+  font-family: "Courier New", monospace;
+  font-size: 35px;
+  font-weight: bold;
+  opacity: 0.95;
+}
+em {
+  color: #8A6C0C;
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  padding: .2em;
+  opacity: 0.97;
+  font-weight: bold;
+}
+/***********************/
+/* Cuerpo */
+/***********************/
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 16;
+  background-color: #EEF5F9;
+  color: #000000;
+}
+/***********************/
+/* Títulos con ###     */
+/***********************/
+h3, h4, h5{
+  color: #06116C;
+  font-family: Verdana, Helvetica, sans-serif;
+}
+/*******************************************/
+/* Referencias a páginas o a otro documento*/
+/*******************************************/
+a {
+    color: #B8870F;
+    text-decoration: none;
+}
+/**********************/
+/* Chunks de exercises*/
+/**********************/
+.ace-tm {
+    background-color: #FFFEF7;
+    color: #010730;
+}
+/***********************/
+/* tabla de contenidos */
+/***********************/
+.topicsList {
+  padding: .5em;
+}
+.topicsHeader {
+  color: #06116C;
+  padding: .5em;
+}
+.topicsList #doc-metadata {
+  color: #06116C;
+  padding: .5em;
+}
+.topicsList .topic.current {
+  background-color: #8A6C0C;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.topicsList .topic:hover, .topicsList .topic:active {
+  background-color: #E0CD4E;
+  color: #01053D;
+}
+/***********/
+/* Botones */
+/***********/
+.btn {
+  background-color: #000857;
+  color: #EBEDFF;
+}
+/* cambiar de página */
+.btn-default {
+    color: #EBEDFF;
+    background-color: #000857;
+    border: none;
+}
+/* cambiar de página */
+.btn-light {
+  background-color: #000857;
+  color: #EBEDFF;
+}
+/* run code */
+.btn-primary , .btn-success, .btn-info{
+  background-color: #786300;
+  color: #EBEDFF;
+}
+/* mientras está desabilitados */
+.btn:hover, .btn:active, .btn:disabled {
+  background-color: #786300;
+  color: #EBEDFF;
+}
+/**********/
+/* Código */
+/**********/
+code {
+    color: #6D4101;
+    background-color:  #F7FBF9;
+    font-size: 15px;
+    font-weight: bold;
+}
+/**************************/
+/* Recuadro para ejemplos */
+/**************************/
+.boxed {
+    background: #F7FBF9;
+    color: black;
+    border: 3px solid #C83737;
+    margin: 0px auto;
+    width: 456px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+    min-height: 120px;
+    color: black;
+    background-color: lightgrey;
+    border: solid 5px #C83737;
+    background-image: url("manzana.png");
+  }
+.note_white {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+    min-height: 120px;
+    color: black;
+    background-color: #F7FBF9;
+    border: solid 5px #C83737;
+    background-image: url("manzana.png");
+  }
+</style>
+```
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, fig.align='center')
+```
+
+## ¿Qué es R?
+
+
+### ¿Cómo lo instalo?
+
+_O poner un video, easier_
+
+1. Entrar a [R Project for Statistical Computing](https://www.r-project.org/).
+
+2. Seleccionar [download R](https://cran.r-project.org/mirrors.html).
+
+3. Seleccionar la [versión Cluod](https://cloud.r-project.org/) que hace una redirección automática a servidores en todo el mundo, actualmente patrocinado por Rstudio
+
+4. Elige el sistema operativo que deseas descargar Linux, macOS o Windows.
+
+5. Selecciona en cualquier sistema, la versión CRAN o base (install R for the first time).
+
+### Tipos de datos en R
+
+logical (TRUE/FALSE), numeric, integer, complex, character, raw
+
+- character
+
+- data.frame
+
+- boolean
+
+- integer
+
+- double
+
+- matrix
+
+- vectores (crear vectores 1:16, c(), letters())
+
+- listas (is.list())
+
+## Variables
+
+Convertir variables: as.[numeric/logical/complex]()
+
+### ¿Qué es una variable?
+
+
+### ¿Cómo se crea una variable?
+
+typeof()
+
+class()
+
+__No se puede definir una variable empezando su nombre con un número ni con espacios__
+
+
+## Operaciones con variables
+
+### Lógicas
+(mayor, menor, también/&, o/|, diferente/!,!=, igual/==)
+
+¿Para qué sirven?
+
+### Aritméticas
+(suma, resta, multiplicación, división, módulo, exponenciación)
+
+### De impresión
+(print, paste, paste0)
+
+
+
+## Funciones
+

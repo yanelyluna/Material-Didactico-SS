@@ -13,7 +13,7 @@ params:
 ```{r setup, include=FALSE}
 #El siguiente comando sirve para que, durante todo el archivo R Mardown (salvo que se especifique lo contrario), los gráficos que corresponden a las líneas de código (o chunks), aparezcan centrados, o en una alineación o tamaño particular.
 knitr::opts_chunk$set(fig.align = 'center', echo = T)
-knitr::opts_chunk$set(out.width= '80%', echo = T)
+knitr::opts_chunk$set(out.width= '80%', echo = T, warning = FALSE)
 
 #La línea que viene sirve por si se quiere que se corra el archivo a pesar de los errores (Ver capítulo 3 sección Warnings, mensajes y errores)
 
