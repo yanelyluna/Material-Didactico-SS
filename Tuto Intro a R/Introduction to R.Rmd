@@ -1,9 +1,7 @@
 ---
-title: "Introducción a R"
+title: "Aprende R"
 author: 
-  - name: "Alejandra E. G."
-  - name: "Carlos A. Ar."
-  - name: "Luis P. B."
+  - name: "Ale, Carlos y Luis"
   - name: "Facultad de Ciencias"
   - name: "UNAM"
 output:
@@ -11,7 +9,7 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: "Este es un tutorial de learnr para aprender a usar learnr."
+description: "Este es un tutorial de learnr para aprender a usar R"
 ---
 
 ```{=html}
@@ -171,76 +169,467 @@ code {
 
 ```{r setup, include=FALSE}
 library(learnr)
+
+
 knitr::opts_chunk$set(echo = FALSE, fig.align='center')
 ```
 
+```{r respuestas}
+variable1 <- 2
+x <- 5
+y  <- 4
+
+f1 <- "Pepe pecas"
+f2 <- "pica papas"
+f3 <- "Con un pico"
+
+vector <- c(1, 2, 4, 5, 6, 8)
+```
+
+
+## Objetivo
+
+Este tutorial va dirigido a las personas que no tienen noción de la programación en R y __tiene el propósito__ de dar a conocer las bases para utilizar este lenguaje de programación.
+
+R es uno de los lenguajes de programación más importantes en el ámbito del análisis estadístico y la ciencia de datos que tienen aplicaciones útiles en la coyontura actual de nuestra sociedad.
+
 ## ¿Qué es R?
 
+Es un lenguaje y entorno de programación abierto, enfocado principalmente en hacer computación estadística.
 
 ### ¿Cómo lo instalo?
 
-_O poner un video, easier_
+A pesar de que __para__ realizar los ejercicios a lo largo de __este tutorial no necesitas instalar R__, te agregamos un video para que lo puedas hacer en tu computadora sin problemas.
 
-1. Entrar a [R Project for Statistical Computing](https://www.r-project.org/).
+![](https://www.youtube.com/watch?v=D9Bp11iZssc)
 
-2. Seleccionar [download R](https://cran.r-project.org/mirrors.html).
+- [Descarga R](https://cran.r-project.org/mirrors.html)
 
-3. Seleccionar la [versión Cluod](https://cloud.r-project.org/) que hace una redirección automática a servidores en todo el mundo, actualmente patrocinado por Rstudio
+- [Descarga RStudio](https://www.rstudio.com/products/rstudio/download/): un programa que facilita el uso de R.
 
-4. Elige el sistema operativo que deseas descargar Linux, macOS o Windows.
+## Tipos de datos en R {#tdr}
 
-5. Selecciona en cualquier sistema, la versión CRAN o base (install R for the first time).
+Para poder trabajar con datos, debemos saber qué tipos de datos de pueden manipular en R, cómo se crean y cómo operarlos.
 
-### Tipos de datos en R
+Los tipos de datos que están definidos en el lenguaje de R son los siguientes:
 
-logical (TRUE/FALSE), numeric, integer, complex, character, raw
+- logical/boolean: TRUE o FALSE. Este tipo de dato es generalmente utilizado para corrobaorar o descartar una afirmación "lógica".
 
-- character
+- numeric: es la representación de cualquier número.
 
-- data.frame
+- integer: representa los números enteros ($-1, 0, 1, 2, ...$).
 
-- boolean
+- double: representa los números decimales o $\mathbb{R}$eales ($1.25, 1/3, \pi, ...$)
 
-- integer
+- complex: representa los números complejos ($1+3i, 5i, ...$)
 
-- double
+- character: representa los caracteres ("2", "a", "g", "%")
 
-- matrix
+- string: arreglo de caracteres ("todos los que quieras")
 
-- vectores (crear vectores 1:16, c(), letters())
+```{r quiz}
+question(
+    text = '¿Qué tipo de dato es "$\\sqrt(2)$"?', 
+    allow_retry = TRUE,
+    answer("integer",message = "Presta especial atención a las comillas"),
+    answer("double",message = "Las comillas deben 'decirte' algo"),
+    answer("character", correct = TRUE, message = "¡Maravillos@ estudiante!"),
+    correct = "¡Sí que has puesto atención!",
+   
+    try_again = "Te recomiendo leer de nuevo los tipos de datos",
+    submit_button = "Enviar",
+    try_again_button = "Inténtalo de nuevo",
+    random_answer_order = TRUE
+)
+```
 
-- listas (is.list())
+
 
 ## Variables
 
-Convertir variables: as.[numeric/logical/complex]()
-
-### ¿Qué es una variable?
-
+Para poder hacer uso de los diferentes tipos de datos, estos deben ser almacenados. El nombre del objeto que almacena tales datos se llama variable.
 
 ### ¿Cómo se crea una variable?
 
-typeof()
+En R es muy fácil, se hace a través de un operador de asignación (<- , =). Del lado izquierdo del operador irá el nombre de la variable y del lado derecho, el dato que almacena.
 
-class()
+__Consideraciones:__
 
-__No se puede definir una variable empezando su nombre con un número ni con espacios__
+1. El nombre de una variable no puede iniciar con un número.
 
+2. El nombre de una variable no puede tener espacios pero sí guión bajo y punto.
 
-## Operaciones con variables
+### Crea tu variable
+
+Crea una variable con el nombre _variable1_ y almacena el número 2.
+
+```{r ej1, exercise = TRUE}
+# Recuerda que puedes usar <- o =
+
+```
+
+```{r ej1-solution}
+# Recuerda que puedes usar <- o =
+variable1 <- 2
+```
+
+Lo que hiciste fue asignar el número 2 (objeto de tipo numeric) a una variable que se llama _variable1_. 
+
+Veamos ahora cómo saber qué tipo de objeto está contenido en una variable, cómo ver el contenido de la misma y cómo manipularla.
+
+### Tipo de dato en una variable
+
+R se auxilia de funciones precargadas para saber qué tipo de dato almacenan las variables:
+
+- `class()`
+
+- `typeof()`
+
+```{r ej2, exercise = TRUE, exercise.setup="respuestas"}
+# Ingresa el nombre variable1 entre paréntesis
+class(___)
+```
+
+```{r ej2-solution}
+# Ingresa el nombre variable1 entre paréntesis
+class(variable1)
+```
+
+No es necesario que crees una variable para ver el tipo de dato. Observa los siguientes resultados:
+
+```{r ej3, exercise = TRUE}
+# Ve qué tipo de dato es sin crear una variable
+class("23")
+
+# Crea una variable y luego ve el tipo de dato
+x <- 23L
+typeof(x)
+
+# Checa que sí hay más tipos de datos
+class(TRUE)
+```
+
+### Imprimir contenido de una variable
+
+La función `print()` sirve para ver lo que una variable contiene.
+
+```{r ej4, exercise = TRUE}
+# Crea una variable numérica que se llame azul e imprime su contenido
+
+```
+
+```{r ej4-solution}
+azul <- 22.343428737
+
+print(azul)
+```
+
+No es necesario utilizar esta esta función para mostrar el contenido de una variable. _R_ hace esto al escribir en la consola el nombre de la variable.
+
+```{r ej5, exercise = TRUE}
+# Asigna un dato de tipo boolean a la variable dos sin usar print
+dos <- ___
+___
+# Verifica el tipo de dato de la variable dos
+__(dos)
+```
+
+```{r ej5-solution}
+# Asigna un dato de tipo boolean a la variable dos sin usar print
+dos <- FALSE
+dos
+# Verifica el tipo de dato de la variable dos
+typeof(dos)
+```
+
+### Operaciones con variables
+
+Ya que sabemos crear variables y sus tipos de datos, veamos qué se puede lograr. Utilizamos operadores que nos devuelven cierto tipo de datos:
+
+- Lógicos. Nos permite saber cuando algo es verdadero o falso. ¿Es 34 mayor que 35?
+
+- Aritméticos. Para obtener resultados numéricos con variables de este tipo de dato. 5 + 2 = ...
+
+- De impresión. Sirven para juntar caracteres e imprimirlos en la consola.
 
 ### Lógicas
-(mayor, menor, también/&, o/|, diferente/!,!=, igual/==)
 
-¿Para qué sirven?
+Corre el código para verificar cuándo son verdad o no las siguientes afirmaciones:
+
+```{r ej6, exercise = TRUE, exercise.lines = 18}
+#                Operaciones lógicas
+# ¿Mayor?
+43 > 53 
+
+# ¿Menor?
+87 < 96
+
+# ¿Menor o igual?
+87 <= 87
+
+# ¿Diferente?
+FALSE != TRUE
+
+# ¿Igual?
+"Siete" == 7
+
+# Negar
+!(1 < 2)
+```
+
+Podemos combinar estos operadores para crear frases más amplias. Esto con ayuda de otros operadores de conjunción como _y_ (&) u _o_ (|).
+
+Completa el código según la frase escrita arriba de cada código.
+
+```{r ej7, exercise = TRUE}
+# ¿El siete es mayor al seis o menor al tres?
+7 __ 6 | 7 __ 3
+# Para el operador "o", basta que una de las dos condiciones se cumpla.
+
+
+
+# ¿El tres es menor que el siete y el uno es mayor o igual que el dos?
+3 < 7 & 1 >= 2
+# Para el operador "y", ambas condiciones deben cumplirse.
+```
 
 ### Aritméticas
-(suma, resta, multiplicación, división, módulo, exponenciación)
+
+Cuando nuestros tipos de datos son numéricos, podemos hacer operaciones aritméticas comunes con los síbolos comunes, es decir:
+
+- Suma: `+`
+
+- Resta: `-`
+
+- Multiplicación: `*`
+
+- División: `/`
+
+- Exponenciación: `^`
+
+En el siguiente apartado de código píca el botón `Hints` y escribe lo que aparece en la imagen superior, descubre el resultado con el botón `Run Code`
+
+```{r ej8, exercise = TRUE, exercise.setup = "respuestas"}
+# Crea dos variables x, y con los valores 5 y 4 respectivamente
+__ <- 5
+y  <- __
+
+# Suma
+x + __
+
+```
+
+```{r ej8-hint-1}
+# Resta
+
+y - x
+```
+
+```{r ej8-hint-2}
+# Multiplica
+
+x*y
+```
+
+```{r ej8-hint-3}
+# Divide
+
+y/x
+```
+
+```{r ej8-hint-4}
+# Exponencia
+
+x^y
+```
+
+### Combinar operaciones
+
+Ya que sabemos hacer operaciones lógicas y aritméticas con variables. Contesta lo siguiente:
+
+```{r quiz1}
+question(
+  text = " Si x = 1, y = 2 ¿Cuál de los siguientes códigos nos devuelve un valor verdadero?",
+  allow_retry = TRUE,
+  answer("![](images/introR2.png)", correct = TRUE),
+  answer("![](images/introR1.png)"),
+  answer("![](images/introR3.png)"),
+    correct = "¡Perfecto!",
+    try_again = "Intenta de nuevo",
+    submit_button = "Lo lograré",
+    try_again_button = "Quiero salir bien",
+    random_answer_order = TRUE
+)
+```
 
 ### De impresión
-(print, paste, paste0)
+
+Si queremos agrupar caracteres, es decir, crear una frase completa teniendo diversas frases de [tipos de dato](#tdr) caracter, podemos hacerlo con ayuda de la función `paste()`.
+
+Para ejemplificarlo veamos los siguientes ejercicios
+
+#### Crea fraes aisladas
+
+Asigna a las variables ya nombradas, la frase correspondientes:
+
+```{r ej9, exercise = TRUE, exercise.setup = "respuestas"}
+f1 __ "Pepe pecas"
+f2 __ "Pica papas"
+f3 __ "Con un pico"
+```
+
+```{r ej9-hint}
+# Utiliza el operador de asignación <-
+```
 
 
+#### Completa el trabalenguas
+
+La función `paste()` debe tener algo adentro, a estos objetos que le metemos, se les conocen como _parámetros_ y en el caso de paste, los parámetros serán nuestras variables separadas por comas.
+
+Otro parámetro necesario para usar `paste()` es `sep = ","` que en este caso nos permitiría completar el trabalenguas, separando cada frase por una coma y ya.
+
+Practiquemos la teoría:
+
+```{r ej10, exercise = TRUE, exercise.setup = "respuestas"}
+#Completa el trabalenguas
+paste(f1, f2, f3, sep = ", ")
+
+
+# Cambia el orden del trabalenguas y separa las frases con un punto
+paste(f3, __, __, sep = ___)
+```
+
+
+## Objetos
+
+Ahora que las variables las sabemos manipular, así como los tipos de datos que existen en R, podemos crear objetos que agrupen más de una variable, es decir, arreglos de diversos elementos que tengan el mismo tipo de dato o no.
+
+La lista siguiente contiene los principales objetos que puedes usar y crear en R:
+
+- [Vectores](#vect)
+
+- Listas (is.list())
+
+- Matrices
+
+- data.frame ("tablas")
+
+En las secciones posteriores veremos qué es cada uno, cómo se crea, para qué sirve y cómo operarlos.
+
+## Vectores {#vect}
+
+### ¿Qué son los vectores?
+
+Son arreglos que contienen uno o más elementos (e incluso variables) __de un mismo tipo__.
+
+### ¿Cómo se crean?
+
+Hay muchas formas diferentes de crear vectores, muchas de las cuales no tienen que ver con una introducción a R. Por tanto veremos solo dos que son más fáciles de entender:
+
+1. Usando la función `c()`.
+
+2. Con `:` para una secuencia de números.
+
+En los siguientes ejercicios crearás vectores, los guardarás en variables, los imprimirás y verás qué tipo de datos contienen.
+
+### Uso de `c()`
+
+```{r ej10-1, exercise = TRUE}
+# Escribe el elemento que tu quieras en vez de ___ y pica "Run Code"
+
+c(1, 2, 4, 5, 6, __)
+```
+
+```{r ej11, exercise = TRUE}
+# Almacena el vector anteior en una variable que se llame vector
+
+vector <- c(1, 2, 4, 5, 6, __)
+```
+
+```{r ej12, exercise = TRUE, exercise.setup = "respuestas"}
+# Imprime el vector
+
+print(__)
+```
+
+```{r ej12-solution}
+print(vector)
+```
+
+```{r ej13, exercise = TRUE, exercise.setup = "respuestas"}
+# Determina el tipo de dato que se encuentra dentro del vector
+___(vector)
+```
+
+Notemos que el tipo de dato es numérico (double o integer) porque todos los elementos del vector son de ese tipo. ¿Qué pasa si alguno de los elementos no es de el tipo numérico? Veamos:
+
+```{r ej14, exercise = TRUE}
+class(c(1, 3, "4", "hola", FALSE))
+```
+
+Lo anteiror nos dice que a pesar de que no todos los elementos que nosotros metimos al objeto vector son de tipo caracter, la función `c()` dice: "no importa qué elementos pongas, si son de varios tipos, yo poondré uno solo y será aquel que más coincida con el resto". 
+
+De lo anterior surge algo importante: los vectores deben conformarse por elementos de un mismo tipo para que puedan ser operados de forma correcta. Si un vector es de tipo "character" aunque tenga un número, no se podrá multiplicar dicho elemento del vector.
+
+### Uso de `:`
+
+Si deseamos generar una sucesión (finita) de números que se separen de uno en uno, es muy útil usar los dos puntos ":".
+
+En el siguiente ejercicio crea un vector que tenga los números del 5 al 500, guárdalo en una variable que se llame `numero`, luego imprimela y ve de qué tipo, son los datos que este contiene.
+
+```{r ej15, exercise=TRUE}
+
+___ <- 5:___
+
+___(numero)
+
+typeof(___)
+```
+
+```{r ej15-solution}
+
+numero <- 5:500
+
+print(numero)
+
+typeof(numero)
+```
+
+### ¿En qué se usan los vectores?
+
+R como lenguaje de programación, tiene una estructura amplia para trabajar los vectores. Esto es porque sí que se utilizan.
+
+Algunas de las cosas básicas que debemos saber para poder hacer uso de los vectores son:
+
+- Las operaciones aritméticas para vectores "de tipo" numérico se siguien respetando pero se opera elemento por elemento.
+
+```{r ej16, exercise = TRUE}
+5*c(1, 2, 3)
+```
+
+__Nota que el resultado es un vector__ también.
+
+- Se pueden hacer operaciones entre vectores, pero deben tener el mismo número de elementos y ser del mismo tipo.
+
+```{r ej17, exercise = TRUE}
+x <- c(1, 2, 3)
+y <- c(3, 2, 1)
+
+x+y
+
+class(x-y)
+
+x > y
+```
+
+Podemos notar que el vector resultante de las operaciones, tiene el resultado de la operación correspondiente __entrada por entrada__.
+
+## Listas
+
+## Matrices
+
+## data.frame
 
 ## Funciones
 
