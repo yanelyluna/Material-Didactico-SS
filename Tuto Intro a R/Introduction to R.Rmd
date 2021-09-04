@@ -184,7 +184,59 @@ f2 <- "pica papas"
 f3 <- "Con un pico"
 
 vector <- c(1, 2, 4, 5, 6, 8)
+
+Caract_Producto <- list(Producto = "Jabón de manos", Precio = 27.4, Cantidad = 13)
+
+Vuelos <- data.frame(Codigo = c("BBC21", "DCF32", "DKE23", "LKI98"), Destino = c("Los Angeles", "California", "San Franciso", "Madrid"), Precio = c(325.99, 412.87, 399.67, 720.76), Retraso = c(TRUE, FALSE, FALSE, FALSE))
+
+nombre <- c("Miriam", "Ingrid", "Edwin", "Francisco", "Carolina")
+edad <- c(24, 23, 21, 34, 16)
+casado <- c(TRUE, TRUE, FALSE, FALSE, FALSE)
+Df <- data.frame(Nombre = nombre, Edad = edad, Casado = casado, stringsAsFactors = FALSE)
 ```
+
+
+```{r respuestas 2}
+nombre <- c("Miriam", "Ingrid", "Edwin", "Francisco", "Carolina")
+edad <- c(24, 23, 21, 34, 16)
+casado <- c(TRUE, TRUE, FALSE, FALSE, FALSE)
+Df <- data.frame(Nombre = nombre, Edad = edad, Casado = casado, stringsAsFactors = FALSE)
+
+altura <- c(177, 165, 162, 178, 170)
+
+Df$Altura <- altura
+```
+
+```{r respuestas 3}
+
+nombre <- c("Miriam", "Ingrid", "Edwin", "Francisco", "Carolina")
+edad <- c(24, 23, 21, 34, 16)
+casado <- c(TRUE, TRUE, FALSE, FALSE, FALSE)
+Df <- data.frame(Nombre = nombre, Edad = edad, Casado = casado, stringsAsFactors = FALSE)
+
+altura <- c(177, 165, 162, 178, 170)
+
+Df$Altura <- altura
+peso <- c(56, 57, 60, 65, 70)
+Df <- cbind(Df, peso)
+
+```
+
+```{r respuestas 4}
+nueva_observacion1 <- data.frame(Nombre = "Armando", Edad = 36, Casado = TRUE, Altura = 180, peso = 73)
+nueva_observacion2 <- data.frame(Nombre = "Ana", Edad = 23, Casado = FALSE, Altura = 165, peso = 49)
+
+Df <- rbind(Df, nueva_observacion1, nueva_observacion2)
+
+```
+
+```{r respuestas 5}
+nuevas_observaciones <- data.frame(Nombre = c("Carmen", "Gustavo"), Edad = c(28,42), Casado = c(TRUE, TRUE), Altura = c(167, 173), peso = c(67, 58))
+
+Df <- rbind(Df, nuevas_observaciones)
+
+```
+
 
 
 ## Objetivo
@@ -568,7 +620,7 @@ Notemos que el tipo de dato es numérico (double o integer) porque todos los ele
 class(c(1, 3, "4", "hola", FALSE))
 ```
 
-Lo anteiror nos dice que a pesar de que no todos los elementos que nosotros metimos al objeto vector son de tipo caracter, la función `c()` dice: "no importa qué elementos pongas, si son de varios tipos, yo poondré uno solo y será aquel que más coincida con el resto". 
+Lo anterior nos dice que a pesar de que no todos los elementos que nosotros metimos al objeto vector son de tipo caracter, la función `c()` dice: "no importa qué elementos pongas, si son de varios tipos, yo pondré uno solo y será aquel que más coincida con el resto". 
 
 De lo anterior surge algo importante: los vectores deben conformarse por elementos de un mismo tipo para que puedan ser operados de forma correcta. Si un vector es de tipo "character" aunque tenga un número, no se podrá multiplicar dicho elemento del vector.
 
@@ -602,7 +654,7 @@ R como lenguaje de programación, tiene una estructura amplia para trabajar los 
 
 Algunas de las cosas básicas que debemos saber para poder hacer uso de los vectores son:
 
-- Las operaciones aritméticas para vectores "de tipo" numérico se siguien respetando pero se opera elemento por elemento.
+- Las operaciones aritméticas para vectores "de tipo" numérico se siguen respetando pero se opera elemento por elemento.
 
 ```{r ej16, exercise = TRUE}
 5*c(1, 2, 3)
@@ -625,11 +677,560 @@ x > y
 
 Podemos notar que el vector resultante de las operaciones, tiene el resultado de la operación correspondiente __entrada por entrada__.
 
+### `seq()`
+
+### Nombrar vectores
+
+### Extraer elementos de vectores
+
+### Missing values
+
+
+
+
 ## Listas
+
+### ¿ Qué es una lista?
+
+Anteriormente, hablamos de vectores y como estos pueden almacenar datos de un mismo tipo. Las listas, por su parte, son vectores genéricos que pueden guardar cualquier clase de objetos. Por ejemplo, pueden almacenar valores, matrices, vectores, *dataframes*, otras listas, etc. De esta forma, las listas no siguen un sistema de coerción o estructura determinada.
+
+Para ejemplificar lo anterior, creemos una lista que contenga los siguiente objetos:
+
+- un vector de números que represente el peso de tres personas
+- un vector de carácteres que corresponda a los nombres de cinco personas
+- un vector de valores lógicos que represente el estatus marital de las cinco personas (casado = TRUE, no casado = FALSE)
+
+y veamos el resultado de esta operación. 
+
+Para esto, utilizamos la función `list()` y cada argumento que le "pasemos" va a ser el objeto que queramos almacenar en dicha lista. 
+
+```{r ej18, exercise = TRUE}
+
+# Creamos la lista
+list1 <- list(c(56.7,67.8,53.6),
+              c("Luis", "Carlos", "Ale", "Ernesto", "Karla"),
+              c(FALSE, FALSE, TRUE, FALSE, TRUE))
+
+# Mostramos la lista
+list1
+
+```
+O también podemos obtener el mismo resultado de la siguiente forma:
+
+```{r ej19, exercise = TRUE}
+
+# Asignamos variables 
+x <- c(56.7,67.8,53.6)
+y <- c("Luis", "Carlos", "Ale", "Ernesto", "Karla")
+z <- c(FALSE, FALSE, TRUE)
+
+# Creamos la lista con las variables asignadas previamente
+list1 <- list(x, y, z)
+
+# Mostramos la lista
+list1
+
+```
+Notemos que el resultado anterior nos muestra los elementos de la lista a través de dobles corchetes, y en cada uno de ellos, se muestran los objetos que corresponden a los mismos. Más adelante veremos como manipular, acceder y nombrar estos elementos. 
+
+Por otro lado, si queremos saber que nuestro objeto efectivamente es una lista, existe un comando (`is.list()`) que nos ayuda a lograr esta tarea:
+
+```{r ej20, exercise = TRUE}
+
+x <- c(56.7,67.8,53.6)
+y <- c("Luis", "Carlos", "Ale")
+z <- c(FALSE, FALSE, TRUE)
+
+list1 <- list(x, y, z)
+
+is.list(list1)
+
+```
+
+### Asignación de nombres a elementos de las listas
+
+Una manera de tener una mejor visualización de los elementos de las listas es a través de la asignación de nombres a dichos elementos. Para esto, podemos utilizar la función `names()` que nos ayuda asignar nombres a los mismos o establecer los nombres dentro de la misma función `list()`. Veamos un ejemplo para clarificar lo anterior:
+
+Supongamos que deseamos almacenar el nombre de un producto, su precio y la cantidad de unidades del mismo en una lista. Además, queremos etiquetar dicha información de tal manera que nos sea más fácil acceder a ella. Para eso, haremos lo siguiente:
+
+```{r ej21, exercise = TRUE}
+# Creamos nuestra lista con los datos correspondientes. En nuestro caso escojamos solo un producto.
+Caract_Producto <- list("Jabón de manos", 27.4, 13)
+
+# Asignamos nombres a cada elemento de la lista
+names(Caract_Producto) <- c("Producto", "Precio", "Cantidad")
+
+# Corroboramos que efectivamente se hayan asignado los nombres
+Caract_Producto
+
+```
+Vemos que efectivamente los nombres fueron asignados a cada elemento de la lista.
+
+Otra manera de realizar esta tarea es asignando los nombres desde la creación de la lista, tal y como se muestra en el siguiente código:
+
+```{r ej22, exercise = TRUE}
+# Creamos la lista con todo y los nombres de cada elemento
+Caract_Producto <- list(Producto = "Jabón de manos", Precio = 27.4, Cantidad = 13)
+
+# Corroboramos que efectivamente se hayan asignado los nombres
+Caract_Producto
+
+```
+
+### Acceso a elementos de las listas
+
+Existen distintas formas para acceder a los elementos de una lista: podemos acceder a través de los índices asignados automáticamente de los elementos, los nombres asignados de los mismos (si es que los hay) o a través de valores lógicos.
+
+Para ejemplificar esta sección, utilicemos la lista `Caract_Producto` creada en la sección anterior.
+
+#### Índices asignados
+
+Para acceder a través de los índices asignados automáticamente de una lista, se utilizan dobles corchetes y el número correspondiente al elemento de la lista. Por ejemplo, en la lista `Caract_Producto` el primer elemento es el nombre del producto, por lo que para obtener este elemento, se requerirá escribir `Caract_Producto[[1]]` en el código y así sucesivamente:
+
+```{r ej23, exercise = TRUE}
+
+Caract_Producto <- list(Producto = "Jabón de manos", Precio = 27.4, Cantidad = 13)
+
+# Primer elemento de la lista (Producto)
+Caract_Producto[[1]]
+
+#Segundo elemento de la lista (Precio)
+Caract_Producto[[2]]
+
+#Tercer elemento de la lista (Cantidad)
+Caract_Producto[[3]]
+
+```
+
+#### Nombres asignados
+
+De igual forma que en el caso anterior, podemos acceder a los nombres (si es que se asignaron) de la lista. Esto se hace de la siguiente forma:
+
+```{r ej24, exercise = TRUE, exercise.setup = "respuestas"}
+# Obtenemos el objeto dentro del elemento llamado "Producto"
+Caract_Producto[["Producto"]]
+
+# Obtenemos el objeto dentro del elemento llamado "Precio"
+Caract_Producto[["Precio"]]
+
+# Obtenemos el objeto dentro del elemento llamado "Cantidad"
+Caract_Producto[["Cantidad"]]
+```
+Otra forma de acceder a dichos elementos, a través del nombre, es utilizando el signo de peso ($) precedido de la variable en donde se encuentra la lista, en este caso `Caract_Producto`:
+
+```{r ej25, exercise = TRUE, exercise.setup = "respuestas"}
+# Obtenemos el objeto dentro del elemento llamado "Producto"
+Caract_Producto$Producto
+
+# Obtenemos el objeto dentro del elemento llamado "Precio"
+Caract_Producto$Precio
+
+# Obtenemos el objeto dentro del elemento llamado "Cantidad"
+Caract_Producto$Cantidad
+```
+
+#### Valores lógicos
+
+Acceder a los elementos de la lista de esta manera puede ser muy conveniente, pues, tenemos la posibilidad de escoger de manera práctica los elementos que deseamos que nos muestre, tal y como se representa en el siguiente código:
+
+```{r ej26, exercise = TRUE, exercise.setup = "respuestas"}
+Caract_Producto[c(FALSE, TRUE, TRUE)]
+
+```
+
+Como podemos apreciar, el resultado nos muestra solo los elementos relacionados al valor lógico `TRUE` y omite aquellos relacionados al valor `FALSE`
+
+Por último, una manera rápida de visualizar la estructura de nuestra lista es por medio de la función `str()` que nos muestra el tipo de objeto dentro de cada elemento de la misma. Un ejemplo de su uso se muestra a continuación:
+
+```{r ej27, exercise = TRUE, exercise.setup = "respuestas"}
+# Muestra la estructura de la variable asociada a la lista creada
+str(Caract_Producto)
+```
+
+### Agregar nuevos elementos
+
+Podemos agregar nuevos elementos a nuestra lista, o incluso, podemos agregar otras listas para complementar la información que ya teníamos almacenada. Para ejemplificar lo anterior, basémonos en el siguiente código:
+
+```{r ej28, exercise = TRUE, exercise.setup = "respuestas"}
+# Agregamos un nuevo elemento a la lista ya creada
+Caract_Producto$Codigo <- "BBBC24"
+
+# Comprobemos la anexión del nuevo elemento
+Caract_Producto
+
+# Creamos una lista unida con Caract_Producto
+Info_adicional <- list(Fecha = "21/09/2020", Hora = "12:00", Caract_Producto = Caract_Producto)
+
+# Verifiquemos nuestra nueva lista con información adicional
+Info_adicional
+
+```
+
+### Ejercicio
+
+-1. Crea una lista que contenga los siguiente elementos:
+    - Un vector numérico que contenga las alturas `175`,`185` y `157`
+    - Un vector de carácteres que contenga los nombres `"Pablo"`, `"Cassandra"` y `"Gabriel"`
+    - Una lista que contenga 
+
+
+
+```{r ej29}
+
+```
+
+
 
 ## Matrices
 
-## data.frame
+En R, una matriz es una colección de datos del mismo tipo, configurada de manera rectangular. Tal y como se muestra en la siguiente imagen:
+
+-------------------- Imagen ---------------------------------------------------
+
+Existen distintas formas de crear una matriz en R, cada una con diferentes características.
+
+### Función `matrix()`
+
+Una de las formas más prácticas de crear una matriz es a través de la función `matrix()`, la cual recibe los siguiente parámetros:
+
+- `data` son los datos con los que queremos crear nuestra matriz
+- `nrow` el número deseado de renglones de la matriz
+- `ncol` el número deseado de columnas de la matriz
+- `byrow` un valor lógico. Si es `FALSE` (el valor por default), la matriz es llenada por columnas, en caso contrario, la matriz es llenada por renglones
+- `dimnames` puede ser `NULL` (es decir, no le pasamos ningún valor u objeto) o una lista de tamaño dos con los nombres de los renglones y columnas respectivamente.
+
+Veamos lo anterior en el siguiente código.
+
+```{r ej30, exercise = TRUE}
+# Matriz 2x3 llenada por columnas 
+matrix(data = 1:6, nrow = 2, ncol = 3)
+
+# Matriz 2x3 llenado por renglones
+matrix(data = 1:6, nrow = 2, ncol = 3, byrow = TRUE)
+
+```
+Al igual que en lo demás objetos en R, podemos guardar las matrices en una variable para su posterior uso. 
+
+```{r ej31, exercise = TRUE}
+# Matriz 2x3 llenada por columnas 
+M <- matrix(data = 1:6, nrow = 2, ncol = 3)
+
+# Mostramos la matriz
+M
+```
+
+### Funciones `cbind()` y `rbind()`
+
+Otra forma de crear matrices en R es a través de las funciones `cbind()` y `rbind()`, las cuales nos permiten crear una matriz por columnas o renglones, donde los parámetros van a ser los datos que queramos llenar en cada columna o renglón, tal y como se muestra en el siguiente código:
+
+```{r ej32, exercise = TRUE}
+# Creamos y asignamos una matriz con la función cbind()
+M_porcolumnas <- cbind(1:3, 4:6, 7:9)
+# Mostramos dicha matriz
+M_porcolumnas
+
+# Creamos y asignamos una matriz con la función rbind()
+M_porrenglones <- rbind(1:3, 4:6, 7:9)
+# Mostramos dicha matriz
+M_porrenglones
+
+```
+Es recomendable que cuando utilicemos estas funciones los valores que les pasemos a cada columna o renglón sean de la misma longitud; en otro caso, se complementarán U omitirán valores, tal y como pasa en el siguiente código:
+
+```{r ej33, exercise = TRUE}
+# Se asigna una matriz con longitud de valores de diferente tamaño
+M_distintalongitud <- cbind(c(1,5,6), c(2,4,5,6))
+# Se muestra el resultado
+M_distintalongitud
+
+```
+Vemos que en este caso, nos arroja una advertencia de que el número de renglones (4) del resultado no es múltiplo de la longitud del vector (3) en el primer argumento, y para arreglar esto, la matriz vuelve a repetir el primer elemento del vector en el primer argumento.
+
+Por otro lado, una de las ventajas que nos otorgan estas funciones, es que nos permite agregar más columnas o renglones a alguna matriz ya creada. Veamos el siguiente código para ejemplificar lo anterior:
+
+```{r ej34, exercise = TRUE}
+# Creamos y asignamos una matriz de las primeras 6 letras del abecedario
+M <- matrix(data = LETTERS[1:6], nrow = 3)
+# Mostramos la matriz
+M
+
+# Creamos y asignamos otra matriz, donde agregamos una nueva columna a la matriz M
+M_mas_elementos <- cbind(M, c("g", "h", "i"))
+# Mostramos la matriz
+M_mas_elementos
+```
+
+### Nombrar renglones y columnas
+
+Podemos agrear nombres en las columnas o renglones de las matrices para tener una mejor visualización de los datos. Esta tarea se puede realizar, al igual que con las listas, con las funciones `rownames()` y `colnames()` o desde la creación de nuestra matriz con la función `matrix()`. 
+
+### Asignando nombres con las funciones `rownames()` y `colnames()`
+
+
+CUIDADO con asignar más nombres que columnas o renglones de la matriz en cuestión, ya que te lanzará un error
+
+```{r ej35, exercise = TRUE}
+M <- matrix(1:6, nrow = 2)
+M
+
+colnames(M) <- c("Col1", "Col2", "Col3")
+rownames(M) <- c("Row1", "Row2")
+M
+```
+
+
+
+### Asignando nombres desde la creación de la matriz
+
+```{r ej36, exercise = TRUE}
+# Creemos una lista que contenga los nombres de nuestras columnas y renglones
+names <- list(c("Row1", "Row2"), c("Col1", "Col2", "Col3"))
+
+# Asignamos y creamos nuestra matriz a la variable M con los nombres de los renglones y columnas
+M <- matrix(1:6, nrow = 2, dimnames = names)
+# Mostramos la matriz
+M
+
+```
+
+### Coerción en matrices
+
+```{r ej37, exercise = TRUE}
+# Creamos y asignamos una matriz en una variable de letras del abecedario
+M <- matrix(LETTERS[1:6], ncol = 2)
+# Vemos la matriz
+M
+
+# Agregamos una columna de números
+M_coercion <- cbind(M, 1:3)
+# Vemos el resultado
+M_coercion
+
+```
+Notemos, que a pesar de que utilizamos un vector numérico para agregar una nueva columna, el resultado final de la matriz convierte estos números a carácteres. 
+
+### Operaciones con matrices 
+
+
+------------------- Agregar más cosas del video a partir de las 2hrs en el video------
+
+```{r ej38, exercise = TRUE}
+
+M1 <- matrix(1:9, ncol = 3)
+M2 <- matrix(9:17, ncol = 3)
+
+# DIMENSIÓN DE UNA MATRIZ
+dim(M1)
+
+# SUMA
+M1 + M2
+
+# PRODUCTO
+M1*M2 #OJO: Es diferente al producto de matrices
+
+# DIVISION
+M1/M2
+
+# PRODUCTO POR UN NÚMERO
+5*M1
+
+# TRANSPUESTA DE UNA MATRIZ
+t(M1)
+
+# PRODUCTO MATRICIAL EN R
+M1%*%M2
+
+
+```
+
+
+### Extraer elementos de la matriz
+
+Para acceder a los elementos de la matriz, podemos proceder de la misma manera como en las listas o los vectores. 
+
+
+## *data frame*
+
+### ¿Qué es un data frame?
+
+Un data frame es una estructura de datos organizada en forma de tabla. Este objeto es de suma importancia, ya que nos permite visualizar y acceder a la información de una manera clara y estructurada. 
+
+Los data frames tienen una configuración parecida a una matriz, donde las columnas van a representar variables o categorías (de un mismo tipo de dato), mientras que los renglones representarán observaciones o conjuntos de datos asociados a cada categoría o variable. En la siguiente imagen se muestra como se ve un dataframe en R.
+
+---------------- Imagen -----------------------------
+
+En términos específicos, un dataframe es una **lista** de variables con el mismo número de datos acomodados en forma de matriz, lo que nos garantiza un mejor acceso a los mismos, ya que, al ser la intersección de estos dos objetos, podemos utilizar las propiedades de cada uno de ellos que más nos favorezcan para manejar, acceder o manipular nuestros datos.
+
+Como consecuencia de lo anterior, un data frame, al ser una especie de lista, puede almacenar datos de diferentes tipos entre cada una de las categorías o variables, sin sacrificar, al mismo tiempo, la visualización y estructura de los mismos.
+
+Veamos ahora cómo se crea un data frame:
+
+Supongamos que queremos almacenar la información de los últimos cinco vuelos en un periodo determinado, considerando el código del vuelo, el destino, su precio y si tuvo retraso o no en un data frame. Para lograr lo anterior, se realiza lo siguiente: 
+
+```{r ej39, exercise = TRUE}
+# Creamos y asignamos un data frame a la variable vuelos
+Vuelos <- data.frame(Codigo = c("BBC21", "DCF32", "DKE23", "LKI98"), Destino = c("Los Angeles", "California", "San Franciso", "Madrid"), Precio = c(325.99, 412.87, 399.67, 720.76), Retraso = c(TRUE, FALSE, FALSE, FALSE))
+# Mostramos el data frame
+Vuelos
+```
+
+O también, podemos obtener el mismo resultado de la siguiente forma:
+
+```{r ej40, exercise = TRUE}
+# Creamos las variables que van a componer a nuestro data frame
+Codigo <- c("BBC21", "DCF32", "DKE23", "LKI98")
+Destino <-  c("Los Angeles", "California", "San Franciso", "Madrid")
+Precio <-  c(325.99, 412.87, 399.67, 720.76)
+Retraso <- c(TRUE, FALSE, FALSE, FALSE)
+
+# Creamos y asiganmos el data frame con las variables antes definidas a la variable Vuelos
+Vuelos <- data.frame(Codigo, Destino, Precio, Retraso)
+#Mostramos el data frame
+Vuelos
+
+
+```
+
+Por otro lado, los dataframes también tienen sus limitantes, pues, a diferencia de las listas, estos objetos no pueden almacenar variables con diferente longitud en los datos que contienen. Veamos lo anterior en el siguiente ejemplo:
+
+```{r ej41, exercise = TRUE}
+# Creamos y asignamos un data frame a la variable vuelos
+Vuelos <- Vuelos <- data.frame(Codigo = c("BBC21", "DCF32", "DKE23", "LKI98", "Nuevo valor"), Destino = c("Los Angeles", "California", "San Franciso", "Madrid"), Precio = c(325.99, 412.87, 399.67, 720.76), Retraso = c(TRUE, FALSE, FALSE, FALSE))
+```
+
+Vemos que efectivamente no nos deja crear el data frame, ya que una de las variables contiene un dato más que todas las otras.
+
+Al igual que con las listas, podemos ver la estructura de un data frame con la función `str()`. En el siguiente código, checa la estructura del data frame creado previamente. 
+**Nota:** no te preocupes en crear de nuevo el data frame `Vuelos`, este ya se encuentra cargado para que lo utilices.
+
+```{r ej42, exercise = TRUE, exercise.setup = "respuestas"}
+# Utiliza el data frame Vuelos para ver su estructura
+str(______)
+```
+
+```{r ej42-solution}
+str(Vuelos)
+```
+
+### Factores
+
+```{r ej43, exercise = TRUE}
+# Creamos las variables que van a componer a nuestro data frame
+Codigo <- c("BBC21", "DCF32", "DKE23", "LKI98")
+Destino <-  c("Los Angeles", "California", "San Franciso", "Madrid")
+Precio <-  c(325.99, 412.87, 399.67, 720.76)
+Retraso <- c(TRUE, FALSE, FALSE, FALSE)
+
+# Creamos y asiganmos el data frame con las variables antes definidas a la variable Vuelos sin factores en las variables de tipo caracter
+Vuelos <- data.frame(Codigo, Destino, Precio, Retraso, stringsAsFactors = FALSE)
+#Mostramos el data frame
+str(Vuelos)
+```
+¿ Qué podemos notar de diferente entre este resultado y el anterior?
+
+
+### Acceso a los elementos de un data frame
+
+```{r ej44, exercise = TRUE}
+# Creamos las variables con las que vamos a llenar nuestro data frame
+nombre <- c("Miriam", "Ingrid", "Edwin", "Francisco", "Carolina")
+edad <- c(24, 23, 21, 34, 16)
+casado <- c(TRUE, TRUE, FALSE, FALSE, FALSE)
+
+# Creamos y asignamos nuestro data frame a la variable Df con las varibles previamente definidas
+Df <- data.frame(Nombre = nombre, Edad = edad, Casado = casado, stringsAsFactors = FALSE)
+# Mostramos el data frame 
+Df
+
+# UNA SECCIÓN
+
+Df[1]
+
+Df["Nombre"]
+
+Df[[1]]
+
+Df[["Nombre"]]
+
+Df$Nombre
+
+
+# OTRA SECCIÓN
+
+Df[1,]
+
+Df[,1]
+
+Df[1,2]
+
+Df[1, "Edad"]
+
+Df[c(4,5), c(2,3)]
+
+
+```
+
+
+### Agregar nuevas columnas o renglones
+
+
+```{r ej45, exercise = TRUE, exercise.setup = "respuestas"}
+# Creamos la nueva variable altura que anexaremos a nuestro data frame
+altura <- c(177, 165, 162, 178, 170)
+
+# Creamos la nueva variable de nuestro data frame a través del proceso de asignación
+Df$Altura <- altura
+
+# Mostramos el data frame para verificar que efectivamente se anexo la nueva variable
+Df
+
+```
+
+También podemos usar la función `cbind()` para anexar columnas
+
+```{r ej46, exercise = TRUE, exercise.setup = "respuestas 2"}
+# Creamos otra nueva variable llamada peso que anexaremos a nuestro data frame
+peso <- c(56, 57, 60, 65, 70)
+
+# Agregamos la nueva variable en nuestro data frame
+Df <- cbind(Df, peso)
+# Mostramos el data frame con la nueva variable
+Df
+
+```
+
+De igual manera, podemos agregar nuevas observaciones o renglones con la función `rbind()`; no obstante, a diferencia de de las matrices, aquí no podemos agregar las nuevas observaciones como un vector, ya que existen diferentes tipos de datos en cada categoría, por lo cual, tendríamos que crear otros data frames con las observaciones que quisiéramos anexar. Vemos el siguiente código para ejemplificar lo anterior:
+
+```{r ej47, exercise = TRUE, exercise.setup = "respuestas 3"}
+# Creamos las variables con las nuevas observaciones que queramos anexar
+nueva_observacion1 <- data.frame(Nombre = "Armando", Edad = 36, Casado = TRUE, Altura = 180, peso = 73)
+nueva_observacion2 <- data.frame(Nombre = "Ana", Edad = 23, Casado = FALSE, Altura = 165, peso = 49)
+
+# Anexamos dichas varaibles a nuestro data frame original
+Df <- rbind(Df, nueva_observacion1, nueva_observacion2)
+# Mostramos el data frame
+Df
+```
+
+O podemos agregar varias observaciones a la vez:
+
+```{r ej48, exercise = TRUE, exercise.setup = "respuestas 4"}
+# Creamos una variable que contenga el data frame con nuestras observaciones
+nuevas_observaciones <- data.frame(Nombre = c("Carmen", "Gustavo"), Edad = c(28,42), Casado = c(TRUE, TRUE), Altura = c(167, 173), peso = c(67, 58))
+
+# Anexamos estas observaciones al data frame original 
+Df <- rbind(Df, nuevas_observaciones)
+# Mostramos el data frame para ver que estos cambios sí se efectuaron
+Df
+                                  
+```
+
+
+
+
+### Ordenar un data frame
+
+## Tratamiento de NAs
 
 ## Funciones
 
