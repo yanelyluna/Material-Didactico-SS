@@ -1800,5 +1800,14 @@ print(val)
 
 Hasta aquí llega nuestro primer vistazo a R, pero no te desanimes, aún quedan muchas cosas por aprender de R. Por lo que te invitamos a que sigas practicando y aprendiendo de este gran lenguaje de programación. 
 
-Recuerda que si necesitas ayuda con alguna función o comando en específico, siempre puedes usar la función `help()` que te muestra la documentación correspondiente a dicha función o comando, por ejemplo, `help("matrix")`
+Recuerda que si necesitas ayuda con alguna función o comando en específico, siempre puedes usar la función `help()` , la cual muestra la documentación correspondiente a dicha función o comando, por ejemplo, `help("matrix")`.
+
+También, te dejamos unos links en caso de que quieras expandir tu aprendizaje ¡Suerte!
+
+- https://youtu.be/7NLPPFU0O3w [Introducción a R - parte 1]
+- https://youtu.be/uQMKuT-K4oU [Introducción a R - parte 2]
+- https://www.rstudio.com/resources/books/ [Libros de la página oficial de RStudio]
+
+
+
 
