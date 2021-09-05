@@ -712,7 +712,7 @@ De igual manera, podemos utilizar diferentes funciones que nos den información 
 
 A continuación, mostraremos algunas de las funciones que podemos utilizar con vectores, en especial, con vectores de tipo numérico.
 
-```{r Eej18}
+```{r Eej18, exercise = TRUE}
 
 v <- c(2,4,7,9,16)
 
@@ -734,7 +734,9 @@ mean(v)
 
 ### Nombrar vectores
 
-Otra de las cosas que debemos de considerar cuando trabajamos con vectores es saber nombrarlos; esto sirve para tener una mejor accesibilidad a los mismos. Para esto, utilizamos una función predeterminada llamada `names()`. Veamos cómo nombrar vectores con la función `names()` en el siguiente código.
+Otra de las cosas que debemos de considerar cuando trabajamos con vectores es saber nombrarlos; esto sirve para tener una mejor accesibilidad a los mismos. Para esto, utilizamos una función predeterminada llamada `names()`. 
+
+Veamos cómo nombrar vectores con la función `names()` en el siguiente código.
 
 ```{r Eeje19, exercise = TRUE}
 # Creamos un vector y lo asignamos a la variable temperatura con los siguientes datos:
@@ -764,7 +766,7 @@ Principalmente, para extraer elementos o subconjutos de vectores existen dos for
 
 #### Utilizando índices de posición:
 
-R, internamente, asigna posiciones numéricas a objetos como vectores, listas, arreglos, matrices, data frames, etc. De esta manera, podemos indicar en qué posición se encuentra algún elemento en especifico. Por ejemplo, consideremos el siguiente vector:
+R, internamente, asigna índices de posición a objetos como vectores, listas, arreglos, matrices, data frames, etc. De esta manera, podemos indicar en qué posición se encuentra algún elemento en especifico. Por ejemplo, consideremos el siguiente vector:
 
 ```{r Eeje20, exercise = TRUE}
 # Creamos y asignamos un vector en la variable v
@@ -814,9 +816,9 @@ v[c("v1", "v6")]
 
 #### Utilizando valores lógicos
 
-Para extraer valores de un vector, a través de valores lógicos, vasta con realizar el mismo proceso que en los caso anteriores, solo que en este caso, solo es necesario indicar valores lógicos.
+Para extraer valores de un vector, a través de valores lógicos, basta con realizar el mismo proceso que en los caso anteriores, solo que en este caso, solo es necesario indicar valores lógicos.
 
-Te toca a ti, ¿puedes saber cómo va a funcionar esta selección de valores? ¿Qué pasa si utilizamos el siguiente comando `v[c[T, F]]`? ¿Por qué solo agarra estos elementos? ¿Ahora, qué pasa si utilizamos el siguiente comando `v[c(F,T)]`?
+Te toca a ti. ¿Puedes saber cómo va a funcionar esta selección de valores? ¿Qué pasa si utilizamos el siguiente comando `v[c[T, F]]`? ¿Por qué solo agarra estos elementos? ¿Ahora, qué pasa si utilizamos el siguiente comando `v[c(F,T)]`?
 
 ```{r Eeje23, exercise = TRUE}
 # Creamos y asignamos el vector de valores en la variable v
@@ -835,7 +837,7 @@ Otras formas que pueden servirnos al momento de extraer valores, son si les pasa
 
 Por ejemplo, para no extraer valores en específico, podemos utilizar los siguiente comandos:
 
-```{r Eeje24, exercise = TRUE}
+```{r Eeeje24, exercise = TRUE}
 v <- 10:19
 
 v[-1]
@@ -859,6 +861,39 @@ filtro
 v[filtro]
 
 ```
+
+
+### Ejercicio
+
+Del siguiente vector creado extrae lo siguiente:
+- El primer, segundo y tercer valor del vector 
+- El valor 527 y 89
+- Los valores asociados a los nombres "p1" y "p5"
+- Los valores menores o iguales a la media de los valores del vector
+
+
+```{r Eeje24, exercise = TRUE}
+# Creamos y asignamos el vector en la variable p
+p <- c(334,456,43,32,527,45,89,25)
+# Asigamos los nombres a cada valor del vector
+names(p) <- paste0("p", 1:8)
+
+# El primer, segundo y tercer valor del vector 
+
+
+# El valor 527 y 89
+
+
+# Los valores asociados a los nombres "p1" y "p5"
+
+
+# Los valores menores o iguales a la media de los valores del vector
+
+
+
+```
+
+**Nota**: Como puedes apreciar, existen varias formas de realizar este ejercicio; siéntete cómo utilizando cualquiera de ellas. 
 
 ## Listas
 
@@ -1046,7 +1081,11 @@ Info_adicional
 
 ### Ejercicio
 
--1. Crea una lista que contenga los siguiente elementos: - Un vector numérico que contenga las alturas `175`,`185` y `157` - Un vector de carácteres que contenga los nombres `"Pablo"`, `"Cassandra"` y `"Gabriel"` - Una lista que contenga dos vectores `1:5` y `c("A", "B")`
+1. Crea una lista que contenga los siguiente elementos:
+
+- Un vector numérico que contenga las alturas `175`,`185` y `157` 
+- Un vector de carácteres que contenga los nombres `"Pablo"`, `"Cassandra"` y `"Gabriel"` 
+- Una lista que contenga dos vectores `1:5` y `c("A", "B")`
 
 ```{r ej29, exercise = TRUE}
 
@@ -1056,7 +1095,10 @@ Info_adicional
 
 En R, una matriz es una colección de datos del mismo tipo, configurada de manera rectangular, tal y como se muestra en la siguiente imagen:
 
--------------------- Imagen ---------------------------------------------------
+```{r ej29-2, echo=FALSE}
+head(as.matrix(cars))
+```
+
 
 Existen distintas formas de crear una matriz en R, cada una con diferentes características.
 
@@ -1138,9 +1180,13 @@ M_mas_elementos
 
 Podemos agrear nombres en las columnas o renglones de las matrices para tener una mejor visualización de los datos. Esta tarea se puede realizar, al igual que con las listas, con las funciones `rownames()` y `colnames()` o desde la creación de nuestra matriz con la función `matrix()`.
 
-### Asignando nombres con las funciones `rownames()` y `colnames()`
+#### Asignando nombres con las funciones `rownames()` y `colnames()`
 
-CUIDADO con asignar más nombres que columnas o renglones de la matriz en cuestión, ya que te lanzará un error
+Para asignar nombres de esta manera es necesario asignar los nombres con la correspondiente función, ya sea para columnas o renglones.
+
+Veamos el siguiente ejemplo:
+
+**CUIDADO** con asignar más nombres que el número de columnas o renglones de la matriz en cuestión, pues, de otra manera, la consola nos arrojará un error.
 
 ```{r ej35, exercise = TRUE}
 M <- matrix(1:6, nrow = 2)
@@ -1151,7 +1197,11 @@ rownames(M) <- c("Row1", "Row2")
 M
 ```
 
-### Asignando nombres desde la creación de la matriz
+#### Asignando nombres desde la creación de la matriz
+
+Otra manera de asignar nombres a la matriz es desde su creación. No obstante, a diferencia de la forma anterior de asignar nombres, la función `matrix()` requiere que le pasemos una lista con los nombres de los renglones y columnas (en ese orden) que quisiéramos asignar. 
+
+Veamos los anterior en el siguiente código:
 
 ```{r ej36, exercise = TRUE}
 # Creemos una lista que contenga los nombres de nuestras columnas y renglones
@@ -1165,6 +1215,10 @@ M
 ```
 
 ### Coerción en matrices
+
+Ahora, al igual que con los vectores, existe algo que se llama la **coerción** en los datos de una matriz. Esto es que los valores de la matriz tienen que ser del mismo tipo de dato; en caso de que no lo sean, los objetos matriz tratarán de convertir los datos de tal manera que todos ellos pertenezcan a una misma clase de datos (por ejemplo, numeric, character, etc).
+
+Tomemos el siguiente código como referencia:
 
 ```{r ej37, exercise = TRUE}
 # Creamos y asignamos una matriz en una variable de letras del abecedario
@@ -1182,6 +1236,8 @@ M_coercion
 Notemos, que a pesar de que utilizamos un vector numérico para agregar una nueva columna, el resultado final de la matriz convierte estos números a caracteres.
 
 ### Funciones asociadas a una matriz
+
+Para el caso de matrices existen diferentes funciones que nos pueden aportar información acerca de una matriz. En el siguiente código se muestran las principales: 
 
 ```{r Eej38, exercise = TRUE}
 
@@ -1205,18 +1261,21 @@ rownames(M1)
 colnames(M1)
 
 #nos regresa el nombre de renglones y columnas
+dimnames(M1)
 
 ```
 
 ### Operaciones con matrices
 
+De igual manera que con los vectores, las matrices pueden realizar operaciones con otras matrices, pero es importante recordar que la manera en que funcionan estas operaciones no siempre es la misma que como en la teoría matemática. Para realizar estas operaciones de forma "matemática" se utilizan otras funciones. 
+
+En el siguiente código veamos las principales operaciones que podemos hacer con matrices:
+
+
 ```{r ej38, exercise = TRUE}
 
 M1 <- matrix(1:9, ncol = 3)
 M2 <- matrix(9:17, ncol = 3)
-
-# DIMENSIÓN DE UNA MATRIZ
-dim(M1)
 
 # SUMA
 M1 + M2
@@ -1304,6 +1363,31 @@ Calif["Edson", c("Fis", "Hist")] # Calif de Edson en Física y Química
 Calif[c("Edson", "Ale"), 1:3] # Califs de Edson y Ale en Física, Química y Mate
 ```
 
+### Ejercicio
+
+- 1. Crea una matriz que contenga los siguiente datos:
+
+```{r table, echo=FALSE}
+matrix(c(2500, 1500, 5673, 3478, 6789, 9012, 4567, 982, 3456), nrow = 3, ncol = 3, byrow = T, dimnames = list(c("Ana", "Luis", "Armando"), c("2018", "2019", "2020")))
+```
+Estos datos representan las ganancias totales de cada individuo en 2018, 2019 y 2020
+
+- 2. Extrae las ganancia de Luis en el año 2018 y 2020
+- 3. Extrae las ganancias de Ana y Armando de los tres años
+- 4. Saca la media de ganancias de cada año
+
+```{r  Eej44-2, exercise = T}
+# Crea la matriz basándote en la tabla anterior
+
+# Extrae las ganancia de Luis en el año 2018 y 2020
+
+# Extrae las ganancias de Ana y Armando de los tres años
+
+# Saca la media de ganancias de cada año
+
+```
+
+
 ## Vector-Lista-Matriz
 
 En R puedes cambiar el tipo de dato, para poder hacerlo se utiliza una función que inicia con el prefijo `as.`, esto puede ser útil para distintos casos, aquí veremos cómo pasar de vector a lista y a matriz.
@@ -1329,15 +1413,20 @@ precios
 ```
 
 
-## *data frame*
+## Data frame
 
 ### ¿Qué es un data frame?
 
 Un data frame es una estructura de datos organizada en forma de tabla. Este objeto es de suma importancia, ya que nos permite visualizar y acceder a la información de una manera clara y estructurada.
 
-Los data frames tienen una configuración parecida a una matriz, donde las columnas van a representar variables o categorías (de un mismo tipo de dato), mientras que los renglones representarán observaciones o conjuntos de datos asociados a cada categoría o variable. En la siguiente imagen se muestra como se ve un data frame en R.
+Los data frames tienen una configuración parecida a una matriz, donde las columnas van a representar variables o categorías (de un mismo tipo de dato), mientras que los renglones representarán observaciones o conjuntos de datos asociados a cada categoría o variable. En la siguiente tabla se muestra como se ve un data frame en R.
 
----------------- Imagen -----------------------------
+```{r ej46-2, echo=FALSE}
+
+head(iris)
+
+```
+
 
 En términos específicos, un data frame es una **lista** de variables con el mismo número de datos, acomodados en forma de matriz, lo que nos garantiza un mejor acceso a los mismos, ya que, al ser la intersección de estos dos objetos, podemos utilizar las propiedades de cada uno de ellos que más nos favorezcan para manejar, acceder o manipular nuestros datos.
 
@@ -1395,6 +1484,8 @@ str(Vuelos)
 
 ### Factores
 
+Si ponemos atención en la estructura del data frame creado `Vuelos`, podemos notar que tanto las variables `Destino` como `Codigo` están como `Factor` en vez de `character`. Esto pasa, ya que la función `data.frame()`, por default, convierte a todas las variables de tipo caracter a variables de tipo `Factor`, las cuales son un tipo de variables caracter [ https://vivaelsoftwarelibre.com/factores-en-r-que-son-y-como-trabajar-con-ellos/ Veáse para más información]. Sin embargo, el tratamiento de variables como tipo `Factor` puede ocasionar algunos problemas cuando estemos trabajando con nuestro data frame, por lo cual podemos desactivar esta opción haciendo lo siguiente:
+
 ```{r ej43, exercise = TRUE}
 # Creamos las variables que van a componer a nuestro data frame
 Codigo <- c("BBC21", "DCF32", "DKE23", "LKI98")
@@ -1412,6 +1503,10 @@ str(Vuelos)
 
 ### Acceso a los elementos de un data frame
 
+Ya que los data frames son una intersección de las matrices y las listas, estos objetos heredan las propiedades de las listas y matrices para acceder a los elementos de un data frame. De esta manera, podemos utilizar las formas en como se substraen tanto de una matriz como de una lista.
+
+Veamos el siguiente ejemplo para clarificar lo anterior:
+
 ```{r ej44, exercise = TRUE}
 # Creamos las variables con las que vamos a llenar nuestro data frame
 nombre <- c("Miriam", "Ingrid", "Edwin", "Francisco", "Carolina")
@@ -1423,35 +1518,45 @@ Df <- data.frame(Nombre = nombre, Edad = edad, Casado = casado, stringsAsFactors
 # Mostramos el data frame 
 Df
 
-# UNA SECCIÓN
-
+# Regresan un data frame
 Df[1]
-
 Df["Nombre"]
 
+```
+
+Vemos que de esta forma los elementos substraídos son devueltos en formato de data frame. En el siguinte código se muestran cómo regresar estos valores en forma de vector:
+
+```{r Eej44, exercise = TRUE, exercise.setup = "respuestas"}
+# Regresan vectores
 Df[[1]]
-
 Df[["Nombre"]]
-
 Df$Nombre
 
+```
 
-# OTRA SECCIÓN
+De esta manera, podemos acceder a cualquier valor o conjunto de valores de las siguientes formas:
+
+```{r Eej44-22, exercise = TRUE, exercise.setup = "respuestas"}
 
 Df[1,]
 
 Df[,1]
 
-Df[1,2]
+Df[1:3 ,2]
+
+Df[[1]][1:3]
 
 Df[1, "Edad"]
 
 Df[c(4,5), c(2,3)]
 
 
+
 ```
 
 ### Agregar nuevas columnas o renglones
+
+Al igual que en las matrices, podemos agregar nuevas columnas a nuestros data frames previamente definidos, para esto se puede proceder de la siguiente manera:
 
 ```{r ej45, exercise = TRUE, exercise.setup = "respuestas"}
 # Creamos la nueva variable altura que anexaremos a nuestro data frame
@@ -1465,7 +1570,7 @@ Df
 
 ```
 
-También podemos usar la función `cbind()` para anexar columnas
+O también podemos usar la función `cbind()` 
 
 ```{r ej46, exercise = TRUE, exercise.setup = "respuestas 2"}
 # Creamos otra nueva variable llamada peso que anexaremos a nuestro data frame
@@ -1604,8 +1709,6 @@ head(iris)
 tail(iris)
 ```
 
-
-
 ## Control de Flujo
 
 El control de flujo se refiere al orden en que se ejecutan las instrucciones que tenemos en el programa. Si se quisiera calcular o verificar algunos valores, se utilizan los controles de flujo.
@@ -1693,3 +1796,9 @@ break
 print(val)
 }
 ```
+
+
+Hasta aquí llega nuestro primer vistazo a R, pero no te desanimes, aún quedan muchas cosas por aprender de R. Por lo que te invitamos a que sigas practicando y aprendiendo de este gran lenguaje de programación. 
+
+Recuerda que si necesitas ayuda con alguna función o comando en específico, siempre puedes usar la función `help()` que te muestra la documentación correspondiente a dicha función o comando, por ejemplo, `help("matrix")`
+
