@@ -592,11 +592,11 @@ La lista siguiente contiene los principales objetos que puedes usar y crear en R
 
 -   [Vectores](#vect)
 
--   Listas (is.list())
+-   [Listas](#list)
 
--   Matrices
+-   [Matrices](#matrix)
 
--   data.frame ("tablas")
+-   [data.frame](#df) ("tablas")
 
 En las secciones posteriores veremos qué es cada uno, cómo se crea, para qué sirve y cómo operarlos.
 
@@ -895,7 +895,7 @@ names(p) <- paste0("p", 1:8)
 
 **Nota**: Como puedes apreciar, existen varias formas de realizar este ejercicio; siéntete cómo utilizando cualquiera de ellas. 
 
-## Listas
+## Listas {#list}
 
 ### ¿ Qué es una lista?
 
@@ -1091,7 +1091,7 @@ Info_adicional
 
 ```
 
-## Matrices
+## Matrices {#matrix}
 
 En R, una matriz es una colección de datos del mismo tipo, configurada de manera rectangular, tal y como se muestra en la siguiente imagen:
 
@@ -1413,7 +1413,7 @@ precios
 ```
 
 
-## Data frame
+## Data frame {#df}
 
 ### ¿Qué es un data frame?
 
