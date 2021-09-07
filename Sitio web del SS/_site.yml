@@ -16,6 +16,8 @@ navbar:
         href: Xaringan-y-Flipbookr.html
       - text: Tutorial Learnr
         href: https://carlos-arguello.shinyapps.io/Tutorial_Learnr/
+      - text: Introducción a R
+        href: https://carlos-arguello.shinyapps.io/Introduction_to_R/
     - text: "Git y más"
       href: about.html
       menu:

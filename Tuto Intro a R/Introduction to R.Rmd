@@ -166,7 +166,6 @@ code {
   }
 </style>
 ```
-
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE, fig.align='center')
@@ -271,7 +270,6 @@ libros <- data.frame(nombre = c("Tukey","Venables","Tierney","Ripley","Ripley","
 
 precios <- c(10,20,30,40)
 ```
-
 
 ## Objetivo
 
@@ -733,7 +731,7 @@ mean(v)
 
 ### Nombrar vectores
 
-Otra de las cosas que debemos de considerar cuando trabajamos con vectores es saber nombrarlos; esto sirve para tener una mejor accesibilidad a los mismos. Para esto, utilizamos una función predeterminada llamada `names()`. 
+Otra de las cosas que debemos de considerar cuando trabajamos con vectores es saber nombrarlos; esto sirve para tener una mejor accesibilidad a los mismos. Para esto, utilizamos una función predeterminada llamada `names()`.
 
 Veamos cómo nombrar vectores con la función `names()` en el siguiente código.
 
@@ -861,15 +859,9 @@ v[filtro]
 
 ```
 
-
 ### Ejercicio
 
-Del siguiente vector creado extrae lo siguiente:
-- El primer, segundo y tercer valor del vector 
-- El valor 527 y 89
-- Los valores asociados a los nombres "p1" y "p5"
-- Los valores menores o iguales a la media de los valores del vector
-
+Del siguiente vector creado extrae lo siguiente: - El primer, segundo y tercer valor del vector - El valor 527 y 89 - Los valores asociados a los nombres "p1" y "p5" - Los valores menores o iguales a la media de los valores del vector
 
 ```{r Eeje24, exercise = TRUE}
 # Creamos y asignamos el vector en la variable p
@@ -892,7 +884,7 @@ names(p) <- paste0("p", 1:8)
 
 ```
 
-**Nota**: Como puedes apreciar, existen varias formas de realizar este ejercicio; siéntete cómo utilizando cualquiera de ellas. 
+**Nota**: Como puedes apreciar, existen varias formas de realizar este ejercicio; siéntete cómo utilizando cualquiera de ellas.
 
 ## Listas {#list}
 
@@ -1080,11 +1072,11 @@ Info_adicional
 
 ### Ejercicio
 
-1. Crea una lista que contenga los siguiente elementos:
+1.  Crea una lista que contenga los siguiente elementos:
 
-- Un vector numérico que contenga las alturas `175`,`185` y `157` 
-- Un vector de carácteres que contenga los nombres `"Pablo"`, `"Cassandra"` y `"Gabriel"` 
-- Una lista que contenga dos vectores `1:5` y `c("A", "B")`
+-   Un vector numérico que contenga las alturas `175`,`185` y `157`
+-   Un vector de carácteres que contenga los nombres `"Pablo"`, `"Cassandra"` y `"Gabriel"`
+-   Una lista que contenga dos vectores `1:5` y `c("A", "B")`
 
 ```{r ej29, exercise = TRUE}
 
@@ -1097,7 +1089,6 @@ En R, una matriz es una colección de datos del mismo tipo, configurada de maner
 ```{r ej29-2, echo=FALSE}
 head(as.matrix(cars))
 ```
-
 
 Existen distintas formas de crear una matriz en R, cada una con diferentes características.
 
@@ -1198,7 +1189,7 @@ M
 
 #### Asignando nombres desde la creación de la matriz
 
-Otra manera de asignar nombres a la matriz es desde su creación. No obstante, a diferencia de la forma anterior de asignar nombres, la función `matrix()` requiere que le pasemos una lista con los nombres de los renglones y columnas (en ese orden) que quisiéramos asignar. 
+Otra manera de asignar nombres a la matriz es desde su creación. No obstante, a diferencia de la forma anterior de asignar nombres, la función `matrix()` requiere que le pasemos una lista con los nombres de los renglones y columnas (en ese orden) que quisiéramos asignar.
 
 Veamos los anterior en el siguiente código:
 
@@ -1236,7 +1227,7 @@ Notemos, que a pesar de que utilizamos un vector numérico para agregar una nuev
 
 ### Funciones asociadas a una matriz
 
-Para el caso de matrices existen diferentes funciones que nos pueden aportar información acerca de una matriz. En el siguiente código se muestran las principales: 
+Para el caso de matrices existen diferentes funciones que nos pueden aportar información acerca de una matriz. En el siguiente código se muestran las principales:
 
 ```{r Eej38, exercise = TRUE}
 
@@ -1266,10 +1257,9 @@ dimnames(M1)
 
 ### Operaciones con matrices
 
-De igual manera que con los vectores, las matrices pueden realizar operaciones con otras matrices, pero es importante recordar que la manera en que funcionan estas operaciones no siempre es la misma que como en la teoría matemática. Para realizar estas operaciones de forma "matemática" se utilizan otras funciones. 
+De igual manera que con los vectores, las matrices pueden realizar operaciones con otras matrices, pero es importante recordar que la manera en que funcionan estas operaciones no siempre es la misma que como en la teoría matemática. Para realizar estas operaciones de forma "matemática" se utilizan otras funciones.
 
 En el siguiente código veamos las principales operaciones que podemos hacer con matrices:
-
 
 ```{r ej38, exercise = TRUE}
 
@@ -1364,16 +1354,27 @@ Calif[c("Edson", "Ale"), 1:3] # Califs de Edson y Ale en Física, Química y Mat
 
 ### Ejercicio
 
-- 1. Crea una matriz que contenga los siguiente datos:
+-   
+
+    1.  Crea una matriz que contenga los siguiente datos:
 
 ```{r table, echo=FALSE}
 matrix(c(2500, 1500, 5673, 3478, 6789, 9012, 4567, 982, 3456), nrow = 3, ncol = 3, byrow = T, dimnames = list(c("Ana", "Luis", "Armando"), c("2018", "2019", "2020")))
 ```
+
 Estos datos representan las ganancias totales de cada individuo en 2018, 2019 y 2020
 
-- 2. Extrae las ganancia de Luis en el año 2018 y 2020
-- 3. Extrae las ganancias de Ana y Armando de los tres años
-- 4. Saca la media de ganancias de cada año
+-   
+
+    2.  Extrae las ganancia de Luis en el año 2018 y 2020
+
+-   
+
+    3.  Extrae las ganancias de Ana y Armando de los tres años
+
+-   
+
+    4.  Saca la media de ganancias de cada año
 
 ```{r  Eej44-2, exercise = T}
 # Crea la matriz basándote en la tabla anterior
@@ -1386,12 +1387,12 @@ Estos datos representan las ganancias totales de cada individuo en 2018, 2019 y 
 
 ```
 
-
 ## Vector-Lista-Matriz
 
 En R puedes cambiar el tipo de dato, para poder hacerlo se utiliza una función que inicia con el prefijo `as.`, esto puede ser útil para distintos casos, aquí veremos cómo pasar de vector a lista y a matriz.
 
 Empezaremos con una variable de tipo vector, esta la transformaremos a lista.
+
 ```{r eje44, exercise = T, exercise.setup = "respuestas"}
 precios <- c(10,20,30,40)
 precios
@@ -1400,17 +1401,18 @@ lista_precios
 ```
 
 Podemos deshacer una lista, observemos qué sucede.
+
 ```{r eje45, exercise = T, exercise.setup = "respuestas"}
 #Vemos que regresa a ser un vector
 unlist(lista_precios)
 ```
 
 También podemos transformar un vector a matriz.
+
 ```{r eje46, exercise = T, exercise.setup = "respuestas"}
 dim(precios) <- c(2,2)
 precios
 ```
-
 
 ## Data frame {#df}
 
@@ -1425,7 +1427,6 @@ Los data frames tienen una configuración parecida a una matriz, donde las colum
 head(iris)
 
 ```
-
 
 En términos específicos, un data frame es una **lista** de variables con el mismo número de datos, acomodados en forma de matriz, lo que nos garantiza un mejor acceso a los mismos, ya que, al ser la intersección de estos dos objetos, podemos utilizar las propiedades de cada uno de ellos que más nos favorezcan para manejar, acceder o manipular nuestros datos.
 
@@ -1483,7 +1484,7 @@ str(Vuelos)
 
 ### Factores
 
-Si ponemos atención en la estructura del data frame creado `Vuelos`, podemos notar que tanto las variables `Destino` como `Codigo` están como `Factor` en vez de `character`. Esto pasa, ya que la función `data.frame()`, por default, convierte a todas las variables de tipo caracter a variables de tipo `Factor`, las cuales son un tipo de variables caracter [ https://vivaelsoftwarelibre.com/factores-en-r-que-son-y-como-trabajar-con-ellos/ Veáse para más información]. Sin embargo, el tratamiento de variables como tipo `Factor` puede ocasionar algunos problemas cuando estemos trabajando con nuestro data frame, por lo cual podemos desactivar esta opción haciendo lo siguiente:
+Si ponemos atención en la estructura del data frame creado `Vuelos`, podemos notar que tanto las variables `Destino` como `Codigo` están como `Factor` en vez de `character`. Esto pasa, ya que la función `data.frame()`, por default, convierte a todas las variables de tipo caracter a variables de tipo `Factor`, las cuales son un tipo de variables caracter [ <https://vivaelsoftwarelibre.com/factores-en-r-que-son-y-como-trabajar-con-ellos/> Veáse para más información]. Sin embargo, el tratamiento de variables como tipo `Factor` puede ocasionar algunos problemas cuando estemos trabajando con nuestro data frame, por lo cual podemos desactivar esta opción haciendo lo siguiente:
 
 ```{r ej43, exercise = TRUE}
 # Creamos las variables que van a componer a nuestro data frame
@@ -1569,7 +1570,7 @@ Df
 
 ```
 
-O también podemos usar la función `cbind()` 
+O también podemos usar la función `cbind()`
 
 ```{r ej46, exercise = TRUE, exercise.setup = "respuestas 2"}
 # Creamos otra nueva variable llamada peso que anexaremos a nuestro data frame
@@ -1640,8 +1641,7 @@ ordenado.desc <- order(-Df$Altura)
 Df[ordenado.desc,]
 ```
 
-También podemos ordenar en más de una columna, en la función debemos darla las especificaciones para que se ordene como queramos. 
-**Ejercicio.** Completa el código para que el *dataframe* ordene de forma ascendente los nombres y descendente la altura.
+También podemos ordenar en más de una columna, en la función debemos darla las especificaciones para que se ordene como queramos. **Ejercicio.** Completa el código para que el *dataframe* ordene de forma ascendente los nombres y descendente la altura.
 
 ```{r ej113, warning=FALSE, exercise = TRUE, exercise.setup = "respuestas"}
 orden_doble <- ___(Df["___"], _Df$___)
@@ -1664,7 +1664,6 @@ orden_doble <- order(Df["Nombre"], -Df$Altura)
 Df[orden_doble,]
 ```
 
-
 ### Merging *dataframes*
 
 Al fusionar *dataframes*, estos se comparan con respecto a alguna condición. Para poder observarlo, crearemos dos nuemos *dataframes*
@@ -1682,6 +1681,7 @@ libros <- data.frame(nombre = c("Tukey","Venables","Tierney","Ripley","Ripley",
 #El término `by` establece para cada dataframe, a partir de qué columna se hará el merge
 merge(x = autores, y = libros, by.x = "surname",by.y = "nombre")
 ```
+
 Podemos notar que "R Core" no está contenido en el *merge*, esto sucede porque no tiene valores en el *autores*.
 
 ### Dataset
@@ -1796,17 +1796,12 @@ print(val)
 }
 ```
 
-
-Hasta aquí llega nuestro primer vistazo a R, pero no te desanimes, aún quedan muchas cosas por aprender de R. Por lo que te invitamos a que sigas practicando y aprendiendo de este gran lenguaje de programación. 
+Hasta aquí llega nuestro primer vistazo a R, pero no te desanimes, aún quedan muchas cosas por aprender de R. Por lo que te invitamos a que sigas practicando y aprendiendo de este gran lenguaje de programación.
 
 Recuerda que si necesitas ayuda con alguna función o comando en específico, siempre puedes usar la función `help()` , la cual muestra la documentación correspondiente a dicha función o comando, por ejemplo, `help("matrix")`.
 
 También, te dejamos unos links en caso de que quieras expandir tu aprendizaje ¡Suerte!
 
-- https://youtu.be/7NLPPFU0O3w [Introducción a R - parte 1]
-- https://youtu.be/uQMKuT-K4oU [Introducción a R - parte 2]
-- https://www.rstudio.com/resources/books/ [Libros de la página oficial de RStudio]
-
-
-
-
+-   <https://youtu.be/7NLPPFU0O3w> [Introducción a R - parte 1]
+-   <https://youtu.be/uQMKuT-K4oU> [Introducción a R - parte 2]
+-   <https://www.rstudio.com/resources/books/> [Libros de la página oficial de RStudio]
