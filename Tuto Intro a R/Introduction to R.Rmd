@@ -166,10 +166,9 @@ code {
   }
 </style>
 ```
+
 ```{r setup, include=FALSE}
 library(learnr)
-
-
 knitr::opts_chunk$set(echo = FALSE, fig.align='center')
 ```
 
